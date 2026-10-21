@@ -80,6 +80,35 @@ p,dd,li{text-wrap:pretty}
 .sel b:nth-child(1){left:-5px;top:-5px}.sel b:nth-child(2){right:-5px;top:-5px}.sel b:nth-child(3){left:-5px;bottom:-5px}.sel b:nth-child(4){right:-5px;bottom:-5px}
 .hero-photo figcaption{position:absolute;left:50%;bottom:-38px;translate:-50% 0;padding:5px 10px;border-radius:4px;background:var(--brown);color:var(--cream);font:600 12px/1.2 Inter,sans-serif;white-space:nowrap}
 
+/* hero photo as a design file: the selection frame draws in, a sticky-note mascot peeks over the top edge
+   and watches the pointer, and two collaborator cursors drift across */
+.hp-img{z-index:1}
+.sel{z-index:2;animation:sel-in .9s var(--ease) .6s both}
+.sel b{animation:pop .5s cubic-bezier(.34,1.56,.64,1) both}
+.sel b:nth-child(1){animation-delay:1.1s}.sel b:nth-child(2){animation-delay:1.2s}.sel b:nth-child(3){animation-delay:1.3s}.sel b:nth-child(4){animation-delay:1.4s}
+.hero-photo figcaption{z-index:2;animation:cap-up .6s var(--ease) 1.5s both}
+.mascot{position:absolute;right:13%;top:0;width:92px;--ex:0px;--ey:0px}
+.m-body{position:absolute;left:0;top:-60px;width:92px;height:96px;z-index:0;animation:m-rise .9s cubic-bezier(.34,1.56,.64,1) 1.7s both,m-peek 7s ease-in-out 3.6s infinite}
+.m-hands{position:absolute;left:0;top:-9px;width:92px;height:18px;z-index:3;animation:fade-up .4s var(--ease) 2.1s both}
+.m-eyes{transform:translate(var(--ex),var(--ey));transition:transform .25s}
+.m-eyes ellipse{transform-box:fill-box;transform-origin:center;animation:m-blink 4.8s infinite}
+.hero-photo:hover .m-body{animation:m-hop .5s ease 2}
+.mp{position:absolute;z-index:4;display:flex;align-items:flex-start;gap:2px;pointer-events:none;color:var(--c)}
+.mp svg{width:16px;height:16px;flex:none}
+.mp b{margin-top:12px;padding:3px 8px;border-radius:4px;background:var(--c);color:#fff;font:600 11px/1.2 Inter,sans-serif}
+.mp1{--c:#4f6a43;left:-34px;top:56%;animation:fade-up .5s var(--ease) 2.2s both,mp-a 11s ease-in-out 2.6s infinite}
+.mp2{--c:var(--brown);right:-26px;bottom:18%;animation:fade-up .5s var(--ease) 2.6s both,mp-b 13s ease-in-out 3s infinite}
+@keyframes sel-in{from{opacity:0;inset:4px}to{opacity:1;inset:-8px}}
+@keyframes pop{from{scale:0}to{scale:1}}
+@keyframes fade-up{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
+@keyframes cap-up{from{opacity:0;translate:-50% 10px}to{opacity:1;translate:-50% 0}}
+@keyframes m-rise{from{translate:0 64px}to{translate:0 0}}
+@keyframes m-peek{0%,62%,100%{translate:0 0}70%,80%{translate:0 40px}}
+@keyframes m-hop{50%{translate:0 -10px}}
+@keyframes m-blink{0%,92%,100%{scale:1 1}95%{scale:1 .12}}
+@keyframes mp-a{0%,100%{translate:0 0}25%{translate:46px -38px}50%{translate:18px 30px}75%{translate:-10px -6px}}
+@keyframes mp-b{0%,100%{translate:0 0}30%{translate:-60px -24px}60%{translate:-24px 34px}80%{translate:8px 10px}}
+
 /* selected work */
 .work-intro{padding:clamp(80px,9vw,128px) 0 clamp(24px,3vw,40px)}
 .feat{padding:clamp(56px,7vw,104px) 0}
@@ -265,7 +294,8 @@ p,dd,li{text-wrap:pretty}
   .top .btn{display:none}.menu{display:inline-block}
   .hero-stage{display:flex;flex-direction:column}
   .hero-copy{max-width:none}
-  .hero-photo{order:3;min-height:0;margin:36px 0 40px;aspect-ratio:4/3;width:min(100%,520px)}
+  .hero-photo{order:3;min-height:0;margin:72px 0 40px;aspect-ratio:4/3;width:min(100%,520px)}
+  .mp1{left:-8px}.mp2{right:-6px}
   .feat-grid{grid-template-columns:1fr}
   .feat:nth-child(even) .feat-media{order:0}
   .more-grid,.skills,.edu ul,.tst-grid,.str-grid,.concepts ul,.about-grid{grid-template-columns:1fr}
@@ -279,7 +309,8 @@ p,dd,li{text-wrap:pretty}
   .hero-proof{grid-template-columns:1fr;gap:14px}
   .hero-proof li{display:flex;align-items:baseline;gap:12px}
   .hero-proof b{margin:0;min-width:4.4em;white-space:nowrap}
-  .hero-photo{aspect-ratio:1}
+  .hero-photo{aspect-ratio:1;margin-top:36px}
+  .hero-photo .mascot{display:none}
   .cs-item{grid-template-columns:1fr}
   .str{grid-template-columns:36px 1fr}
 }

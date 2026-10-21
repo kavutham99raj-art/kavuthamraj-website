@@ -33,6 +33,20 @@
   }
 })();
 
+/* mascot: eyes look toward the pointer */
+(() => {
+  const buddies = [...document.querySelectorAll(".mascot")];
+  if (!buddies.length || !matchMedia("(pointer: fine)").matches) return;
+  addEventListener("pointermove", (e) => {
+    buddies.forEach((b) => {
+      const r = b.getBoundingClientRect();
+      const a = Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2));
+      b.style.setProperty("--ex", (Math.cos(a) * 2.6).toFixed(2) + "px");
+      b.style.setProperty("--ey", (Math.sin(a) * 3.4).toFixed(2) + "px");
+    });
+  }, { passive: true });
+})();
+
 /* footer: live local time in Tiruppur */
 (() => {
   const el = document.querySelector(".foot-time");
