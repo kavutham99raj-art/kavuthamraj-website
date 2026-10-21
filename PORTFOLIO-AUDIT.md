@@ -284,3 +284,32 @@ Make the end of the opening animation the hero's resting state. Let the photo sp
 - B (your call): the activity grid's shading and legend (#8), and the composed-hero idea.
 - C (needs your facts): the ERP/Payroll story (#2), and the dates and claims that disagree with your résumé (#13).
 - Self-hosting the fonts. That needs the font files downloaded, which I haven't done.
+
+## 8. Apple-style pass and heuristic evaluation (21 Oct 2026)
+**Apple-style changes (one idea per screen):**
+- **Hero:** your name, one headline, one supporting line, "See the work" plus "Email me ›", and the photo. The eyebrow, the paragraph, the proof row and the employer strip are gone from the hero.
+- **Proof band:** 5+, 50K+ and 10 → 5 get their own screen, in large Krona One type with "Worked at" underneath. On phones they become compact rows.
+- **Skills and education bento:**
+  - "Research to handoff" with the design skills.
+  - A dark Figma tile ("main tool").
+  - A giant rust "AA" for accessibility.
+  - Tools, "I prototype in code", and the MBA, B.Sc. and certificate tiles.
+
+**Heuristic evaluation (Nielsen's 10).** Severity is on Nielsen's 0–4 scale (4 is most severe).
+| Heuristic | Finding | Severity | Status |
+|---|---|---|---|
+| 1. Visibility of system status | The header didn't show which section you're in. | 2 | Fixed: the current section is highlighted (`aria-current`). |
+| 1. Visibility of system status | Nothing told visitors the intro can be skipped. | 2 | Fixed: "Click or press any key to skip" hint. |
+| 2. Match with the real world | Case pages used a "CS" prefix (jargon). | 1 | Fixed: the project's number instead. |
+| 2. Match with the real world | The activity grid's "less … more" legend implies measured data. | 2 | Open: your call (batch B). |
+| 3. User control and freedom | Intro skip, pause motion, breadcrumbs, next case, back to top. | 0 | Passes. |
+| 4. Consistency and standards | "Get in touch" opened email while "Contact" scrolled to a section. | 2 | Fixed: renamed "Email me ›". |
+| 4. Consistency and standards | Outline buttons inherited a white browser background. | 2 | Fixed. |
+| 5. Error prevention | Email links fail silently without a mail app. | 2 | Fixed: "Copy email" with "Copied ✓" feedback, announced to screen readers. |
+| 5. Error prevention | Visitors could see stale CSS/JS after an update. | 2 | Fixed: content-hash cache busting. |
+| 6. Recognition rather than recall | Sticky nav, frame labels, chapter list, breadcrumbs. | 0 | Passes. |
+| 7. Flexibility and efficiency | Skip link, direct résumé download, chapter jumps, mobile contact bar. | 0 | Passes. |
+| 8. Aesthetic and minimalist design | The hero was dense; plain lists for skills. | 3 | Fixed: Apple-style hero, proof band, bento. |
+| 8. Aesthetic and minimalist design | The homepage is still long (10 sections). | 1 | Open: consider merging About into the bento. |
+| 9. Recognise and recover from errors | The 404 page explains and links home. | 0 | Passes. |
+| 10. Help and documentation | How I work and the case-study chapters explain the process. | 0 | Passes. |

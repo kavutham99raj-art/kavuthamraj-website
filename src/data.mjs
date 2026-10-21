@@ -193,6 +193,8 @@ export const education = [
 // *asterisks* mark the phrase set in the accent colour.
 export const heroCopy = {
   eyebrow: "Senior UI/UX & Product Designer · B2B SaaS, ERP & consumer apps",
+  // Apple-style hero: one headline, one supporting line. The detail lives in the proof band and the work.
+  subhead: "Senior UI/UX & Product Designer for B2B SaaS, ERP and consumer apps.",
   lead: "I turn complex, data-heavy workflows into *clear, accessible* products.",
   sub: "5+ years from research to design systems and developer handoff. Now co-owning UX for Titan, a back-office product used by operations teams in the US, the Philippines and India.",
 };
@@ -200,9 +202,9 @@ export const heroCopy = {
 // Hero proof: one public figure, one self-reported figure with its source, one scope fact.
 // Each figure appears once on the home page; the flagship cards carry the others.
 export const proof = [
+  { value: "5+", label: "years designing B2B and consumer products" },
   { value: "50K+", label: "downloads of Sporfy, the booking app, on Google Play" },
   { value: "10 → 5", label: "handoff bugs per sprint over six sprints, after the Titan design system" },
-  { value: "3", label: "products led end to end as Liffto's design lead" },
 ];
 
 // Companies, in the order worked at, newest first.

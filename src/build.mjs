@@ -1,5 +1,6 @@
 import { framerCases } from "./framer-cases.mjs";
-import { writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from "node:fs";
+import { writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import {
   profile, projects, experience, skills, education, companies,
@@ -22,6 +23,9 @@ const small = (src) => String(src).replace(/(\.\w+)$/, "-900$1");
 const thumbSet = (file) => `work/${thumb(file).replace("covers/", "covers/600/")} 600w, work/${thumb(file)} 1200w`;
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const hasResume = existsSync(new URL("../static/resume.pdf", import.meta.url));
+// Content hashes on CSS and JS links, so browsers fetch the new files after every change.
+const v = (file) => createHash("sha1").update(readFileSync(STATIC + file)).digest("hex").slice(0, 8);
+const cssV = v("styles.css"), jsV = v("main.js");
 const linkedin = profile.links.find((l) => l.label === "LinkedIn").href;
 const behance = profile.links.find((l) => l.label === "Behance").href;
 const resumeLink = (r, cls, label) => (hasResume ? `<a class="${cls}" href="${r}resume.pdf" download="Kavuthamraj-Resume.pdf">${label}</a>` : "");
@@ -49,7 +53,7 @@ ${noindex ? `<meta name="robots" content="noindex">` : `<link rel="canonical" hr
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${r}styles.css">
+<link rel="stylesheet" href="${r}styles.css?v=${cssV}">
 <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
@@ -92,7 +96,7 @@ const footer = (r) => `<footer class="foot">
     <a href="#top">Back to top ↑</a>
   </div>
 </footer>
-<script src="${r}main.js" defer></script>
+<script src="${r}main.js?v=${jsV}" defer></script>
 </body>
 </html>`;
 
@@ -128,14 +132,18 @@ ${header("")}
         <button class="motion-toggle" type="button" aria-pressed="false">Pause motion</button>
       </figure>
       <div class="hero-copy rise" style="--d:220ms">
-        <p class="hero-eyebrow label">${esc(heroCopy.eyebrow)}</p>
         <p class="hero-lead">${rich(heroCopy.lead)}</p>
-        <p class="hero-sub">${esc(heroCopy.sub)}</p>
-        <div class="hero-cta"><a class="btn solid lg" href="#work">See the work</a><a class="text-link" href="${mailto}">${esc(profile.email)}</a></div>
-        <dl class="hero-proof">${proof.map((x) => `<div><dt>${esc(x.value)}</dt><dd>${esc(x.label)}</dd></div>`).join("")}</dl>
+        <p class="hero-sub">${esc(heroCopy.subhead)}</p>
+        <div class="hero-cta"><a class="btn solid lg" href="#work">See the work</a><a class="chev-link" href="${mailto}">Email me <span aria-hidden="true">›</span></a></div>
       </div>
     </div>
-    <div class="shipped"><p class="label">Worked at</p><ul>${companies.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></div>
+  </div>
+</section>
+
+<section class="proof-band" aria-label="In numbers">
+  <div class="wrap">
+    <dl class="big-proof">${proof.map((x, i) => `<div class="reveal" style="--d:${i * 100}ms"><dt>${esc(x.value)}</dt><dd>${esc(x.label)}</dd></div>`).join("")}</dl>
+    <div class="shipped reveal"><p class="label">Worked at</p><ul>${companies.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></div>
   </div>
 </section>
 
@@ -182,7 +190,14 @@ ${header("")}
     </div>
     <div class="concepts reveal">
       <p class="label">Concepts and explorations <span>Self-initiated or time-boxed, kept for range</span></p>
-      <ul>${concepts().map((p) => { const c = framerCases[p.case] || {}; return `<li><a href="work/${esc(p.case)}.html"><strong>${esc(p.title)}</strong><span>${esc([durText(c.duration), ...p.tags.slice(0, 2)].filter(Boolean).join(" · "))}</span><i aria-hidden="true">→</i></a></li>`; }).join("")}</ul>
+      <ul class="concept-grid">${concepts().map((p) => {
+        const c = framerCases[p.case] || {};
+        return `<li><a class="concept" href="work/${esc(p.case)}.html">
+          <span class="concept-img"><img src="work/${esc(thumb(p.cover)).replace("covers/", "covers/600/")}" alt="" width="600" height="600" loading="lazy" decoding="async"><span class="concept-time">${esc(durText(c.duration))}</span></span>
+          <span class="concept-body"><strong>${esc(p.title)}</strong><span>${esc(p.tags.slice(0, 2).join(" · "))}</span></span>
+          <i aria-hidden="true">↗</i>
+        </a></li>`;
+      }).join("")}</ul>
     </div>
   </div>
 </section>
@@ -251,9 +266,37 @@ ${header("")}
       <div>${frame("06", "About")}<h2 class="krona h2 reveal">Designer, <em>analyst, builder.</em></h2></div>
       <div class="about-copy">${profile.about.map((t) => `<p class="reveal">${esc(t)}</p>`).join("")}</div>
     </div>
-    <div class="facts" id="skills">
-      ${Object.entries(skills).map(([g, items]) => `<div class="reveal"><h3 class="label">${esc(g)}</h3><ul>${items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></div>`).join("")}
-      <div class="reveal"><h3 class="label">Education</h3><ul class="edu">${education.map((e) => `<li><strong>${esc(e.title)}</strong><span>${esc(e.org)}${e.dates ? ` · ${esc(e.dates.replace(" to ", "–"))}` : ""}</span></li>`).join("")}</ul></div>
+    <div class="bento" id="skills">
+      <article class="tile-b b-design reveal">
+        <p class="label">Design</p>
+        <h3 class="krona">Research <em>to handoff.</em></h3>
+        <ul class="chips">${skills.Design.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </article>
+      <article class="tile-b b-figma dark reveal">
+        <p class="label">Main tool</p>
+        <h3 class="krona">Figma</h3>
+        <p>Variables, Auto Layout and Dev Mode for product work. FigJam for flows and workshops.</p>
+      </article>
+      <article class="tile-b b-aa reveal">
+        <p class="label">Accessibility</p>
+        <h3 class="krona big-mark">AA</h3>
+        <p>WCAG 2.1 AA notes in every handoff: focus order, ARIA labels, and status that never relies on colour alone.</p>
+      </article>
+      <article class="tile-b b-tools reveal">
+        <p class="label">Also in the kit</p>
+        <h3 class="krona">Tools</h3>
+        <ul class="chips">${skills.Tools.filter((x) => x !== "Figma").map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </article>
+      <article class="tile-b b-build reveal">
+        <p class="label">Build</p>
+        <h3 class="krona">I prototype <em>in code.</em></h3>
+        <ul class="chips">${skills.Build.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </article>
+      ${education.map((e, i) => `<article class="tile-b ${i ? "b-edu-sm" : "b-edu"} reveal">
+        <p class="label">${i ? (e.dates ? "Degree" : "Certificate") : "Education"}</p>
+        <h3${i ? "" : ' class="krona"'}>${i ? esc(e.title) : "MBA, <em>Business Analytics.</em>"}</h3>
+        <p>${i ? "" : `${esc(e.title.replace(/,.*/, ""))} · `}${esc(e.org)}${e.dates ? ` · ${esc(e.dates.replace(" to ", "–"))}` : ""}</p>
+      </article>`).join("")}
     </div>
   </div>
 </section>
@@ -275,7 +318,7 @@ ${header("")}
     ${frame("08", "Contact")}
     <h2 class="krona display reveal">Let's build <em>what's next.</em></h2>
     <p class="contact-lede reveal">Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
-    <a class="contact-mail reveal" href="${mailto}">${esc(profile.email)}<span aria-hidden="true">↗</span></a>
+    <div class="contact-line reveal"><a class="contact-mail" href="${mailto}">${esc(profile.email)}<span aria-hidden="true">↗</span></a><button class="copy-mail btn ghost-light" type="button" data-copy="${esc(profile.email)}">Copy email</button><span class="sr copy-status" role="status" aria-live="polite"></span></div>
     <div class="contact-act reveal">${resumeLink("", "btn light", "Download résumé")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a></div>
   </div>
 </section>
@@ -347,7 +390,7 @@ ${header(r)}
 <main class="case" id="main">
   <div class="wrap case-head canvas-pad">
     <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
-    <p class="frame rise"><span>${concept ? "C" : "CS"}</span> ${eyebrow.map(esc).join(" · ")}</p>
+    <p class="frame rise"><span>${String(keys.indexOf(key) + 1).padStart(2, "0")}</span> ${eyebrow.map(esc).join(" · ")}</p>
     <h1 class="case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
     ${summary && summary !== plain(h1) ? `<p class="case-sum rise" style="--d:160ms">${esc(summary)}</p>` : ""}
     ${!c.lead && !feat && c.tags.length ? `<ul class="cs-chips rise" style="--d:200ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}

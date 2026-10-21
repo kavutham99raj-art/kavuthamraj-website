@@ -61,6 +61,10 @@ const onScroll = (fn) => {
   const bg = document.createElement("div");
   bg.className = "intro-bg";
   stage.prepend(bg);
+  const hint = document.createElement("p");
+  hint.className = "intro-hint";
+  hint.textContent = "Click or press any key to skip";
+  document.body.append(hint);
 
   const start = () => {
     const vw = innerWidth, cy = innerHeight / 2, ease = "cubic-bezier(.76,0,.24,1)";
@@ -112,6 +116,7 @@ const onScroll = (fn) => {
       removeEventListener("keydown", skip);
       anims.forEach((a) => a.cancel());
       bg.remove();
+      hint.remove();
       first.style.color = last.style.color = first.style.transformOrigin = last.style.transformOrigin = "";
       root.classList.remove("intro-run");
     };
@@ -242,5 +247,34 @@ const onScroll = (fn) => {
     let cur = heads[0];
     for (const h of heads) if (h.getBoundingClientRect().top < innerHeight * 0.35) cur = h;
     links.forEach((a) => a.classList.toggle("on", a === byId.get(cur.id)));
+  });
+})();
+
+/* home: the header marks the section on screen (visibility of system status) */
+(() => {
+  const links = [...document.querySelectorAll(".nav a[href*='#']")].filter((a) => a.pathname === location.pathname || a.getAttribute("href").startsWith("index.html#") && /\/(index\.html)?$/.test(location.pathname));
+  const map = links.map((a) => [a, document.getElementById(a.hash.slice(1))]).filter(([, el]) => el);
+  if (!map.length) return;
+  onScroll(() => {
+    let cur = null;
+    for (const [a, el] of map) if (el.getBoundingClientRect().top < innerHeight * 0.4) cur = a;
+    map.forEach(([a]) => (a === cur ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
+  });
+})();
+
+/* contact: copy the email address for people without a mail app (error prevention) */
+(() => {
+  const btn = document.querySelector(".copy-mail");
+  const status = document.querySelector(".copy-status");
+  if (!btn || !navigator.clipboard) { if (btn) btn.hidden = true; return; }
+  btn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      btn.textContent = "Copied ✓";
+      status.textContent = "Email address copied";
+    } catch (e) {
+      btn.textContent = "Select and copy above";
+    }
+    setTimeout(() => { btn.textContent = "Copy email"; status.textContent = ""; }, 2400);
   });
 })();
