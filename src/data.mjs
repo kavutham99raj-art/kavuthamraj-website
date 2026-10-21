@@ -24,7 +24,7 @@ export const profile = {
   industries: ["Sports", "Retail", "E-commerce", "Healthcare", "AI", "Accounts & Finance"],
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/kavuthamraj/" },
-    { label: "Behance", href: "https://www.behance.net/gallery/224132329/ERP-Solutionfor-Sports-Industry" },
+    { label: "Behance", text: "ERP case on Behance", href: "https://www.behance.net/gallery/224132329/ERP-Solutionfor-Sports-Industry" },
   ],
   oldSite: "https://kavuthamraj.framer.website/",
 };
@@ -198,10 +198,11 @@ export const heroCopy = {
 };
 
 // Hero proof: one public figure, one self-reported figure with its source, one scope fact.
+// Each figure appears once on the home page; the flagship cards carry the others.
 export const proof = [
-  { value: "5+", label: "years designing B2B and consumer products" },
-  { value: "50K+", label: "downloads of Sporfy on Google Play" },
-  { value: "10 → 5", label: "handoff bugs per sprint after the Titan design system" },
+  { value: "50K+", label: "downloads of Sporfy, the booking app, on Google Play" },
+  { value: "10 → 5", label: "handoff bugs per sprint over six sprints, after the Titan design system" },
+  { value: "3", label: "products led end to end as Liffto's design lead" },
 ];
 
 // Companies, in the order worked at, newest first.
@@ -211,7 +212,7 @@ export const companies = ["AffinityX", "Liffto Technologies", "SRM Technologies"
 export const strengths = [
   { t: "Find the system behind the ticket", d: "One complaint about one slow table in Titan became a loading standard for the whole product.", href: "work/titan.html", cta: "Titan" },
   { t: "Design for the people who run it", d: "Cyberdine's captains told us UPI tips were getting lost in the bill, so I designed a separate tip step that restaurants track live.", href: "work/cyberdine.html#tips-payment-and-menus", cta: "Cyberdine" },
-  { t: "Systems that cut rework", d: "A tokenized MUI v6 library in Figma (60+ components, light and dark) took handoff bugs from about 10 to 5 per sprint across six sprints.", href: "work/titan.html#the-design-system-behind-it", cta: "Design system" },
+  { t: "Systems that cut rework", d: "One tokenized MUI v6 library in Figma, light and dark, so designers and developers build from the same parts and handoff stops leaking bugs.", href: "work/titan.html#the-design-system-behind-it", cta: "Design system" },
   { t: "Accessible by default", d: "WCAG 2.1 AA notes in every handoff: focus order, ARIA labels, and status that never relies on colour alone.", href: "work/cyberdine.html#looking-back", cta: "Contrast audit" },
 ];
 
@@ -229,7 +230,7 @@ export const featured = [
     key: "titan", meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
     title: "Stop the spinner. *Keep the work moving.*",
     text: "One slow table froze the whole back office. I audited every table and dashboard, made the case with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components.",
-    outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["10 → 5", "handoff bugs per sprint, design system"]],
+    outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix became the product-wide loading standard"]],
     visual: { src: "work/titan-story/05.jpg", alt: "Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
     href: "work/titan.html", cover: "titan.png",
   },
@@ -246,17 +247,31 @@ export const featured = [
     title: "A sports ERP, *rebuilt for the phone.*",
     text: "Sporfy Tracker puts organisation, payroll, attendance, fees, classes and slots into one mobile-first app. I planned and designed it end to end as the only designer, under the CEO and CTO.",
     outcomes: [["Solo", "designer, from brief to developer handoff"], ["Mobile", "first: payroll, accounts, attendance and fees"], ["Live", "on Google Play as Sporfy Tracker"]],
-    visual: { phones: erpScreens.slice(0, 3) },
+    visual: { phones: erpScreens },
     href: "work/erp.html", cover: "erp-solution.png",
   },
 ];
 export { erpScreens };
 
-// PLACEHOLDERS: replace each with a real LinkedIn recommendation before going live.
+// LinkedIn recommendations, quoted word for word (Oct 2026). *asterisks* mark the phrase highlighted in the accent colour.
+// Anything with placeholder: true renders as a marked draft card.
+export const recommendationsUrl = "https://www.linkedin.com/in/kavuthamraj/details/recommendations/";
 export const testimonials = [
-  { name: "Product Manager", role: "Titan, AffinityX", quote: "Replace with a real recommendation about working together on Titan: the loading audit, the skeleton states and the handoff.", placeholder: true },
-  { name: "CEO or CTO", role: "Sporfy", quote: "Replace with a real recommendation about the sports ERP and payroll work, and what it was like to work with you.", placeholder: true },
-  { name: "Developer", role: "Cyberdine, Liffto Technologies", quote: "Replace with a real recommendation about your handoff quality and how easy your designs were to build.", placeholder: true },
-  { name: "Design Lead", role: "SRM Technologies", quote: "Replace with a real recommendation about your work on enterprise apps and the design system.", placeholder: true },
+  {
+    name: "Ivan Živković", role: "Senior Lead UI Engineer, AffinityX", relation: "Worked on the same team", date: "Oct 2026",
+    quote: "I had the pleasure of working with Kavuthamraj at AffinityX, where he was our senior UI/UX designer. Kavuthamraj has *a real gift for turning complex problems into clean, intuitive experiences*, always backed by thoughtful research and clear reasoning. He is also a fantastic collaborator: reliable, open to feedback, and calm under pressure. Any team would be lucky to have him.",
+  },
+  {
+    name: "Manoj Krishnamoorthy", role: "Lead UX Designer", relation: "Managed Kavuthamraj directly at Sporfy", date: "Oct 2026",
+    quote: "I had the pleasure of mentoring and working with Kavuthamraj GS at Sporfy for three years. During this time, he demonstrated a strong passion for UI/UX design, creativity, and a commitment to continuous learning. He was receptive to feedback, *developed his design skills consistently*, and showed a good understanding of user-centered design principles. I highly recommend him for UI/UX design opportunities and am confident he will be a valuable addition to any design team.",
+  },
+  {
+    name: "Gukanesh Chidambaram", role: "Product Designer", relation: "Worked on the same team at Sporfy", date: "Oct 2026",
+    quote: "I had the pleasure of working with Kavuthamraj at Sporfy. He is a talented designer with a strong understanding of UI/UX, *a user-first mindset, and great attention to detail*. He works well with cross-functional teams and consistently brings thoughtful design solutions to the table. I'd highly recommend him for Senior UI/UX and Product Design roles.",
+  },
+  {
+    name: "Novak Stankovic", role: "Frontend Engineer, AffinityX", relation: "Worked together on different teams", date: "Oct 2026",
+    quote: "Recommending Kavuthamraj, a talented designer and a colleague I truly enjoyed working with. They bring creativity, attention to detail, and *a thoughtful approach to every project*. They are collaborative, open to feedback, and always willing to support the team.",
+  },
 ];
 

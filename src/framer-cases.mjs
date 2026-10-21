@@ -306,28 +306,6 @@ export const framerCases = {
    },
    {
     "t": "h2",
-    "x": "The result"
-   },
-   {
-    "t": "p",
-    "x": "After release, users finished their tasks faster instead of waiting on a frozen screen. The PM estimated it at about 40% faster-feeling, and said users stopped complaining that the app was stuck."
-   },
-   {
-    "t": "img",
-    "src": "work/titan-story/09.jpg",
-    "w": 1600,
-    "h": 1000
-   },
-   {
-    "t": "h2",
-    "x": "Looking back"
-   },
-   {
-    "t": "p",
-    "x": "Looking back, one complaint about one table became a standard for the whole product. A side-by-side wireframe won agreement faster than any written proposal could. And next time I'd record task times first, so the impact comes with a hard baseline instead of an estimate."
-   },
-   {
-    "t": "h2",
     "x": "The design system behind it"
    },
    {
@@ -372,6 +350,28 @@ export const framerCases = {
     "src": "work/titan/24-pages-custom-components.jpg",
     "w": 966,
     "h": 1860
+   },
+   {
+    "t": "h2",
+    "x": "The result"
+   },
+   {
+    "t": "p",
+    "x": "After release, users finished their tasks faster instead of waiting on a frozen screen. The PM estimated it at about 40% faster-feeling, and said users stopped complaining that the app was stuck."
+   },
+   {
+    "t": "img",
+    "src": "work/titan-story/09.jpg",
+    "w": 1600,
+    "h": 1000
+   },
+   {
+    "t": "h2",
+    "x": "Looking back"
+   },
+   {
+    "t": "p",
+    "x": "Looking back, one complaint about one table became a standard for the whole product. A side-by-side wireframe won agreement faster than any written proposal could. And next time I'd record task times first, so the impact comes with a hard baseline instead of an estimate."
    }
   ],
   "tldr": [
@@ -1056,116 +1056,104 @@ export const framerCases = {
    },
    {
     "t": "h2",
-    "x": "My Design Process"
+    "x": "Process"
    },
    {
     "t": "item",
     "l": "Understand",
-    "x": "Deep research and strategic vision definition."
+    "x": "Stakeholder workshops, a market scan and personas."
    },
    {
     "t": "item",
     "l": "Ideate",
-    "x": "Innovative solution generation and user journey mapping."
+    "x": "User flows and information architecture."
    },
    {
     "t": "item",
     "l": "Decide",
-    "x": "Structural blueprinting and foundational design directives."
+    "x": "Wireframes and design rules for key pages."
    },
    {
     "t": "item",
     "l": "Prototype",
-    "x": "High-fidelity UI creation and interactive prototype development."
+    "x": "High-fidelity UI and an interactive prototype in Figma."
    },
    {
     "t": "item",
     "l": "Test",
-    "x": "User validation, insight gathering, and iterative refinement."
-   },
-   {
-    "t": "p",
-    "x": "This systematic approach guarantees that every design decision is data-informed and strategically aimed at delivering measurable value."
+    "x": "Usability sessions with B2C and B2B users, then refinements."
    },
    {
     "t": "h2",
-    "x": "Understand"
+    "x": "The brief"
    },
    {
     "t": "item",
-    "l": "Project Overview / Introduction",
-    "x": "My role for Rang Clothing Company was to transform their established apparel manufacturing into a compelling digital brand. I spearheaded the conceptualization and crafting of their debut e-commerce presence, turning a market void into a strategic opportunity."
+    "l": "Context",
+    "x": "Rang Clothing is an established apparel manufacturer that sold B2B. I designed its first e-commerce site, in two weeks."
    },
    {
     "t": "h3",
-    "x": "The Strategic Imperative / Challenge"
-   },
-   {
-    "t": "p",
-    "x": "Rang Clothing sought to conquer the digital frontier to:"
+    "x": "What Rang wanted"
    },
    {
     "t": "item",
-    "l": "Unlock New Revenue Streams",
-    "x": "Expand B2B success into the lucrative B2C e-commerce market."
+    "l": "New revenue",
+    "x": "Reach B2C shoppers alongside its existing B2B buyers."
    },
    {
     "t": "item",
-    "l": "Amplify Brand Resonance",
-    "x": "Translate quality into a visually stunning, intuitive digital experience."
+    "l": "Brand",
+    "x": "Show the quality of its clothing online."
    },
    {
     "t": "item",
-    "l": "Revolutionize Customer Engagement",
-    "x": "Streamline discovery and acquisition for both individual and corporate clients."
+    "l": "Two kinds of customer",
+    "x": "Make discovery and enquiry easy for individuals and for corporate buyers."
    },
    {
     "t": "h3",
-    "x": "Goals / Objectives"
-   },
-   {
-    "t": "p",
-    "x": "Aligned with Rang's vision, my primary objectives were:"
+    "x": "Design goals"
    },
    {
     "t": "item",
-    "l": "Elevate Brand Perception",
-    "x": "Establish Rang as a modern, trustworthy, and premium online brand."
+    "l": "Trust",
+    "x": "Look modern and credible as an online brand."
    },
    {
     "t": "item",
-    "l": "Maximize Conversion Rates",
-    "x": "Design intuitive flows for high inquiry and purchase conversions."
+    "l": "Clear flows",
+    "x": "Make enquiry and purchase paths easy to follow."
    },
    {
     "t": "item",
-    "l": "Ensure Seamless Usability",
-    "x": "Create an effortless experience across all devices."
+    "l": "Every device",
+    "x": "Work across phone, tablet and desktop."
    },
    {
     "t": "item",
-    "l": "Build Scalable Foundations",
-    "x": "Develop a design system for future growth and consistency."
+    "l": "Room to grow",
+    "x": "A small design system for later pages."
    },
    {
     "t": "item",
-    "l": "Deep Dive & Foundational Insights",
-    "x": "Stakeholder Workshops: Conducted in-depth sessions to grasp Rang's business model, markets, and aspirations, aligning design with core objectives."
+    "l": "Stakeholder workshops",
+    "x": "Sessions on Rang's business model, markets and goals."
    },
    {
     "t": "item",
-    "l": "Holistic Market Scan",
-    "x": "Analyzed top e-commerce apparel and B2B suppliers to identify best practices and strategic differentiators."
+    "l": "Market scan",
+    "x": "Compared leading apparel stores and B2B suppliers."
    },
    {
     "t": "item",
-    "l": "Target Audience Profiling",
-    "x": "Developed robust user personas for B2C consumers (ease, quality) and B2B procurement managers (clarity, efficiency)."
+    "l": "Personas",
+    "x": "B2C shoppers who want ease and quality; B2B procurement managers who want clarity and efficiency."
    },
    {
     "t": "item",
-    "l": "Vision-to-Feature Mapping",
-    "x": "Collaborated with leadership to translate goals into a precise, prioritized feature roadmap, ensuring tangible value."
+    "l": "Feature roadmap",
+    "x": "Turned the goals into a prioritised feature list with Rang's leadership."
    },
    {
     "t": "h2",
@@ -1173,23 +1161,18 @@ export const framerCases = {
    },
    {
     "t": "item",
-    "l": "The Ideation Engine / Solution Brainstorming",
-    "x": "Transforming insights into action, this phase forged a meticulously planned, user-centric architecture, ensuring every interaction propelled the user towards their goal."
+    "l": "User flows",
+    "x": "Mapped two journeys: B2C discovery and B2B enquiry."
    },
    {
     "t": "item",
-    "l": "Comprehensive User Flow Orchestration",
-    "x": "Mapped optimal user journeys (B2C discovery, B2B inquiry) to guarantee logical progression and eliminate friction, setting the stage for high conversion."
+    "l": "Information architecture",
+    "x": "A site structure that groups products so each audience finds its section quickly."
    },
    {
     "t": "item",
-    "l": "Intelligent Information Architecture (IA)",
-    "x": "Engineered a highly intuitive, scalable site structure. Strategic categorization maximized content discoverability without overwhelming users."
-   },
-   {
-    "t": "item",
-    "l": "Rapid Concept Generation",
-    "x": "Employed iterative sketching and digital whiteboarding for critical touchpoints (homepage, product listings, contact form), allowing swift validation of core design directions."
+    "l": "Sketches",
+    "x": "Quick concepts for the homepage, product listings and contact form."
    },
    {
     "t": "h2",
@@ -1197,51 +1180,27 @@ export const framerCases = {
    },
    {
     "t": "p",
-    "x": "Architecting for Clarity & Efficiency / Wireframing & Low-Fidelity Mastery:"
-   },
-   {
-    "t": "p",
-    "x": "The strategic vision was precisely translated into robust structural frameworks, ensuring seamless functionality and an optimal user path before final polish."
+    "x": "Low-fidelity wireframes for each key screen set the content hierarchy, where controls sit, and how pages connect. Four design rules came out of them:"
    },
    {
     "t": "item",
-    "l": "Strategic Wireframing",
-    "x": "Developed detailed low-fidelity wireframes for every pivotal screen, deliberately defining:"
+    "l": "Lead with product",
+    "x": "Large product imagery on the homepage and listings."
    },
    {
     "t": "item",
-    "l": "Content Hierarchy",
-    "x": "Directing user attention to key information."
+    "l": "Segmented enquiry forms",
+    "x": "The form asks what kind of enquiry it is up front, so it reaches the right person."
    },
    {
     "t": "item",
-    "l": "Functional Placement",
-    "x": "Optimizing interactive elements for intuitive use."
+    "l": "Complete product pages",
+    "x": "Detail pages carry the information a buyer needs before asking."
    },
    {
     "t": "item",
-    "l": "Cross-Page Flow",
-    "x": "Ensuring a cohesive journey throughout the digital ecosystem."
-   },
-   {
-    "t": "item",
-    "l": "Key Design Directives Established",
-    "x": "Dynamic Product Showcase: Prioritized captivating visuals and large imagery to drive immediate engagement."
-   },
-   {
-    "t": "item",
-    "l": "Conversion-Optimized Inquiry Forms",
-    "x": "Engineered \"smart\" forms with segmented categories to streamline inquiries and accelerate response times."
-   },
-   {
-    "t": "item",
-    "l": "Comprehensive Product Transparency",
-    "x": "Structured detail pages for exhaustive yet digestible information, fostering trust."
-   },
-   {
-    "t": "item",
-    "l": "Ubiquitous & Intuitive Navigation",
-    "x": "Implemented persistent global and detailed footer navigation for enhanced usability."
+    "l": "Persistent navigation",
+    "x": "A global menu and a detailed footer on every page."
    },
    {
     "t": "h2",
@@ -1249,36 +1208,22 @@ export const framerCases = {
    },
    {
     "t": "p",
-    "x": "Visual Craftsmanship & Pixel-Perfect Precision / High-Fidelity UI Design:"
-   },
-   {
-    "t": "p",
-    "x": "The strategic blueprint transformed into a visually stunning, fully interactive reality, showcasing exquisite aesthetics and functionality."
+    "x": "High-fidelity UI built on Rang's brand: a dark background, white and a strong red."
    },
    {
     "t": "item",
-    "l": "Defining the Visual Language",
-    "x": "Crafted a sophisticated, contemporary, and premium visual identity using Rang's brand elements (dark background, crisp white, strategic red)."
+    "l": "Component library",
+    "x": "Reusable components in Figma for consistent pages."
    },
    {
     "t": "item",
-    "l": "Harmonious Typography & Color Science",
-    "x": "Selected balanced typography and a refined color palette for paramount readability and reinforced brand authority."
+    "l": "Imagery and icons",
+    "x": "Product photography with simple icons to support scanning."
    },
    {
     "t": "item",
-    "l": "Scalable Component Mastery",
-    "x": "Designed a comprehensive, reusable UI component library in Figma, ensuring pixel-perfect consistency and accelerating future development."
-   },
-   {
-    "t": "item",
-    "l": "Immersive Imagery & Strategic Iconography",
-    "x": "Integrated high-impact product photography and intuitive iconography, elevating emotional connection and aiding information assimilation."
-   },
-   {
-    "t": "item",
-    "l": "Adaptive Brilliance",
-    "x": "Seamless Cross-Device Performance: Engineered a truly responsive design, fluidly adapting to every screen size for an uncompromised, accessible experience."
+    "l": "Responsive",
+    "x": "Layouts that adapt from phone to desktop."
    },
    {
     "t": "img",
@@ -1312,11 +1257,7 @@ export const framerCases = {
    },
    {
     "t": "p",
-    "x": "Interactive Prototyping for Realistic Engagement:"
-   },
-   {
-    "t": "p",
-    "x": "Developed high-fidelity, interactive prototypes in Figma for immersive user journey simulations. These were instrumental in stakeholder presentations for early validation and fine-tuning."
+    "x": "An interactive Figma prototype was used to walk stakeholders through the journeys before build."
    },
    {
     "t": "h2",
@@ -1324,75 +1265,33 @@ export const framerCases = {
    },
    {
     "t": "item",
-    "l": "Rigorous Usability Validation",
-    "x": "This phase proved my data-driven approach, delivering validated solutions through continuous improvement and prioritizing tangible impact. 📊"
+    "l": "Usability sessions",
+    "x": "Representative B2C and B2B users tried key tasks: finding a specific item, starting a bulk enquiry, and understanding the brand."
    },
    {
     "t": "item",
-    "l": "Targeted Usability Sessions",
-    "x": "Conducted focused usability testing with representative B2C and B2B users, challenging them with critical tasks to uncover pain points and optimization opportunities."
-   },
-   {
-    "t": "item",
-    "l": "Actionable Task Scenarios",
-    "x": "Users performed key tasks like finding specific clothing items, initiating bulk inquiries, and understanding brand ethos."
-   },
-   {
-    "t": "item",
-    "l": "Pivotal Insights Gained",
-    "x": "Confirmed intuitive navigation and categorization."
-   },
-   {
-    "t": "p",
-    "x": "Identified opportunities to simplify specific B2B inquiry workflows for higher conversion."
-   },
-   {
-    "t": "p",
-    "x": "Validated the effectiveness of detailed product pages."
+    "l": "What we learned",
+    "x": "Navigation and categories worked, and product pages did their job. The B2B enquiry flow had steps that could be simpler."
    },
    {
     "t": "h3",
-    "x": "Data-Driven Design Iteration"
+    "x": "What changed"
    },
    {
     "t": "p",
-    "x": "Based on invaluable insights, implemented targeted refinements:"
+    "x": "The contact form gained an optional Project details field, so enquiries arrive with more of what the team needs."
    },
    {
     "t": "p",
-    "x": "Refined the \"Contact Us\" form with an optional \"Project Details\" field, directly reducing potential follow-up time."
+    "x": "Product carousels got clearer touch interactions on mobile."
+   },
+   {
+    "t": "h2",
+    "x": "Looking back"
    },
    {
     "t": "p",
-    "x": "Optimized micro-interactions on product carousels, directly improving user satisfaction and engagement across mobile."
-   },
-   {
-    "t": "item",
-    "l": "Conclusion",
-    "x": "Beyond Design – Delivering Strategic Value"
-   },
-   {
-    "t": "p",
-    "x": "This project is a strategic blueprint for Rang Clothing Company to dominate its digital market. By blending profound user understanding with cutting-edge design, I engineered an e-commerce platform poised to:"
-   },
-   {
-    "t": "item",
-    "l": "Elevate Brand Perception",
-    "x": "Position Rang as a forward-thinking, quality-driven industry leader."
-   },
-   {
-    "t": "item",
-    "l": "Catalyze Business Growth",
-    "x": "Significantly increase online inquiries and sales, projecting substantial increases in lead generation and conversion."
-   },
-   {
-    "t": "item",
-    "l": "Ensure Future Scalability",
-    "x": "Provide a meticulously crafted design system and flexible architecture for seamless future expansion."
-   },
-   {
-    "t": "p",
-    "x": "This case study demonstrates my ability to transform complex business objectives into intuitive, impactful, and visually compelling digital experiences that resonate deeply with users and drive undeniable commercial success. My passion lies not just in design, but in unlocking strategic value through exceptional user experience, making me an indispensable asset to any forward-thinking organization."
+    "x": "A two-week engagement, so the evidence stops at usability testing. Next time I would agree a measure with Rang up front, such as enquiries per week, so the redesign has a baseline."
    }
   ]
  },

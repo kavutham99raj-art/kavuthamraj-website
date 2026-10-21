@@ -169,3 +169,118 @@ The repo version, as I found it, had better content but its own problems:
 - 9 case pages have no written story.
 - The Titan and Cyberdine visuals are presentation slides with UI inside, not raw product screens.
 - Both fonts load from Google Fonts. Self-host them before launch for speed and privacy.
+
+## 7. Multi-agent design audit (21 Oct 2026)
+Four reviewers worked in parallel:
+1. Visual craft and art direction.
+2. Hiring manager plus cognitive load.
+3. Accessibility, interaction and performance.
+4. Mobile.
+
+Each was briefed on the mission (visually unforgettable, professionally credible, compelling to hiring managers) and on the elements you chose to keep. All measured the live build at 1440px and 390px. I re-checked the key claims against the code.
+
+**What already works:**
+- A specific positioning line.
+- Honest labels on self-reported figures.
+- Titan and Cyberdine pass the case-study test.
+- A distinctive hero photo, frame, mascot and cursors.
+- A coherent warm palette with Krona One and Inter.
+- Most text passes AA contrast, and the reduced-motion handling is solid.
+- One h1 per page, a skip link, and correct menu ARIA.
+
+**The numbers behind the findings:**
+- Homepage length: 12,300px on desktop (about 14 screens) and 17,200px on a phone (about 20 screens).
+- On a phone, Contact sits at screen 19.
+- Before the first case study a visitor meets 10 links and 4 figures.
+- "10 → 5" appears 4 times on the homepage, and "5+ years" 5 times.
+
+### P0: costs credibility or the interview
+| # | Issue | Flagged by | Fix |
+|---|---|---|---|
+| 1 | The testimonials section shows four "Placeholder: Replace with a real recommendation" cards under "From the PMs, founders and developers I've designed with." | All 4 | Keep the section, but render only real quotes. Until there are two, show one line ("Recommendations on their way from LinkedIn ↗") or hide the section. **Your call.** |
+| 2 | The ERP flagship fails the case-study test: about 99 words, no problem, decision or result. Its "outcomes" (Solo, Mobile, Live) are descriptions, not results. Payroll is the same product, with 17 images and no text. | Hiring, Visual | Merge Payroll into ERP as a chapter, and write the problem, one decision and a reflection (needs your facts). Use factual outcomes such as "3 months", "Sole designer", "Live on Google Play". Order the flagships Titan → ERP → Cyberdine. |
+| 3 | The homepage has no `<main>` landmark (confirmed). | A11y | Wrap the hero through Contact in `<main id="main">` and point the skip link there. |
+| 4 | Mobile menu focus order: the nav comes before the Menu button in the code (confirmed), so Tab skips the open menu. | A11y | Put the button first, keep the visual order with CSS `order`, and close the menu when focus leaves it. |
+| 5 | Infinite animations (mascot peek and blink, drifting PM/Dev cursors) have no pause control (WCAG 2.2.2). | A11y | Add a small Figma-style "Pause motion" chip on the photo frame, saved per visitor. Also pause the animations when the hero scrolls out of view. |
+| 6 | The type scale is flat: eight section headings at 64px, "LET'S BUILD" (112px) bigger than your name (80px). | Visual | Name up to `clamp(40px,8.4vw,124px)`, secondary headings down to `clamp(28px,3vw,44px)`. Replace headings that only repeat their label ("EXPERIENCE", "ABOUT") with a claim. |
+
+### P1: high impact on how memorable and clear the site is
+| # | Issue | Flagged by | Fix |
+|---|---|---|---|
+| 7 | Redundant figures and choices: "10 → 5" ×4, "5+" ×5, "50K+" ×3, the résumé twice in one viewport, and the activity proof points repeat earlier claims (Hick's and Miller's laws). | Hiring | Show each figure once, in its strongest spot. Hero proof: swap "5+" for "~235 screens, sole designer". Hero buttons: "See the work" plus email only. Replace the activity proof points with Skills and Tools. |
+| 8 | The activity grid's shading is random, but its "less … more" legend says it's measured. The legend cells are 1.36:1 against the card, and "shipped every month" covers job gaps. | Hiring, Visual, A11y | Use one tone for every active month and drop the legend, or derive the shades from real role and project dates. Change the line to "In Figma every month since July 2021." **Your call.** |
+| 9 | Page length and reach, especially on phones. | Mobile, Visual | Mobile: a sticky bottom "Email me · Résumé" bar after the hero; More work as a swipe rail (saves about 1,900px); skills as chips (about 600px); collapse older roles. Desktop: remove the doubled padding between same-colour sections (about 288px gaps). |
+| 10 | How I work (dark) runs straight into Experience (dark): about 2,400px of dark with a muddy seam. | Visual | Make How I work light, so the page runs light → dark Experience → light → dark Contact. |
+| 11 | The flagship card visuals render at about 590px, so the slide text can't be read. Titan has about 130px of dead space. | Visual | Stack each card: visual full width at 16:9, copy in two columns underneath. |
+| 12 | Case pages repeat the same figures three times in the first 1,500px. Long image runs (Titan's Figma page lists about 6,700px, ERP boards about 11,400px). | Visual, Hiring | Drop either the TL;DR Outcome card or the outcomes row. Put portrait screenshots in a 3-column grid, capped in height and tap to enlarge. Move Titan's "Design system behind it" chapter before "The result". |
+| 13 | Claims that disagree: Cyberdine "about 1 year" vs 9 months at Liffto; "the booking app I designed" vs a 4-person team; "10 → 5" without a source; the Google certificate not on the résumé; the résumé links the old Framer site and says "Oct 2026". | Hiring | Align them (needs your confirmation). Add "self-tracked, 6 sprints" to the "10 → 5" figure. |
+| 14 | Mobile problems: case slides can't be read (about 5px text), the contact email breaks mid-word, and many tap targets are under 44px (Menu is 40px; several links are 18–25px). | Mobile | Pan-able slides at 200% width, a nowrap email at 16px, and 44px minimum targets. Make each flagship card one large tap target. |
+| 15 | The custom cursor removes the text I-beam, the zoom cursor and enlarged OS pointers. | A11y | Add I-beam and zoom states, and turn the custom cursor off under `forced-colors` or `prefers-contrast: more`. |
+| 16 | Performance. | A11y | Stop copying 11MB of unused original PNGs into the build. Serve 800w and 1600w WebP with `srcset`. Self-host and preload both fonts. Batch scroll handlers in `requestAnimationFrame`. Cut the intro's 1.5s font wait to about 600ms. |
+
+### P2: polish
+- Frame labels read "02Selected work" to screen readers, and numbering starts at 02. Add the missing 01 on the hero, and put the dot grid across the whole page.
+- Rang Clothing's copy ("conquer the digital frontier") is inflated next to the plain Titan voice. Rewrite it in that voice.
+- "Designed for" lists employers, so rename it "Worked at". The Behance link opens a single gallery.
+- The company names in Experience (48px Krona, "LIFFTO / TECHNOLOGIES" on two lines) dwarf the role. Bring them to about 30px.
+- Five client tiles in a 3-column grid leave an empty cell. Use a 6-column span layout. The footer rule overhangs the content.
+- The intro's skip listeners are never removed, the mascot's eyes track under reduced motion, and `aria-label` on the footer wordmark `<p>` is ignored.
+- Add "(opens in new tab)" for screen readers, darken the "Placeholder" badge to `#8a4022`, and switch the focus ring to the accent colour on dark sections.
+- SEO: `noindex` on the 404 page, `og:type` article on case pages, and JSON-LD `Person`.
+
+### The idea that would most raise "unforgettable"
+Make the end of the opening animation the hero's resting state. Let the photo span both hero rows, starting about halfway down the name, and set the oversized name over it with the same difference blend the intro already uses. The name and face become one composed artwork, the motion gets a destination, and the proof row moves back above the fold.
+
+### Suggested order of work
+- **A. Do now (no decisions needed):** #3, #4, #5, #6, #7, #9 (spacing and mobile), #10, #11, #12 (layout), #14, #15, #16 and the P2 polish.
+- **B. Your call:** #1 (how testimonials show), #8 (activity grid shading), and the composed-hero idea.
+- **C. Needs your facts:** #2 (the ERP and Payroll story), #13 (the dates and claims), and real testimonials.
+
+### Batch A: done (21 Oct 2026)
+- **#1 Testimonials:** resolved with your four real LinkedIn recommendations, quoted word for word. Each shows the name, role, how they worked with you and the date, with a link to your recommendations page. One phrase per quote is set in the accent colour.
+- **#3, #4, #5 Accessibility:**
+  - The homepage has a `<main>` landmark, and the skip link goes to it on every page.
+  - The Menu button now comes before the menu in the code, its label stays "Menu", and the menu closes when focus leaves it. Checked with real Tab key presses.
+  - A "Pause motion" chip on the photo frame pauses the mascot and cursors and remembers the choice. They also pause when the hero is off screen.
+- **#6 Type scale:** your name now goes up to 124px. Headings use two sizes, and the contact headline stays below the name. Headings that only repeated their label now make a claim ("Shorter engagements.", "Sports app to enterprise SaaS.", "Designer, analyst, builder.").
+- **#7 Repetition:**
+  - Each figure appears once on the homepage. The hero proof is 50K+, 10 → 5 (over six sprints) and 3 products led.
+  - The hero has one button plus your email.
+  - The activity proof points describe Figma, systems and handoff instead of repeating earlier numbers.
+  - Frame labels now run 01–08.
+- **#9, #10, #11 Rhythm and cards:**
+  - The dot grid runs under the whole page.
+  - Light sections that follow each other share a hairline instead of a 288px gap.
+  - How I work is light.
+  - The flagship cards are stacked, with the UI full width and the argument beside the outcomes. The whole card is one link, and the ERP card shows all five screens.
+- **#12 Case pages:**
+  - Flagship pages open on the real-UI slide from their card.
+  - The TL;DR drops the Outcome card that repeated the numbers.
+  - Tall screens and the ERP boards sit in a grid; the ERP page went from about 16,000px to about 5,500px on tablet.
+  - Titan's design-system chapter now comes before "The result".
+- **#14 Mobile:**
+  - A sticky Email / Résumé bar appears after the hero and steps aside at Contact.
+  - More work and the testimonials swipe sideways.
+  - Skills show as chips, and older roles open on tap.
+  - Slides pan sideways at a readable size.
+  - The contact email no longer breaks mid-word, and every tap target is at least 44px.
+  - The homepage went from about 21 screens to about 17.6, and Contact from screen 19 to 16.
+- **#15 Cursor:** an I-beam over text and the native zoom cursor over screenshots. It's off under forced colours or high contrast, and the link tag stays readable on dark sections.
+- **#16 Performance:**
+  - The 11MB of unused original PNGs are no longer copied into the build.
+  - Tiles use 600w/1200w `srcset`, and the card and cover slides use 900w/1600w (the Titan slide is 60KB on phones instead of 211KB).
+  - Phone screenshots have width and height set.
+  - Scroll handlers run once per frame, and the intro's font wait is 600ms.
+- **P2 polish:**
+  - Figma-style frame labels with a dashed rule, and smaller company names in Experience.
+  - A 6-column layout for the tiles, and the footer rule inset to the content.
+  - Screen-reader text on new-tab links, the footer wordmark hidden from screen readers, and accent focus rings on dark sections.
+  - SEO: `noindex` on the 404 page, `article` on case pages, site name and image alt, and JSON-LD `Person` data.
+  - Alt text that names the section or numbers the screen.
+  - Rang Clothing rewritten in a plain voice, with the unsupported impact claims removed.
+  - "Designed for" renamed to "Worked at", and the Behance link labelled for what it opens.
+
+**Still open:**
+- B (your call): the activity grid's shading and legend (#8), and the composed-hero idea.
+- C (needs your facts): the ERP/Payroll story (#2), and the dates and claims that disagree with your résumé (#13).
+- Self-hosting the fonts. That needs the font files downloaded, which I haven't done.
