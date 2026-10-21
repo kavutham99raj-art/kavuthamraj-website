@@ -12,7 +12,7 @@ const OUT = ROOT + "dist/";
 
 const esc = (s) =>
   String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-// Headlines: *asterisks* mark the phrase set in the accent colour.
+// Headlines: *asterisks* mark the phrase set in the accent colour (an <em>, styled upright).
 const rich = (s) => esc(s).replace(/\*(.+?)\*/g, "<em>$1</em>");
 const plain = (s) => String(s ?? "").replace(/\*/g, "");
 // Cards and case-page headers use the 1200px JPEG copies in static/work/covers (made with sips from the originals).
@@ -121,14 +121,14 @@ ${header("")}
         <figcaption>Now at AffinityX</figcaption>
       </figure>
       <div class="hero-copy rise" style="--d:220ms">
-        <p class="hero-eyebrow mono">${esc(heroCopy.eyebrow)}</p>
-        <p class="hero-lead serif">${rich(heroCopy.lead)}</p>
+        <p class="hero-eyebrow label">${esc(heroCopy.eyebrow)}</p>
+        <p class="hero-lead">${rich(heroCopy.lead)}</p>
         <p class="hero-sub">${esc(heroCopy.sub)}</p>
         <div class="hero-cta"><a class="btn solid lg" href="#work">See the work</a>${resumeLink("", "btn ghost lg", "Résumé (PDF)")}<a class="text-link" href="${mailto}">${esc(profile.email)}</a></div>
         <dl class="hero-proof">${proof.map((x) => `<div><dt>${esc(x.value)}</dt><dd>${esc(x.label)}</dd></div>`).join("")}</dl>
       </div>
     </div>
-    <div class="shipped"><p class="mono">Designed for</p><ul>${companies.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></div>
+    <div class="shipped"><p class="label">Designed for</p><ul>${companies.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></div>
   </div>
 </section>
 
@@ -136,15 +136,15 @@ ${header("")}
   <div class="wrap">
     <div class="sec-head">
       ${frame("02", "Selected work")}
-      <h2 class="serif h2 reveal">Three products, <em>shipped.</em></h2>
+      <h2 class="krona h2 reveal">Three products, <em>shipped.</em></h2>
       <p class="sec-lede reveal">Enterprise SaaS, restaurant ordering and a sports ERP. Each case shows the problem, the decisions I made, and what changed.</p>
     </div>
     <div class="cards">
       ${featured.map((f, i) => `<article class="card${i % 2 ? " flip" : ""} reveal" aria-labelledby="c-${f.key}">
         <a class="card-visual${f.visual.phones ? " is-phones" : ""}" href="${esc(f.href)}" tabindex="-1" aria-hidden="true">${visual(f.visual)}</a>
         <div class="card-copy">
-          <p class="card-meta mono"><span>0${i + 1}</span>${f.meta.map(esc).join(" · ")}</p>
-          <h3 id="c-${f.key}" class="serif"><a href="${esc(f.href)}">${rich(f.title)}</a></h3>
+          <p class="card-meta label"><span>0${i + 1}</span>${f.meta.map(esc).join(" · ")}</p>
+          <h3 id="c-${f.key}"><a href="${esc(f.href)}">${rich(f.title)}</a></h3>
           <p class="card-text">${esc(f.text)}</p>
           ${outcomes(f.outcomes)}
           <a class="arrow-link" href="${esc(f.href)}" aria-hidden="true" tabindex="-1">Read the case study <span>→</span></a>
@@ -157,7 +157,7 @@ ${header("")}
 <section id="more" class="sec sec-tight">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("03", "More work")}<h2 class="serif h2 reveal">More client work</h2></div>
+      <div>${frame("03", "More work")}<h2 class="krona h2 reveal">More client work</h2></div>
       <p class="sec-lede reveal">Shorter engagements: payroll, data products, e-commerce and healthcare.</p>
     </div>
     <div class="tiles">
@@ -165,12 +165,12 @@ ${header("")}
         const c = framerCases[p.case] || {};
         return `<a class="tile reveal" href="work/${esc(p.case)}.html" style="--d:${(i % 3) * 80}ms">
         <span class="tile-img"><img src="work/${esc(thumb(p.cover))}" alt="" loading="lazy" decoding="async"></span>
-        <span class="tile-meta mono">${esc([c.client, durText(c.duration)].filter(Boolean).join(" · "))}</span>
+        <span class="tile-meta label">${esc([c.client, durText(c.duration)].filter(Boolean).join(" · "))}</span>
         <strong>${esc(p.title)}</strong></a>`;
       }).join("")}
     </div>
     <div class="concepts reveal">
-      <p class="mono">Concepts and explorations <span>Self-initiated or time-boxed, kept for range</span></p>
+      <p class="label">Concepts and explorations <span>Self-initiated or time-boxed, kept for range</span></p>
       <ul>${concepts().map((p) => { const c = framerCases[p.case] || {}; return `<li><a href="work/${esc(p.case)}.html"><strong>${esc(p.title)}</strong><span>${esc([durText(c.duration), ...p.tags.slice(0, 2)].filter(Boolean).join(" · "))}</span><i aria-hidden="true">→</i></a></li>`; }).join("")}</ul>
     </div>
   </div>
@@ -180,10 +180,10 @@ ${header("")}
   <div class="wrap">
     <div class="sec-head">
       ${frame("04", "How I work")}
-      <h2 class="serif h2 reveal">Understand the problem. <em>Design the system.</em></h2>
+      <h2 class="krona h2 reveal">Understand the problem. <em>Design the system.</em></h2>
     </div>
     <ol class="principles">
-      ${strengths.map((s, i) => `<li class="reveal" style="--d:${i * 80}ms"><span class="mono">0${i + 1}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><a class="arrow-link" href="${esc(s.href)}">${esc(s.cta)} <span>→</span></a></li>`).join("")}
+      ${strengths.map((s, i) => `<li class="reveal" style="--d:${i * 80}ms"><span class="label">0${i + 1}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><a class="arrow-link" href="${esc(s.href)}">${esc(s.cta)} <span>→</span></a></li>`).join("")}
     </ol>
   </div>
 </section>
@@ -191,12 +191,12 @@ ${header("")}
 <section id="experience" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("05", "Experience")}<h2 class="serif h2 reveal">${xpYears()}+ years, <em>${experience.length} product teams.</em></h2></div>
+      <div>${frame("05", "Experience")}<h2 class="krona h2 reveal">${xpYears()}+ years, <em>${experience.length} product teams.</em></h2></div>
       ${resumeLink("", "btn ghost", "Download résumé")}
     </div>
     <ol class="xp">
       ${experience.map((e) => `<li class="reveal">
-        <p class="xp-when mono">${esc(e.dates.replace(" to ", " – ").replace("present", "Present"))}<span>${xpDuration(e.dates)}</span></p>
+        <p class="xp-when label">${esc(e.dates.replace(" to ", " – ").replace("present", "Present"))}<span>${xpDuration(e.dates)}</span></p>
         <div class="xp-who"><h3>${esc(e.company)}${/present/i.test(e.dates) ? ' <span class="now">Now</span>' : ""}</h3><p>${esc(e.role)}</p></div>
         <div class="xp-what"><p>${esc(e.note)}</p><ul class="tags">${(e.tags || []).map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>
       </li>`).join("")}
@@ -207,21 +207,21 @@ ${header("")}
 <section id="about" class="sec canvas">
   <div class="wrap">
     <div class="about">
-      <div>${frame("06", "About")}<h2 class="serif h2 reveal">About</h2></div>
+      <div>${frame("06", "About")}<h2 class="krona h2 reveal">About</h2></div>
       <div class="about-copy">${profile.about.map((t) => `<p class="reveal">${esc(t)}</p>`).join("")}</div>
     </div>
     <div class="facts" id="skills">
-      ${Object.entries(skills).map(([g, items]) => `<div class="reveal"><h3 class="mono">${esc(g)}</h3><ul>${items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></div>`).join("")}
-      <div class="reveal"><h3 class="mono">Education</h3><ul class="edu">${education.map((e) => `<li><strong>${esc(e.title)}</strong><span>${esc(e.org)}${e.dates ? ` · ${esc(e.dates.replace(" to ", "–"))}` : ""}</span></li>`).join("")}</ul></div>
+      ${Object.entries(skills).map(([g, items]) => `<div class="reveal"><h3 class="label">${esc(g)}</h3><ul>${items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></div>`).join("")}
+      <div class="reveal"><h3 class="label">Education</h3><ul class="edu">${education.map((e) => `<li><strong>${esc(e.title)}</strong><span>${esc(e.org)}${e.dates ? ` · ${esc(e.dates.replace(" to ", "–"))}` : ""}</span></li>`).join("")}</ul></div>
     </div>
   </div>
 </section>
 
 ${testimonials.some((t) => !t.placeholder) ? `<section class="sec">
   <div class="wrap">
-    <div class="sec-head">${frame("07", "References")}<h2 class="serif h2">What people say</h2></div>
+    <div class="sec-head">${frame("07", "References")}<h2 class="krona h2">What people say</h2></div>
     <div class="quotes">
-      ${testimonials.filter((t) => !t.placeholder).map((t) => `<figure class="reveal"><blockquote class="serif">“${esc(t.quote)}”</blockquote><figcaption><strong>${esc(t.name)}</strong><span>${esc(t.role)}</span></figcaption></figure>`).join("")}
+      ${testimonials.filter((t) => !t.placeholder).map((t) => `<figure class="reveal"><blockquote>“${esc(t.quote)}”</blockquote><figcaption><strong>${esc(t.name)}</strong><span>${esc(t.role)}</span></figcaption></figure>`).join("")}
     </div>
   </div>
 </section>` : ""}
@@ -229,7 +229,7 @@ ${testimonials.some((t) => !t.placeholder) ? `<section class="sec">
 <section id="contact" class="sec night contact">
   <div class="wrap">
     ${frame(testimonials.some((t) => !t.placeholder) ? "08" : "07", "Contact")}
-    <h2 class="serif display reveal">Let's build <em>what's next.</em></h2>
+    <h2 class="krona display reveal">Let's build <em>what's next.</em></h2>
     <p class="contact-lede reveal">Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
     <a class="contact-mail reveal" href="${mailto}">${esc(profile.email)}<span aria-hidden="true">↗</span></a>
     <div class="contact-act reveal">${resumeLink("", "btn light", "Download résumé")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></div>
@@ -272,9 +272,9 @@ const fcPage = (key) => {
   let section = "";
   const render = (b) =>
     b.t === "img" ? `<figure class="shot reveal"><a href="${r}${esc(b.src)}" target="_blank" rel="noopener" title="Open full size"><img src="${r}${esc(b.src)}" width="${b.w}" height="${b.h}" alt="${esc(name)}${section ? `: ${esc(section)}` : ", screen"}" loading="lazy" decoding="async"></a></figure>`
-    : b.t === "h2" ? ((section = b.x), `<h2 class="serif cs-h2 reveal" id="${slug(b.x)}">${esc(b.x)}</h2>`)
+    : b.t === "h2" ? ((section = b.x), `<h2 class="krona cs-h2 reveal" id="${slug(b.x)}">${esc(b.x)}</h2>`)
     : b.t === "h3" ? `<h3 class="cs-h3 reveal">${esc(b.x)}</h3>`
-    : b.t === "phones" ? `<div class="phones-panel wide reveal">${b.items.map((i) => `<figure><img src="${r}${esc(i.src)}" alt="${esc(name)}: ${esc(i.cap)}" loading="lazy" decoding="async"><figcaption class="mono">${esc(i.cap)}</figcaption></figure>`).join("")}</div>`
+    : b.t === "phones" ? `<div class="phones-panel wide reveal">${b.items.map((i) => `<figure><img src="${r}${esc(i.src)}" alt="${esc(name)}: ${esc(i.cap)}" loading="lazy" decoding="async"><figcaption class="label">${esc(i.cap)}</figcaption></figure>`).join("")}</div>`
     : b.t === "poster" ? `<figure class="poster reveal">${b.items.map((i) => `<img src="${r}${esc(i.src)}" width="${i.w}" height="${i.h}" alt="${esc(title)}, case-study board" loading="lazy" decoding="async">`).join("")}</figure>`
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
@@ -284,31 +284,31 @@ const fcPage = (key) => {
 ${header(r)}
 <main class="case" id="main">
   <div class="wrap case-head canvas-pad">
-    <nav class="crumbs mono" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
+    <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
     <p class="frame rise"><span>${concept ? "C" : "CS"}</span>${eyebrow.map(esc).join(" · ")}</p>
-    <h1 class="serif case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
+    <h1 class="case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
     ${summary && summary !== plain(h1) ? `<p class="case-sum rise" style="--d:160ms">${esc(summary)}</p>` : ""}
     ${!c.lead && !feat && c.tags.length ? `<ul class="cs-chips rise" style="--d:200ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
   </div>
   <div class="wrap">
     <figure class="case-cover rise" style="--d:240ms"><img src="${r}work/${esc(thumb(proj.cover || key + ".png"))}" alt="" decoding="async" fetchpriority="high"></figure>
-    <dl class="case-meta reveal">${meta.map(([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+    <dl class="case-meta reveal">${meta.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
     ${feat || c.tldr ? `<section class="glance reveal" aria-label="At a glance">
       ${feat ? outcomes(feat.outcomes) : ""}
-      ${c.tldr ? `<dl class="tldr">${c.tldr.map(([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
+      ${c.tldr ? `<dl class="tldr">${c.tldr.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
     </section>` : ""}
     <div class="case-body${chapters.length > 2 ? " has-toc" : ""}">
-      ${chapters.length > 2 ? `<nav class="toc" aria-label="Chapters"><p class="mono">Chapters</p><ol>${chapters.map((h) => `<li><a href="#${slug(h)}">${esc(h)}</a></li>`).join("")}</ol></nav>` : ""}
+      ${chapters.length > 2 ? `<nav class="toc" aria-label="Chapters"><p class="label">Chapters</p><ol>${chapters.map((h) => `<li><a href="#${slug(h)}">${esc(h)}</a></li>`).join("")}</ol></nav>` : ""}
       <article class="cs">${c.blocks.map(render).join("\n")}
       ${(c.links || []).length ? `<div class="cs-links">${c.links.map(([l, h]) => `<a class="btn ghost" href="${esc(h)}" target="_blank" rel="noopener">${esc(l)} ↗</a>`).join("")}</div>` : ""}</article>
     </div>
     <section class="cs-cta night reveal">
       ${frame("→", "Hiring a product designer?")}
-      <h2 class="serif">Let's talk about <em>your product.</em></h2>
+      <h2 class="krona">Let's talk about <em>your product.</em></h2>
       <p>Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
       <div class="contact-act"><a class="btn light" href="${mailto}">Email me</a>${resumeLink(r, "btn ghost-light", "Download résumé")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></div>
     </section>
-    <a class="next-case reveal" href="${nextKey}.html"><span class="mono">Next case study</span><strong class="serif">${esc(nextTitle)}</strong><i aria-hidden="true">→</i></a>
+    <a class="next-case reveal" href="${nextKey}.html"><span class="label">Next case study</span><strong class="krona">${esc(nextTitle)}</strong><i aria-hidden="true">→</i></a>
   </div>
 </main>
 ${footer(r)}`;
@@ -316,7 +316,7 @@ ${footer(r)}`;
 
 const notFound = () => `${head({ title: `Page not found | ${profile.short}`, desc: "This page does not exist.", path: "/404.html" })}
 ${header("")}
-<main class="case" id="main"><div class="wrap case-head canvas-pad"><p class="frame"><span>404</span>Not found</p><h1 class="serif case-h1">This frame <em>doesn't exist.</em></h1><p class="case-sum"><a class="arrow-link" href="index.html">Back to the portfolio <span>→</span></a></p></div></main>
+<main class="case" id="main"><div class="wrap case-head canvas-pad"><p class="frame"><span>404</span>Not found</p><h1 class="case-h1">This frame <em>doesn't exist.</em></h1><p class="case-sum"><a class="arrow-link" href="index.html">Back to the portfolio <span>→</span></a></p></div></main>
 ${footer("")}`;
 
 rmSync(OUT, { recursive: true, force: true });
