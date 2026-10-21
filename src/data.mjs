@@ -239,7 +239,7 @@ export const featured = [
     key: "titan", meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
     title: "Stop the spinner. *Keep the work moving.*",
     text: "One slow table froze the whole back office. I audited every table and dashboard, made the case with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components.",
-    outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix became the product-wide loading standard"]],
+    outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
     visual: { src: "work/titan-story/05.jpg", alt: "Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
     href: "work/titan.html", cover: "titan.png",
   },
