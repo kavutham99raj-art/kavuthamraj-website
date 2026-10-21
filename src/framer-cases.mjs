@@ -212,7 +212,7 @@ export const framerCases = {
    },
    {
     "t": "p",
-    "x": "Titan is AffinityX's B2B SaaS back-office and ERP product. Operations teams in the US, the Philippines and India use it to work through high-volume orders, items and production screens, most of them dense data tables. I'm one of two designers, working with a PM and developer teams across three countries."
+    "x": "Titan is AffinityX's B2B SaaS back-office and ERP product. Operations teams in the US, the Philippines and India use it to work through high-volume orders, items and production screens, most of them dense data tables. I was one of two designers, working with a PM and developer teams across three countries."
    },
    {
     "t": "img",

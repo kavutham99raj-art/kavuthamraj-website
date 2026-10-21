@@ -222,6 +222,14 @@ const skillTile = (g, i, cls = "") => `<article class="tile-b ${cls || "b-skill"
         <ul class="chips">${g.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
       </article>`;
 
+// Small flags drawn in SVG (emoji flags show as letters on Windows). Decorative: the label names the countries.
+const usStripes = Array.from({ length: 6 }, (_, k) => `<rect y="${(k * 2 + 1) * 20 / 13}" width="30" height="${20 / 13}" fill="#fff"/>`).join("");
+const FLAGS = {
+  us: `<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#B22234"/>${usStripes}<rect width="12" height="${(20 / 13) * 7}" fill="#3C3B6E"/></svg>`,
+  ph: `<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#0038A8"/><rect y="10" width="30" height="10" fill="#CE1126"/><path d="M0 0 17.3 10 0 20z" fill="#fff"/><circle cx="5.6" cy="10" r="2.3" fill="#FCD116"/></svg>`,
+  in: `<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#FF9933"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#138808"/><circle cx="15" cy="10" r="2.4" fill="none" stroke="#000080" stroke-width=".7"/></svg>`,
+};
+
 const outcomes = (list) => `<dl class="outcomes">${list.map(([n, l]) => `<div><dt>${esc(n)}</dt><dd>${esc(l)}</dd></div>`).join("")}</dl>`;
 
 // Home: flagship work first, then other client work, then concepts as a plain list.
@@ -248,7 +256,6 @@ ${header("")}
         <span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span>
         <span class="mascot" aria-hidden="true"><svg class="m-body" viewBox="0 0 92 96"><path d="M12 2h64a10 10 0 0 1 10 10v56L64 92H12A10 10 0 0 1 2 82V12A10 10 0 0 1 12 2z" fill="#E9B872"/><path d="M86 68 64 92V77a9 9 0 0 1 9-9z" fill="#C9964F"/><g class="m-eyes"><ellipse cx="31" cy="38" rx="6" ry="8" fill="#1B120B"/><ellipse cx="57" cy="38" rx="6" ry="8" fill="#1B120B"/><circle cx="33" cy="35" r="2.2" fill="#fff"/><circle cx="59" cy="35" r="2.2" fill="#fff"/></g><ellipse cx="20" cy="51" rx="6" ry="3.5" fill="#D9745E" opacity=".55"/><ellipse cx="68" cy="51" rx="6" ry="3.5" fill="#D9745E" opacity=".55"/><path d="M38 52q6 6 12 0" fill="none" stroke="#1B120B" stroke-width="3" stroke-linecap="round"/></svg><svg class="m-hands" viewBox="0 0 92 18"><rect x="13" y="1" width="18" height="15" rx="7.5" fill="#E9B872" stroke="#C9964F" stroke-width="2"/><path d="M19 6v6M25 6v6" stroke="#C9964F" stroke-width="1.6" stroke-linecap="round"/><rect x="57" y="1" width="18" height="15" rx="7.5" fill="#E9B872" stroke="#C9964F" stroke-width="2"/><path d="M63 6v6M69 6v6" stroke="#C9964F" stroke-width="1.6" stroke-linecap="round"/></svg></span>
         <span class="mp mp1" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.5 1.5l5 12.5 2-5.4 5.5-2z" fill="currentColor" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg><b>PM</b></span><span class="mp mp2" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.5 1.5l5 12.5 2-5.4 5.5-2z" fill="currentColor" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg><b>Dev</b></span>
-        <figcaption><i aria-hidden="true"></i>Now at <b>AffinityX</b> · ${esc(experience[0].role)}</figcaption>
         <button class="motion-toggle" type="button" aria-pressed="false">Pause motion</button>
       </figure>
       <div class="hero-copy rise" style="--d:220ms">
@@ -263,7 +270,7 @@ ${header("")}
 <section class="proof-band" aria-label="In numbers">
   <div class="wrap">
     <div class="proof-panel reveal">
-      <dl class="big-proof">${proof.map((x) => `<div><dt>${esc(x.value)}</dt><dd>${esc(x.label)}</dd><dd class="proof-src">${x.href ? `<a href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.src)} ↗${newTab}</a>` : esc(x.src)}</dd></div>`).join("")}</dl>
+      <dl class="big-proof">${proof.map((x) => `<div><dt>${esc(x.value)}${x.flags ? `<span class="flags" aria-hidden="true">${x.flags.map((f) => FLAGS[f]).join("")}</span>` : ""}</dt><dd>${esc(x.label)}</dd>${x.src ? `<dd class="proof-src">${x.href ? `<a href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.src)} ↗${newTab}</a>` : esc(x.src)}</dd>` : ""}</div>`).join("")}</dl>
       <div class="shipped">
         <p class="label">Worked at</p>
         <ul class="logos">${companies.map((c) => `<li><img src="${esc(c.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><span><b>${esc(c.name)}</b><small>${esc(c.years)}</small></span></li>`).join("")}</ul>

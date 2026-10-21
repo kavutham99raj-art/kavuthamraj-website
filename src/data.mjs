@@ -147,8 +147,8 @@ export const experience = [
     role: "Senior UI/UX Designer",
     company: "AffinityX",
     tags: ["B2B SaaS", "ERP", "Order management"],
-    dates: "Sep 2025 to present",
-    note: "Co-owns UX and UI for Titan, a B2B SaaS back-office and ERP product used by operations teams in the US, the Philippines and India. Built its tokenized MUI v6 library in Figma (60+ components, light and dark), which cut handoff bugs from about 10 to 5 per sprint. Persuaded the PM and engineering to replace mobile tables with cards; it shipped as designed.",
+    dates: "Sep 2025 to Oct 2026",
+    note: "Co-owned UX and UI for Titan, a B2B SaaS back-office and ERP product used by operations teams in the US, the Philippines and India. Built its tokenized MUI v6 library in Figma (60+ components, light and dark), which cut handoff bugs from about 10 to 5 per sprint. Persuaded the PM and engineering to replace mobile tables with cards; it shipped as designed.",
   },
   {
     role: "Founding Member and Design Lead",
@@ -213,22 +213,22 @@ export const heroCopy = {
   // Apple-style hero: one headline, one supporting line. The detail lives in the proof band and the work.
   subhead: "Senior UI/UX & Product Designer. 5+ years turning ERP, SaaS and consumer workflows into fast, accessible products.",
   lead: "I make complex B2B software *feel obvious.*",
-  sub: "5+ years from research to design systems and developer handoff. Now co-owning UX for Titan, a back-office product used by operations teams in the US, the Philippines and India.",
+  sub: "5+ years from research to design systems and developer handoff. Most recently co-owned UX for Titan, a back-office product used by operations teams in the US, the Philippines and India.",
 };
 
 // Hero proof: one public figure, one self-reported figure with its source, one scope fact.
 // Each figure appears once on the home page; the flagship cards carry the others.
 // `src` says where each figure comes from; a link makes it checkable.
 export const proof = [
-  { value: "7,000+", label: "screens designed across 20+ apps and 8+ websites", src: "My own count, 2021 – now" },
+  { value: "7,000+", label: "screens designed across 20+ apps and 8+ websites", src: "2021 – Now" },
   { value: "50K+", label: "downloads of Sporfy, a booking app I designed end to end", src: "Google Play", href: "https://play.google.com/store/apps/details?id=com.sporfy.customer" },
-  { value: "10 → 5", label: "handoff bugs per sprint after I built Titan's design system", src: "Self-tracked, 6 sprints" },
+  { value: "3", flags: ["us", "ph", "in"], label: "countries, one roadmap at AffinityX. Reporting to a US‑based PM, shipping with developers in the Philippines and India.", src: "Sep 2025 – Oct 2026" },
 ];
 
 // Companies, in the order worked at, newest first.
 // Companies, newest first, with the logo cropped from the résumé (static/logos).
 export const companies = [
-  { name: "AffinityX", logo: "logos/affinityx.png", years: "2025 – now" },
+  { name: "AffinityX", logo: "logos/affinityx.png", years: "2025 – 26" },
   { name: "Liffto Technologies", logo: "logos/liffto.png", years: "2024 – 25" },
   { name: "SRM Technologies", logo: "logos/srm.png", years: "2023 – 24" },
   { name: "Sporfy", logo: "logos/sporfy.png", years: "2021 – 23" },

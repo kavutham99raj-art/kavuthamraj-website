@@ -69,7 +69,7 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
 
 /* hero */
 .hero>.wrap{width:100%}
-.hero{min-height:calc(100svh - 68px);display:flex;flex-direction:column;justify-content:center;padding:var(--s6) 0 var(--s9)}
+.hero{min-height:calc(100svh - 68px);display:flex;flex-direction:column;justify-content:center;padding:var(--s6) 0 var(--s8)}
 .avail{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);background:var(--surface)}
 .avail b{font-weight:600}
 .avail-sep{color:var(--mut)}
@@ -93,9 +93,6 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
 .sel{position:absolute;inset:-8px;border:1.5px solid var(--accent);pointer-events:none}
 .sel b{position:absolute;width:9px;height:9px;background:#fff;border:1.5px solid var(--accent)}
 .sel b:nth-child(1){left:-5px;top:-5px}.sel b:nth-child(2){right:-5px;top:-5px}.sel b:nth-child(3){left:-5px;bottom:-5px}.sel b:nth-child(4){right:-5px;bottom:-5px}
-.hero-photo figcaption{position:absolute;left:50%;bottom:-46px;translate:-50% 0;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--brown);color:var(--cream);font:500 13px/1.2 var(--sans);white-space:nowrap;box-shadow:0 14px 28px -14px rgba(23,18,15,.55)}
-.hero-photo figcaption b{font-weight:600}
-.hero-photo figcaption i{flex:none;width:7px;height:7px;border-radius:50%;background:#7fd69a;box-shadow:0 0 0 3px rgba(127,214,154,.25)}
 /* proof band: a dark inset panel, three sourced numbers, then the companies as logo tiles */
 .proof-band{padding:0}
 .proof-panel{container-type:inline-size;padding:clamp(32px,4.45vw,64px) clamp(24px,4.45vw,64px) clamp(24px,3.3vw,48px);border-radius:var(--r-xl);background:var(--night);color:var(--cream);background-image:radial-gradient(rgba(244,236,224,.06) 1px,transparent 1.3px);background-size:22px 22px}
@@ -105,6 +102,8 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
 .big-proof>div:first-child{padding-left:0}
 .big-proof dt{font:400 clamp(40px,5.8cqi,72px)/1 var(--display);letter-spacing:-.02em;white-space:nowrap;color:var(--cream)}
 .big-proof div:nth-child(2) dt{color:var(--accent)}
+.flags{display:inline-flex;gap:.14em;margin-left:.3em;vertical-align:.08em}
+.flags svg{width:.6em;height:.4em;border-radius:.07em;box-shadow:0 0 0 1px rgba(244,236,224,.22)}
 .big-proof dd{max-width:19em;margin-top:16px;font-size:clamp(15px,1.15vw,16.5px);line-height:1.5;color:var(--cream-mut)}
 .big-proof .proof-src{display:flex;align-items:center;min-height:50px;margin-top:auto;padding-top:18px;font:600 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .proof-src a{display:inline-flex;align-items:center;min-height:32px;border-bottom:1px solid transparent;transition:border-color .2s}
@@ -484,7 +483,6 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
 .sel{z-index:2;animation:sel-in .9s var(--ease) .6s both}
 .sel b{animation:pop .5s cubic-bezier(.34,1.56,.64,1) both}
 .sel b:nth-child(1){animation-delay:1.1s}.sel b:nth-child(2){animation-delay:1.2s}.sel b:nth-child(3){animation-delay:1.3s}.sel b:nth-child(4){animation-delay:1.4s}
-.hero-photo figcaption{z-index:2;animation:cap-up .6s var(--ease) 1.5s both}
 .mascot{position:absolute;right:13%;top:0;width:92px;--ex:0px;--ey:0px}
 .m-body{position:absolute;left:0;top:-60px;width:92px;height:96px;z-index:0;animation:m-rise .9s cubic-bezier(.34,1.56,.64,1) 1.7s both,m-peek 7s ease-in-out 3.6s infinite}
 .m-hands{position:absolute;left:0;top:-9px;width:92px;height:18px;z-index:3;animation:fade-up .4s var(--ease) 2.1s both}
@@ -513,7 +511,7 @@ html.intro-run{overflow:hidden}
 .intro-run .hero-photo{z-index:41}
 .intro-run .ln{animation:none}
 .intro-run .hero-first,.intro-run .hero-last,.intro-run .hero-photo,.intro-run .top,.intro-run .avail,.intro-run .hero-copy,.intro-run .shipped{opacity:0}
-.intro-run .sel,.intro-run .sel b,.intro-run .mascot *,.intro-run .mp,.intro-run .hero-photo figcaption{animation:none!important;visibility:hidden}
+.intro-run .sel,.intro-run .sel b,.intro-run .mascot *,.intro-run .mp{animation:none!important;visibility:hidden}
 
 /* visitor cursor (main.js): the same arrow as the photo's collaborator cursors, tagged "You" */
 .you-cursor{--spring:cubic-bezier(.34,1.8,.5,1);position:fixed;left:0;top:0;z-index:90;display:none;align-items:flex-start;gap:2px;color:#a8532e;pointer-events:none;will-change:transform;transition:opacity .2s}
@@ -536,7 +534,6 @@ html.intro-run{overflow:hidden}
 @keyframes sel-in{from{opacity:0;inset:4px}to{opacity:1;inset:-8px}}
 @keyframes pop{from{scale:0}to{scale:1}}
 @keyframes fade-up{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
-@keyframes cap-up{from{opacity:0;translate:-50% 10px}to{opacity:1;translate:-50% 0}}
 @keyframes m-rise{from{translate:0 64px}to{translate:0 0}}
 @keyframes m-peek{0%,62%,100%{translate:0 0}70%,80%{translate:0 40px}}
 @keyframes m-hop{50%{translate:0 -10px}}
