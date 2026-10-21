@@ -98,6 +98,16 @@ p,dd,li{text-wrap:pretty}
 .mp b{margin-top:12px;padding:3px 8px;border-radius:4px;background:var(--c);color:#fff;font:600 11px/1.2 Inter,sans-serif}
 .mp1{--c:#4f6a43;left:-34px;top:56%;animation:fade-up .5s var(--ease) 2.2s both,mp-a 11s ease-in-out 2.6s infinite}
 .mp2{--c:var(--brown);right:-26px;bottom:18%;animation:fade-up .5s var(--ease) 2.6s both,mp-b 13s ease-in-out 3s infinite}
+/* opening animation (main.js): the overlay sits under the name and photo; the name blends with difference
+   so it inverts over the photo. The photo's own animations wait until it ends. */
+html.intro-run{overflow:hidden}
+.intro-bg{position:fixed;inset:0;z-index:40;background:#0c0b0a;pointer-events:none}
+.hero-last{width:fit-content}
+.intro-run .hero-first,.intro-run .hero-last{position:relative;z-index:42;mix-blend-mode:difference}
+.intro-run .hero-photo{z-index:41}
+.intro-run .ln{animation:none}
+.intro-run .hero-first,.intro-run .hero-last,.intro-run .hero-photo,.intro-run .hero header,.intro-run .avail,.intro-run .hero-copy{opacity:0}
+.intro-run .sel,.intro-run .sel b,.intro-run .mascot *,.intro-run .mp,.intro-run .hero-photo figcaption{animation:none!important;visibility:hidden}
 @keyframes sel-in{from{opacity:0;inset:4px}to{opacity:1;inset:-8px}}
 @keyframes pop{from{scale:0}to{scale:1}}
 @keyframes fade-up{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
