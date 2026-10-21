@@ -67,44 +67,130 @@ const header = (r) => `<header class="top" id="top">
     <button class="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main">${[["Work", "#work"], ["How I work", "#approach"], ["Experience", "#experience"], ["About", "#about"]]
       .map(([t, h]) => `<a href="${r}index.html${h}">${t}</a>`)
-      .join("")}<a class="nav-m" href="${r}index.html#contact">Contact</a>${resumeLink(r, "nav-m", "Résumé (PDF)")}</nav>
-    <div class="top-act">${resumeLink(r, "btn ghost", "Résumé")}<a class="btn solid" href="${r}index.html#contact">Contact</a></div>
+      .join("")}<a class="nav-m" href="${r}index.html#contact">Contact</a>${resumeLink(r, "nav-m", "Resume (PDF)")}</nav>
+    <div class="top-act">${resumeLink(r, "btn ghost", "Resume")}
+      <div class="talk">
+        <button class="btn solid talk-btn" type="button" aria-expanded="false" aria-controls="talk-pop">Let's talk<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="talk-pop" id="talk-pop" hidden>
+          <a class="talk-row" href="${mailto}"><b>Email me</b><span>Opens your mail app, subject filled in</span><i aria-hidden="true">→</i></a>
+          <button class="talk-row copy-mail" type="button" data-copy="${esc(profile.email)}"><b>Copy email address</b><span>${esc(profile.email)}</span><i aria-hidden="true">⧉</i></button>
+          <a class="talk-row" href="${linkedin}" target="_blank" rel="noopener"><b>Message on LinkedIn</b><span>Connect or send a message</span><i aria-hidden="true">↗</i>${newTab}</a>
+          <span class="sr copy-status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
   </div>
 </header>`;
 
+// Footer: the closing frame. Status and local time, two link columns, then the wordmark whose letters
+// select like Figma layers on hover (main.js adds the size tag).
+const footLink = (href, text, icon = "→", ext = false) =>
+  `<li><a class="foot-link" href="${href}"${ext ? ' target="_blank" rel="noopener"' : ""}><span>${text}</span><i aria-hidden="true">${icon}</i>${ext ? newTab : ""}</a></li>`;
 const footer = (r) => `<footer class="foot">
   <div class="wrap foot-grid">
-    <div>
+    <div class="foot-id">
       <p class="foot-name">${esc(profile.name)}</p>
-      <p class="foot-role">${esc(profile.role)} · Tiruppur, India · <time class="foot-time">IST</time></p>
+      <p class="foot-role">${esc(profile.role)}</p>
+      <p class="foot-status"><i aria-hidden="true"></i>${esc(profile.availability)}</p>
+      <p class="foot-clock"><span>Local time in Tiruppur, India</span><time class="foot-time">IST</time></p>
     </div>
-    <ul>
-      <li><a href="${r}index.html#work">Work</a></li>
-      <li><a href="${r}index.html#experience">Experience</a></li>
-      <li><a href="${r}index.html#about">About</a></li>
-    </ul>
-    <ul>
-      <li><a href="${mailto}">Email</a></li>
-      <li><a href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a></li>
-      <li><a href="${behance}" target="_blank" rel="noopener">${esc(profile.links.find((l) => l.label === "Behance").text)} ↗${newTab}</a></li>
-    </ul>
+    <nav class="foot-col" aria-label="Footer">
+      <p class="label">Explore</p>
+      <ul>${[["Work", "#work"], ["How I work", "#approach"], ["Experience", "#experience"], ["About", "#about"], ["Testimonials", "#testimonials"]].map(([t, h]) => footLink(`${r}index.html${h}`, t)).join("")}</ul>
+    </nav>
+    <div class="foot-col">
+      <p class="label">Connect</p>
+      <ul>
+        ${footLink(mailto, "Email", "→")}
+        ${footLink(linkedin, "LinkedIn", "↗", true)}
+        ${footLink(behance, esc(profile.links.find((l) => l.label === "Behance").text), "↗", true)}
+        ${hasResume ? `<li><a class="foot-link" href="${r}resume.pdf" download="Kavuthamraj-Resume.pdf"><span>Resume (PDF)</span><i aria-hidden="true">↓</i></a></li>` : ""}
+      </ul>
+    </div>
   </div>
-  <p class="foot-mark disp" aria-hidden="true">${[..."UX BY RAJ"].map((ch, i) => (ch === " " ? `<span class="sp" aria-hidden="true"> </span>` : `<span aria-hidden="true" style="--i:${i}">${ch}</span>`)).join("")}</p>
+  <p class="foot-mark disp" aria-hidden="true">${[..."UX BY RAJ"].map((ch, i) => (ch === " " ? `<span class="sp"> </span>` : `<span style="--i:${i}">${ch}</span>`)).join("")}</p>
   <div class="wrap foot-bar">
     <span>© ${new Date().getFullYear()} ${esc(profile.name)}</span>
     <span>Designed in Figma, coded as a static site.</span>
-    <a href="#top">Back to top ↑</a>
+    <a class="foot-top" href="#top" aria-label="Back to top"><span aria-hidden="true">↑</span></a>
   </div>
 </footer>
 <script src="${r}main.js?v=${jsV}" defer></script>
 </body>
 </html>`;
 
+// Titan card: the spinner and the skeleton load side by side on a loop, so the idea lands before anyone
+// opens the case. Bars only, no real data; the case page keeps the real before/after slide.
+const ldPane = (after) => {
+  const rows = Array.from({ length: 7 }, (_, i) =>
+    `<span class="ld-row" style="--r:${i}">${[0, 1, 2, 3, 4].map((j) => `<i style="--w:${55 + ((i * 17 + j * 29) % 40)}%"></i>`).join("")}</span>`).join("");
+  return `<div class="ld-pane${after ? " is-after" : ""}">
+      <p class="ld-cap"><b>${after ? "After" : "Before"}</b><span>${after ? "structure instantly, page stays live" : "full-page loader locks everything"}</span></p>
+      <div class="ld-win"><span class="ld-dots"><i></i><i></i><i></i></span>
+        <div class="ld-app"><span class="ld-side"><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="ld-main"><span class="ld-tool"><i class="ld-filter">Filters</i><i>Columns</i><i>Export</i></span><span class="ld-head"><i></i><i></i><i></i><i></i><i></i></span><span class="ld-rows">${rows}</span></div>
+          ${after ? "" : `<span class="ld-veil"><i class="ld-spin"></i></span>`}
+          <svg class="ld-cur" viewBox="0 0 16 16"><path d="M1.5 1.5l5 12.5 2-5.4 5.5-2z" fill="currentColor" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>`;
+};
+const loadingDemo = (v) => `<div class="ld" role="img" aria-label="${esc(v.alt)}">${ldPane(false)}${ldPane(true)}
+    <p class="ld-time"><span>Same request, same wait</span><i></i><b>Data in</b></p>
+  </div>`;
+
 // Real UI for a project card or case page: a before/after slide, or a row of phone screens.
 const visual = (v, r = "") =>
-  v.phones
+  v.demo === "loading"
+    ? loadingDemo(v)
+    : v.phones
     ? `<div class="phones-panel">${v.phones.map((p) => `<img src="${r}${esc(p.src)}" alt="Sporfy Tracker: ${esc(p.cap)}" width="512" height="1100" loading="lazy" decoding="async">`).join("")}</div>`
     : `<img src="${r}${esc(v.src)}" srcset="${r}${esc(small(v.src))} 900w, ${r}${esc(v.src)} 1600w" sizes="(max-width:1240px) 100vw, 1180px" alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;
+
+// How I work: a quick peek at the Titan library, rebuilt in code from its own tokens (AffinityX Design System:
+// colours, chip set, radii, table spec). The theme switch shows one semantic token resolving per mode.
+const dsSpecimen = () => `<figure class="ds reveal" data-mode="light" aria-labelledby="ds-cap">
+      <div class="ds-bar">
+        <p class="ds-title"><span class="label">Design system</span><strong>Titan component library</strong></p>
+        <ul class="ds-facts"><li>MUI v6</li><li>60+ components</li><li>Light and dark</li></ul>
+        <div class="ds-mode" role="group" aria-label="Specimen theme" hidden><button type="button" aria-pressed="true" data-mode="light">Light</button><button type="button" aria-pressed="false" data-mode="dark">Dark</button></div>
+      </div>
+      <div class="ds-body">
+        <div class="ds-tokens">
+          <p class="label">One decision, three tiers</p>
+          <ol class="ds-tiers">
+            <li><span class="ds-tier">Raw value</span><span class="ds-ramp">${["e6f3ff", "579dff", "456cd4", "0052cc", "003ea8"].map((h) => `<i class="x${h}" title="#${h}"></i>`).join("")}</span><code><span class="when-light">#0052cc</span><span class="when-dark">#579dff</span></code></li>
+            <li><span class="ds-tier">Semantic</span><span class="ds-sw"></span><code>--color-primary <span class="ds-arrow">→</span> <span class="when-light">#0052cc</span><span class="when-dark">#579dff</span></code></li>
+            <li><span class="ds-tier">Component</span><span class="ds-mini">Save</span><code>MuiButton, variant contained</code></li>
+          </ol>
+          <p class="label">Figma to code</p>
+          <dl class="ds-map">
+            <div><dt>Figma</dt><dd><code>Button / Contained / Medium</code></dd></div>
+            <div><dt>React</dt><dd><code>&lt;Button variant="contained" size="medium"&gt;</code></dd></div>
+          </dl>
+        </div>
+        <div class="ds-canvas" aria-hidden="true">
+          <div class="ds-frame">
+            <span class="ds-btns"><i class="b-con">Save</i><i class="b-out">Cancel</i><i class="b-txt">Reset</i><i class="b-con is-off">Save</i></span>
+            <span class="ds-chips"><i class="c-ok">Completed</i><i class="c-warn">Processing</i><i class="c-err">Critical</i></span>
+            <span class="ds-field"><small>Search orders</small><span>Order ID or business</span></span>
+            <span class="ds-table">
+              <span class="ds-tr th"><i>Order</i><i>Status</i><i>Total</i></span>
+              <span class="ds-tr"><i>Order 1042</i><i><b class="c-ok">Completed</b></i><i>12,400</i></span>
+              <span class="ds-tr"><i>Order 1043</i><i><b class="c-warn">Processing</b></i><i>3,250</i></span>
+              <span class="ds-tr sk"><i></i><i></i><i></i></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <figcaption id="ds-cap"><span>Rebuilt in code from Titan's own tokens: raw values feed semantic roles like <code>--color-primary</code>, roles feed MUI components, and switching the theme swaps only the semantic layer. Status chips pair colour with a label, never colour alone.</span><a class="arrow-link" href="work/titan.html#the-design-system-behind-it">The system in the Titan case <span>→</span></a></figcaption>
+    </figure>`;
+
+// Company badge for flagship work, styled like the "Worked at" logos in the proof band.
+const coBadge = (name, r = "") => {
+  const co = companies.find((c) => c.name === name);
+  return co ? `<p class="co"><img src="${r}${esc(co.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><span><b>${esc(co.name)}</b><small>${esc(co.years)}</small></span></p>` : "";
+};
 
 const outcomes = (list) => `<dl class="outcomes">${list.map(([n, l]) => `<div><dt>${esc(n)}</dt><dd>${esc(l)}</dd></div>`).join("")}</dl>`;
 
@@ -120,7 +206,7 @@ ${header("")}
 <main id="main">
 <section class="hero">
   <div class="wrap">
-    <p class="avail rise"><i aria-hidden="true"></i>${esc(profile.availability)}</p>
+    <p class="avail rise"><i aria-hidden="true"></i><span>${profile.availability.split(" · ").map((t, i) => (i ? esc(t) : `<b>${esc(t)}</b>`)).join('<span class="avail-sep"> · </span>')}</span></p>
     <div class="hero-stage">
       <h1 class="hero-name"><span class="disp hero-first"><span class="line"><span class="ln" style="--d:60ms">${esc(profile.headline[0])}</span></span></span><span class="disp hero-last">${esc(profile.headline[1])}</span></h1>
       <figure class="hero-photo rise" style="--d:160ms">
@@ -128,7 +214,7 @@ ${header("")}
         <span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span>
         <span class="mascot" aria-hidden="true"><svg class="m-body" viewBox="0 0 92 96"><path d="M12 2h64a10 10 0 0 1 10 10v56L64 92H12A10 10 0 0 1 2 82V12A10 10 0 0 1 12 2z" fill="#E9B872"/><path d="M86 68 64 92V77a9 9 0 0 1 9-9z" fill="#C9964F"/><g class="m-eyes"><ellipse cx="31" cy="38" rx="6" ry="8" fill="#1B120B"/><ellipse cx="57" cy="38" rx="6" ry="8" fill="#1B120B"/><circle cx="33" cy="35" r="2.2" fill="#fff"/><circle cx="59" cy="35" r="2.2" fill="#fff"/></g><ellipse cx="20" cy="51" rx="6" ry="3.5" fill="#D9745E" opacity=".55"/><ellipse cx="68" cy="51" rx="6" ry="3.5" fill="#D9745E" opacity=".55"/><path d="M38 52q6 6 12 0" fill="none" stroke="#1B120B" stroke-width="3" stroke-linecap="round"/></svg><svg class="m-hands" viewBox="0 0 92 18"><rect x="13" y="1" width="18" height="15" rx="7.5" fill="#E9B872" stroke="#C9964F" stroke-width="2"/><path d="M19 6v6M25 6v6" stroke="#C9964F" stroke-width="1.6" stroke-linecap="round"/><rect x="57" y="1" width="18" height="15" rx="7.5" fill="#E9B872" stroke="#C9964F" stroke-width="2"/><path d="M63 6v6M69 6v6" stroke="#C9964F" stroke-width="1.6" stroke-linecap="round"/></svg></span>
         <span class="mp mp1" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.5 1.5l5 12.5 2-5.4 5.5-2z" fill="currentColor" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg><b>PM</b></span><span class="mp mp2" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.5 1.5l5 12.5 2-5.4 5.5-2z" fill="currentColor" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg><b>Dev</b></span>
-        <figcaption>Now at AffinityX</figcaption>
+        <figcaption><i aria-hidden="true"></i>Now at <b>AffinityX</b> · ${esc(experience[0].role)}</figcaption>
         <button class="motion-toggle" type="button" aria-pressed="false">Pause motion</button>
       </figure>
       <div class="hero-copy rise" style="--d:220ms">
@@ -164,7 +250,8 @@ ${header("")}
         <div class="card-visual${f.visual.phones ? " is-phones" : ""}">${visual(f.visual)}</div>
         <div class="card-copy">
           <div>
-            <p class="card-meta label"><span>0${i + 1}</span>${f.meta.map(esc).join(" · ")}</p>
+            ${coBadge(f.meta[0])}
+            <p class="card-meta label"><span>0${i + 1}</span>${f.meta.slice(1).map(esc).join(" · ")}</p>
             <h3 id="c-${f.key}"><a class="card-link" href="${esc(f.href)}">${rich(f.title)}</a></h3>
             <p class="card-text">${esc(f.text)}</p>
           </div>
@@ -216,6 +303,7 @@ ${header("")}
     <ol class="principles">
       ${strengths.map((s, i) => `<li class="reveal" style="--d:${i * 80}ms"><span class="label">0${i + 1}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><a class="arrow-link" href="${esc(s.href)}">${esc(s.cta)} <span>→</span></a></li>`).join("")}
     </ol>
+    ${dsSpecimen()}
   </div>
 </section>
 
@@ -226,7 +314,7 @@ ${header("")}
       <h2 class="krona h2 reveal">Sports app to <em>enterprise SaaS.</em></h2>
       <p class="xp-sum reveal"><span><b>${xpYears()}+</b>years</span><span><b>${experience.length}</b>product teams</span></p>
       <p class="xp-lede reveal">Four product teams, and the sole designer more than once.</p>
-      ${resumeLink("", "btn ghost-light xp-cv reveal", "Download résumé")}
+      ${resumeLink("", "btn ghost-light xp-cv reveal", "Download resume")}
     </div>
     <ol class="xp-list">
       ${experience.map((e, i) => `<li class="xp-item reveal" style="--d:${i * 80}ms">
@@ -324,11 +412,11 @@ ${header("")}
     <h2 class="krona display reveal">Let's build <em>what's next.</em></h2>
     <p class="contact-lede reveal">Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
     <div class="contact-line reveal"><a class="contact-mail" href="${mailto}">${esc(profile.email)}<span aria-hidden="true">↗</span></a><button class="copy-mail btn ghost-light" type="button" data-copy="${esc(profile.email)}">Copy email</button><span class="sr copy-status" role="status" aria-live="polite"></span></div>
-    <div class="contact-act reveal">${resumeLink("", "btn light", "Download résumé")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a></div>
+    <div class="contact-act reveal">${resumeLink("", "btn light", "Download resume")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a></div>
   </div>
 </section>
 </main>
-<nav class="mbar" aria-label="Quick contact"><a class="btn solid" href="${mailto}">Email me</a>${resumeLink("", "btn ghost", "Résumé")}</nav>
+<nav class="mbar" aria-label="Quick contact"><a class="btn solid" href="${mailto}">Email me</a>${resumeLink("", "btn ghost", "Resume")}</nav>
 ${footer("")}`;
 
 // Case studies moved over from the Framer site: meta, text blocks and screens, all local.
@@ -360,7 +448,7 @@ const fcPage = (key) => {
   const desc = summary || (c.blocks.find((b) => b.t === "p") || {}).x || title;
   const h1 = feat ? feat.title : c.lead || title;
   const concept = isConcept(c);
-  const eyebrow = [concept ? "Concept" : "Case study", ...(feat ? feat.meta : [c.client, durText(c.duration)])].filter(Boolean);
+  const eyebrow = [concept ? "Concept" : "Case study", ...(feat ? feat.meta.slice(1) : [c.client, durText(c.duration)])].filter(Boolean);
   const chapters = c.blocks.filter((b) => b.t === "h2").map((b) => b.x);
   // Flagship pages open on the real-UI visual from their card, so the same slide is skipped further down.
   const coverSrc = feat && feat.visual.src;
@@ -396,6 +484,7 @@ ${header(r)}
   <div class="wrap case-head canvas-pad">
     <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
     <p class="frame rise"><span>${String(keys.indexOf(key) + 1).padStart(2, "0")}</span> ${eyebrow.map(esc).join(" · ")}</p>
+    ${feat ? coBadge(feat.meta[0], r).replace('class="co"', 'class="co rise" style="--d:40ms"') : ""}
     <h1 class="case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
     ${summary && summary !== plain(h1) ? `<p class="case-sum rise" style="--d:160ms">${esc(summary)}</p>` : ""}
     ${!c.lead && !feat && c.tags.length ? `<ul class="cs-chips rise" style="--d:200ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
@@ -418,7 +507,7 @@ ${header(r)}
       ${frame("→", "Hiring a product designer?")}
       <h2 class="krona">Let's talk about <em>your product.</em></h2>
       <p>Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
-      <div class="contact-act"><a class="btn light" href="${mailto}">Email me</a>${resumeLink(r, "btn ghost-light", "Download résumé")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a></div>
+      <div class="contact-act"><a class="btn light" href="${mailto}">Email me</a>${resumeLink(r, "btn ghost-light", "Download resume")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a></div>
     </section>
     <a class="next-case reveal" href="${nextKey}.html"><span class="label">Next case study</span><strong class="krona">${esc(nextTitle)}</strong><i aria-hidden="true">→</i></a>
   </div>

@@ -139,6 +139,7 @@ const onScroll = (fn) => {
   try { paused = localStorage.getItem("motion") === "paused"; } catch (e) { /* storage blocked */ }
   const apply = () => {
     root.classList.toggle("still", paused || offscreen);
+    root.classList.toggle("motion-off", paused);
     btn.setAttribute("aria-pressed", String(paused));
     btn.textContent = paused ? "Play motion" : "Pause motion";
   };
@@ -264,17 +265,67 @@ const onScroll = (fn) => {
 
 /* contact: copy the email address for people without a mail app (error prevention) */
 (() => {
-  const btn = document.querySelector(".copy-mail");
-  const status = document.querySelector(".copy-status");
-  if (!btn || !navigator.clipboard) { if (btn) btn.hidden = true; return; }
-  btn.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(btn.dataset.copy);
-      btn.textContent = "Copied ✓";
-      status.textContent = "Email address copied";
-    } catch (e) {
-      btn.textContent = "Select and copy above";
-    }
-    setTimeout(() => { btn.textContent = "Copy email"; status.textContent = ""; }, 2400);
+  document.querySelectorAll(".copy-mail").forEach((btn) => {
+    if (!navigator.clipboard) { btn.hidden = true; return; }
+    const label = btn.querySelector("b") || btn;
+    const text = label.textContent;
+    const status = btn.parentElement.querySelector(".copy-status");
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        label.textContent = "Copied ✓";
+        status.textContent = "Email address copied";
+      } catch (e) {
+        label.textContent = "Couldn't copy, select it instead";
+      }
+      setTimeout(() => { label.textContent = text; status.textContent = ""; }, 2400);
+    });
   });
+})();
+
+/* "Let's talk": three ways to reach me in one menu, so a recruiter without a mail app isn't stuck */
+(() => {
+  const btn = document.querySelector(".talk-btn");
+  const pop = document.getElementById("talk-pop");
+  if (!btn || !pop) return;
+  const set = (open) => { btn.setAttribute("aria-expanded", String(open)); pop.hidden = !open; };
+  btn.addEventListener("click", (e) => {
+    const open = btn.getAttribute("aria-expanded") !== "true";
+    set(open);
+    if (open && e.detail === 0) pop.querySelector(".talk-row").focus(); // keyboard users land inside the menu
+  });
+  addEventListener("keydown", (e) => { if (e.key === "Escape" && !pop.hidden) { set(false); btn.focus(); } });
+  addEventListener("click", (e) => { if (!pop.hidden && !e.target.closest(".talk")) set(false); });
+  btn.parentElement.addEventListener("focusout", (e) => { if (!btn.parentElement.contains(e.relatedTarget)) set(false); });
+})();
+
+/* Titan card: the loading demo only runs while it is on screen */
+(() => {
+  const demos = document.querySelectorAll(".ld");
+  if (!demos.length || reduceMotion) return;
+  const io = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("play", e.isIntersecting)), { threshold: 0.25 });
+  demos.forEach((d) => io.observe(d));
+})();
+
+/* design-system specimen: switch the theme to watch one semantic token resolve differently */
+(() => {
+  const ds = document.querySelector(".ds");
+  const group = ds && ds.querySelector(".ds-mode");
+  if (!group) return;
+  group.hidden = false;
+  group.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    ds.dataset.mode = b.dataset.mode;
+    group.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  });
+})();
+
+/* footer wordmark: hovering a letter selects it like a Figma layer, with its size underneath */
+(() => {
+  const letters = document.querySelectorAll(".foot-mark span:not(.sp)");
+  letters.forEach((l) => l.addEventListener("pointerenter", () => {
+    const r = l.getBoundingClientRect();
+    l.dataset.size = `${Math.round(r.width)} × ${Math.round(r.height)}`;
+  }));
 })();

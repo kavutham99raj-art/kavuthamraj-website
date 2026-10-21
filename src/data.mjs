@@ -2,8 +2,8 @@
 // Sources: kavuthamraj.framer.website (live site), LinkedIn profile, Naukri profile, static/resume.pdf.
 // Public checks: Sporfy shows 50K+ downloads on Google Play; Sporfy Tracker is live there.
 // Self-reported figures are labelled as such on the page (PM estimates, "by my own figures").
-// Left out on purpose: phone number, screen and app counts (5,000+ vs 7,000+ disagree between
-// the résumé and the Framer site), and "30,000+ booked" (no public source yet).
+// Screen count: 7,000+ across the whole career, from Kavuthamraj (Oct 2026); the résumé's 5,000+ is Sporfy alone.
+// Left out on purpose: phone number and "30,000+ booked" (no public source yet).
 
 export const profile = {
   name: "Kavuthamraj Geetha Senthilkumar",
@@ -194,8 +194,8 @@ export const education = [
 export const heroCopy = {
   eyebrow: "Senior UI/UX & Product Designer · B2B SaaS, ERP & consumer apps",
   // Apple-style hero: one headline, one supporting line. The detail lives in the proof band and the work.
-  subhead: "Senior UI/UX & Product Designer for B2B SaaS, ERP and consumer apps.",
-  lead: "I turn complex, data-heavy workflows into *clear, accessible* products.",
+  subhead: "Senior UI/UX & Product Designer. 5+ years turning ERP, SaaS and consumer workflows into fast, accessible products.",
+  lead: "I make complex B2B software *feel obvious.*",
   sub: "5+ years from research to design systems and developer handoff. Now co-owning UX for Titan, a back-office product used by operations teams in the US, the Philippines and India.",
 };
 
@@ -203,9 +203,9 @@ export const heroCopy = {
 // Each figure appears once on the home page; the flagship cards carry the others.
 // `src` says where each figure comes from; a link makes it checkable.
 export const proof = [
-  { value: "5+", label: "years designing B2B and consumer products", src: "Since July 2021" },
-  { value: "50K+", label: "downloads of Sporfy, the booking app I designed", src: "Google Play", href: "https://play.google.com/store/apps/details?id=com.sporfy.customer" },
-  { value: "10 → 5", label: "handoff bugs per sprint after the Titan design system", src: "Self-tracked, 6 sprints" },
+  { value: "7,000+", label: "screens designed across 20+ apps and 8+ websites", src: "My own count, 2021 – now" },
+  { value: "50K+", label: "downloads of Sporfy, a booking app I designed end to end", src: "Google Play", href: "https://play.google.com/store/apps/details?id=com.sporfy.customer" },
+  { value: "10 → 5", label: "handoff bugs per sprint after I built Titan's design system", src: "Self-tracked, 6 sprints" },
 ];
 
 // Companies, in the order worked at, newest first.
@@ -219,10 +219,10 @@ export const companies = [
 
 // "How I work": each claim points at the project that shows it.
 export const strengths = [
-  { t: "Find the system behind the ticket", d: "One complaint about one slow table in Titan became a loading standard for the whole product.", href: "work/titan.html", cta: "Titan" },
-  { t: "Design for the people who run it", d: "Cyberdine's captains told us UPI tips were getting lost in the bill, so I designed a separate tip step that restaurants track live.", href: "work/cyberdine.html#tips-payment-and-menus", cta: "Cyberdine" },
-  { t: "Systems that cut rework", d: "One tokenized MUI v6 library in Figma, light and dark, so designers and developers build from the same parts and handoff stops leaking bugs.", href: "work/titan.html#the-design-system-behind-it", cta: "Design system" },
-  { t: "Accessible by default", d: "WCAG 2.1 AA notes in every handoff: focus order, ARIA labels, and status that never relies on colour alone.", href: "work/cyberdine.html#looking-back", cta: "Contrast audit" },
+  { t: "Fix the system, not the ticket", d: "One complaint about one slow table became Titan's loading standard for every table and dashboard.", href: "work/titan.html", cta: "Titan" },
+  { t: "Design for the person on shift", d: "Captains said UPI tips were getting lost in the bill. A separate tip step now lets restaurants track them live.", href: "work/cyberdine.html#tips-payment-and-menus", cta: "Cyberdine" },
+  { t: "Ship parts, not pictures", d: "A tokenized MUI v6 library, light and dark, that designers and developers both build from. The PM estimates it sped up delivery by ~25%.", href: "work/titan.html#the-design-system-behind-it", cta: "Design system" },
+  { t: "Accessible before anyone asks", d: "WCAG 2.1 AA notes in every handoff: focus order, ARIA labels, and status that never relies on colour alone.", href: "work/cyberdine.html#looking-back", cta: "Contrast audit" },
 ];
 
 // Flagship work, strongest evidence first. `outcomes` also head each case page.
@@ -238,24 +238,24 @@ export const featured = [
   {
     key: "titan", meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
     title: "Stop the spinner. *Keep the work moving.*",
-    text: "One slow table froze the whole back office. I audited every table and dashboard, made the case with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components.",
+    text: "One slow table froze the whole back office. I audited every table and dashboard, won the PM over with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components. “App is stuck” reports dropped to zero.",
     outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
-    visual: { src: "work/titan-story/05.jpg", alt: "Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
+    visual: { demo: "loading", src: "work/titan-story/05.jpg", alt:"Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
     href: "work/titan.html", cover: "titan.png",
   },
   {
     key: "cyberdine", meta: ["Liffto Technologies", "Restaurant SaaS", "2024–25"],
     title: "Don't wait for the captain. *Order from the table.*",
-    text: "Diners could shortlist but not order. I redesigned ordering so the table sends the order and staff still approve every dish, then designed tips, payment and a ~200-screen restaurant app.",
+    text: "Diners could build a shortlist but not send it: every order waited for a captain. I redesigned ordering so the table sends it and staff still approve each dish, then added a tip step restaurants track live, plus payment and the full restaurant app.",
     outcomes: [["~235", "screens across two apps, sole designer"], ["6 → 4", "taps to a sent order, counted on the design files"], ["~600", "orders a day at peak, my own figures"]],
     visual: { src: "work/cyberdine/06.jpg", alt: "Cyberdine before and after: a shortlist that waits for a captain, then an order sent from the table with status on every dish" },
     href: "work/cyberdine.html", cover: "cyberdine.png",
   },
   {
     key: "erp", meta: ["Sporfy", "Sports ERP", "Mobile"],
-    title: "A sports ERP, *rebuilt for the phone.*",
-    text: "Sporfy Tracker puts organisation, payroll, attendance, fees, classes and slots into one mobile-first app. I planned and designed it end to end as the only designer, under the CEO and CTO.",
-    outcomes: [["Solo", "designer, from brief to developer handoff"], ["Mobile", "first: payroll, accounts, attendance and fees"], ["Live", "on Google Play as Sporfy Tracker"]],
+    title: "Off the desktop. *Into the pocket.*",
+    text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
+    outcomes: [["Solo", "designer, from brief to developer handoff"], ["5", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],
     visual: { phones: erpScreens },
     href: "work/erp.html", cover: "erp-solution.png",
   },
