@@ -1,6 +1,12 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "kavuthamraj-website-red.vercel.app" }],
+      "destination": "https://www.kavuthamraj.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "kavuthamraj-website-red.vercel.app" }],
       "destination": "https://www.kavuthamraj.com/:path*",
