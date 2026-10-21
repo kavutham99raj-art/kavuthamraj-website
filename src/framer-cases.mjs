@@ -14,8 +14,8 @@ export const framerCases = {
     "Worked under the CEO and CTO"
    ],
    [
-    "Duration",
-    "2 years"
+    "Product",
+    "Sporfy Tracker, live on Google Play"
    ],
    [
     "Client",
@@ -120,11 +120,11 @@ export const framerCases = {
    ],
    [
     "What I did",
-    "Planned and designed it end to end on my own, under the CEO and CTO: organisation, accounts and payroll, resources, classes, and slots and lockers."
+    "Sole designer, under the CEO and CTO: organisation, accounts and payroll, attendance, fees, resources, classes, and slots and lockers."
    ],
    [
     "Outcome",
-    "Two years of work, live as Sporfy Tracker on Google Play."
+    "Live as Sporfy Tracker on Google Play."
    ]
   ]
  },
@@ -138,8 +138,12 @@ export const framerCases = {
     "Senior UI/UX Designer, 1 of 2 designers"
    ],
    [
+    "Users",
+    "Operations teams in the US, Philippines and India"
+   ],
+   [
     "Team",
-    "Product manager, stakeholders and developers"
+    "PM, stakeholders and developers in 3 countries"
    ],
    [
     "Timeline",
@@ -148,10 +152,6 @@ export const framerCases = {
    [
     "Scope",
     "Loading audit, research, wireframes, UI, handoff"
-   ],
-   [
-    "Tools",
-    "Figma, MUI v6 design system"
    ]
   ],
   "client": "AffinityX",
@@ -161,6 +161,14 @@ export const framerCases = {
    "Design system"
   ],
   "blocks": [
+   {
+    "t": "h2",
+    "x": "Context"
+   },
+   {
+    "t": "p",
+    "x": "Titan is AffinityX's B2B SaaS back-office and ERP product. Operations teams in the US, the Philippines and India use it to work through high-volume orders, items and production screens, most of them dense data tables. I'm one of two designers, working with a PM and developer teams across three countries."
+   },
    {
     "t": "img",
     "src": "work/titan-story/02.jpg",
@@ -279,7 +287,22 @@ export const framerCases = {
    },
    {
     "t": "p",
-    "x": "Titan is built on MUI v6. I built and maintain the component library in Figma: 52 component pages covering data display, navigation, forms and custom components."
+    "x": "The skeletons live in the same system as the rest of Titan. Titan is built on MUI v6, and I built and maintain its tokenized component library in Figma: 60+ components across 52 pages, with light and dark modes."
+   },
+   {
+    "t": "item",
+    "l": "Handoff bugs",
+    "x": "From about 10 to 5 per sprint, tracked across six sprints."
+   },
+   {
+    "t": "item",
+    "l": "Delivery",
+    "x": "About 25% faster, a PM estimate based on automation testing."
+   },
+   {
+    "t": "item",
+    "l": "Accessibility",
+    "x": "WCAG 2.1 AA notes in every handoff: focus order, ARIA labels, and status that never relies on colour alone."
    },
    {
     "t": "img",
@@ -350,13 +373,18 @@ export const framerCases = {
   "client": "Cyberdine",
   "duration": "1 year",
   "tags": [
-   "UX Case Study",
-   "B2B SaaS"
+   "Product design",
+   "B2B SaaS",
+   "Hospitality"
   ],
   "blocks": [
    {
+    "t": "h2",
+    "x": "Overview"
+   },
+   {
     "t": "p",
-    "x": "Cyberdine - Case study | Kavuthamraj GS"
+    "x": "QR dine-in ordering and billing for Indian restaurants, built by Liffto Technologies. I was the only designer across two apps, a 35-screen diner app and a ~200-screen restaurant app, from research to developer handoff."
    },
    {
     "t": "img",
@@ -365,10 +393,40 @@ export const framerCases = {
     "h": 1000
    },
    {
+    "t": "h2",
+    "x": "The problem"
+   },
+   {
+    "t": "p",
+    "x": "Diners could browse and shortlist dishes, but they couldn't order. Five taps built a shortlist; the sixth was Request Captain. Then the table waited for a captain, the waiter who takes orders."
+   },
+   {
+    "t": "p",
+    "x": "The dish sheet only asked for quantity, so portion, spice and notes were settled outside the app. Selected states disagreed too: category tabs used coral, the diet toggle used white, and coral with white text had a contrast of only 2.99:1."
+   },
+   {
     "t": "img",
     "src": "work/cyberdine/03.jpg",
     "w": 1600,
     "h": 1000
+   },
+   {
+    "t": "h2",
+    "x": "The real blocker"
+   },
+   {
+    "t": "p",
+    "x": "The menu had flaws, but the bigger gap came after it: every order waited on a person."
+   },
+   {
+    "t": "item",
+    "l": "Constraint",
+    "x": "Staff approve each order before it goes to the kitchen."
+   },
+   {
+    "t": "item",
+    "l": "Goal",
+    "x": "Let the table place the order, and let diners follow each dish while staff check it."
    },
    {
     "t": "img",
@@ -377,10 +435,41 @@ export const framerCases = {
     "h": 1000
    },
    {
+    "t": "h2",
+    "x": "The decision: where the total lives"
+   },
+   {
+    "t": "p",
+    "x": "The usual cart pattern shows a running total in My Orders. I chose not to, because a growing total may put diners off ordering more. Every dish still shows its price, so nothing is hidden. The bill appears once the waiter confirms the order and asks for it to be printed, and diners can download it."
+   },
+   {
     "t": "img",
     "src": "work/cyberdine/05.jpg",
     "w": 1600,
     "h": 1000
+   },
+   {
+    "t": "h2",
+    "x": "The customer app"
+   },
+   {
+    "t": "p",
+    "x": "Add + turns into a stepper on the card. One dish at quantity 2 now takes 4 taps to a sent order (Add +, +, View Cart, Order Now), down from 6 taps plus a wait for a captain. I counted both on the design files, not with users."
+   },
+   {
+    "t": "item",
+    "l": "Dish details",
+    "x": "Dishes with portions open a sheet with a priced portion, spice level and Notes for Chef."
+   },
+   {
+    "t": "item",
+    "l": "Diet marks",
+    "x": "Diet chips carry FSSAI-style marks that use both shape and colour."
+   },
+   {
+    "t": "item",
+    "l": "Status on every dish",
+    "x": "Awaiting confirmation, Approved, Rejected (with the staff's reason) or Delivered."
    },
    {
     "t": "img",
@@ -389,10 +478,46 @@ export const framerCases = {
     "h": 1000
    },
    {
+    "t": "h2",
+    "x": "The restaurant app"
+   },
+   {
+    "t": "p",
+    "x": "The restaurant maps tables to each staff member, and only that person opens those tables and gets their alerts. Table Orders groups tables as Pending, In progress and Open. Staff open a table, edit or delete dishes, read chef notes and tap Send To Kitchen."
+   },
+   {
+    "t": "p",
+    "x": "A rejection needs a reason (Out of stock or Other), and the diner sees it on that dish. Staff can't check the phone at every alert, so only emergency requests need a manager's approval."
+   },
+   {
     "t": "img",
     "src": "work/cyberdine/07.jpg",
     "w": 1600,
     "h": 1000
+   },
+   {
+    "t": "h2",
+    "x": "Tips, payment and menus"
+   },
+   {
+    "t": "item",
+    "l": "Tips, from research",
+    "x": "Captains told us tips had become a problem. Most diners pay by UPI and don't carry cash, so they added the tip to the bill in the same payment, and at the end of the day tips were hard to separate from the bill. I designed a separate tip step: diners see the assigned waiter's photo and name, then tip by UPI or card, and tips show up live for the restaurant."
+   },
+   {
+    "t": "item",
+    "l": "Payment",
+    "x": "The bill carries a Scan to Pay QR. With dynamic QR turned on, it pre-fills the exact total, which cuts wrong and missed payments. Cash and card still work."
+   },
+   {
+    "t": "item",
+    "l": "Menus",
+    "x": "Menus follow time segments (tiffin, lunch, dinner), so diners only see what's being served now."
+   },
+   {
+    "t": "item",
+    "l": "Edge states",
+    "x": "Offline, no results, session ended, menu unavailable."
    },
    {
     "t": "img",
@@ -401,10 +526,41 @@ export const framerCases = {
     "h": 1000
    },
    {
+    "t": "h2",
+    "x": "How it shipped"
+   },
+   {
+    "t": "p",
+    "x": "About a year from v1 to handoff. Developers built both apps from my Figma handoff. Madurai Konar Mess and Taj Biriyani came on board in November 2024, and AXN Biriyani Centre in Tiruppur printed a real Cyberdine bill in April 2025."
+   },
+   {
     "t": "img",
     "src": "work/cyberdine/09.jpg",
     "w": 1600,
     "h": 1000
+   },
+   {
+    "t": "h2",
+    "x": "Impact"
+   },
+   {
+    "t": "item",
+    "l": "6–15 restaurants",
+    "x": "At peak, by my own figures."
+   },
+   {
+    "t": "item",
+    "l": "~600 orders a day",
+    "x": "At peak, by my own figures, counting ordering and billing together, since Cyberdine also worked as billing software."
+   },
+   {
+    "t": "item",
+    "l": "6 taps + a wait → 4 taps",
+    "x": "To a sent order, counted on the design files."
+   },
+   {
+    "t": "p",
+    "x": "A diner's video review went up on Cyberdine's Instagram. The caption says they praised the smooth process, easy navigation and interactive menu."
    },
    {
     "t": "img",
@@ -414,255 +570,26 @@ export const framerCases = {
    },
    {
     "t": "h2",
-    "x": "Overview"
-   },
-   {
-    "t": "p",
-    "x": "QR dine-in ordering for Indian restaurants, a product of Liffto Technologies."
-   },
-   {
-    "t": "p",
-    "x": "I was the only designer. Developers built it from my handoff."
-   },
-   {
-    "t": "item",
-    "l": "About 1 year of work",
-    "x": "35 customer screens and about 200 restaurant screens."
-   },
-   {
-    "t": "h2",
-    "x": "The problem (v1)"
-   },
-   {
-    "t": "p",
-    "x": "Diners could browse and shortlist dishes, but they couldn't order."
-   },
-   {
-    "t": "p",
-    "x": "Five taps built a shortlist. The sixth was Request Captain."
-   },
-   {
-    "t": "p",
-    "x": "After that, diners waited for a captain (the waiter who takes orders) to come and take the order."
-   },
-   {
-    "t": "p",
-    "x": "The dish sheet only asked for quantity. Portion, spice and notes were settled outside the app."
-   },
-   {
-    "t": "item",
-    "l": "Selected states disagreed",
-    "x": "category tabs used coral, the diet toggle used white."
-   },
-   {
-    "t": "p",
-    "x": "Coral with white text had a contrast of only 2.99:1."
-   },
-   {
-    "t": "h2",
-    "x": "The goal"
-   },
-   {
-    "t": "item",
-    "l": "Given",
-    "x": "staff approve each order before it goes to the kitchen."
-   },
-   {
-    "t": "item",
-    "l": "Goal",
-    "x": "let diners order on their own and follow each dish while staff check it."
-   },
-   {
-    "t": "h2",
-    "x": "The decision: where the total lives (my call)"
-   },
-   {
-    "t": "p",
-    "x": "My Orders shows no running total, because a growing total may put diners off ordering more."
-   },
-   {
-    "t": "p",
-    "x": "Each dish still shows its price."
-   },
-   {
-    "t": "p",
-    "x": "The bill appears once the waiter confirms the order and asks for it to be printed."
-   },
-   {
-    "t": "p",
-    "x": "Diners can download the bill."
-   },
-   {
-    "t": "h2",
-    "x": "The solution: customer app"
-   },
-   {
-    "t": "item",
-    "l": "Faster ordering",
-    "x": "Add + turns into a stepper on the card."
-   },
-   {
-    "t": "p",
-    "x": "One dish at quantity 2 now takes 4 taps to a sent order: Add +, +, View Cart, Order Now."
-   },
-   {
-    "t": "p",
-    "x": "v1 took 6 taps plus a wait for a captain."
-   },
-   {
-    "t": "p",
-    "x": "I counted both on the design files, not with users."
-   },
-   {
-    "t": "item",
-    "l": "Dish details",
-    "x": "dishes with portions open a sheet with a priced portion, spice level and Notes for Chef."
-   },
-   {
-    "t": "item",
-    "l": "Diet marks",
-    "x": "diet chips carry FSSAI-style marks that use both shape and colour."
-   },
-   {
-    "t": "item",
-    "l": "Status on every dish",
-    "x": "Awaiting confirmation, Approved, Rejected (with the staff's reason) or Delivered."
-   },
-   {
-    "t": "h2",
-    "x": "The restaurant app"
-   },
-   {
-    "t": "p",
-    "x": "The restaurant maps tables to each staff member. Only that person opens those tables and gets their alerts."
-   },
-   {
-    "t": "p",
-    "x": "Table Orders groups tables as Pending, In progress and Open."
-   },
-   {
-    "t": "p",
-    "x": "Staff open a table, edit or delete dishes, read chef notes and tap Send To Kitchen."
-   },
-   {
-    "t": "p",
-    "x": "A rejection needs a reason (Out of stock or Other), and the diner sees it on that dish."
-   },
-   {
-    "t": "p",
-    "x": "Staff can't check the phone at every alert, so only emergency requests need a manager's approval."
-   },
-   {
-    "t": "h2",
-    "x": "Tips, payment and menus"
-   },
-   {
-    "t": "h3",
-    "x": "Tips"
-   },
-   {
-    "t": "item",
-    "l": "User research",
-    "x": "captains (waiters) told us tips had become a big problem. Most diners now pay by UPI and don't carry cash, so they added the tip to the bill in the same UPI payment. At the end of the day, it was hard to separate tips from the bill. Captains asked us to fix it, so I designed a separate tip step."
-   },
-   {
-    "t": "p",
-    "x": "Diners see the assigned waiter's photo and name, then tip by UPI or card. Most people prefer those and may not carry cash."
-   },
-   {
-    "t": "p",
-    "x": "Tips show up live for the restaurant, which calculates and collects each staff member's tips at the end of the day."
-   },
-   {
-    "t": "h3",
-    "x": "Payment"
-   },
-   {
-    "t": "p",
-    "x": "The bill carries a Scan to Pay QR."
-   },
-   {
-    "t": "p",
-    "x": "If the restaurant turns on dynamic QR, it pre-fills the exact total, which cuts wrong and missed payments."
-   },
-   {
-    "t": "p",
-    "x": "Cash and card still work."
-   },
-   {
-    "t": "item",
-    "l": "Menus",
-    "x": "menus follow time segments (tiffin, lunch, dinner), so diners only see what's being served now."
-   },
-   {
-    "t": "h2",
-    "x": "Edge states"
-   },
-   {
-    "t": "chips",
-    "items": [
-     "Offline",
-     "No results",
-     "Session ended",
-     "Menu unavailable",
-     "How it shipped"
-    ]
-   },
-   {
-    "t": "p",
-    "x": "35 customer screens and about 200 restaurant screens in about 1 year."
-   },
-   {
-    "t": "p",
-    "x": "Developers built from my handoff."
-   },
-   {
-    "t": "p",
-    "x": "Madurai Konar Mess and Taj Biriyani came on board in November 2024."
-   },
-   {
-    "t": "p",
-    "x": "AXN Biriyani Centre, Tiruppur printed a real Cyberdine bill in April 2025."
-   },
-   {
-    "t": "h2",
-    "x": "Impact"
-   },
-   {
-    "t": "h3",
-    "x": "At peak, by my own figures"
-   },
-   {
-    "t": "p",
-    "x": "6–15 restaurants"
-   },
-   {
-    "t": "p",
-    "x": "~600 orders a day, counting ordering and billing together, since Cyberdine also worked as billing software"
-   },
-   {
-    "t": "p",
-    "x": "A diner's video review went up on Cyberdine's Instagram. The caption says they praised the smooth process, easy navigation and interactive menu."
-   },
-   {
-    "t": "h2",
     "x": "Looking back"
    },
    {
     "t": "p",
-    "x": "Fix the status colours first. They fail AA on small white text:"
+    "x": "Fix the status colours first. They fail AA on small white text, and the fixes are simple:"
    },
    {
-    "t": "p",
-    "x": "Green #179428 (3.96:1) → #127A20 (5.48:1)"
+    "t": "item",
+    "l": "Green",
+    "x": "#179428 (3.96:1) → #127A20 (5.48:1)"
    },
    {
-    "t": "p",
-    "x": "Orange #FF7D20 (2.56:1) → #B45309 (5.02:1)"
+    "t": "item",
+    "l": "Orange",
+    "x": "#FF7D20 (2.56:1) → #B45309 (5.02:1)"
    },
    {
-    "t": "p",
-    "x": "Red #FF0000 (4.00:1) → #CC0000 (5.89:1)"
+    "t": "item",
+    "l": "Red",
+    "x": "#FF0000 (4.00:1) → #CC0000 (5.89:1)"
    },
    {
     "t": "p",
