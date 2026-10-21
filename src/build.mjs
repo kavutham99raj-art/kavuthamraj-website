@@ -42,7 +42,8 @@ const head = ({ title, desc, path = "/", image = "profile-portrait.jpg" }) => {
 <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<a class="skip" href="${path === "/" ? "#work" : "#main"}">Skip to ${path === "/" ? "work" : "content"}</a>`;
+<a class="skip" href="${path === "/" ? "#work" : "#main"}">Skip to ${path === "/" ? "work" : "content"}</a>
+<div class="you-cursor" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.5 1.5l5 12.5 2-5.4 5.5-2z" fill="currentColor" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg><b>You</b></div>`;
 };
 
 const header = (r) => `<header class="top">

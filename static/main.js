@@ -124,6 +124,26 @@
   }, { passive: true });
 })();
 
+/* visitor cursor: on a mouse or trackpad, the pointer becomes a Figma-style multiplayer cursor tagged "You".
+   It tracks the pointer exactly (no easing), and the system cursor only hides once it has a position. */
+(() => {
+  const cur = document.querySelector(".you-cursor");
+  if (!cur || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  const root = document.documentElement;
+  addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
+    cur.style.transform = `translate(${e.clientX - 2}px, ${e.clientY - 2}px)`;
+    root.classList.add("you-on");
+    cur.classList.remove("off");
+  }, { passive: true });
+  addEventListener("pointerover", (e) => {
+    cur.classList.toggle("link", !!e.target.closest("a, button, [role=button]"));
+  }, { passive: true });
+  document.addEventListener("pointerleave", () => cur.classList.add("off"));
+  addEventListener("pointerdown", () => cur.classList.add("down"));
+  addEventListener("pointerup", () => cur.classList.remove("down"));
+})();
+
 /* footer: live local time in Tiruppur */
 (() => {
   const el = document.querySelector(".foot-time");
