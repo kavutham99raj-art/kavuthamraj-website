@@ -5,12 +5,22 @@
 // Screen count: 7,000+ across the whole career, from Kavuthamraj (Oct 2026); the résumé's 5,000+ is Sporfy alone.
 // Left out on purpose: phone number and "30,000+ booked" (no public source yet).
 
+// Domains. The canonical origin (canonical tags, Open Graph, JSON-LD, sitemap, robots, llms.txt) is the Vercel
+// production URL until www.kavuthamraj.com is connected and serving over HTTPS. To switch, set the SITE_URL
+// environment variable on Vercel's Production environment to the planned domain and redeploy (see README).
+export const site = {
+  live: "https://kavuthamraj-website-red.vercel.app",
+  planned: "https://www.kavuthamraj.com",
+  // Search Console / Bing Webmaster Tools HTML-tag verification: paste only the content="" value.
+  verify: { google: "", bing: "" },
+};
+
 export const profile = {
   name: "Kavuthamraj Geetha Senthilkumar",
   short: "Kavuthamraj",
+  brand: "Kavuthamraj GS",
   role: "Senior UI/UX & Product Designer",
   location: "From Tiruppur, Tamil Nadu",
-  url: "https://www.kavuthamraj.com",
   email: "kavutham99raj@gmail.com",
   availability: "Open to new roles · Immediate joiner · Open to relocation",
   headline: ["Kavuthamraj", "Geetha Senthilkumar"],
@@ -19,7 +29,7 @@ export const profile = {
   about: [
     "Most of my work lives in the hard, unglamorous parts of software: dense tables, approval flows, payroll and billing. Over 5+ years at AffinityX, Liffto Technologies, SRM Technologies and Sporfy, I've been the sole designer on a product more than once, and I've worked alongside PMs and developers in India, the US and the Philippines.",
     "My work runs from research and audits through information architecture, interaction design, design systems and handoff. I write handoff notes for accessibility (WCAG 2.1 AA) so it survives into code, and an MBA in Business Analytics keeps me asking what a design change does to the numbers.",
-    "I prototype in Figma, Framer and Claude. Recently I designed and coded a live QR-code SaaS with Claude Code and React.",
+    "I prototype in Figma, Framer and Claude, and I take designs to code myself. Recently I designed and vibe-coded a live QR-code SaaS with Claude Code and React, from first screen to production.",
   ],
   industries: ["Sports", "Retail", "E-commerce", "Healthcare", "AI", "Accounts & Finance"],
   links: [

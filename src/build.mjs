@@ -3,7 +3,7 @@ import { writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readFileSync } fr
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import {
-  profile, projects, experience, skills, education, companies,
+  site, profile, projects, experience, skills, education, companies,
   heroCopy, proof, strengths, featured, testimonials, recommendationsUrl,
 } from "./data.mjs";
 
@@ -35,7 +35,14 @@ const mailto = `mailto:${esc(profile.email)}?subject=${encodeURIComponent("Produ
 const frame = (n, label) => `<p class="frame"><span>${n}</span> ${esc(label)}</p>`;
 const newTab = `<span class="sr"> (opens in new tab)</span>`;
 
-const head = ({ title, desc, path = "/", image = "profile-portrait.jpg", type = "website", noindex = false, extra = "" }) => {
+// Canonical origin for every absolute URL the site prints. SITE_URL (set on Vercel once the custom domain is live)
+// wins; until then the Vercel production URL is canonical, so search engines never meet the parked domain.
+const SITE = (process.env.SITE_URL || site.live).replace(/\/+$/, "");
+const abs = (p) => SITE + (p.startsWith("/") ? p : `/${p}`);
+const metaIf = (name, content) => (content ? `<meta name="${name}" content="${esc(content)}">\n` : "");
+const ldTag = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
+
+const head = ({ title, desc, path = "/", image = "og-image.jpg", imageAlt = "", imageSize = null, type = "website", noindex = false, ld = null }) => {
   const r = path.startsWith("/work/") ? "../" : "";
   return `<!doctype html>
 <html lang="en">
@@ -44,16 +51,23 @@ const head = ({ title, desc, path = "/", image = "profile-portrait.jpg", type = 
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-${noindex ? `<meta name="robots" content="noindex">` : `<link rel="canonical" href="${profile.url}${path}">`}
-<meta property="og:title" content="${esc(title)}"><meta property="og:image" content="${profile.url}/${esc(image)}"><meta name="twitter:card" content="summary_large_image">
+${noindex ? `<meta name="robots" content="noindex">` : `<meta name="robots" content="index,follow,max-image-preview:large">\n<link rel="canonical" href="${abs(path)}">`}
+<meta name="author" content="${esc(profile.brand)}">
+${metaIf("google-site-verification", site.verify.google)}${metaIf("msvalidate.01", site.verify.bing)}<meta property="og:type" content="${type}"><meta property="og:site_name" content="${esc(profile.brand)}, Product Design Portfolio"><meta property="og:locale" content="en_IN">
+<meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
-<meta property="og:url" content="${profile.url}${path}">
-<meta property="og:type" content="${type}"><meta property="og:site_name" content="${esc(profile.name)}"><meta property="og:image:alt" content="${esc(title)}">${extra}
-<meta name="theme-color" content="#f3efe8">
-<link rel="icon" href="${r}favicon.svg" type="image/svg+xml">
+<meta property="og:url" content="${abs(path)}">
+<meta property="og:image" content="${abs(image)}">${imageSize ? `<meta property="og:image:width" content="${imageSize[0]}"><meta property="og:image:height" content="${imageSize[1]}">` : ""}<meta property="og:image:alt" content="${esc(imageAlt || title)}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(desc)}"><meta name="twitter:image" content="${abs(image)}">
+${ld ? ldTag(ld) + "\n" : ""}<meta name="theme-color" content="#f3efe8">
+<link rel="icon" href="${r}favicon.ico" sizes="48x48">
+<link rel="icon" href="${r}favicon-96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="${r}favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="${r}apple-touch-icon.png">
+<link rel="manifest" href="${r}site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${r}styles.css?v=${cssV}">
 <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -238,12 +252,26 @@ const others = projects.filter((p) => !featuredKeys.has(p.key));
 const clientWork = () => others.filter((p) => !isConcept(framerCases[p.case] || {}));
 const concepts = () => others.filter((p) => isConcept(framerCases[p.case] || {}));
 
-const personLd = `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Person", name: profile.name, jobTitle: profile.role, url: profile.url, email: `mailto:${profile.email}`, sameAs: profile.links.map((l) => l.href) })}</script>`;
+// Structured data: one Person (with a stable @id), the portfolio as a WebSite, and the home page as a ProfilePage.
+const PERSON_ID = abs("/#person"), SITE_ID = abs("/#website");
+const homeTitle = `${profile.brand} – Senior Product Designer & UI/UX Portfolio`;
+const homeDesc = "Senior Product and UI/UX Designer with 5+ years in B2B SaaS, ERP and consumer apps: design systems, accessibility, AI product design and design-to-code.";
+const homeLd = { "@context": "https://schema.org", "@graph": [
+  { "@type": "WebSite", "@id": SITE_ID, url: abs("/"), name: `${profile.brand}, Product Design Portfolio`, description: homeDesc, inLanguage: "en", publisher: { "@id": PERSON_ID } },
+  { "@type": "ProfilePage", "@id": abs("/#profilepage"), url: abs("/"), name: homeTitle, description: homeDesc, inLanguage: "en", isPartOf: { "@id": SITE_ID }, mainEntity: { "@id": PERSON_ID }, dateModified: new Date().toISOString().slice(0, 10) },
+  { "@type": "Person", "@id": PERSON_ID, name: profile.name, alternateName: [profile.brand, profile.short], jobTitle: profile.role, description: profile.intro,
+    url: abs("/"), image: abs("profile-portrait.jpg"), email: `mailto:${profile.email}`,
+    address: { "@type": "PostalAddress", addressLocality: "Tiruppur", addressRegion: "Tamil Nadu", addressCountry: "IN" },
+    sameAs: profile.links.map((l) => l.href),
+    alumniOf: [{ "@type": "CollegeOrUniversity", name: "SRM Institute of Science and Technology" }, { "@type": "CollegeOrUniversity", name: "PSG College of Arts and Science" }],
+    knowsAbout: ["Product design", "UI/UX design", "User research", "Interaction design", "Information architecture", "Design systems", "Design tokens",
+      "Accessibility (WCAG 2.1 AA)", "B2B SaaS", "Enterprise and ERP UX", "Data visualization", "AI product design", "Rapid prototyping", "Design-to-code", "Figma", "React"] },
+] };
 // Figma activity: the grid, its streak (every active month since July 2021) and the current month's cell.
 const rows = heatRows();
 const streak = rows.reduce((t, r) => t + r.cells.filter((n) => n > 0).length, 0);
 const nowCell = [new Date().getFullYear(), new Date().getMonth()];
-const home = () => `${head({ title: `${profile.name} | ${profile.role}`, desc: profile.intro, extra: personLd })}
+const home = () => `${head({ title: homeTitle, desc: homeDesc, imageAlt: `${profile.brand}, Senior Product Designer`, imageSize: [1200, 630], ld: homeLd })}
 ${header("")}
 <main id="main">
 <section class="hero">
@@ -461,6 +489,8 @@ const durText = (d) => {
   return `${n} ${u}${n > 1 ? "s" : ""}`;
 };
 const isConcept = (c) => /self-initiated|concept/i.test(c.client || "") || /hour/i.test(c.duration || "") || /^[12] days?$/i.test(String(c.duration || "").trim()) && !/assignment/i.test(c.client || "");
+// Descriptions: cut at a word boundary so search snippets end cleanly.
+const clip = (t, n) => { const s = plain(t).replace(/\s+/g, " ").trim(); return s.length <= n ? s : s.slice(0, s.lastIndexOf(" ", n - 1)).replace(/[,;:.\s]+$/, "") + "…"; };
 const SUMMARIES = {
   assignment: "Web app design for Assignment' first-party data product, delivered in two days.",
   evento: "A concept for an event booking app: search, browse and pick concerts, sports and other events with less effort.",
@@ -512,7 +542,17 @@ const fcPage = (key) => {
   // With the outcome numbers shown, the TL;DR keeps only Problem and What I did.
   const tldr = c.tldr && (feat ? c.tldr.filter(([k]) => k !== "Outcome") : c.tldr);
   const meta = (c.meta || [["Role", "UI/UX designer"], ["Client", c.client], ["Duration", durText(c.duration)], ["Type", concept ? "Concept, time-boxed" : "Client project"]]).filter(([, v]) => v);
-  return `${head({ title: `${title} | ${profile.short}`, desc: desc.slice(0, 160), path: `/work/${key}.html`, image: `work/${thumb(proj.cover || key + ".png")}`, type: "article" })}
+  const path = `/work/${key}.html`, image = coverSrc ? coverSrc : `work/${thumb(proj.cover || key + ".png")}`;
+  const pageTitle = `${title.replace(/^Case Study:\s*/i, "")} – ${concept ? "UI/UX Concept" : "UX Case Study"} | ${profile.brand}`;
+  const pageDesc = clip(desc, 158);
+  const ld = { "@context": "https://schema.org", "@graph": [
+    { "@type": "CreativeWork", "@id": abs(`${path}#work`), url: abs(path), name: title, headline: plain(h1), description: pageDesc, image: abs(image), inLanguage: "en",
+      genre: concept ? "UI/UX concept" : "UX case study", keywords: c.tags.join(", "), author: { "@id": PERSON_ID }, creator: { "@id": PERSON_ID }, isPartOf: { "@id": SITE_ID } },
+    { "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Portfolio", item: abs("/") },
+      { "@type": "ListItem", position: 2, name, item: abs(path) }] },
+  ] };
+  return `${head({ title: pageTitle, desc: pageDesc, path, image, imageAlt: `${name}: ${concept ? "concept" : "case study"} by ${profile.brand}`, type: "article", ld })}
 ${header(r)}
 <main class="case" id="main">
   <div class="wrap case-head canvas-pad">
@@ -549,7 +589,7 @@ ${header(r)}
 ${footer(r)}`;
 };
 
-const notFound = () => `${head({ title: `Page not found | ${profile.short}`, desc: "This page does not exist.", path: "/404.html", noindex: true })}
+const notFound = () => `${head({ title: `Page not found | ${profile.brand}`, desc: "This page does not exist.", path: "/404.html", noindex: true })}
 ${header("")}
 <main class="case" id="main"><div class="wrap case-head canvas-pad"><p class="frame"><span>404</span> Not found</p><h1 class="case-h1">This frame <em>doesn't exist.</em></h1><p class="case-sum"><a class="arrow-link" href="index.html">Back to the portfolio <span>→</span></a></p></div></main>
 ${footer("")}`;
@@ -559,13 +599,38 @@ mkdirSync(OUT + "work", { recursive: true });
 writeFileSync(OUT + "index.html", home());
 for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, fcPage(k));
 writeFileSync(OUT + "404.html", notFound());
-for (const f of ["styles.css", "main.js", "favicon.svg", "profile.webp", "profile-portrait.jpg"]) cpSync(STATIC + f, OUT + f);
+const ICONS = ["favicon.ico", "favicon-32.png", "favicon-96.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "og-image.jpg"];
+for (const f of ["styles.css", "main.js", "profile.webp", "profile-portrait.jpg", ...ICONS]) cpSync(STATIC + f, OUT + f);
 if (hasResume) cpSync(STATIC + "resume.pdf", OUT + "resume.pdf");
 cpSync(STATIC + "logos", OUT + "logos", { recursive: true });
 cpSync(STATIC + "work", OUT + "work", { recursive: true, filter: (src) => !/[\\/]work[\\/][^\\/]+\.(png|webp)$/.test(src) });
-writeFileSync(OUT + "robots.txt", `User-agent: *\nAllow: /\nSitemap: ${profile.url}/sitemap.xml\n`);
-const urls = ["/", ...Object.keys(framerCases)].map((u) => (u === "/" ? u : `/work/${u}.html`));
-writeFileSync(OUT + "sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${profile.url}${u}</loc></url>`).join("")}</urlset>\n`);
+// Crawl files, all on the canonical origin. The 404 page is noindex and left out of the sitemap.
+writeFileSync(OUT + "robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${abs("/sitemap.xml")}\n`);
+const urls = ["/", ...ORDER.filter((k) => framerCases[k]).map((k) => `/work/${k}.html`)];
+writeFileSync(OUT + "sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${abs(u)}</loc></url>`).join("\n")}\n</urlset>\n`);
+writeFileSync(OUT + "site.webmanifest", JSON.stringify({
+  name: `${profile.brand}, Product Design Portfolio`, short_name: profile.short, start_url: "/", display: "browser",
+  background_color: "#f3efe8", theme_color: "#f3efe8",
+  icons: [{ src: "/icon-192.png", sizes: "192x192", type: "image/png" }, { src: "/icon-512.png", sizes: "512x512", type: "image/png" }],
+}, null, 2) + "\n");
+// llms.txt: a plain-text map of the portfolio for AI tools that read it (a courtesy, not a ranking signal).
+const caseLine = (k) => { const pr = projects.find((p) => p.case === k) || {}; const c = framerCases[k]; const t = pr.title || c.title;
+  return `- [${t.replace(/^Case Study:\s*/i, "")}](${abs(`/work/${k}.html`)}): ${clip(c.summary || pr.summary || SUMMARIES[k] || "", 150)}`; };
+writeFileSync(OUT + "llms.txt", `# ${profile.brand} (${profile.name})
+
+> ${homeDesc}
+
+Based in Tiruppur, India. ${profile.availability}. Contact: ${profile.email}. Résumé: ${abs("/resume.pdf")}
+
+## Featured case studies
+${featured.map((f) => caseLine(f.key)).join("\n")}
+
+## More work and concepts
+${ORDER.filter((k) => framerCases[k] && !featured.some((f) => f.key === k)).map(caseLine).join("\n")}
+
+## Profiles
+${profile.links.map((l) => `- [${l.label}](${l.href})`).join("\n")}
+`);
 if (testimonials.some((t) => t.placeholder)) console.warn("WARNING: placeholder testimonials are still in src/data.mjs. Replace them before going live.");
 console.log(`Built ${urls.length + 1} pages → dist/`);
 
