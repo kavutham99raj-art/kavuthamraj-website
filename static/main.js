@@ -52,8 +52,9 @@ const onScroll = (fn) => {
 
 /* intro: the hero name opens small on dark, cuts to paper and grows, the photo slides in as a strip
    (letters invert over it), then the name and photo settle into the hero. It plays on every visit that starts
-   at the top, reloads included; it is skipped for reduced motion, a link into the page, back/forward, coming
-   back from another page of this site, or a reload of a page that was scrolled. */
+   at the top, reloads included. With reduced motion on (for example Windows "Animation effects" off) it becomes a
+   plain fade; it is skipped for a link into the page, back/forward, coming back from another page of this site,
+   or a reload of a page that was scrolled. */
 (() => {
   const nav = (performance.getEntriesByType("navigation")[0] || {}).type;
   let fromSite = false;
@@ -61,8 +62,17 @@ const onScroll = (fn) => {
   let leftAt = 0;
   try { leftAt = Number(sessionStorage.getItem("homeY")) || 0; } catch (e) { /* storage blocked */ }
   addEventListener("pagehide", () => { try { sessionStorage.setItem("homeY", String(Math.round(scrollY))); } catch (e) { /* storage blocked */ } });
-  if (reduceMotion || scrollY > 40 || location.hash || nav === "back_forward") return;
+  if (scrollY > 40 || location.hash || nav === "back_forward") return;
   if (nav === "reload" ? leftAt > 40 : fromSite) return;
+  // Reduced motion: no sliding, zooming or colour swap, just a gentle fade of the hero, so the opening still shows.
+  if (reduceMotion) {
+    const fade = [".hero-first", ".hero-last", ".hero-photo", ".hero-copy", ".avail", ".top"];
+    fade.forEach((sel, i) => {
+      const el = document.querySelector(sel);
+      if (el) el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: 120 * i, easing: "ease-out", fill: "backwards" });
+    });
+    return;
+  }
   const stage = document.querySelector(".hero-stage");
   const first = document.querySelector(".hero-first"), last = document.querySelector(".hero-last"), photo = document.querySelector(".hero-photo");
   if (!stage || !first || !last || !photo) return;
