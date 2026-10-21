@@ -215,6 +215,13 @@ const quoteCard = (t, i) => {
       </figure>`;
 };
 
+// About: one bento tile per skill group, numbered like the frames elsewhere on the page.
+const skillTile = (g, i, cls = "") => `<article class="tile-b ${cls || "b-skill"} reveal">
+        <p class="label"><span class="tile-n">0${i + 1}</span> ${esc(g.label)}</p>
+        <h3 class="krona">${rich(g.title)}</h3>
+        <ul class="chips">${g.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </article>`;
+
 const outcomes = (list) => `<dl class="outcomes">${list.map(([n, l]) => `<div><dt>${esc(n)}</dt><dd>${esc(l)}</dd></div>`).join("")}</dl>`;
 
 // Home: flagship work first, then other client work, then concepts as a plain list.
@@ -390,31 +397,20 @@ ${header("")}
       <div class="about-copy">${profile.about.map((t) => `<p class="reveal">${esc(t)}</p>`).join("")}</div>
     </div>
     <div class="bento" id="skills">
-      <article class="tile-b b-design reveal">
-        <p class="label">Design</p>
-        <h3 class="krona">Research <em>to handoff.</em></h3>
-        <ul class="chips">${skills.Design.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      </article>
+      ${skillTile(skills[0], 0, "b-design")}
       <article class="tile-b b-figma dark reveal">
         <p class="label">Main tool</p>
         <h3 class="krona">Figma</h3>
         <p>Variables, Auto Layout and Dev Mode for product work. FigJam for flows and workshops.</p>
       </article>
+      ${skills.slice(1, 4).map((g, i) => skillTile(g, i + 1)).join("")}
+      ${skillTile(skills[4], 4)}
       <article class="tile-b b-aa reveal">
         <p class="label">Accessibility</p>
         <h3 class="krona big-mark">AA</h3>
         <p>WCAG 2.1 AA notes in every handoff: focus order, ARIA labels, and status that never relies on colour alone.</p>
       </article>
-      <article class="tile-b b-tools reveal">
-        <p class="label">Also in the kit</p>
-        <h3 class="krona">Tools</h3>
-        <ul class="chips">${skills.Tools.filter((x) => x !== "Figma").map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      </article>
-      <article class="tile-b b-build reveal">
-        <p class="label">Build</p>
-        <h3 class="krona">I prototype <em>in code.</em></h3>
-        <ul class="chips">${skills.Build.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      </article>
+      ${skillTile(skills[5], 5)}
       ${education.map((e, i) => `<article class="tile-b ${i ? "b-edu-sm" : "b-edu"} reveal">
         <p class="label">${i ? (e.dates ? "Degree" : "Certificate") : "Education"}</p>
         <h3${i ? "" : ' class="krona"'}>${i ? esc(e.title) : "MBA, <em>Business Analytics.</em>"}</h3>

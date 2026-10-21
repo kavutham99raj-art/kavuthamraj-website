@@ -173,15 +173,32 @@ export const experience = [
   },
 ];
 
-export const skills = {
-  Design: [
-    "Product design", "UX research", "Interaction design", "Information architecture",
-    "Wireframing and prototyping", "Usability testing", "Visual design", "Design systems",
-    "Accessibility (WCAG 2.1 AA)", "AI product design",
-  ],
-  Tools: ["Figma", "Framer", "Adobe XD", "After Effects", "Figma AI", "Claude", "Jira", "Slack"],
-  Build: ["HTML", "CSS", "JavaScript", "React", "MUI v6"],
-};
+// Skills, grouped the way hiring teams scan for them. Backed by the résumé (page 2) and the case studies; JTBD,
+// design QA, product KPIs, funnel analysis, experimentation and A/B testing confirmed by Kavuthamraj (Oct 2026).
+export const skills = [
+  { key: "product", label: "Product design", title: "Discovery to *delivery.*", items: [
+    "Product design", "Product discovery", "JTBD", "User research", "UX audits", "Journey mapping", "Information architecture",
+    "Interaction design", "Wireframing and prototyping", "Usability testing", "Visual design",
+  ] },
+  { key: "enterprise", label: "Enterprise and product thinking", title: "Complex, made *simple.*", items: [
+    "B2B SaaS", "ERP and back-office UX", "Complex workflows", "Data-dense tables and dashboards", "Role-based access",
+    "Loading, empty and error states", "Responsive and mobile UI",
+  ] },
+  { key: "systems", label: "Design systems", title: "Consistency at *scale.*", items: [
+    "Design tokens", "Figma Variables", "Component variants", "Light and dark modes", "MUI v6", "Developer handoff", "Design QA",
+  ] },
+  { key: "build", label: "AI and development", title: "Design. Prototype. *Build.*", items: [
+    "AI product design", "Human-in-the-loop flows", "AI-assisted prototyping", "Claude Code", "Figma AI", "Framer",
+    "React", "HTML", "CSS", "JavaScript", "Lottie",
+  ] },
+  { key: "data", label: "Data and analytics", title: "Design with *evidence.*", items: [
+    "Product KPIs", "Funnel analysis", "Experimentation", "A/B testing", "Data visualization", "Excel", "Google Sheets",
+    "Power BI", "SQL", "Google Analytics",
+  ] },
+  { key: "team", label: "Collaboration", title: "In the *room.*", items: [
+    "Stakeholder management", "Workshop facilitation", "Cross-functional teams", "Agile", "Jira", "Slack",
+  ] },
+];
 
 export const education = [
   { title: "Online MBA, Business Analytics", org: "SRM Institute of Science and Technology", dates: "2023 to 2025" },

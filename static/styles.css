@@ -276,14 +276,17 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
 .tile-b h3:not(.krona){font:700 clamp(20px,1.7vw,24px)/1.25 var(--sans);text-transform:none;letter-spacing:-.02em}
 .tile-b p:not(.label){margin-top:auto;font-size:15.5px;line-height:1.6;color:var(--body)}
 .b-design{grid-column:span 4}
-.b-figma,.b-aa,.b-tools,.b-build,.b-edu,.b-edu-sm{grid-column:span 2}
+.b-figma,.b-aa,.b-skill,.b-edu,.b-edu-sm{grid-column:span 2}
+.tile-n{margin-right:6px;color:var(--rust)}
+.b-skill h3,.b-design h3{font-size:clamp(22px,1.9vw,28px)}
+.b-skill .chips,.b-design .chips{margin-top:var(--s2)}
 .tile-b.dark{background:var(--night);border-color:var(--night);color:var(--cream)}
 .tile-b.dark .label,.tile-b.dark p:not(.label){color:var(--cream-mut)}
-.b-figma h3{font-size:clamp(44px,5vw,76px);text-transform:none}
+.b-figma h3{font-size:clamp(44px,4.8vw,72px);text-transform:none}
 .big-mark{font-size:clamp(64px,7vw,104px)!important;line-height:.9!important;color:var(--rust)}
 .b-edu{background:var(--sunk);border-color:transparent}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
-.chips li{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--canvas);font-size:14px;font-weight:500;line-height:1.2}
+.chips li{padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--canvas);font-size:13.5px;font-weight:500;line-height:1.2}
 
 /* testimonials: placeholder cards stay visibly marked until real quotes replace them */
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:var(--grid-gap)}
@@ -549,7 +552,7 @@ html.intro-run{overflow:hidden}
   .principles{grid-template-columns:1fr 1fr}
   .bento{grid-template-columns:repeat(2,1fr)}
   .b-design{grid-column:1/-1}
-  .b-figma,.b-aa,.b-tools,.b-build,.b-edu,.b-edu-sm{grid-column:span 1}
+  .b-figma,.b-aa,.b-skill,.b-edu,.b-edu-sm{grid-column:span 1}
   .case-body.has-toc{grid-template-columns:1fr}
   .toc{display:none}
 }
