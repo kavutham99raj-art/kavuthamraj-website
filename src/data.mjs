@@ -201,14 +201,21 @@ export const heroCopy = {
 
 // Hero proof: one public figure, one self-reported figure with its source, one scope fact.
 // Each figure appears once on the home page; the flagship cards carry the others.
+// `src` says where each figure comes from; a link makes it checkable.
 export const proof = [
-  { value: "5+", label: "years designing B2B and consumer products" },
-  { value: "50K+", label: "downloads of Sporfy, the booking app, on Google Play" },
-  { value: "10 → 5", label: "handoff bugs per sprint over six sprints, after the Titan design system" },
+  { value: "5+", label: "years designing B2B and consumer products", src: "Since July 2021" },
+  { value: "50K+", label: "downloads of Sporfy, the booking app I designed", src: "Google Play", href: "https://play.google.com/store/apps/details?id=com.sporfy.customer" },
+  { value: "10 → 5", label: "handoff bugs per sprint after the Titan design system", src: "Self-tracked, 6 sprints" },
 ];
 
 // Companies, in the order worked at, newest first.
-export const companies = ["AffinityX", "Liffto Technologies", "SRM Technologies", "Sporfy"];
+// Companies, newest first, with the logo cropped from the résumé (static/logos).
+export const companies = [
+  { name: "AffinityX", logo: "logos/affinityx.png", years: "2025 – now" },
+  { name: "Liffto Technologies", logo: "logos/liffto.png", years: "2024 – 25" },
+  { name: "SRM Technologies", logo: "logos/srm.png", years: "2023 – 24" },
+  { name: "Sporfy", logo: "logos/sporfy.png", years: "2021 – 23" },
+];
 
 // "How I work": each claim points at the project that shows it.
 export const strengths = [

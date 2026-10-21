@@ -142,8 +142,13 @@ ${header("")}
 
 <section class="proof-band" aria-label="In numbers">
   <div class="wrap">
-    <dl class="big-proof">${proof.map((x, i) => `<div class="reveal" style="--d:${i * 100}ms"><dt>${esc(x.value)}</dt><dd>${esc(x.label)}</dd></div>`).join("")}</dl>
-    <div class="shipped reveal"><p class="label">Worked at</p><ul>${companies.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></div>
+    <div class="proof-panel reveal">
+      <dl class="big-proof">${proof.map((x) => `<div><dt>${esc(x.value)}</dt><dd>${esc(x.label)}</dd><dd class="proof-src">${x.href ? `<a href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.src)} ↗${newTab}</a>` : esc(x.src)}</dd></div>`).join("")}</dl>
+      <div class="shipped">
+        <p class="label">Worked at</p>
+        <ul class="logos">${companies.map((c) => `<li><img src="${esc(c.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><span><b>${esc(c.name)}</b><small>${esc(c.years)}</small></span></li>`).join("")}</ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -433,6 +438,7 @@ for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, 
 writeFileSync(OUT + "404.html", notFound());
 for (const f of ["styles.css", "main.js", "favicon.svg", "profile.webp", "profile-portrait.jpg"]) cpSync(STATIC + f, OUT + f);
 if (hasResume) cpSync(STATIC + "resume.pdf", OUT + "resume.pdf");
+cpSync(STATIC + "logos", OUT + "logos", { recursive: true });
 cpSync(STATIC + "work", OUT + "work", { recursive: true, filter: (src) => !/[\\/]work[\\/][^\\/]+\.(png|webp)$/.test(src) });
 writeFileSync(OUT + "robots.txt", `User-agent: *\nAllow: /\nSitemap: ${profile.url}/sitemap.xml\n`);
 const urls = ["/", ...Object.keys(framerCases)].map((u) => (u === "/" ? u : `/work/${u}.html`));
