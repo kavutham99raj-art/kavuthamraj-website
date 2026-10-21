@@ -169,16 +169,33 @@ const onScroll = (fn) => {
 })();
 
 /* visitor cursor: on a mouse or trackpad, the pointer becomes a Figma-style multiplayer cursor tagged "You".
-   It tracks the pointer exactly (no easing), turns into an I-beam over text, hands over to the native zoom
-   cursor on screenshots, and stays off for forced colours or high contrast so OS pointer settings still apply. */
+   It trails the pointer slightly with eased motion (the "You" tag tilts with the lag) and springs in scale on
+   hover and click; with reduced motion it tracks exactly. It turns into an I-beam over text, hands over to the
+   native zoom cursor on screenshots, and stays off for forced colours or high contrast so OS pointer settings
+   still apply. */
 (() => {
   const cur = document.querySelector(".you-cursor");
   if (!cur || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
   if (matchMedia("(forced-colors: active), (prefers-contrast: more)").matches) return;
   const root = document.documentElement;
+  let tx = 0, ty = 0, x = 0, y = 0, last = 0, raf = 0, started = false;
+  const tick = (now) => {
+    // frame-rate independent ease: covers ~35% of the gap every 16ms
+    const k = reduceMotion ? 1 : 1 - Math.pow(0.65, Math.min(now - last, 64) / 16.7);
+    last = now;
+    x += (tx - x) * k;
+    y += (ty - y) * k;
+    const settled = Math.abs(tx - x) < 0.1 && Math.abs(ty - y) < 0.1;
+    if (settled) { x = tx; y = ty; }
+    cur.style.transform = `translate(${x - 2}px, ${y - 2}px)`;
+    cur.style.setProperty("--tilt", `${Math.max(-9, Math.min(9, (tx - x) * 0.35)).toFixed(2)}deg`);
+    raf = settled ? 0 : requestAnimationFrame(tick);
+  };
   addEventListener("pointermove", (e) => {
     if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
-    cur.style.transform = `translate(${e.clientX - 2}px, ${e.clientY - 2}px)`;
+    tx = e.clientX; ty = e.clientY;
+    if (!started) { x = tx; y = ty; started = true; }
+    if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
     root.classList.add("you-on");
     if (!cur.classList.contains("zoom")) cur.classList.remove("off");
   }, { passive: true });

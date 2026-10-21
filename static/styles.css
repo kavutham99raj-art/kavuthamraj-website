@@ -434,19 +434,21 @@ html.intro-run{overflow:hidden}
 .intro-run .sel,.intro-run .sel b,.intro-run .mascot *,.intro-run .mp,.intro-run .hero-photo figcaption{animation:none!important;visibility:hidden}
 
 /* visitor cursor (main.js): the same arrow as the photo's collaborator cursors, tagged "You" */
-.you-cursor{position:fixed;left:0;top:0;z-index:90;display:none;align-items:flex-start;gap:2px;color:#a8532e;pointer-events:none;will-change:transform;transition:opacity .2s}
-.you-cursor svg{width:18px;height:18px;flex:none;transform-origin:2px 2px;transition:scale .2s var(--ease)}
-.you-cursor b{margin-top:13px;padding:3px 8px;border-radius:4px;background:#a8532e;color:#fff;font:600 12px/1.2 var(--sans);white-space:nowrap;box-shadow:0 4px 12px -4px rgba(20,17,16,.35);transition:background .2s}
+.you-cursor{--spring:cubic-bezier(.34,1.8,.5,1);position:fixed;left:0;top:0;z-index:90;display:none;align-items:flex-start;gap:2px;color:#a8532e;pointer-events:none;will-change:transform;transition:opacity .2s}
+.you-cursor svg{width:18px;height:18px;flex:none;transform-origin:2px 2px;transition:scale .5s var(--spring)}
+.you-cursor b{margin-top:13px;padding:3px 8px;border-radius:4px;background:#a8532e;color:#fff;font:600 12px/1.2 var(--sans);white-space:nowrap;box-shadow:0 4px 12px -4px rgba(20,17,16,.35);transform-origin:0 0;rotate:var(--tilt,0deg);transition:background .2s,scale .5s var(--spring)}
 .you-on .you-cursor{display:flex}
 .you-cursor.off{opacity:0}
-.you-cursor.link svg{scale:1.15}
+.you-cursor.link svg{scale:1.3}
+.you-cursor.link b{scale:1.1}
 .you-cursor.link b{background:var(--ink)}
 .you-cursor.dark.link b{background:var(--accent);color:var(--ink)}
 .you-cursor .beam{position:absolute;left:0;top:-2px;width:2px;height:20px;border-radius:1px;background:#a8532e;opacity:0}
 .you-cursor.text svg{opacity:0}
 .you-cursor.text .beam{opacity:1}
 .you-on .shot a,.you-on .shot a *{cursor:zoom-in!important}
-.you-cursor.down svg{scale:.85}
+.you-cursor.down svg{scale:.78;transition-duration:.12s}
+.you-cursor.down b{scale:.92;transition-duration:.12s}
 .you-on,.you-on *{cursor:none!important}
 
 @keyframes sel-in{from{opacity:0;inset:4px}to{opacity:1;inset:-8px}}
