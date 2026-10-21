@@ -28,7 +28,8 @@ const v = (file) => createHash("sha1").update(readFileSync(STATIC + file)).diges
 const cssV = v("styles.css"), jsV = v("main.js");
 const linkedin = profile.links.find((l) => l.label === "LinkedIn").href;
 const behance = profile.links.find((l) => l.label === "Behance").href;
-const resumeLink = (r, cls, label) => (hasResume ? `<a class="${cls}" href="${r}resume.pdf" download="Kavuthamraj-Resume.pdf">${label}</a>` : "");
+const resumeFile = "Kavuthamraj_Resume_UI_UX_Product_Designer.pdf"; // name the visitor's download gets
+const resumeLink = (r, cls, label) => (hasResume ? `<a class="${cls}" href="${r}resume.pdf" download="${resumeFile}">${label}</a>` : "");
 const mailto = `mailto:${esc(profile.email)}?subject=${encodeURIComponent("Product design role")}`;
 // Section labels read like Figma frame names: number, then name.
 const frame = (n, label) => `<p class="frame"><span>${n}</span> ${esc(label)}</p>`;
@@ -104,7 +105,7 @@ const footer = (r) => `<footer class="foot">
         ${footLink(mailto, "Email", "→")}
         ${footLink(linkedin, "LinkedIn", "↗", true)}
         ${footLink(behance, esc(profile.links.find((l) => l.label === "Behance").text), "↗", true)}
-        ${hasResume ? `<li><a class="foot-link" href="${r}resume.pdf" download="Kavuthamraj-Resume.pdf"><span>Resume (PDF)</span><i aria-hidden="true">↓</i></a></li>` : ""}
+        ${hasResume ? `<li><a class="foot-link" href="${r}resume.pdf" download="${resumeFile}"><span>Resume (PDF)</span><i aria-hidden="true">↓</i></a></li>` : ""}
       </ul>
     </div>
   </div>
@@ -192,6 +193,28 @@ const coBadge = (name, r = "") => {
   return co ? `<p class="co"><img src="${r}${esc(co.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><span><b>${esc(co.name)}</b><small>${esc(co.years)}</small></span></p>` : "";
 };
 
+// How I work: each pillar opens on a small built-in visual of the idea. Decorative; the card's text carries it.
+const pillarVisual = [
+  `<div class="pv pv-sys" aria-hidden="true"><span class="pv-one"><i></i><i></i><i></i></span><span class="pv-arrow">→</span><span class="pv-all">${Array.from({ length: 9 }, (_, k) => `<span style="--k:${k}"><i></i><i></i><i></i></span>`).join("")}</span></div>`,
+  `<div class="pv pv-tip" aria-hidden="true"><span class="pv-card"><small>Add a tip</small><span class="pv-chips"><i>5%</i><i class="on">10%</i><i>15%</i></span><span class="pv-live"><b></b>Tracked live</span></span></div>`,
+  `<div class="pv pv-parts" aria-hidden="true"><span class="pv-layer ly3"><b></b>Table row</span><span class="pv-layer ly2"><b></b>Chip</span><span class="pv-layer ly1"><b></b>Button</span></div>`,
+  `<div class="pv pv-aa" aria-hidden="true"><span class="pv-aa-mark">AA</span><span class="pv-aa-list"><i>Contrast</i><i>Focus order</i><i>Not colour alone</i></span></div>`,
+];
+
+// Testimonials: the highlighted phrase leads as a pull-quote (an exact excerpt, hence the ellipses), the full
+// recommendation follows word for word. Cards 1 and 4 are dark, so the grid reads as a checkerboard.
+const quoteCard = (t, i) => {
+  const pull = (t.quote.match(/\*([^*]+)\*/) || [])[1];
+  const initials = t.name.split(" ").map((w) => w[0]).slice(0, 2).join("");
+  const co = companies.find((c) => c.name === t.company);
+  return `<figure class="quote${i === 0 || i === 3 ? " q-dark" : ""}${t.placeholder ? " is-placeholder" : ""} reveal" style="--d:${(i % 2) * 80}ms">
+        ${t.placeholder ? `<span class="ph">Placeholder</span>` : ""}<span class="q-mark" aria-hidden="true">“</span>
+        ${pull ? `<p class="q-pull" aria-hidden="true">…${esc(pull)}…</p>` : ""}
+        <blockquote>“${rich(t.quote)}”</blockquote>
+        <figcaption><span class="q-av" aria-hidden="true">${esc(initials)}</span><span class="q-who"><strong>${esc(t.name)}</strong><span>${esc(t.role)}</span></span>${t.relation ? `<span class="quote-src">${co ? `<img src="${esc(co.logo)}" alt="${esc(co.name)}" width="90" height="90" loading="lazy" decoding="async">` : ""}${esc(t.relation)} · LinkedIn, ${esc(t.date)}</span>` : ""}</figcaption>
+      </figure>`;
+};
+
 const outcomes = (list) => `<dl class="outcomes">${list.map(([n, l]) => `<div><dt>${esc(n)}</dt><dd>${esc(l)}</dd></div>`).join("")}</dl>`;
 
 // Home: flagship work first, then other client work, then concepts as a plain list.
@@ -201,6 +224,10 @@ const clientWork = () => others.filter((p) => !isConcept(framerCases[p.case] || 
 const concepts = () => others.filter((p) => isConcept(framerCases[p.case] || {}));
 
 const personLd = `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Person", name: profile.name, jobTitle: profile.role, url: profile.url, email: `mailto:${profile.email}`, sameAs: profile.links.map((l) => l.href) })}</script>`;
+// Figma activity: the grid, its streak (every active month since July 2021) and the current month's cell.
+const rows = heatRows();
+const streak = rows.reduce((t, r) => t + r.cells.filter((n) => n > 0).length, 0);
+const nowCell = [new Date().getFullYear(), new Date().getMonth()];
 const home = () => `${head({ title: `${profile.name} | ${profile.role}`, desc: profile.intro, extra: personLd })}
 ${header("")}
 <main id="main">
@@ -242,8 +269,8 @@ ${header("")}
   <div class="wrap">
     <div class="sec-head">
       ${frame("01", "Selected work")}
-      <h2 class="krona h2 lg reveal">Three products, <em>shipped.</em></h2>
-      <p class="sec-lede reveal">Enterprise SaaS, restaurant ordering and a sports ERP. Each case shows the problem, the decisions I made, and what changed.</p>
+      <h2 class="krona h2 lg reveal">20+ shipped.<br> <em>Three, up close.</em></h2>
+      <p class="sec-lede reveal">Three picks from 20+ products: enterprise SaaS, restaurant ordering and a sports ERP. Each case shows the problem, the decisions I made, and what changed.</p>
     </div>
     <div class="cards">
       ${featured.map((f, i) => `<article class="card reveal" aria-labelledby="c-${f.key}">
@@ -296,12 +323,12 @@ ${header("")}
 
 <section id="approach" class="sec">
   <div class="wrap">
-    <div class="sec-head">
-      ${frame("03", "How I work")}
-      <h2 class="krona h2 lg reveal">Understand the problem. <em>Design the system.</em></h2>
+    <div class="sec-head row">
+      <div>${frame("03", "How I work")}<h2 class="krona h2 reveal">Understand the problem. <em>Design the system.</em></h2></div>
+      <p class="sec-lede reveal">Four habits, each one backed by work you can open.</p>
     </div>
     <ol class="principles">
-      ${strengths.map((s, i) => `<li class="reveal" style="--d:${i * 80}ms"><span class="label">0${i + 1}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><a class="arrow-link" href="${esc(s.href)}">${esc(s.cta)} <span>→</span></a></li>`).join("")}
+      ${strengths.map((s, i) => `<li class="reveal" style="--d:${i * 80}ms">${pillarVisual[i] || ""}<span class="label">0${i + 1}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><a class="arrow-link" href="${esc(s.href)}">${esc(s.cta)} <span>→</span></a></li>`).join("")}
     </ol>
     ${dsSpecimen()}
   </div>
@@ -311,9 +338,9 @@ ${header("")}
   <div class="wrap xp-grid">
     <div class="xp-side">
       ${frame("04", "Experience")}
-      <h2 class="krona h2 reveal">Sports app to <em>enterprise SaaS.</em></h2>
+      <h2 class="krona h2 reveal">Forged in startups. <em>Designed for&nbsp;scale.</em></h2>
       <p class="xp-sum reveal"><span><b>${xpYears()}+</b>years</span><span><b>${experience.length}</b>product teams</span></p>
-      <p class="xp-lede reveal">Four product teams, and the sole designer more than once.</p>
+      <p class="xp-lede reveal">End to end across B2B, B2C, SaaS, ERP and back-office products. I design the system. Then I build it.</p>
       ${resumeLink("", "btn ghost-light xp-cv reveal", "Download resume")}
     </div>
     <ol class="xp-list">
@@ -337,18 +364,21 @@ ${header("")}
       <p class="sec-lede reveal">Five years of product design, shipped every month, in Figma.</p>
     </div>
     <div class="always">
+      <div class="always-copy">
+        <p class="streak reveal"><b class="streak-n" aria-hidden="true" data-to="${streak}">${streak}</b><span class="streak-l"><span class="sr">${streak} </span>months in a row<small>Not one skipped since July 2021</small></span></p>
+        <dl class="always-proof">
+          <div class="reveal"><dt class="label">In Figma</dt><dd>Variables, Auto Layout and Dev Mode for product work; FigJam for flows and workshops.</dd></div>
+          <div class="reveal"><dt class="label">Systems</dt><dd>Tokens, components and light and dark modes, built once and reused across products.</dd></div>
+          <div class="reveal"><dt class="label">Handoff</dt><dd>Specs, every state, and WCAG 2.1 AA notes, so developers build straight from the file.</dd></div>
+        </dl>
+      </div>
       <figure class="heat reveal">
         <div class="heat-grid" role="img" aria-label="Activity grid: every month designing in Figma and XD since July 2021">
           <span></span>${"JFMAMJJASOND".split("").map((m) => `<span class="heat-m">${m}</span>`).join("")}
-          ${heatRows().map((r) => `<span class="heat-y">${r.y}</span>${r.cells.map((n, m) => `<i class="${n < 0 ? "lx" : "l" + n}"${n > 0 ? ` title="${"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ")[m]} ${r.y}"` : ""}></i>`).join("")}`).join("")}
+          ${rows.map((r, y) => `<span class="heat-y">${r.y}</span>${r.cells.map((n, m) => `<i class="${n < 0 ? "lx" : "l" + n}${r.y === nowCell[0] && m === nowCell[1] ? " now" : ""}" style="--w:${y + m}"${n > 0 ? ` title="${"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ")[m]} ${r.y}"` : ""}></i>`).join("")}`).join("")}
         </div>
         <figcaption><span>Designing in Figma &amp; XD, every month since July 2021</span><span class="legend">less <i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> more</span></figcaption>
       </figure>
-      <dl class="always-proof">
-        <div class="reveal"><dt class="label">In Figma</dt><dd>Variables, Auto Layout and Dev Mode for product work; FigJam for flows and workshops.</dd></div>
-        <div class="reveal"><dt class="label">Systems</dt><dd>Tokens, components and light and dark modes, built once and reused across products.</dd></div>
-        <div class="reveal"><dt class="label">Handoff</dt><dd>Specs, every state, and WCAG 2.1 AA notes, so developers build straight from the file.</dd></div>
-      </dl>
     </div>
   </div>
 </section>
@@ -397,11 +427,11 @@ ${header("")}
 <section id="testimonials" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("07", "Testimonials")}<h2 class="krona h2 reveal">What people <em>say.</em></h2></div>
+      <div>${frame("07", "Testimonials")}<h2 class="krona h2 reveal">In their own <em>words.</em></h2></div>
       <p class="sec-lede reveal">Recommendations on LinkedIn from a design lead who managed me, a fellow designer and two engineers I built with. <a class="text-link" href="${recommendationsUrl}" target="_blank" rel="noopener">Read them on LinkedIn ↗${newTab}</a></p>
     </div>
     <div class="quotes">
-      ${testimonials.map((t, i) => `<figure class="quote${t.placeholder ? " is-placeholder" : ""} reveal" style="--d:${(i % 2) * 80}ms">${t.placeholder ? `<span class="ph">Placeholder</span>` : ""}<blockquote>“${rich(t.quote)}”</blockquote><figcaption><strong>${esc(t.name)}</strong><span>${esc(t.role)}</span>${t.relation ? `<span class="quote-src">${esc(t.relation)} · LinkedIn, ${esc(t.date)}</span>` : ""}</figcaption></figure>`).join("")}
+      ${testimonials.map((t, i) => quoteCard(t, i)).join("")}
     </div>
   </div>
 </section>
@@ -471,7 +501,8 @@ const fcPage = (key) => {
     : b.t === "h2" ? ((section = b.x), `<h2 class="krona cs-h2 reveal" id="${slug(b.x)}">${esc(b.x)}</h2>`)
     : b.t === "h3" ? `<h3 class="cs-h3 reveal">${esc(b.x)}</h3>`
     : b.t === "phones" ? `<div class="phones-panel wide reveal" tabindex="0" role="region" aria-label="${esc(name)} screens">${b.items.map((i) => `<figure><img src="${r}${esc(i.src)}" alt="${esc(name)}: ${esc(i.cap)}" width="512" height="1100" loading="lazy" decoding="async"><figcaption class="label">${esc(i.cap)}</figcaption></figure>`).join("")}</div>`
-    : b.t === "poster" ? `<div class="shot-grid boards reveal">${b.items.map((i, k) => `<figure class="shot"><a href="${r}${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img src="${r}${esc(i.src)}" width="${i.w}" height="${i.h}" alt="${esc(name)}: case-study board ${k + 1} of ${b.items.length}" loading="lazy" decoding="async">${newTab}</a></figure>`).join("")}</div>`
+    // a poster is one long board cut into slices: shown joined, in order, in a window you scroll inside
+    : b.t === "poster" ? `<figure class="board reveal"><figcaption class="board-bar"><span class="board-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Full case-study board</span><span class="board-hint">${b.items.length} parts · scroll inside, click to open full size</span></figcaption><div class="board-scroll" tabindex="0" role="region" aria-label="${esc(name)}: full case-study board, scrollable">${b.items.map((i, k) => `<a href="${r}${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img src="${r}${esc(i.src)}" width="${i.w}" height="${i.h}" alt="${esc(name)}: case-study board, part ${k + 1} of ${b.items.length}" loading="lazy" decoding="async">${newTab}</a>`).join("")}</div></figure>`
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;

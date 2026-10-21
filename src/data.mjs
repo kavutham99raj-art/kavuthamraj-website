@@ -267,19 +267,19 @@ export { erpScreens };
 export const recommendationsUrl = "https://www.linkedin.com/in/kavuthamraj/details/recommendations/";
 export const testimonials = [
   {
-    name: "Ivan Živković", role: "Senior Lead UI Engineer, AffinityX", relation: "Worked on the same team", date: "Oct 2026",
+    name: "Ivan Živković", company: "AffinityX", role: "Senior Lead UI Engineer, AffinityX", relation: "Worked on the same team", date: "Oct 2026",
     quote: "I had the pleasure of working with Kavuthamraj at AffinityX, where he was our senior UI/UX designer. Kavuthamraj has *a real gift for turning complex problems into clean, intuitive experiences*, always backed by thoughtful research and clear reasoning. He is also a fantastic collaborator: reliable, open to feedback, and calm under pressure. Any team would be lucky to have him.",
   },
   {
-    name: "Manoj Krishnamoorthy", role: "Lead UX Designer", relation: "Managed Kavuthamraj directly at Sporfy", date: "Oct 2026",
+    name: "Manoj Krishnamoorthy", company: "Sporfy", role: "Lead UX Designer", relation: "Managed Kavuthamraj directly at Sporfy", date: "Oct 2026",
     quote: "I had the pleasure of mentoring and working with Kavuthamraj GS at Sporfy for three years. During this time, he demonstrated a strong passion for UI/UX design, creativity, and a commitment to continuous learning. He was receptive to feedback, *developed his design skills consistently*, and showed a good understanding of user-centered design principles. I highly recommend him for UI/UX design opportunities and am confident he will be a valuable addition to any design team.",
   },
   {
-    name: "Gukanesh Chidambaram", role: "Product Designer", relation: "Worked on the same team at Sporfy", date: "Oct 2026",
+    name: "Gukanesh Chidambaram", company: "Sporfy", role: "Product Designer", relation: "Worked on the same team at Sporfy", date: "Oct 2026",
     quote: "I had the pleasure of working with Kavuthamraj at Sporfy. He is a talented designer with a strong understanding of UI/UX, *a user-first mindset, and great attention to detail*. He works well with cross-functional teams and consistently brings thoughtful design solutions to the table. I'd highly recommend him for Senior UI/UX and Product Design roles.",
   },
   {
-    name: "Novak Stankovic", role: "Frontend Engineer, AffinityX", relation: "Worked together on different teams", date: "Oct 2026",
+    name: "Novak Stankovic", company: "AffinityX", role: "Frontend Engineer, AffinityX", relation: "Worked together on different teams", date: "Oct 2026",
     quote: "Recommending Kavuthamraj, a talented designer and a colleague I truly enjoyed working with. They bring creativity, attention to detail, and *a thoughtful approach to every project*. They are collaborative, open to feedback, and always willing to support the team.",
   },
 ];

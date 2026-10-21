@@ -1,4 +1,10 @@
-const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Reduced motion (Windows "Animation effects" off, macOS "Reduce motion") keeps the site still by default;
+// the hero's "Play motion" button lets those visitors opt in, and the choice is remembered.
+const prefersReduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let motionOptIn = false;
+try { motionOptIn = localStorage.getItem("motionOptIn") === "1"; } catch (e) { /* storage blocked */ }
+if (prefersReduce && motionOptIn) document.documentElement.classList.add("motion-ok");
+const reduceMotion = prefersReduce && !motionOptIn;
 // Scroll work runs at most once per frame.
 const onScroll = (fn) => {
   let queued = 0;
@@ -45,17 +51,21 @@ const onScroll = (fn) => {
 })();
 
 /* intro: the hero name opens small on dark, cuts to paper and grows, the photo slides in as a strip
-   (letters invert over it), then the name and photo settle into the hero. Once per session;
-   skipped for reduced motion, when the page opens scrolled, or when a link points into the page. */
+   (letters invert over it), then the name and photo settle into the hero. It plays on every visit that starts
+   at the top, reloads included; it is skipped for reduced motion, a link into the page, back/forward, coming
+   back from another page of this site, or a reload of a page that was scrolled. */
 (() => {
-  if (reduceMotion || scrollY > 40 || location.hash) return;
+  const nav = (performance.getEntriesByType("navigation")[0] || {}).type;
+  let fromSite = false;
+  try { fromSite = new URL(document.referrer).origin === location.origin; } catch (e) { /* no referrer */ }
+  let leftAt = 0;
+  try { leftAt = Number(sessionStorage.getItem("homeY")) || 0; } catch (e) { /* storage blocked */ }
+  addEventListener("pagehide", () => { try { sessionStorage.setItem("homeY", String(Math.round(scrollY))); } catch (e) { /* storage blocked */ } });
+  if (reduceMotion || scrollY > 40 || location.hash || nav === "back_forward") return;
+  if (nav === "reload" ? leftAt > 40 : fromSite) return;
   const stage = document.querySelector(".hero-stage");
   const first = document.querySelector(".hero-first"), last = document.querySelector(".hero-last"), photo = document.querySelector(".hero-photo");
   if (!stage || !first || !last || !photo) return;
-  try {
-    if (sessionStorage.getItem("introSeen")) return;
-    sessionStorage.setItem("introSeen", "1");
-  } catch (e) { /* storage blocked: play anyway */ }
   const root = document.documentElement;
   root.classList.add("intro-run");
   const bg = document.createElement("div");
@@ -133,7 +143,16 @@ const onScroll = (fn) => {
 (() => {
   const btn = document.querySelector(".motion-toggle");
   const hero = document.querySelector(".hero");
-  if (!btn || !hero || reduceMotion) return;
+  if (!btn || !hero) return;
+  if (reduceMotion) {
+    btn.setAttribute("aria-pressed", "true");
+    btn.textContent = "Play motion";
+    btn.addEventListener("click", () => {
+      try { localStorage.setItem("motionOptIn", "1"); localStorage.setItem("motion", "on"); } catch (e) { /* storage blocked */ }
+      location.reload();
+    });
+    return;
+  }
   const root = document.documentElement;
   let paused = false, offscreen = false;
   try { paused = localStorage.getItem("motion") === "paused"; } catch (e) { /* storage blocked */ }
@@ -202,12 +221,12 @@ const onScroll = (fn) => {
   addEventListener("pointerover", (e) => {
     const t = e.target;
     const link = !!t.closest("a, button, summary, [role=button], [tabindex]");
-    const zoom = !!t.closest(".shot a");
+    const zoom = !!t.closest(".shot a, .board a");
     cur.classList.toggle("link", link && !zoom);
     cur.classList.toggle("zoom", zoom);
     cur.classList.toggle("off", zoom);
     cur.classList.toggle("text", !link && !!t.closest("p, li, dd, dt, blockquote, h1, h2, h3, figcaption"));
-    cur.classList.toggle("dark", !!t.closest(".night, .night-2, .foot"));
+    cur.classList.toggle("dark", !!t.closest(".night, .night-2, .foot, .q-dark, .ld"));
   }, { passive: true });
   document.addEventListener("pointerleave", () => cur.classList.add("off"));
   addEventListener("pointerdown", () => cur.classList.add("down"));
@@ -345,4 +364,24 @@ const onScroll = (fn) => {
     const r = l.getBoundingClientRect();
     l.dataset.size = `${Math.round(r.width)} × ${Math.round(r.height)}`;
   }));
+})();
+
+/* Figma activity: the streak counts up once, when it scrolls into view */
+(() => {
+  const el = document.querySelector(".streak-n");
+  if (!el || reduceMotion) return;
+  const to = Number(el.dataset.to);
+  el.textContent = "0";
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    io.disconnect();
+    const t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / 1400);
+      el.textContent = String(Math.round(to * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, { threshold: 0.6 });
+  io.observe(el);
 })();
