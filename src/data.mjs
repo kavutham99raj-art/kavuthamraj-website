@@ -5,12 +5,12 @@
 // Screen count: 7,000+ across the whole career, from Kavuthamraj (Oct 2026); the résumé's 5,000+ is Sporfy alone.
 // Left out on purpose: phone number and "30,000+ booked" (no public source yet).
 
-// Domains. The canonical origin (canonical tags, Open Graph, JSON-LD, sitemap, robots, llms.txt) is the Vercel
-// production URL until www.kavuthamraj.com is connected and serving over HTTPS. To switch, set the SITE_URL
-// environment variable on Vercel's Production environment to the planned domain and redeploy (see README).
+// Domains. www.kavuthamraj.com is the canonical origin: it serves this site over HTTPS, with the apex domain
+// redirecting to it. The Vercel production URL redirects here too (vercel.json), so it is no longer canonical.
+// SITE_URL can still override the origin for a one-off test build, for example a preview or staging copy.
 export const site = {
-  live: "https://kavuthamraj-website-red.vercel.app",
-  planned: "https://www.kavuthamraj.com",
+  live: "https://www.kavuthamraj.com",
+  previous: "https://kavuthamraj-website-red.vercel.app",
   // Search Console / Bing Webmaster Tools HTML-tag verification: paste only the content="" value.
   verify: { google: "", bing: "" },
 };
