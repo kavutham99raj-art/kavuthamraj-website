@@ -11,7 +11,7 @@
     },
     { threshold: 0.12, rootMargin: "0px 0px -4% 0px" }
   );
-  document.querySelectorAll(".reveal, .mask, .skill-group, .edu, .foot-mark").forEach((el) => io.observe(el));
+  document.querySelectorAll(".reveal, .foot-mark").forEach((el) => io.observe(el));
 
   /* mobile menu: toggles, closes on a link, on Escape and on a tap outside */
   const menu = document.querySelector(".menu");
@@ -90,7 +90,7 @@
         { clipPath: "inset(0 0 0 72%)", opacity: 1, offset: 0.6, easing: ease },
         { clipPath: "inset(0 0 0 0%)", opacity: 1 },
       ], o),
-      ...[...document.querySelectorAll(".hero header, .hero .avail, .hero .hero-copy")].map((el) =>
+      ...[...document.querySelectorAll(".top, .hero .avail, .hero .hero-copy, .hero .shipped")].map((el) =>
         el.animate([{ opacity: 0 }, { opacity: 0, offset: 0.8 }, { opacity: 1 }], o)
       ),
     ];
@@ -154,15 +154,16 @@
   setInterval(tick, 30000);
 })();
 
-/* experience: the rail fills as you scroll and each role's dot lights up when it reaches the middle */
+/* case pages: the chapter list marks the section being read */
 (() => {
-  const list = document.querySelector(".xp-list");
-  if (!list) return;
-  const items = [...list.querySelectorAll(".xp-item")];
+  const links = [...document.querySelectorAll(".toc a")];
+  if (!links.length) return;
+  const byId = new Map(links.map((a) => [a.hash.slice(1), a]));
+  const heads = [...byId.keys()].map((id) => document.getElementById(id)).filter(Boolean);
   const tick = () => {
-    const r = list.getBoundingClientRect(), mid = innerHeight * 0.6;
-    list.style.setProperty("--p", Math.min(1, Math.max(0, (mid - r.top) / r.height)).toFixed(3));
-    items.forEach((li) => li.classList.toggle("on", li.getBoundingClientRect().top < mid));
+    let cur = heads[0];
+    for (const h of heads) if (h.getBoundingClientRect().top < innerHeight * 0.35) cur = h;
+    links.forEach((a) => a.classList.toggle("on", a === byId.get(cur.id)));
   };
   addEventListener("scroll", tick, { passive: true });
   tick();

@@ -128,3 +128,44 @@ The repo version, as I found it, had better content but its own problems:
 - Payroll and the concepts are image-only.
 
 **Ready for serious applications?** Yes for Product Designer and UI/UX roles, and for Senior roles at mid-size product companies, once it's deployed and the facts above are confirmed. For top-tier companies (Google, Stripe, Linear), add the tables-to-cards story and one AI case first.
+
+## 6. Second pass: art direction (later the same day)
+**Why the first pass still felt ordinary:**
+- Every heading was all-caps Krona One, so they all shouted at the same volume.
+- The page was a stack of full-bleed coloured bands, a common template rhythm.
+- The flagship visuals were title slides about the work rather than the UI itself.
+- Case pages had no navigation or headline numbers.
+- Five real Sporfy Tracker screens sat unused in `static/work/erp`.
+
+**New direction: the portfolio as a design file.**
+- A warm dot-grid canvas, with sections labelled like Figma frames (`02 Selected work`).
+- The original fonts, by your choice: Krona One for display headings and numbers, Inter for everything else. Each headline has one phrase in the rust accent colour.
+- One dark colour, used twice (How I work, and Contact plus the footer), instead of five coloured bands.
+
+**What was rebuilt:**
+- **Home:**
+  - The hero leads with the positioning statement, three proof numbers and a "Designed for" line naming your four employers.
+  - Flagship work is three surface cards, each with real UI: Titan's before/after, Cyberdine's before/after, and three live Sporfy Tracker screens. Each card also has meta, a headline, the argument and three outcome numbers.
+  - Client work is a tile grid; concepts are a list.
+  - How I work is four principles, each linked to the project that proves it.
+  - Experience is a ruled table; About is followed by a Skills and Education row; Contact has a large email link.
+- **Case pages:**
+  - Breadcrumb, a frame label with company, domain and year, and a large headline.
+  - Then the cover, a meta row, and an "at a glance" band with large outcome numbers and the Problem / What I did / Outcome cards.
+  - A sticky chapter list tracks the section you're reading.
+  - The ERP case now has chapters and a gallery of the five real screens.
+- **Kept, because you asked for them:** the opening animation (now also fading in the sticky header and the "Designed for" line), the photo frame, mascot and PM/Dev cursors, and the "You" cursor.
+
+**Verified:**
+- Build passes; all links, anchors and ids resolve across 16 pages, and each page has one h1.
+- No horizontal overflow at 375, 768 or 1440px.
+- Mobile menu works; the opening animation plays; no console errors.
+- Contrast: rust 4.9:1 on the canvas, muted text 5.1:1, accent on dark 7.2:1.
+
+**Still falls short:**
+- Two flagships have real depth; the ERP case is still thin on decisions.
+- Outcomes are estimates or self-reported.
+- There's no AI case study.
+- 9 case pages have no written story.
+- The Titan and Cyberdine visuals are presentation slides with UI inside, not raw product screens.
+- Both fonts load from Google Fonts. Self-host them before launch for speed and privacy.

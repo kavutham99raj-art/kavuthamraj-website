@@ -2,7 +2,7 @@ import { framerCases } from "./framer-cases.mjs";
 import { writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import {
-  profile, projects, experience, skills, education,
+  profile, projects, experience, skills, education, companies,
   heroCopy, proof, strengths, featured, testimonials,
 } from "./data.mjs";
 
@@ -12,12 +12,19 @@ const OUT = ROOT + "dist/";
 
 const esc = (s) =>
   String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+// Headlines: *asterisks* mark the phrase set in the accent colour.
+const rich = (s) => esc(s).replace(/\*(.+?)\*/g, "<em>$1</em>");
+const plain = (s) => String(s ?? "").replace(/\*/g, "");
 // Cards and case-page headers use the 1200px JPEG copies in static/work/covers (made with sips from the originals).
 const thumb = (file) => `covers/${String(file).replace(/\.\w+$/, ".jpg")}`;
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const hasResume = existsSync(new URL("../static/resume.pdf", import.meta.url));
 const linkedin = profile.links.find((l) => l.label === "LinkedIn").href;
 const behance = profile.links.find((l) => l.label === "Behance").href;
+const resumeLink = (r, cls, label) => (hasResume ? `<a class="${cls}" href="${r}resume.pdf" download="Kavuthamraj-Resume.pdf">${label}</a>` : "");
+const mailto = `mailto:${esc(profile.email)}?subject=${encodeURIComponent("Product design role")}`;
+// Section labels read like Figma frame names: number, then name.
+const frame = (n, label) => `<p class="frame"><span>${n}</span>${esc(label)}</p>`;
 
 const head = ({ title, desc, path = "/", image = "profile-portrait.jpg" }) => {
   const r = path.startsWith("/work/") ? "../" : "";
@@ -33,7 +40,7 @@ const head = ({ title, desc, path = "/", image = "profile-portrait.jpg" }) => {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${profile.url}${path}">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#f6f4f0">
+<meta name="theme-color" content="#f3efe8">
 <link rel="icon" href="${r}favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,48 +54,51 @@ const head = ({ title, desc, path = "/", image = "profile-portrait.jpg" }) => {
 };
 
 const header = (r) => `<header class="top">
-  <a class="brand" href="${r}index.html" aria-label="${esc(profile.name)}, home"><b>${esc(profile.short)}</b><span>${esc(profile.role)}</span></a>
-  <nav class="nav" id="nav" aria-label="Main">${[["Work", "#work"], ["How I work", "#approach"], ["Experience", "#experience"], ["About", "#about"]]
-    .map(([t, h]) => `<a href="${r}index.html${h}">${t}</a>`)
-    .join("")}<a class="nav-m" href="${r}index.html#contact">Contact</a>${hasResume ? `<a class="nav-m" href="${r}resume.pdf" download="Kavuthamraj-Resume.pdf">Résumé (PDF)</a>` : ""}</nav>
-  ${hasResume ? `<a class="btn line-dark resume-btn" href="${r}resume.pdf" download="Kavuthamraj-Resume.pdf">Résumé</a>` : ""}<a class="btn fill-brown" href="${r}index.html#contact">Contact</a>
-  <button class="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  <div class="top-in">
+    <a class="brand" href="${r}index.html" aria-label="${esc(profile.name)}, home"><b>${esc(profile.short)}</b><span>${esc(profile.role)}</span></a>
+    <nav class="nav" id="nav" aria-label="Main">${[["Work", "#work"], ["How I work", "#approach"], ["Experience", "#experience"], ["About", "#about"]]
+      .map(([t, h]) => `<a href="${r}index.html${h}">${t}</a>`)
+      .join("")}<a class="nav-m" href="${r}index.html#contact">Contact</a>${resumeLink(r, "nav-m", "Résumé (PDF)")}</nav>
+    <div class="top-act">${resumeLink(r, "btn ghost", "Résumé")}<a class="btn solid" href="${r}index.html#contact">Contact</a></div>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  </div>
 </header>`;
 
 const footer = (r) => `<footer class="foot">
-  <div class="wrap foot-cta">
-    <p class="foot-kicker">Got a product that needs a designer?</p>
-    <a class="foot-mail" href="mailto:${esc(profile.email)}">${esc(profile.email)}<span aria-hidden="true">↗</span></a>
-  </div>
   <div class="wrap foot-grid">
     <div>
       <p class="foot-name">${esc(profile.name)}</p>
-      <p class="foot-role mono">${esc(profile.role)}</p>
+      <p class="foot-role">${esc(profile.role)} · Tiruppur, India · <time class="foot-time">IST</time></p>
     </div>
     <ul>
-      <li><a href="${r}index.html#work">Case studies</a></li>
+      <li><a href="${r}index.html#work">Work</a></li>
       <li><a href="${r}index.html#experience">Experience</a></li>
-      <li><a href="${r}index.html#skills">Skills</a></li>
+      <li><a href="${r}index.html#about">About</a></li>
     </ul>
     <ul>
-      <li><a href="${linkedin}" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="${behance}" target="_blank" rel="noopener">Behance</a></li>
-      <li><a href="mailto:${esc(profile.email)}">Email</a></li>
+      <li><a href="${mailto}">Email</a></li>
+      <li><a href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+      <li><a href="${behance}" target="_blank" rel="noopener">Behance ↗</a></li>
     </ul>
   </div>
   <p class="foot-mark disp" aria-label="UX by Raj">${[..."UX BY RAJ"].map((ch, i) => (ch === " " ? `<span class="sp" aria-hidden="true"> </span>` : `<span aria-hidden="true" style="--i:${i}">${ch}</span>`)).join("")}</p>
   <div class="wrap foot-bar">
     <span>© ${new Date().getFullYear()} ${esc(profile.name)}</span>
-    <span>Tiruppur, India · <time class="foot-time">IST</time></span>
-    <a class="foot-top" href="#">Back to top ↑</a>
+    <span>Designed in Figma, coded as a static site.</span>
+    <a href="#">Back to top ↑</a>
   </div>
 </footer>
 <script src="${r}main.js" defer></script>
 </body>
 </html>`;
 
-const sec = (title, accentTail = "") =>
-  `<h2 class="disp h-sec mask"><span>${esc(title)}${accentTail ? ` <em class="acc">${esc(accentTail)}</em>` : ""}</span></h2>`;
+// Real UI for a project card or case page: a before/after slide, or a row of phone screens.
+const visual = (v, r = "") =>
+  v.phones
+    ? `<div class="phones-panel">${v.phones.map((p) => `<img src="${r}${esc(p.src)}" alt="Sporfy Tracker: ${esc(p.cap)}" loading="lazy" decoding="async">`).join("")}</div>`
+    : `<img src="${r}${esc(v.src)}" alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;
+
+const outcomes = (list) => `<dl class="outcomes">${list.map(([n, l]) => `<div><dt>${esc(n)}</dt><dd>${esc(l)}</dd></div>`).join("")}</dl>`;
 
 // Home: flagship work first, then other client work, then concepts as a plain list.
 const featuredKeys = new Set(featured.map((f) => f.key));
@@ -97,8 +107,8 @@ const clientWork = () => others.filter((p) => !isConcept(framerCases[p.case] || 
 const concepts = () => others.filter((p) => isConcept(framerCases[p.case] || {}));
 
 const home = () => `${head({ title: `${profile.name} | ${profile.role}`, desc: profile.intro })}
-<section class="s-light hero">
-  ${header("")}
+${header("")}
+<section class="hero canvas">
   <div class="wrap">
     <p class="avail rise"><i aria-hidden="true"></i>${esc(profile.availability)}</p>
     <div class="hero-stage">
@@ -112,116 +122,117 @@ const home = () => `${head({ title: `${profile.name} | ${profile.role}`, desc: p
       </figure>
       <div class="hero-copy rise" style="--d:220ms">
         <p class="hero-eyebrow mono">${esc(heroCopy.eyebrow)}</p>
-        <p class="hero-lead">${esc(heroCopy.lead)}</p>
+        <p class="hero-lead serif">${rich(heroCopy.lead)}</p>
         <p class="hero-sub">${esc(heroCopy.sub)}</p>
-        <ul class="hero-proof">${proof.map((x) => `<li><b>${esc(x.value)}</b>${esc(x.label)}</li>`).join("")}</ul>
-        <div class="hero-cta"><a class="hcta" href="#work">See flagship work</a>${hasResume ? `<a class="hcta alt" href="resume.pdf" download="Kavuthamraj-Resume.pdf">Résumé (PDF)</a>` : ""}<a class="hcta link" href="mailto:${esc(profile.email)}">${esc(profile.email)}</a></div>
+        <div class="hero-cta"><a class="btn solid lg" href="#work">See the work</a>${resumeLink("", "btn ghost lg", "Résumé (PDF)")}<a class="text-link" href="${mailto}">${esc(profile.email)}</a></div>
+        <dl class="hero-proof">${proof.map((x) => `<div><dt>${esc(x.value)}</dt><dd>${esc(x.label)}</dd></div>`).join("")}</dl>
       </div>
     </div>
+    <div class="shipped"><p class="mono">Designed for</p><ul>${companies.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></div>
   </div>
 </section>
 
-<section id="work" class="s-dark work-intro">
+<section id="work" class="sec">
   <div class="wrap">
-    <p class="mono kicker">Selected work</p>
-    ${sec("Three products,", "shipped.")}
-    <p class="lede reveal">Enterprise SaaS, restaurant ordering and a sports ERP. Each one shows the problem, the decisions I made, and what changed.</p>
-  </div>
-</section>
-<div class="stack">${featured.map((f, i) => `<section class="feat s-${f.tone}" aria-labelledby="feat-${f.key}">
-  <div class="wrap feat-grid">
-    <a class="feat-media reveal" href="${esc(f.href)}" tabindex="-1" aria-hidden="true"><img src="work/${esc(thumb(f.cover))}" alt="" loading="${i ? "lazy" : "eager"}" decoding="async"></a>
-    <div class="feat-copy">
-      <p class="mono feat-meta reveal"><span>0${i + 1}</span>${esc(f.meta)}</p>
-      <h3 id="feat-${f.key}" class="reveal">${esc(f.title)}</h3>
-      <p class="reveal">${esc(f.text)}</p>
-      <ul class="feat-stats reveal">${f.stats.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      <a class="btn feat-btn reveal" href="${esc(f.href)}">Read the case study<span class="sr"> about ${esc(f.title)}</span></a>
+    <div class="sec-head">
+      ${frame("02", "Selected work")}
+      <h2 class="serif h2 reveal">Three products, <em>shipped.</em></h2>
+      <p class="sec-lede reveal">Enterprise SaaS, restaurant ordering and a sports ERP. Each case shows the problem, the decisions I made, and what changed.</p>
+    </div>
+    <div class="cards">
+      ${featured.map((f, i) => `<article class="card${i % 2 ? " flip" : ""} reveal" aria-labelledby="c-${f.key}">
+        <a class="card-visual${f.visual.phones ? " is-phones" : ""}" href="${esc(f.href)}" tabindex="-1" aria-hidden="true">${visual(f.visual)}</a>
+        <div class="card-copy">
+          <p class="card-meta mono"><span>0${i + 1}</span>${f.meta.map(esc).join(" · ")}</p>
+          <h3 id="c-${f.key}" class="serif"><a href="${esc(f.href)}">${rich(f.title)}</a></h3>
+          <p class="card-text">${esc(f.text)}</p>
+          ${outcomes(f.outcomes)}
+          <a class="arrow-link" href="${esc(f.href)}" aria-hidden="true" tabindex="-1">Read the case study <span>→</span></a>
+        </div>
+      </article>`).join("\n      ")}
     </div>
   </div>
-</section>`).join("")}</div>
+</section>
 
-<section class="s-light pad">
+<section id="more" class="sec sec-tight">
   <div class="wrap">
-    <h2 class="disp h-sec mask"><span>More client work</span></h2>
-    <div class="more-grid">
+    <div class="sec-head row">
+      <div>${frame("03", "More work")}<h2 class="serif h2 reveal">More client work</h2></div>
+      <p class="sec-lede reveal">Shorter engagements: payroll, data products, e-commerce and healthcare.</p>
+    </div>
+    <div class="tiles">
       ${clientWork().map((p, i) => {
         const c = framerCases[p.case] || {};
-        return `<a class="mw reveal" href="work/${esc(p.case)}.html" style="--d:${(i % 3) * 90}ms">
-        <div class="m"><img src="work/${esc(thumb(p.cover))}" alt="" loading="lazy" decoding="async"></div>
-        <h3>${esc(p.title)}</h3><span>${esc([c.client, durText(c.duration), ...p.tags.slice(0, 2)].filter(Boolean).join(" · "))}</span></a>`;
+        return `<a class="tile reveal" href="work/${esc(p.case)}.html" style="--d:${(i % 3) * 80}ms">
+        <span class="tile-img"><img src="work/${esc(thumb(p.cover))}" alt="" loading="lazy" decoding="async"></span>
+        <span class="tile-meta mono">${esc([c.client, durText(c.duration)].filter(Boolean).join(" · "))}</span>
+        <strong>${esc(p.title)}</strong></a>`;
       }).join("")}
     </div>
     <div class="concepts reveal">
-      <h3 class="mono">Concepts and explorations</h3>
-      <p>Self-initiated or time-boxed studies, kept for range.</p>
+      <p class="mono">Concepts and explorations <span>Self-initiated or time-boxed, kept for range</span></p>
       <ul>${concepts().map((p) => { const c = framerCases[p.case] || {}; return `<li><a href="work/${esc(p.case)}.html"><strong>${esc(p.title)}</strong><span>${esc([durText(c.duration), ...p.tags.slice(0, 2)].filter(Boolean).join(" · "))}</span><i aria-hidden="true">→</i></a></li>`; }).join("")}</ul>
     </div>
   </div>
 </section>
 
-<section id="approach" class="s-black pad">
+<section id="approach" class="sec night">
   <div class="wrap">
-    <p class="mono kicker">How I work</p>
-    <h2 class="disp h-sec h-two"><span class="mask"><span>Understand the problem.</span></span> <span class="mask acc-line"><span>Design the system.</span></span></h2>
-    <div class="str-grid">
-      ${strengths.map((s, i) => `<div class="str reveal" style="--d:${(i % 2) * 120}ms"><span class="n">${String(i + 1).padStart(2, "0")}</span><div><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><a class="str-link" href="${esc(s.href)}">${esc(s.cta)} →</a></div></div>`).join("")}
+    <div class="sec-head">
+      ${frame("04", "How I work")}
+      <h2 class="serif h2 reveal">Understand the problem. <em>Design the system.</em></h2>
     </div>
+    <ol class="principles">
+      ${strengths.map((s, i) => `<li class="reveal" style="--d:${i * 80}ms"><span class="mono">0${i + 1}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><a class="arrow-link" href="${esc(s.href)}">${esc(s.cta)} <span>→</span></a></li>`).join("")}
+    </ol>
   </div>
 </section>
 
-<section id="experience" class="s-dark pad xp">
-  <div class="wrap xp-grid">
-    <div class="xp-side">
-      <h2 class="disp h-sec mask"><span>Experience</span></h2>
-      <p class="xp-sum reveal"><span><b>${xpYears()}+</b>years</span><span><b>${experience.length}</b>product teams</span></p>
-      <p class="xp-lede reveal">From a B2C sports app to enterprise B2B SaaS, and the sole designer more than once.</p>
-      ${hasResume ? `<a class="btn line xp-cv reveal" href="resume.pdf" download="Kavuthamraj-Resume.pdf">Download résumé</a>` : ""}
+<section id="experience" class="sec">
+  <div class="wrap">
+    <div class="sec-head row">
+      <div>${frame("05", "Experience")}<h2 class="serif h2 reveal">${xpYears()}+ years, <em>${experience.length} product teams.</em></h2></div>
+      ${resumeLink("", "btn ghost", "Download résumé")}
     </div>
-    <ol class="xp-list">
-      ${experience.map((e, i) => `<li class="xp-item reveal" style="--d:${i * 80}ms">
-        <div class="xp-top"><span>${esc(e.dates.replace(" to ", " – ").replace("present", "Present"))}</span><span class="xp-dur">${xpDuration(e.dates)}</span>${/present/i.test(e.dates) ? '<span class="xp-now">Now</span>' : ""}</div>
-        <h3 class="xp-co disp">${esc(e.company)}</h3>
-        <p class="xp-role">${esc(e.role)}</p>
-        <p class="xp-note">${esc(e.note)}</p>
-        <ul class="xp-tags">${(e.tags || []).map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+    <ol class="xp">
+      ${experience.map((e) => `<li class="reveal">
+        <p class="xp-when mono">${esc(e.dates.replace(" to ", " – ").replace("present", "Present"))}<span>${xpDuration(e.dates)}</span></p>
+        <div class="xp-who"><h3>${esc(e.company)}${/present/i.test(e.dates) ? ' <span class="now">Now</span>' : ""}</h3><p>${esc(e.role)}</p></div>
+        <div class="xp-what"><p>${esc(e.note)}</p><ul class="tags">${(e.tags || []).map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>
       </li>`).join("")}
     </ol>
   </div>
 </section>
 
-<section id="about" class="s-light pad about">
-  <div class="wrap about-grid">
-    <h2 class="disp h-sec mask"><span>About</span></h2>
-    <div class="about-copy">
-      ${profile.about.map((t) => `<p class="reveal">${esc(t)}</p>`).join("")}
+<section id="about" class="sec canvas">
+  <div class="wrap">
+    <div class="about">
+      <div>${frame("06", "About")}<h2 class="serif h2 reveal">About</h2></div>
+      <div class="about-copy">${profile.about.map((t) => `<p class="reveal">${esc(t)}</p>`).join("")}</div>
     </div>
-  </div>
-  <div class="wrap" id="skills">
-    <div class="skills">
-      ${Object.entries(skills).map(([g, items], gi) => `<div class="skill-group reveal" style="--d:${gi * 110}ms"><h3 class="mono">${esc(g)}</h3><ul>${items.map((it, j) => `<li style="--d:${j * 40}ms">${esc(it)}</li>`).join("")}</ul></div>`).join("")}
+    <div class="facts" id="skills">
+      ${Object.entries(skills).map(([g, items]) => `<div class="reveal"><h3 class="mono">${esc(g)}</h3><ul>${items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></div>`).join("")}
+      <div class="reveal"><h3 class="mono">Education</h3><ul class="edu">${education.map((e) => `<li><strong>${esc(e.title)}</strong><span>${esc(e.org)}${e.dates ? ` · ${esc(e.dates.replace(" to ", "–"))}` : ""}</span></li>`).join("")}</ul></div>
     </div>
-    <div class="edu reveal"><h3 class="mono">Education</h3><ul>${education.map((e, j) => `<li style="--d:${j * 90}ms"><strong>${esc(e.title)}</strong><span>${esc(e.org)}${e.dates ? ` · ${esc(e.dates.replace(" to ", "–"))}` : ""}</span></li>`).join("")}</ul></div>
   </div>
 </section>
 
-${testimonials.some((t) => !t.placeholder) ? `<section class="s-white pad">
+${testimonials.some((t) => !t.placeholder) ? `<section class="sec">
   <div class="wrap">
-    <h2 class="disp h-sec mask"><span>What people say.</span></h2>
-    <div class="tst-grid">
-      ${testimonials.filter((t) => !t.placeholder).map((t, i) => `<figure class="tst reveal" style="--d:${(i % 2) * 120}ms"><figcaption><strong>${esc(t.name)}</strong><span>${esc(t.role)}</span></figcaption><blockquote>“${esc(t.quote)}”</blockquote></figure>`).join("")}
+    <div class="sec-head">${frame("07", "References")}<h2 class="serif h2">What people say</h2></div>
+    <div class="quotes">
+      ${testimonials.filter((t) => !t.placeholder).map((t) => `<figure class="reveal"><blockquote class="serif">“${esc(t.quote)}”</blockquote><figcaption><strong>${esc(t.name)}</strong><span>${esc(t.role)}</span></figcaption></figure>`).join("")}
     </div>
   </div>
 </section>` : ""}
 
-<section id="contact" class="s-dark pad center">
+<section id="contact" class="sec night contact">
   <div class="wrap">
-    <h2 class="disp h-cta h-two"><span class="mask"><span>Let's build</span></span> <span class="mask"><span>what's next.</span></span></h2>
-    <p class="lede reveal">Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
-    <div class="btn-row reveal">
-      <a class="btn fill-cream" href="mailto:${esc(profile.email)}?subject=${encodeURIComponent("Product design role")}">Email me</a>${hasResume ? `<a class="btn line" href="resume.pdf" download="Kavuthamraj-Resume.pdf">Download résumé</a>` : ""}
-      <a class="btn line" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a>
-    </div>
+    ${frame(testimonials.some((t) => !t.placeholder) ? "08" : "07", "Contact")}
+    <h2 class="serif display reveal">Let's build <em>what's next.</em></h2>
+    <p class="contact-lede reveal">Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
+    <a class="contact-mail reveal" href="${mailto}">${esc(profile.email)}<span aria-hidden="true">↗</span></a>
+    <div class="contact-act reveal">${resumeLink("", "btn light", "Download résumé")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></div>
   </div>
 </section>
 ${footer("")}`;
@@ -241,51 +252,71 @@ const SUMMARIES = {
   "sports-ecommerce": "A sports and fitness e-commerce storefront, designed in one week.",
   "next-messenger": "A concept for a cross-platform chat app for text, image, video and audio messages and stories.",
 };
+const ORDER = ["titan", "cyberdine", "erp", "payroll", "assignment", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "educonnect", "m-music", "evento", "next-messenger", "slay"];
 
 const fcPage = (key) => {
   const c = framerCases[key], r = "../";
   const proj = projects.find((p) => p.case === key) || {};
-  const keys = ["titan", "cyberdine", "erp", "payroll", "assignment", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "educonnect", "m-music", "evento", "next-messenger", "slay"].filter((k) => framerCases[k]), nextKey = keys[(keys.indexOf(key) + 1) % keys.length], next = { title: (projects.find((p) => p.case === nextKey) || {}).title || framerCases[nextKey].title };
+  const feat = featured.find((f) => f.key === key);
+  const keys = ORDER.filter((k) => framerCases[k]), nextKey = keys[(keys.indexOf(key) + 1) % keys.length];
+  const nextTitle = (projects.find((p) => p.case === nextKey) || {}).title || framerCases[nextKey].title;
   const title = proj.title || c.title;
+  const name = title.split(":")[0];
   const summary = c.summary || proj.summary || SUMMARIES[key] || "";
-  const lead = summary || (c.blocks.find((b) => b.t === "p") || {}).x || "";
+  const desc = summary || (c.blocks.find((b) => b.t === "p") || {}).x || title;
+  const h1 = feat ? feat.title : c.lead || title;
+  const concept = isConcept(c);
+  const eyebrow = [concept ? "Concept" : "Case study", ...(feat ? feat.meta : [c.client, durText(c.duration)])].filter(Boolean);
+  const chapters = c.blocks.filter((b) => b.t === "h2").map((b) => b.x);
   // Screens take the name of the section they sit in, so the alt text says what each one shows.
   let section = "";
   const render = (b) =>
-    b.t === "img" ? `<figure class="shot reveal"><a href="${r}${esc(b.src)}" target="_blank" rel="noopener" title="Open full size"><img src="${r}${esc(b.src)}" width="${b.w}" height="${b.h}" alt="${esc(title)}${section ? `: ${esc(section)}` : ", screen"}" loading="lazy" decoding="async"></a></figure>`
-    : b.t === "h2" ? ((section = b.x), `<h2 class="cs-h2 disp reveal" id="${slug(b.x)}">${esc(b.x)}</h2>`)
+    b.t === "img" ? `<figure class="shot reveal"><a href="${r}${esc(b.src)}" target="_blank" rel="noopener" title="Open full size"><img src="${r}${esc(b.src)}" width="${b.w}" height="${b.h}" alt="${esc(name)}${section ? `: ${esc(section)}` : ", screen"}" loading="lazy" decoding="async"></a></figure>`
+    : b.t === "h2" ? ((section = b.x), `<h2 class="serif cs-h2 reveal" id="${slug(b.x)}">${esc(b.x)}</h2>`)
     : b.t === "h3" ? `<h3 class="cs-h3 reveal">${esc(b.x)}</h3>`
-    : b.t === "poster" ? `<figure class="poster reveal">${b.items.map((i) => `<img src="${r}${esc(i.src)}" width="${i.w}" height="${i.h}" alt="ERP Solution for Sports Industry, full case study" loading="lazy" decoding="async">`).join("")}</figure>`
+    : b.t === "phones" ? `<div class="phones-panel wide reveal">${b.items.map((i) => `<figure><img src="${r}${esc(i.src)}" alt="${esc(name)}: ${esc(i.cap)}" loading="lazy" decoding="async"><figcaption class="mono">${esc(i.cap)}</figcaption></figure>`).join("")}</div>`
+    : b.t === "poster" ? `<figure class="poster reveal">${b.items.map((i) => `<img src="${r}${esc(i.src)}" width="${i.w}" height="${i.h}" alt="${esc(title)}, case-study board" loading="lazy" decoding="async">`).join("")}</figure>`
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;
-  return `${head({ title: `${title} | ${profile.short}`, desc: lead.slice(0, 160) || title, path: `/work/${key}.html`, image: `work/${thumb(proj.cover || key + ".png")}` })}
-<div class="s-light">${header(r)}</div>
+  const meta = (c.meta || [["Role", "UI/UX designer"], ["Client", c.client], ["Duration", durText(c.duration)], ["Type", concept ? "Concept, time-boxed" : "Client project"]]).filter(([, v]) => v);
+  return `${head({ title: `${title} | ${profile.short}`, desc: desc.slice(0, 160), path: `/work/${key}.html`, image: `work/${thumb(proj.cover || key + ".png")}` })}
+${header(r)}
 <main class="case" id="main">
-  <a class="back mono rise" href="${r}index.html#work">← All work</a>
-  <p class="mono eyebrow rise" style="--d:80ms">${isConcept(c) ? "Concept project · self-initiated or time-boxed" : "Case study"}</p>
-  <h1 class="disp case-title rise" style="--d:160ms">${esc(title)}</h1>
-  ${c.lead ? `<p class="lead rise" style="--d:260ms">${esc(c.lead)}</p><p class="lead-sub rise" style="--d:340ms">${esc(c.summary || "")}</p>` : summary ? `<p class="lead rise" style="--d:260ms">${esc(summary)}</p>` : ""}
-  ${!c.lead && c.tags.length ? `<ul class="cs-chips rise" style="--d:320ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
-  <div class="case-media reveal"><img class="case-img" src="${r}work/${esc(thumb(proj.cover || key + ".png"))}" alt="" decoding="async" fetchpriority="high"></div>
-  <dl class="meta">${(c.meta || [["Role", "UI/UX designer"], ["Client", c.client], ["Duration", durText(c.duration)], ["Type", isConcept(c) ? "Concept, time-boxed" : "Client project"]]).filter(([, v]) => v).map(([k, v], i) => `<div class="reveal" style="--d:${i * 90}ms"><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
-  ${c.tldr ? `<dl class="tldr reveal">${c.tldr.map(([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
-  <div class="cs">${c.blocks.map(render).join("\n")}</div>
-  ${(c.links || []).length ? `<div class="cs-links reveal">${c.links.map(([l, h]) => `<a class="btn line-dark" href="${esc(h)}" target="_blank" rel="noopener">${esc(l)} ↗</a>`).join("")}</div>` : ""}
-  <section class="cs-cta reveal">
-    <p class="mono">Hiring a product designer?</p>
-    <h2 class="disp">Let's talk about your product.</h2>
-    <p>Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
-    <div class="btn-row"><a class="btn fill-brown" href="mailto:${esc(profile.email)}?subject=${encodeURIComponent("Product design role")}">Email me</a>${hasResume ? `<a class="btn line-dark" href="${r}resume.pdf" download="Kavuthamraj-Resume.pdf">Download résumé</a>` : ""}<a class="btn line-dark" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></div>
-  </section>
-  <a class="next-case reveal" href="${nextKey}.html"><span class="mono">Next case study</span><strong class="disp">${esc(next.title)}</strong><span aria-hidden="true">→</span></a>
+  <div class="wrap case-head canvas-pad">
+    <nav class="crumbs mono" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
+    <p class="frame rise"><span>${concept ? "C" : "CS"}</span>${eyebrow.map(esc).join(" · ")}</p>
+    <h1 class="serif case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
+    ${summary && summary !== plain(h1) ? `<p class="case-sum rise" style="--d:160ms">${esc(summary)}</p>` : ""}
+    ${!c.lead && !feat && c.tags.length ? `<ul class="cs-chips rise" style="--d:200ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
+  </div>
+  <div class="wrap">
+    <figure class="case-cover rise" style="--d:240ms"><img src="${r}work/${esc(thumb(proj.cover || key + ".png"))}" alt="" decoding="async" fetchpriority="high"></figure>
+    <dl class="case-meta reveal">${meta.map(([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+    ${feat || c.tldr ? `<section class="glance reveal" aria-label="At a glance">
+      ${feat ? outcomes(feat.outcomes) : ""}
+      ${c.tldr ? `<dl class="tldr">${c.tldr.map(([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
+    </section>` : ""}
+    <div class="case-body${chapters.length > 2 ? " has-toc" : ""}">
+      ${chapters.length > 2 ? `<nav class="toc" aria-label="Chapters"><p class="mono">Chapters</p><ol>${chapters.map((h) => `<li><a href="#${slug(h)}">${esc(h)}</a></li>`).join("")}</ol></nav>` : ""}
+      <article class="cs">${c.blocks.map(render).join("\n")}
+      ${(c.links || []).length ? `<div class="cs-links">${c.links.map(([l, h]) => `<a class="btn ghost" href="${esc(h)}" target="_blank" rel="noopener">${esc(l)} ↗</a>`).join("")}</div>` : ""}</article>
+    </div>
+    <section class="cs-cta night reveal">
+      ${frame("→", "Hiring a product designer?")}
+      <h2 class="serif">Let's talk about <em>your product.</em></h2>
+      <p>Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
+      <div class="contact-act"><a class="btn light" href="${mailto}">Email me</a>${resumeLink(r, "btn ghost-light", "Download résumé")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+    </section>
+    <a class="next-case reveal" href="${nextKey}.html"><span class="mono">Next case study</span><strong class="serif">${esc(nextTitle)}</strong><i aria-hidden="true">→</i></a>
+  </div>
 </main>
 ${footer(r)}`;
 };
 
 const notFound = () => `${head({ title: `Page not found | ${profile.short}`, desc: "This page does not exist.", path: "/404.html" })}
-<div class="s-light">${header("")}</div>
-<main class="case" id="main"><p class="mono eyebrow">404</p><h1 class="disp case-title">Not found</h1><p class="lead">That page doesn't exist. <a href="index.html"><u>Back home</u></a>.</p></main>
+${header("")}
+<main class="case" id="main"><div class="wrap case-head canvas-pad"><p class="frame"><span>404</span>Not found</p><h1 class="serif case-h1">This frame <em>doesn't exist.</em></h1><p class="case-sum"><a class="arrow-link" href="index.html">Back to the portfolio <span>→</span></a></p></div></main>
 ${footer("")}`;
 
 rmSync(OUT, { recursive: true, force: true });

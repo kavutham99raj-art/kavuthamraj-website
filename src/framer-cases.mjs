@@ -35,16 +35,61 @@ export const framerCases = {
   ],
   "blocks": [
    {
+    "t": "h2",
+    "x": "The brief"
+   },
+   {
     "t": "p",
     "x": "Bring an ERP for the sports industry into a mobile-first app. The work started from the users' vision and goals, then looked at where the product stood as an ERP, and then carried those needs into the app's screens."
+   },
+   {
+    "t": "h2",
+    "x": "My role"
    },
    {
     "t": "p",
     "x": "I planned and designed the project end to end on my own, working under the CEO and CTO."
    },
    {
+    "t": "h2",
+    "x": "The app"
+   },
+   {
     "t": "p",
     "x": "Payroll is part of the Sporfy Tracker app, alongside the attendance, schedules and fee tracking the app already covers."
+   },
+   {
+    "t": "phones",
+    "items": [
+     {
+      "src": "work/erp/manage-organization-home.jpg",
+      "cap": "Manage organisation"
+     },
+     {
+      "src": "work/erp/accounts-dashboard.jpg",
+      "cap": "Accounts dashboard"
+     },
+     {
+      "src": "work/erp/class-dashboard.jpg",
+      "cap": "Class dashboard"
+     },
+     {
+      "src": "work/erp/resource-apply-leave.jpg",
+      "cap": "Resources: apply for leave"
+     },
+     {
+      "src": "work/erp/slots-locker.jpg",
+      "cap": "Slots and lockers"
+     }
+    ]
+   },
+   {
+    "t": "h2",
+    "x": "Module by module"
+   },
+   {
+    "t": "p",
+    "x": "The original case-study boards: organisation, accounts and payroll, resources, classes, and slots and lockers."
    },
    {
     "t": "poster",

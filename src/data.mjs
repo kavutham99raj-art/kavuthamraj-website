@@ -189,34 +189,68 @@ export const education = [
   { title: "User Experience (UX) Design certificate", org: "Google", dates: "" },
 ];
 
-// ---------- sections for the editorial home page ----------
+// ---------- sections for the home page ----------
+// *asterisks* mark the phrase set in the accent colour.
 export const heroCopy = {
-  eyebrow: "Senior Product Designer · B2B SaaS, ERP & consumer apps",
-  lead: "I turn complex, data-heavy workflows into clear, accessible products.",
+  eyebrow: "Senior UI/UX & Product Designer · B2B SaaS, ERP & consumer apps",
+  lead: "I turn complex, data-heavy workflows into *clear, accessible* products.",
   sub: "5+ years from research to design systems and developer handoff. Now co-owning UX for Titan, a back-office product used by operations teams in the US, the Philippines and India.",
 };
 
 // Hero proof: one public figure, one self-reported figure with its source, one scope fact.
 export const proof = [
-  { value: "5+", label: "years in product design" },
-  { value: "50K+", label: "downloads, Sporfy on Google Play" },
-  { value: "10 → 5", label: "handoff bugs per sprint, Titan design system" },
+  { value: "5+", label: "years designing B2B and consumer products" },
+  { value: "50K+", label: "downloads of Sporfy on Google Play" },
+  { value: "10 → 5", label: "handoff bugs per sprint after the Titan design system" },
 ];
+
+// Companies, in the order worked at, newest first.
+export const companies = ["AffinityX", "Liffto Technologies", "SRM Technologies", "Sporfy"];
 
 // "How I work": each claim points at the project that shows it.
 export const strengths = [
   { t: "Find the system behind the ticket", d: "One complaint about one slow table in Titan became a loading standard for the whole product.", href: "work/titan.html", cta: "Titan" },
-  { t: "Design for the people who run it", d: "Cyberdine's captains told us UPI tips were getting lost in the bill, so I designed a separate tip step that restaurants track live.", href: "work/cyberdine.html", cta: "Cyberdine" },
+  { t: "Design for the people who run it", d: "Cyberdine's captains told us UPI tips were getting lost in the bill, so I designed a separate tip step that restaurants track live.", href: "work/cyberdine.html#tips-payment-and-menus", cta: "Cyberdine" },
   { t: "Systems that cut rework", d: "A tokenized MUI v6 library in Figma (60+ components, light and dark) took handoff bugs from about 10 to 5 per sprint across six sprints.", href: "work/titan.html#the-design-system-behind-it", cta: "Design system" },
   { t: "Accessible by default", d: "WCAG 2.1 AA notes in every handoff: focus order, ARIA labels, and status that never relies on colour alone.", href: "work/cyberdine.html#looking-back", cta: "Contrast audit" },
 ];
 
-// Flagship work, strongest evidence first. Concepts are listed separately on the home page.
-export const featured = [
-  { key: "titan", meta: "AffinityX · Enterprise B2B SaaS · 2025", stats: ["Wireframe to release in 2 weeks", "~40% shorter perceived waits (PM estimate)", "Now a product-wide standard"], title: "Stop the spinner. Keep the work moving.", text: "One slow table froze the whole back office. I audited every table and dashboard, made the case with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components.", href: "work/titan.html", cover: "titan.png", tone: "sage" },
-  { key: "cyberdine", meta: "Liffto Technologies · Restaurant SaaS · 2024–25", stats: ["Sole designer, 2 apps, ~235 screens", "6 taps + a wait → 4 taps", "~600 orders a day at peak (own figures)"], title: "Don't wait for the captain. Order from the table.", text: "Diners could shortlist but not order. I redesigned ordering so the table sends the order and staff still approve every dish, plus tips, payment and a ~200-screen restaurant app.", href: "work/cyberdine.html", cover: "cyberdine.png", tone: "mocha" },
-  { key: "erp", meta: "Sporfy · Sports ERP · Mobile", stats: ["Sole designer, under the CEO and CTO", "Payroll, accounts, attendance, fees", "Live on Google Play"], title: "Bringing a sports ERP into a mobile-first app.", text: "Sporfy Tracker puts organisation, payroll, attendance, fees, classes and slots into one mobile-first app, planned and designed end to end.", href: "work/erp.html", cover: "erp-solution.png", tone: "dark" },
+// Flagship work, strongest evidence first. `outcomes` also head each case page.
+// `visual` is real UI: a before/after slide, or a row of phone screens.
+const erpScreens = [
+  { src: "work/erp/manage-organization-home.jpg", cap: "Manage organisation" },
+  { src: "work/erp/accounts-dashboard.jpg", cap: "Accounts dashboard" },
+  { src: "work/erp/class-dashboard.jpg", cap: "Class dashboard" },
+  { src: "work/erp/resource-apply-leave.jpg", cap: "Resources: apply for leave" },
+  { src: "work/erp/slots-locker.jpg", cap: "Slots and lockers" },
 ];
+export const featured = [
+  {
+    key: "titan", meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
+    title: "Stop the spinner. *Keep the work moving.*",
+    text: "One slow table froze the whole back office. I audited every table and dashboard, made the case with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components.",
+    outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["10 → 5", "handoff bugs per sprint, design system"]],
+    visual: { src: "work/titan-story/05.jpg", alt: "Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
+    href: "work/titan.html", cover: "titan.png",
+  },
+  {
+    key: "cyberdine", meta: ["Liffto Technologies", "Restaurant SaaS", "2024–25"],
+    title: "Don't wait for the captain. *Order from the table.*",
+    text: "Diners could shortlist but not order. I redesigned ordering so the table sends the order and staff still approve every dish, then designed tips, payment and a ~200-screen restaurant app.",
+    outcomes: [["~235", "screens across two apps, sole designer"], ["6 → 4", "taps to a sent order, counted on the design files"], ["~600", "orders a day at peak, my own figures"]],
+    visual: { src: "work/cyberdine/06.jpg", alt: "Cyberdine before and after: a shortlist that waits for a captain, then an order sent from the table with status on every dish" },
+    href: "work/cyberdine.html", cover: "cyberdine.png",
+  },
+  {
+    key: "erp", meta: ["Sporfy", "Sports ERP", "Mobile"],
+    title: "A sports ERP, *rebuilt for the phone.*",
+    text: "Sporfy Tracker puts organisation, payroll, attendance, fees, classes and slots into one mobile-first app. I planned and designed it end to end as the only designer, under the CEO and CTO.",
+    outcomes: [["Solo", "designer, from brief to developer handoff"], ["Mobile", "first: payroll, accounts, attendance and fees"], ["Live", "on Google Play as Sporfy Tracker"]],
+    visual: { phones: erpScreens.slice(0, 3) },
+    href: "work/erp.html", cover: "erp-solution.png",
+  },
+];
+export { erpScreens };
 
 // PLACEHOLDERS: replace each with a real LinkedIn recommendation before going live.
 export const testimonials = [
