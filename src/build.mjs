@@ -574,6 +574,8 @@ const fcPage = (key) => {
     : b.t === "poster" ? `<figure class="board reveal"><figcaption class="board-bar"><span class="board-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Full case-study board</span><span class="board-hint">${b.items.length} parts · scroll inside, click to open full size</span></figcaption><div class="board-scroll" tabindex="0" role="region" aria-label="${esc(name)}: full case-study board, scrollable">${b.items.map((i, k) => `<a href="${r}${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic(r, i.src, WIDE)} width="${i.w}" height="${i.h}" alt="${esc(name)}: case-study board, part ${k + 1} of ${b.items.length}" loading="lazy" decoding="async">${newTab}</a>`).join("")}</div></figure>`
     : b.t === "demo" && feat ? `<figure class="case-demo reveal"><div class="case-demo-frame">${loadingDemo(feat.visual)}</div><figcaption>Live, built in code: the same request with a full-page loader (left) and skeleton states (right). Pause it with “Pause motion” on the home page.</figcaption></figure>`
     : b.t === "flow" ? tapFlow()
+    // a video hosted on Behance (Adobe's player), loaded only when it nears the screen
+    : b.t === "video" ? `<figure class="shot video reveal" style="aspect-ratio:${b.w}/${b.h}"><iframe src="${esc(b.src)}" title="${esc(b.x)}" loading="lazy" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms"></iframe></figure>`
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;

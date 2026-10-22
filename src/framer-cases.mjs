@@ -868,6 +868,13 @@ export const framerCases = {
     "src": "work/m-music/03.webp",
     "w": 1600,
     "h": 1250
+   },
+   {
+    "t": "video",
+    "src": "https://www-ccv.adobe.io/v1/player/ccv/MoHLS-xqGis/embed?api_key=behance1&bgcolor=%23191919",
+    "w": 1,
+    "h": 1,
+    "x": "M Music: prototype walkthrough video"
    }
   ],
   "links": [
