@@ -2,7 +2,7 @@
 // Sources: kavuthamraj.framer.website (live site), LinkedIn profile, Naukri profile, static/resume.pdf.
 // Public checks: Sporfy shows 50K+ downloads on Google Play; Sporfy Tracker is live there.
 // Self-reported figures are labelled as such on the page (PM estimates, "by my own figures").
-// Screen count: 7,000+ across the whole career, from Kavuthamraj (Oct 2026); the résumé's 5,000+ is Sporfy alone.
+// App count: 20+ apps and 8+ websites across the whole career, from Kavuthamraj (Oct 2026).
 // Left out on purpose: phone number and "30,000+ booked" (no public source yet).
 
 // Domains. www.kavuthamraj.com is the canonical origin: it serves this site over HTTPS, with the apex domain
@@ -156,6 +156,7 @@ export const experience = [
   {
     role: "Senior UI/UX Designer",
     company: "AffinityX",
+    team: "1 of 2 designers · US-based PM · developers in the Philippines and India · remote, across time zones",
     tags: ["B2B SaaS", "ERP", "Order management"],
     dates: "Sep 2025 to Oct 2026",
     note: "Co-owned UX and UI for Titan, a B2B SaaS back-office and ERP product used by operations teams in the US, the Philippines and India. Built its tokenized MUI v6 library in Figma (60+ components, light and dark), which cut handoff bugs from about 10 to 5 per sprint. Persuaded the PM and engineering to replace mobile tables with cards; it shipped as designed.",
@@ -163,6 +164,7 @@ export const experience = [
   {
     role: "Founding Member and Design Lead",
     company: "Liffto Technologies",
+    team: "Founding team · design lead for 3 products on one shared design system · sole designer on Cyberdine",
     tags: ["Founding team", "Hospitality", "AI SaaS", "E-commerce"],
     dates: "Nov 2024 to Jul 2025",
     note: "Led UI/UX from idea to launch for 3 products on one shared Figma design system. Sole designer on Cyberdine, QR ordering and billing for restaurants. On Steadfast, an AI client-management app, designed how staff review and correct the AI's output.",
@@ -170,6 +172,7 @@ export const experience = [
   {
     role: "UI/UX Designer",
     company: "SRM Technologies",
+    team: "Designer in Agile delivery teams · design systems for 3+ apps and websites",
     tags: ["Enterprise apps", "Agile teams", "Design system"],
     dates: "Nov 2023 to Sep 2024",
     note: "Designed enterprise application and website UI/UX in Figma within Agile teams, and built and maintained design system components.",
@@ -177,6 +180,7 @@ export const experience = [
   {
     role: "Visual and UI/UX Designer",
     company: "Sporfy",
+    team: "4-person design team · 80+ developers on one design system · mentored junior designers",
     tags: ["B2C app", "Sports ERP", "User research", "Google Play"],
     dates: "Jul 2021 to Oct 2023",
     note: "Designed Sporfy, a B2C turf and event booking app (50K+ downloads on Google Play), end to end with user research. Sole designer on Sporfy Tracker, a mobile-first sports ERP for payroll, accounts, attendance and fees. Employee of the Year 2022.",
@@ -230,7 +234,7 @@ export const heroCopy = {
 // Each figure appears once on the home page; the flagship cards carry the others.
 // `src` says where each figure comes from; a link makes it checkable.
 export const proof = [
-  { value: "7,000+", label: "screens designed across 20+ apps and 8+ websites", src: "2021 – Now" },
+  { value: "20+", label: "apps designed across B2B and B2C, plus 8+ websites", src: "2021 – Now" },
   { value: "50K+", label: "downloads of Sporfy, a booking app I designed end to end", src: "Google Play", href: "https://play.google.com/store/apps/details?id=com.sporfy.customer" },
   { value: "3", flags: ["us", "ph", "in"], label: "countries, one roadmap at AffinityX. Reporting to a US‑based PM, shipping with developers in the Philippines and India.", src: "Sep 2025 – Oct 2026" },
 ];
@@ -264,6 +268,7 @@ const erpScreens = [
 export const featured = [
   {
     key: "titan", meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
+    quick: ["Titan", "Skeleton loading for B2B SaaS", "~40% shorter waits (PM estimate)"],
     title: "Stop the spinner. *Keep the work moving.*",
     text: "One slow table froze the whole back office. I audited every table and dashboard, won the PM over with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components. “App is stuck” reports dropped to zero.",
     outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
@@ -272,14 +277,16 @@ export const featured = [
   },
   {
     key: "cyberdine", meta: ["Liffto Technologies", "Restaurant SaaS", "2024–25"],
+    quick: ["Cyberdine", "QR self-ordering for restaurants", "6 → 4 taps to a sent order"],
     title: "Don't wait for the captain. *Order from the table.*",
     text: "Diners could build a shortlist but not send it: every order waited for a captain. I redesigned ordering so the table sends it and staff still approve each dish, then added a tip step restaurants track live, plus payment and the full restaurant app.",
-    outcomes: [["~235", "screens across two apps, sole designer"], ["6 → 4", "taps to a sent order, counted on the design files"], ["~600", "orders a day at peak, my own figures"]],
+    outcomes: [["~235", "screens across two apps, sole designer"], ["6 → 4", "taps to a sent order, counted on the design files"], ["~600", "orders a day at peak"]],
     visual: { src: "work/cyberdine/06.jpg", alt: "Cyberdine before and after: a shortlist that waits for a captain, then an order sent from the table with status on every dish" },
     href: "work/cyberdine.html", cover: "cyberdine.png",
   },
   {
     key: "erp", meta: ["Sporfy", "Sports ERP", "Mobile"],
+    quick: ["Sporfy Tracker", "A sports ERP, rebuilt for mobile", "Live on Google Play"],
     title: "Off the desktop. *Into the pocket.*",
     text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
     outcomes: [["Solo", "designer, from brief to developer handoff"], ["5", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],

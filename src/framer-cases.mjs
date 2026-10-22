@@ -257,6 +257,9 @@ export const framerCases = {
     "x": "Spinners still let the layout jump, and progress bars need a length that table loads don't have. Skeletons only change the part that is loading and show the shape of the data before it lands. The catch is effort, since every table, card and widget needs its own placeholder, so I built them once as reusable components in our MUI v6 design system."
    },
    {
+    "t": "demo"
+   },
+   {
     "t": "img",
     "src": "work/titan-story/05.jpg",
     "w": 1600,
@@ -500,6 +503,9 @@ export const framerCases = {
    {
     "t": "p",
     "x": "Add + turns into a stepper on the card. One dish at quantity 2 now takes 4 taps to a sent order (Add +, +, View Cart, Order Now), down from 6 taps plus a wait for a captain. I counted both on the design files, not with users."
+   },
+   {
+    "t": "flow"
    },
    {
     "t": "item",

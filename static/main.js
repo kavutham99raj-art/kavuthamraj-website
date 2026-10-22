@@ -395,3 +395,36 @@ const onScroll = (fn) => {
   }, { threshold: 0.6 });
   io.observe(el);
 })();
+
+/* Cyberdine tap flow: both rows step together, so "After" is sent while "Before" is still waiting for a captain.
+   Plays once when it scrolls into view; Replay runs it again. Reduced motion shows every step at once. */
+(() => {
+  document.querySelectorAll(".flow").forEach((flow) => {
+    const btn = flow.querySelector(".flow-play");
+    if (reduceMotion) { btn.hidden = true; return; }
+    const steps = [...flow.querySelectorAll("li[data-step]")];
+    const last = Math.max(...steps.map((s) => Number(s.dataset.step)));
+    let timer = 0;
+    const play = () => {
+      clearInterval(timer);
+      flow.classList.add("is-playing");
+      steps.forEach((s) => s.classList.remove("on", "hit"));
+      let n = 0;
+      timer = setInterval(() => {
+        n += 1;
+        steps.filter((s) => Number(s.dataset.step) === n).forEach((s) => {
+          s.classList.add("on", "hit");
+          setTimeout(() => s.classList.remove("hit"), 320);
+        });
+        if (n >= last) { clearInterval(timer); flow.classList.remove("is-playing"); }
+      }, 520);
+    };
+    btn.addEventListener("click", play);
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      if (!document.documentElement.classList.contains("motion-off")) play();
+    }, { threshold: 0.5 });
+    io.observe(flow);
+  });
+})();

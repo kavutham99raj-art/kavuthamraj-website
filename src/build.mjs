@@ -304,6 +304,10 @@ ${header("")}
         <ul class="logos">${companies.map((c) => `<li><img src="${esc(c.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><span><b>${esc(c.name)}</b><small>${esc(c.years)}</small></span></li>`).join("")}</ul>
       </div>
     </div>
+    <nav class="quick-work reveal" aria-label="Selected work at a glance">
+      <p class="label">At a glance</p>
+      <ol>${featured.map((f, n) => `<li><a href="${esc(f.href)}"><span class="qw-n">0${n + 1}</span><span class="qw-t"><b>${esc(f.quick[0])}</b><small>${esc(f.quick[1])}</small></span><span class="qw-m">${esc(f.quick[2])}</span><i aria-hidden="true">→</i></a></li>`).join("")}</ol>
+    </nav>
   </div>
 </section>
 
@@ -390,6 +394,7 @@ ${header("")}
         <div class="xp-top"><span>${esc(e.dates.replace(" to ", " – ").replace("present", "Present"))}</span><span class="xp-dur">${xpDuration(e.dates)}</span>${/present/i.test(e.dates) ? '<span class="xp-now">Now</span>' : ""}</div>
         <h3 class="xp-co krona">${esc(e.company)}</h3>
         <p class="xp-role">${esc(e.role)}</p>
+        ${e.team ? `<p class="xp-team"><span class="label">Team</span>${esc(e.team)}</p>` : ""}
         <details class="xp-more" open><summary>Details</summary>
           <p class="xp-note">${esc(e.note)}</p>
           <ul class="xp-tags">${(e.tags || []).map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
@@ -489,6 +494,19 @@ const durText = (d) => {
   return `${n} ${u}${n > 1 ? "s" : ""}`;
 };
 const isConcept = (c) => /self-initiated|concept/i.test(c.client || "") || /hour/i.test(c.duration || "") || /^[12] days?$/i.test(String(c.duration || "").trim()) && !/assignment/i.test(c.client || "");
+// Cyberdine: the two ordering flows from the case text, replayed tap by tap (main.js). Without JS or with reduced
+// motion every step simply shows.
+const tapFlow = () => {
+  const row = (cls, label, steps, end, sum) => `<div class="flow-row ${cls}"><p class="flow-tag"><b>${label}</b><span>${sum}</span></p>
+      <ol>${steps.map((t, i) => `<li data-step="${i + 1}"><span class="flow-n">${i + 1}</span>${esc(t)}</li>`).join("")}<li class="flow-end" data-step="${steps.length + 1}">${end}</li></ol></div>`;
+  return `<figure class="flow reveal">
+    <div class="flow-head"><p class="label">Tap by tap: one dish, quantity 2</p><button class="flow-play" type="button">Replay</button></div>
+    ${row("is-before", "Before", ["Shortlist", "Shortlist", "Shortlist", "Shortlist", "Shortlist", "Request Captain"], `<span class="flow-wait" aria-hidden="true"></span>Wait for a captain`, "6 taps, then a wait")}
+    ${row("is-after", "After", ["Add +", "+", "View Cart", "Order Now"], "Sent · awaiting staff approval", "4 taps, sent from the table")}
+    <figcaption>Before: five taps built a shortlist and the sixth called a captain. After: the table sends the order and staff still approve each dish. Counted on the design files, not with users.</figcaption>
+  </figure>`;
+};
+
 // Descriptions: cut at a word boundary so search snippets end cleanly.
 const clip = (t, n) => { const s = plain(t).replace(/\s+/g, " ").trim(); return s.length <= n ? s : s.slice(0, s.lastIndexOf(" ", n - 1)).replace(/[,;:.\s]+$/, "") + "…"; };
 const SUMMARIES = {
@@ -536,6 +554,8 @@ const fcPage = (key) => {
     : b.t === "phones" ? `<div class="phones-panel wide reveal" tabindex="0" role="region" aria-label="${esc(name)} screens">${b.items.map((i) => `<figure><img src="${r}${esc(i.src)}" alt="${esc(name)}: ${esc(i.cap)}" width="512" height="1100" loading="lazy" decoding="async"><figcaption class="label">${esc(i.cap)}</figcaption></figure>`).join("")}</div>`
     // a poster is one long board cut into slices: shown joined, in order, in a window you scroll inside
     : b.t === "poster" ? `<figure class="board reveal"><figcaption class="board-bar"><span class="board-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Full case-study board</span><span class="board-hint">${b.items.length} parts · scroll inside, click to open full size</span></figcaption><div class="board-scroll" tabindex="0" role="region" aria-label="${esc(name)}: full case-study board, scrollable">${b.items.map((i, k) => `<a href="${r}${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img src="${r}${esc(i.src)}" width="${i.w}" height="${i.h}" alt="${esc(name)}: case-study board, part ${k + 1} of ${b.items.length}" loading="lazy" decoding="async">${newTab}</a>`).join("")}</div></figure>`
+    : b.t === "demo" && feat ? `<figure class="case-demo reveal"><div class="case-demo-frame">${loadingDemo(feat.visual)}</div><figcaption>Live, built in code: the same request with a full-page loader (left) and skeleton states (right). Pause it with “Pause motion” on the home page.</figcaption></figure>`
+    : b.t === "flow" ? tapFlow()
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;
