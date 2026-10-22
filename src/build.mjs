@@ -18,9 +18,28 @@ const rich = (s) => esc(s).replace(/\*(.+?)\*/g, "<em>$1</em>");
 const plain = (s) => String(s ?? "").replace(/\*/g, "");
 // Cards and case-page headers use the 1200px JPEG copies in static/work/covers (made with sips from the originals).
 const thumb = (file) => `covers/${String(file).replace(/\.\w+$/, ".jpg")}`;
-// 600w covers and 900w slides for small screens live beside the originals (made with sips).
-const small = (src) => String(src).replace(/(\.\w+)$/, "-900$1");
-const thumbSet = (file) => `work/${thumb(file).replace("covers/", "covers/600/")} 600w, work/${thumb(file)} 1200w`;
+// WebP copies at several widths, made by scripts/images.mjs and listed in static/img.json
+// as { "work/x/01.jpg": [800, 1200, 1600] }. The originals stay for og:image and "Open full size".
+const webp = existsSync(STATIC + "img.json") ? JSON.parse(readFileSync(STATIC + "img.json", "utf8")) : {};
+const pic = (r, src, sizes) => {
+  const ws = webp[src];
+  if (!ws) return `src="${r}${esc(src)}"`;
+  const at = (w) => `${r}${esc(String(src).replace(/\.\w+$/, `-${w}.webp`))}`;
+  return `src="${at(ws.at(-1))}" srcset="${ws.map((w) => `${at(w)} ${w}w`).join(", ")}" sizes="${sizes}"`;
+};
+const WIDE = "(max-width:1240px) 100vw, 1180px";
+// Krona One and Inter are Google Fonts' own files (latin and latin-ext only), declared here rather than
+// through the fonts.googleapis.com stylesheet: that stylesheet blocked rendering and the browser found the
+// font files only after loading it. The latin files are preloaded; Inter is one variable file for 400 to 700.
+const GF = "https://fonts.gstatic.com/s/";
+const LATIN = "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD";
+const LATIN_EXT = "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF";
+const FONTS = [
+  ["Inter", "400 700", "inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2", "inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2"],
+  ["Krona One", "400", "kronaone/v15/jAnEgHdjHcjgfIb1ZcUyNoWg_8a0Ww.woff2", "kronaone/v15/jAnEgHdjHcjgfIb1ZcUyOIWg_8a0Wy2V.woff2"],
+];
+const fontFace = FONTS.map(([family, weight, latin, ext]) => [[ext, LATIN_EXT], [latin, LATIN]]
+  .map(([file, range]) => `@font-face{font-family:"${family}";font-style:normal;font-weight:${weight};font-display:swap;src:url(${GF + file}) format("woff2");unicode-range:${range}}`).join("")).join("");
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const hasResume = existsSync(new URL("../static/resume.pdf", import.meta.url));
 // Content hashes on CSS and JS links, so browsers fetch the new files after every change.
@@ -67,9 +86,9 @@ ${ld ? ldTag(ld) + "\n" : ""}<meta name="theme-color" content="#f3efe8">
 <link rel="icon" href="${r}favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="${r}apple-touch-icon.png">
 <link rel="manifest" href="${r}site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+${FONTS.map(([, , latin]) => `<link rel="preload" href="${GF + latin}" as="font" type="font/woff2" crossorigin>`).join("\n")}
+<style>${fontFace}</style>
 <link rel="stylesheet" href="${r}styles.css?v=${cssV}">
 <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -133,6 +152,7 @@ const footer = (r) => `<footer class="foot">
   </div>
 </footer>
 <script src="${r}main.js?v=${jsV}" defer></script>
+<script type="speculationrules">{"prerender":[{"where":{"href_matches":"/work/*"},"eagerness":"moderate"}]}</script>
 </body>
 </html>`;
 
@@ -161,8 +181,8 @@ const visual = (v, r = "") =>
   v.demo === "loading"
     ? loadingDemo(v)
     : v.phones
-    ? `<div class="phones-panel">${v.phones.map((p) => `<img src="${r}${esc(p.src)}" alt="Sporfy Tracker: ${esc(p.cap)}" width="512" height="1100" loading="lazy" decoding="async">`).join("")}</div>`
-    : `<img src="${r}${esc(v.src)}" srcset="${r}${esc(small(v.src))} 900w, ${r}${esc(v.src)} 1600w" sizes="(max-width:1240px) 100vw, 1180px" alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;
+    ? `<div class="phones-panel">${v.phones.map((p) => `<img ${pic(r, p.src, "(max-width:900px) 30vw, 200px")} alt="Sporfy Tracker: ${esc(p.cap)}" width="512" height="1100" loading="lazy" decoding="async">`).join("")}</div>`
+    : `<img ${pic(r, v.src, WIDE)} alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;
 
 // How I work: a quick peek at the Titan library, rebuilt in code from its own tokens (AffinityX Design System:
 // colours, chip set, radii, table spec). The theme switch shows one semantic token resolving per mode.
@@ -346,7 +366,7 @@ ${header("")}
       ${clientWork().map((p, i) => {
         const c = framerCases[p.case] || {};
         return `<a class="tile reveal" href="work/${esc(p.case)}.html" style="--d:${(i % 3) * 80}ms">
-        <span class="tile-img"><img src="work/${esc(thumb(p.cover))}" srcset="${esc(thumbSet(p.cover))}" sizes="(max-width:560px) 82vw, (max-width:900px) 45vw, 400px" alt="" width="1200" height="900" loading="lazy" decoding="async"></span>
+        <span class="tile-img"><img ${pic("", `work/${thumb(p.cover)}`, "(max-width:560px) 82vw, (max-width:900px) 45vw, 400px")} alt="" width="1200" height="900" loading="lazy" decoding="async"></span>
         <span class="tile-meta label">${esc([c.client, durText(c.duration)].filter(Boolean).join(" · "))}</span>
         <strong>${esc(p.title)}</strong></a>`;
       }).join("")}
@@ -356,7 +376,7 @@ ${header("")}
       <ul class="concept-grid">${concepts().map((p) => {
         const c = framerCases[p.case] || {};
         return `<li><a class="concept" href="work/${esc(p.case)}.html">
-          <span class="concept-img"><img src="work/${esc(thumb(p.cover)).replace("covers/", "covers/600/")}" alt="" width="600" height="600" loading="lazy" decoding="async"><span class="concept-time">${esc(durText(c.duration))}</span></span>
+          <span class="concept-img"><img ${pic("", `work/${thumb(p.cover).replace("covers/", "covers/600/")}`, "300px")} alt="" width="600" height="600" loading="lazy" decoding="async"><span class="concept-time">${esc(durText(c.duration))}</span></span>
           <span class="concept-body"><strong>${esc(p.title)}</strong><span>${esc(p.tags.slice(0, 2).join(" · "))}</span></span>
           <i aria-hidden="true">↗</i>
         </a></li>`;
@@ -543,15 +563,15 @@ const fcPage = (key) => {
   const imgCount = blocks.filter((b) => b.t === "img").length;
   let section = "", n = 0;
   const alt = () => (n++, section ? `${name}: ${section}` : `${name}: screen ${n} of ${imgCount}`);
-  const shot = (b) => `<a href="${r}${esc(b.src)}" target="_blank" rel="noopener" title="Open full size"><img src="${r}${esc(b.src)}" width="${b.w}" height="${b.h}" alt="${esc(alt())}" loading="lazy" decoding="async">${newTab}</a>`;
+  const shot = (b, sizes = WIDE) => `<a href="${r}${esc(b.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic(r, b.src, sizes)} width="${b.w}" height="${b.h}" alt="${esc(alt())}" loading="lazy" decoding="async">${newTab}</a>`;
   const render = (b) =>
     b.t === "img" ? `<figure class="shot reveal">${shot(b)}</figure>`
-    : b.t === "tall" ? `<div class="shot-grid reveal">${b.items.map((i) => `<figure class="shot">${shot(i)}</figure>`).join("")}</div>`
+    : b.t === "tall" ? `<div class="shot-grid reveal">${b.items.map((i) => `<figure class="shot">${shot(i, "(max-width:900px) 50vw, 400px")}</figure>`).join("")}</div>`
     : b.t === "h2" ? ((section = b.x), `<h2 class="krona cs-h2 reveal" id="${slug(b.x)}">${esc(b.x)}</h2>`)
     : b.t === "h3" ? `<h3 class="cs-h3 reveal">${esc(b.x)}</h3>`
-    : b.t === "phones" ? `<div class="phones-panel wide reveal" tabindex="0" role="region" aria-label="${esc(name)} screens">${b.items.map((i) => `<figure><img src="${r}${esc(i.src)}" alt="${esc(name)}: ${esc(i.cap)}" width="512" height="1100" loading="lazy" decoding="async"><figcaption class="label">${esc(i.cap)}</figcaption></figure>`).join("")}</div>`
+    : b.t === "phones" ? `<div class="phones-panel wide reveal" tabindex="0" role="region" aria-label="${esc(name)} screens">${b.items.map((i) => `<figure><img ${pic(r, i.src, "(max-width:900px) 45vw, 240px")} alt="${esc(name)}: ${esc(i.cap)}" width="512" height="1100" loading="lazy" decoding="async"><figcaption class="label">${esc(i.cap)}</figcaption></figure>`).join("")}</div>`
     // a poster is one long board cut into slices: shown joined, in order, in a window you scroll inside
-    : b.t === "poster" ? `<figure class="board reveal"><figcaption class="board-bar"><span class="board-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Full case-study board</span><span class="board-hint">${b.items.length} parts · scroll inside, click to open full size</span></figcaption><div class="board-scroll" tabindex="0" role="region" aria-label="${esc(name)}: full case-study board, scrollable">${b.items.map((i, k) => `<a href="${r}${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img src="${r}${esc(i.src)}" width="${i.w}" height="${i.h}" alt="${esc(name)}: case-study board, part ${k + 1} of ${b.items.length}" loading="lazy" decoding="async">${newTab}</a>`).join("")}</div></figure>`
+    : b.t === "poster" ? `<figure class="board reveal"><figcaption class="board-bar"><span class="board-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Full case-study board</span><span class="board-hint">${b.items.length} parts · scroll inside, click to open full size</span></figcaption><div class="board-scroll" tabindex="0" role="region" aria-label="${esc(name)}: full case-study board, scrollable">${b.items.map((i, k) => `<a href="${r}${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic(r, i.src, WIDE)} width="${i.w}" height="${i.h}" alt="${esc(name)}: case-study board, part ${k + 1} of ${b.items.length}" loading="lazy" decoding="async">${newTab}</a>`).join("")}</div></figure>`
     : b.t === "demo" && feat ? `<figure class="case-demo reveal"><div class="case-demo-frame">${loadingDemo(feat.visual)}</div><figcaption>Live, built in code: the same request with a full-page loader (left) and skeleton states (right). Pause it with “Pause motion” on the home page.</figcaption></figure>`
     : b.t === "flow" ? tapFlow()
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
@@ -583,8 +603,8 @@ ${header(r)}
   </div>
   <div class="wrap">
     <figure class="case-cover rise" style="--d:240ms">${coverSrc
-      ? `<img src="${r}${esc(coverSrc)}" srcset="${r}${esc(small(coverSrc))} 900w, ${r}${esc(coverSrc)} 1600w" sizes="(max-width:1240px) 100vw, 1180px" alt="${esc(feat.visual.alt)}" width="1600" height="1000" decoding="async" fetchpriority="high">`
-      : `<img src="${r}work/${esc(thumb(proj.cover || key + ".png"))}" alt="" width="1200" height="1200" decoding="async" fetchpriority="high">`}</figure>
+      ? `<img ${pic(r, coverSrc, WIDE)} alt="${esc(feat.visual.alt)}" width="1600" height="1000" decoding="async" fetchpriority="high">`
+      : `<img ${pic(r, `work/${thumb(proj.cover || key + ".png")}`, WIDE)} alt="" width="1200" height="1200" decoding="async" fetchpriority="high">`}</figure>
     <dl class="case-meta reveal">${meta.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
     ${feat || tldr ? `<section class="glance reveal" aria-label="At a glance">
       ${feat ? outcomes(feat.outcomes) : ""}

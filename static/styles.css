@@ -838,3 +838,8 @@ html.intro-run{overflow:hidden}
   html:not(.motion-ok) *,html:not(.motion-ok) *::before,html:not(.motion-ok) *::after{animation:none!important;transition:none!important}
   html:not(.motion-ok).js .reveal,html:not(.motion-ok) .foot-mark span{opacity:1!important;transform:none!important}
 }
+
+/* Sections below the first screen skip layout and paint until they near the viewport; the browser keeps
+   each one's real height once it has been shown. Saves main-thread time on phones, mostly during the intro. */
+#more,#approach,#activity,#about,#testimonials,#contact{content-visibility:auto;contain-intrinsic-size:auto 900px}
+.case-demo{content-visibility:auto;contain-intrinsic-size:auto 520px}
