@@ -144,7 +144,9 @@ const onScroll = (fn) => {
     addEventListener("pointerdown", skip, { once: true });
     addEventListener("keydown", skip, { once: true });
   };
-  const fonts = document.fonts ? Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 600))]) : Promise.resolve();
+  // wait only for the hero's two (preloaded) fonts, not document.fonts.ready, which also waits for
+  // fonts needed further down the page
+  const fonts = document.fonts ? Promise.race([Promise.all(['1em "Krona One"', "1em Inter"].map((f) => document.fonts.load(f))).catch(() => {}), new Promise((r) => setTimeout(r, 600))]) : Promise.resolve();
   fonts.then(() => requestAnimationFrame(start));
 })();
 
