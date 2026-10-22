@@ -28,8 +28,10 @@ const v = (file) => createHash("sha1").update(readFileSync(STATIC + file)).diges
 const cssV = v("styles.css"), jsV = v("main.js");
 const linkedin = profile.links.find((l) => l.label === "LinkedIn").href;
 const behance = profile.links.find((l) => l.label === "Behance").href;
-const resumeFile = "Kavuthamraj_Resume_UI_UX_Product_Designer.pdf"; // name the visitor's download gets
-const resumeLink = (r, cls, label) => (hasResume ? `<a class="${cls}" href="${r}resume.pdf" download="${resumeFile}">${label}</a>` : "");
+// The résumé is published under the name a visitor's download should get. Hosts such as Vercel send
+// Content-Disposition with the file's own name, which browsers prefer over the download attribute.
+const resumeFile = "Kavuthamraj_Resume_UI_UX_Product_Designer.pdf";
+const resumeLink = (r, cls, label) => (hasResume ? `<a class="${cls}" href="${r}${resumeFile}" download="${resumeFile}">${label}</a>` : "");
 const mailto = `mailto:${esc(profile.email)}?subject=${encodeURIComponent("Product design role")}`;
 // Section labels read like Figma frame names: number, then name.
 const frame = (n, label) => `<p class="frame"><span>${n}</span> ${esc(label)}</p>`;
@@ -119,7 +121,7 @@ const footer = (r) => `<footer class="foot">
         ${footLink(mailto, "Email", "→")}
         ${footLink(linkedin, "LinkedIn", "↗", true)}
         ${footLink(behance, esc(profile.links.find((l) => l.label === "Behance").text), "↗", true)}
-        ${hasResume ? `<li><a class="foot-link" href="${r}resume.pdf" download="${resumeFile}"><span>Resume (PDF)</span><i aria-hidden="true">↓</i></a></li>` : ""}
+        ${hasResume ? `<li><a class="foot-link" href="${r}${resumeFile}" download="${resumeFile}"><span>Resume (PDF)</span><i aria-hidden="true">↓</i></a></li>` : ""}
       </ul>
     </div>
   </div>
@@ -617,7 +619,8 @@ for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, 
 writeFileSync(OUT + "404.html", notFound());
 const ICONS = ["favicon.ico", "favicon-32.png", "favicon-96.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "og-image.jpg"];
 for (const f of ["styles.css", "main.js", "profile.webp", "profile-portrait.jpg", ...ICONS]) cpSync(STATIC + f, OUT + f);
-if (hasResume) cpSync(STATIC + "resume.pdf", OUT + "resume.pdf");
+// resume.pdf stays published too, so links shared before the rename keep working.
+if (hasResume) for (const f of [resumeFile, "resume.pdf"]) cpSync(STATIC + "resume.pdf", OUT + f);
 cpSync(STATIC + "logos", OUT + "logos", { recursive: true });
 cpSync(STATIC + "work", OUT + "work", { recursive: true, filter: (src) => !/[\\/]work[\\/][^\\/]+\.(png|webp)$/.test(src) });
 // Crawl files, all on the canonical origin. The 404 page is noindex and left out of the sitemap.
@@ -636,7 +639,7 @@ writeFileSync(OUT + "llms.txt", `# ${profile.brand} (${profile.name})
 
 > ${homeDesc}
 
-Based in Tiruppur, India. ${profile.availability}. Contact: ${profile.email}. Résumé: ${abs("/resume.pdf")}
+Based in Tiruppur, India. ${profile.availability}. Contact: ${profile.email}. Résumé: ${abs(`/${resumeFile}`)}
 
 ## Featured case studies
 ${featured.map((f) => caseLine(f.key)).join("\n")}
