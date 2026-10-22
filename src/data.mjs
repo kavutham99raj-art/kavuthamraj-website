@@ -2,7 +2,7 @@
 // Sources: kavuthamraj.framer.website (live site), LinkedIn profile, Naukri profile, static/resume.pdf.
 // Public checks: Sporfy shows 50K+ downloads on Google Play; Sporfy Tracker is live there.
 // Self-reported figures are labelled as such on the page (PM estimates, "by my own figures").
-// App count: 20+ apps and 8+ websites across the whole career, from Kavuthamraj (Oct 2026).
+// App count: 25+ apps and 8+ websites across the whole career, from Kavuthamraj (Oct 2026; matches the résumé).
 // Left out on purpose: phone number and "30,000+ booked" (no public source yet).
 
 // Domains. www.kavuthamraj.com is the canonical origin: it serves this site over HTTPS, with the apex domain
@@ -234,7 +234,7 @@ export const heroCopy = {
 // Each figure appears once on the home page; the flagship cards carry the others.
 // `src` says where each figure comes from; a link makes it checkable.
 export const proof = [
-  { value: "20+", label: "apps designed across B2B and B2C, plus 8+ websites", src: "2021 – Now" },
+  { value: "25+", label: "apps designed across B2B and B2C, plus 8+ websites", src: "2021 – Now" },
   { value: "50K+", label: "downloads of Sporfy, a booking app I designed end to end", src: "Google Play", href: "https://play.google.com/store/apps/details?id=com.sporfy.customer" },
   { value: "3", flags: ["us", "ph", "in"], label: "countries, one roadmap at AffinityX. Reporting to a US‑based PM, shipping with developers in the Philippines and India.", src: "Sep 2025 – Oct 2026" },
 ];
