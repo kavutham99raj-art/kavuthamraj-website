@@ -268,7 +268,6 @@ const erpScreens = [
 export const featured = [
   {
     key: "titan", meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
-    quick: ["Titan", "Skeleton loading for B2B SaaS", "~40% shorter waits (PM estimate)"],
     title: "Stop the spinner. *Keep the work moving.*",
     text: "One slow table froze the whole back office. I audited every table and dashboard, won the PM over with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components. “App is stuck” reports dropped to zero.",
     outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
@@ -277,16 +276,14 @@ export const featured = [
   },
   {
     key: "cyberdine", meta: ["Liffto Technologies", "Restaurant SaaS", "2024–25"],
-    quick: ["Cyberdine", "QR self-ordering for restaurants", "6 → 4 taps to a sent order"],
     title: "Don't wait for the captain. *Order from the table.*",
     text: "Diners could build a shortlist but not send it: every order waited for a captain. I redesigned ordering so the table sends it and staff still approve each dish, then added a tip step restaurants track live, plus payment and the full restaurant app.",
-    outcomes: [["~235", "screens across two apps, sole designer"], ["6 → 4", "taps to a sent order, counted on the design files"], ["~600", "orders a day at peak"]],
-    visual: { src: "work/cyberdine/06.jpg", alt: "Cyberdine before and after: a shortlist that waits for a captain, then an order sent from the table with status on every dish" },
+    outcomes: [["~235", "screens across two apps, sole designer"], ["15", "restaurants live at peak"], ["~600", "orders a day at peak"]],
+    visual: { src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
     href: "work/cyberdine.html", cover: "cyberdine.png",
   },
   {
     key: "erp", meta: ["Sporfy", "Sports ERP", "Mobile"],
-    quick: ["Sporfy Tracker", "A sports ERP, rebuilt for mobile", "Live on Google Play"],
     title: "Off the desktop. *Into the pocket.*",
     text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
     outcomes: [["Solo", "designer, from brief to developer handoff"], ["5", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],

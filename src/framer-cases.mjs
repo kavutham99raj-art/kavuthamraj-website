@@ -502,7 +502,7 @@ export const framerCases = {
    },
    {
     "t": "p",
-    "x": "Add + turns into a stepper on the card. One dish at quantity 2 now takes 4 taps to a sent order (Add +, +, View Cart, Order Now), down from 6 taps plus a wait for a captain. I counted both on the design files, not with users."
+    "x": "Add + turns into a stepper on the card, and the table sends the order itself: Add +, View Cart, Order Now. Diners no longer wait for a captain to take it, and staff still approve every dish before it reaches the kitchen."
    },
    {
     "t": "flow"
@@ -521,12 +521,6 @@ export const framerCases = {
     "t": "item",
     "l": "Status on every dish",
     "x": "Awaiting confirmation, Approved, Rejected (with the staff's reason) or Delivered."
-   },
-   {
-    "t": "img",
-    "src": "work/cyberdine/06.jpg",
-    "w": 1600,
-    "h": 1000
    },
    {
     "t": "h2",
@@ -603,11 +597,6 @@ export const framerCases = {
     "t": "item",
     "l": "~600 orders a day",
     "x": "At peak, by my own figures, counting ordering and billing together, since Cyberdine also worked as billing software."
-   },
-   {
-    "t": "item",
-    "l": "6 taps + a wait → 4 taps",
-    "x": "To a sent order, counted on the design files."
    },
    {
     "t": "p",

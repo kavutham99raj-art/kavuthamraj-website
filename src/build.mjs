@@ -304,10 +304,6 @@ ${header("")}
         <ul class="logos">${companies.map((c) => `<li><img src="${esc(c.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><span><b>${esc(c.name)}</b><small>${esc(c.years)}</small></span></li>`).join("")}</ul>
       </div>
     </div>
-    <nav class="quick-work reveal" aria-label="Selected work at a glance">
-      <p class="label">At a glance</p>
-      <ol>${featured.map((f, n) => `<li><a href="${esc(f.href)}"><span class="qw-n">0${n + 1}</span><span class="qw-t"><b>${esc(f.quick[0])}</b><small>${esc(f.quick[1])}</small></span><span class="qw-m">${esc(f.quick[2])}</span><i aria-hidden="true">→</i></a></li>`).join("")}</ol>
-    </nav>
   </div>
 </section>
 
@@ -494,16 +490,16 @@ const durText = (d) => {
   return `${n} ${u}${n > 1 ? "s" : ""}`;
 };
 const isConcept = (c) => /self-initiated|concept/i.test(c.client || "") || /hour/i.test(c.duration || "") || /^[12] days?$/i.test(String(c.duration || "").trim()) && !/assignment/i.test(c.client || "");
-// Cyberdine: the two ordering flows from the case text, replayed tap by tap (main.js). Without JS or with reduced
-// motion every step simply shows.
+// Cyberdine: the old and new ordering flows from the case text, replayed step by step (main.js), so the new flow is
+// sent while the old one is still waiting. Without JS or with reduced motion every step simply shows.
 const tapFlow = () => {
   const row = (cls, label, steps, end, sum) => `<div class="flow-row ${cls}"><p class="flow-tag"><b>${label}</b><span>${sum}</span></p>
-      <ol>${steps.map((t, i) => `<li data-step="${i + 1}"><span class="flow-n">${i + 1}</span>${esc(t)}</li>`).join("")}<li class="flow-end" data-step="${steps.length + 1}">${end}</li></ol></div>`;
+      <ol>${steps.map((t, i) => `<li data-step="${i + 1}">${esc(t)}</li>`).join("")}<li class="flow-end" data-step="${steps.length + 1}">${end}</li></ol></div>`;
   return `<figure class="flow reveal">
-    <div class="flow-head"><p class="label">Tap by tap: one dish, quantity 2</p><button class="flow-play" type="button">Replay</button></div>
-    ${row("is-before", "Before", ["Shortlist", "Shortlist", "Shortlist", "Shortlist", "Shortlist", "Request Captain"], `<span class="flow-wait" aria-hidden="true"></span>Wait for a captain`, "6 taps, then a wait")}
-    ${row("is-after", "After", ["Add +", "+", "View Cart", "Order Now"], "Sent · awaiting staff approval", "4 taps, sent from the table")}
-    <figcaption>Before: five taps built a shortlist and the sixth called a captain. After: the table sends the order and staff still approve each dish. Counted on the design files, not with users.</figcaption>
+    <div class="flow-head"><p class="label">Ordering, before and after</p><button class="flow-play" type="button">Replay</button></div>
+    ${row("is-before", "Before", ["Browse menu", "Shortlist dishes", "Request Captain"], `<span class="flow-wait" aria-hidden="true"></span>Wait for a captain`, "Shortlist only, then wait")}
+    ${row("is-after", "After", ["Add +", "View Cart", "Order Now"], "Sent · awaiting staff approval", "Sent from the table")}
+    <figcaption>Before: diners could only shortlist dishes, then waited for a captain to take the order. After: the table sends the order itself, and staff still approve each dish.</figcaption>
   </figure>`;
 };
 
