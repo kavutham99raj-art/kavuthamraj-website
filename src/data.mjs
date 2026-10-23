@@ -99,13 +99,6 @@ export const projects = [
     case: "redbus",
   },
   {
-    key: "assignment",
-    title: "Assignment: First Party Data",
-    tags: ["Web App Design", "Branding", "Marketing"],
-    cover: "assignment.png",
-    case: "assignment",
-  },
-  {
     key: "rang",
     title: "Rang Clothing: E-commerce Transformation",
     tags: ["Web Design", "Branding", "Marketing"],

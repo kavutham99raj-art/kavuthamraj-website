@@ -845,3 +845,11 @@ html.intro-run{overflow:hidden}
    each one's real height once it has been shown. Saves main-thread time on phones, mostly during the intro. */
 #more,#approach,#activity,#about,#testimonials,#contact{content-visibility:auto;contain-intrinsic-size:auto 900px}
 .case-demo{content-visibility:auto;contain-intrinsic-size:auto 520px}
+
+/* password page for the private interview assignment */
+.lock{max-width:460px;margin:var(--s6) 0 var(--s9)}
+.lock-row{display:flex;gap:10px;margin-top:10px}
+.lock input{flex:1;min-width:0;height:52px;padding:0 20px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:16px;color:var(--ink)}
+.lock input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.lock .btn{height:52px;padding:0 28px;cursor:pointer}
+.lock-msg{min-height:1.5em;margin-top:12px;font-size:15px;color:var(--body)}

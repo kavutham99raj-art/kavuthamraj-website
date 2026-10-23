@@ -528,12 +528,11 @@ const tapFlow = () => {
 // Descriptions: cut at a word boundary so search snippets end cleanly.
 const clip = (t, n) => { const s = plain(t).replace(/\s+/g, " ").trim(); return s.length <= n ? s : s.slice(0, s.lastIndexOf(" ", n - 1)).replace(/[,;:.\s]+$/, "") + "…"; };
 const SUMMARIES = {
-  assignment: "Web app design for Assignment' first-party data product, delivered in two days.",
   evento: "A concept for an event booking app: search, browse and pick concerts, sports and other events with less effort.",
   "sports-ecommerce": "A sports and fitness e-commerce storefront, designed in one week.",
   "next-messenger": "A concept for a cross-platform chat app for text, image, video and audio messages and stories.",
 };
-const ORDER = ["titan", "cyberdine", "erp", "payroll", "assignment", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "educonnect", "m-music", "evento", "next-messenger", "slay"];
+const ORDER = ["titan", "cyberdine", "erp", "payroll", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "educonnect", "m-music", "evento", "next-messenger", "slay"];
 
 const fcPage = (key) => {
   const c = framerCases[key], r = "../";
@@ -634,10 +633,57 @@ ${header("")}
 <main class="case" id="main"><div class="wrap case-head canvas-pad"><p class="frame"><span>404</span> Not found</p><h1 class="case-h1">This frame <em>doesn't exist.</em></h1><p class="case-sum"><a class="arrow-link" href="index.html">Back to the portfolio <span>→</span></a></p></div></main>
 ${footer("")}`;
 
+// A private interview assignment lives outside the public repository (private/, ignored by git). scripts/lock.mjs
+// runs this build with EXPORT_PRIVATE=1 to render its page, then encrypts it into static/private/assignment.enc.
+// The site publishes only a password page and that encrypted file; the unlock code is below.
+const PRIVATE = ROOT + "private/assignment/";
+if (process.env.EXPORT_PRIVATE) {
+  framerCases.assignment = (await import(PRIVATE + "case.mjs")).default;
+  const html = fcPage("assignment");
+  writeFileSync(PRIVATE + "export.html", html.slice(html.indexOf("<main"), html.indexOf("</main>") + 7));
+  process.exit(0);
+}
+const lockPage = () => `${head({ title: `Private interview assignment | ${profile.brand}`, desc: "A time-boxed interview assignment, shared on request.", path: "/work/assignment.html", noindex: true })}
+${header("../")}
+<main class="case" id="main"><div class="wrap case-head canvas-pad">
+  <p class="frame rise"><span>🔒</span> Private</p>
+  <h1 class="case-h1 rise" style="--d:80ms">Interview <em>assignment.</em></h1>
+  <p class="case-sum rise" style="--d:160ms">A time-boxed exercise from a hiring process, shared only on request. Enter the password you were given.</p>
+  <form class="lock rise" style="--d:240ms" id="lock" autocomplete="off">
+    <label class="label" for="lock-pw">Password</label>
+    <div class="lock-row"><input id="lock-pw" type="password" required autocomplete="off" autofocus><button class="btn solid" type="submit">Unlock</button></div>
+    <p class="lock-msg" id="lock-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></main>
+${footer("../")}
+<script>
+const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+document.getElementById("lock").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("lock-msg"), btn = e.target.querySelector("button");
+  msg.textContent = "Unlocking…"; btn.disabled = true;
+  try {
+    const f = await (await fetch("assignment.enc")).json();
+    const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(f.salt), iterations: f.iter, hash: "SHA-256" },
+      await crypto.subtle.importKey("raw", new TextEncoder().encode(document.getElementById("lock-pw").value), "PBKDF2", false, ["deriveKey"]),
+      { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    const html = new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(f.iv) }, key, b64(f.data)));
+    const main = document.getElementById("main");
+    main.outerHTML = html;
+    document.title = "Interview assignment | ${esc(profile.brand)}";
+    scrollTo(0, 0);
+  } catch { msg.textContent = "That password didn't work. Please try again."; btn.disabled = false; }
+});
+</script>`;
+
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT + "work", { recursive: true });
 writeFileSync(OUT + "index.html", home());
 for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, fcPage(k));
+if (existsSync(STATIC + "private/assignment.enc")) {
+  writeFileSync(OUT + "work/assignment.html", lockPage());
+  cpSync(STATIC + "private/assignment.enc", OUT + "work/assignment.enc");
+}
 writeFileSync(OUT + "404.html", notFound());
 const ICONS = ["favicon.ico", "favicon-32.png", "favicon-96.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "og-image.jpg"];
 for (const f of ["styles.css", "main.js", "profile.webp", "profile-portrait.jpg", ...ICONS]) cpSync(STATIC + f, OUT + f);

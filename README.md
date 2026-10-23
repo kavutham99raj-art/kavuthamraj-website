@@ -28,6 +28,7 @@ A hand-written static site with no framework and no npm dependencies.
 ```text
 scripts/
   images.mjs         makes WebP copies of static/work images and writes static/img.json
+  lock.mjs           encrypts the private interview assignment into static/private/assignment.enc
 src/
   build.mjs          builds every page plus robots.txt, sitemap.xml, llms.txt, site.webmanifest
   data.mjs           site URLs, profile, experience, skills, proof figures, featured work, testimonials
@@ -59,6 +60,8 @@ python3 -m http.server 4321 --directory dist
 Then open http://localhost:4321. There is no lint or test script; the build prints `Built 16 pages → dist/` when it succeeds.
 
 To edit content, change `src/data.mjs` or `src/framer-cases.mjs` and rebuild.
+
+A private interview assignment is not in the repository. Its data and images live in `private/` (ignored by git; keep your own backup), and the site publishes only a password page at `/work/assignment.html` plus an encrypted file. To change the password or the content, run `node scripts/lock.mjs <password>` and then `npm run build`. The password is not stored anywhere in the repository.
 
 After adding or replacing an image under `static/work`, make its WebP copies (macOS, needs Google Chrome; no packages):
 
