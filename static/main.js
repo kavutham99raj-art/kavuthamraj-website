@@ -430,3 +430,44 @@ const onScroll = (fn) => {
     io.observe(flow);
   });
 })();
+
+/* private interview assignment: the blurred card in Concepts opens a password dialog. The case is an encrypted file
+   (AES-GCM, key from the password with PBKDF2), fetched, decrypted here and shown in a full-screen dialog.
+   There is no page or link for it. */
+(() => {
+  const card = document.querySelector("[data-private]");
+  if (!card || !window.crypto || !crypto.subtle) return;
+  const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  const make = (cls, html) => {
+    const d = document.createElement("dialog");
+    d.className = cls; d.innerHTML = html; document.body.append(d);
+    d.addEventListener("close", () => { d.remove(); if (!document.querySelector("dialog[open]")) document.documentElement.style.overflow = ""; });
+    return d;
+  };
+  const show = (d) => { document.documentElement.style.overflow = "hidden"; d.showModal(); };
+  const decrypt = async (file, password) => {
+    const f = await (await fetch(file)).json();
+    const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(f.salt), iterations: f.iter, hash: "SHA-256" },
+      await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]),
+      { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    return new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(f.iv) }, key, b64(f.data)));
+  };
+  card.addEventListener("click", () => {
+    const d = make("pw-dialog", `<form class="pw-form" autocomplete="off"><h2 class="krona">Interview assignment</h2><p>This is private. Enter the password you were given.</p><label class="label" for="pw-in">Password</label><div class="pw-row"><input id="pw-in" type="password" required autocomplete="off"><button class="btn solid" type="submit">Unlock</button></div><p class="pw-msg" role="status" aria-live="polite"></p><button class="pw-x" type="button" aria-label="Close">×</button></form>`);
+    const form = d.querySelector("form"), msg = d.querySelector(".pw-msg"), btn = d.querySelector(".btn");
+    d.querySelector(".pw-x").addEventListener("click", () => d.close());
+    d.addEventListener("click", (e) => { if (e.target === d) d.close(); });
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.textContent = "Unlocking…"; btn.disabled = true;
+      try {
+        const html = await decrypt(card.dataset.private, d.querySelector("#pw-in").value);
+        const v = make("private-view", `<button class="pv-x" type="button" aria-label="Close">×</button><div class="pv-body">${html}</div>`);
+        v.querySelector(".pv-x").addEventListener("click", () => v.close());
+        show(v); d.close();
+        v.querySelector(".pv-body").scrollTop = 0;
+      } catch { msg.textContent = "That password didn't work. Please try again."; btn.disabled = false; }
+    });
+    show(d);
+  });
+})();

@@ -380,7 +380,7 @@ ${header("")}
           <span class="concept-body"><strong>${esc(p.title)}</strong><span>${esc(p.tags.slice(0, 2).join(" · "))}</span></span>
           <i aria-hidden="true">↗</i>
         </a></li>`;
-      }).join("")}</ul>
+      }).join("")}${privateCard()}</ul>
     </div>
   </div>
 </section>
@@ -635,55 +635,26 @@ ${footer("")}`;
 
 // A private interview assignment lives outside the public repository (private/, ignored by git). scripts/lock.mjs
 // runs this build with EXPORT_PRIVATE=1 to render its page, then encrypts it into static/private/assignment.enc.
-// The site publishes only a password page and that encrypted file; the unlock code is below.
+// The site publishes only that encrypted file and a card in the home page's concepts list that opens a password
+// dialog (static/main.js). The card is a button: no page, link, meta tag, sitemap entry or structured data exists for it.
 const PRIVATE = ROOT + "private/assignment/";
+const hasPrivate = existsSync(STATIC + "private/assignment.enc") && existsSync(STATIC + "private/assignment-blur.txt");
+const privateCard = () => hasPrivate ? `<li><button class="concept locked" type="button" data-private="assignment.enc" aria-haspopup="dialog">
+          <span class="concept-img"><img src="${readFileSync(STATIC + "private/assignment-blur.txt", "utf8").trim()}" alt="" width="40" height="30" decoding="async"><span class="concept-time">2 days</span><svg class="lock-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg></span>
+          <span class="concept-body"><strong>Interview assignment</strong><span>Private · password on request</span></span>
+        </button></li>` : "";
 if (process.env.EXPORT_PRIVATE) {
   framerCases.assignment = (await import(PRIVATE + "case.mjs")).default;
   const html = fcPage("assignment");
   writeFileSync(PRIVATE + "export.html", html.slice(html.indexOf("<main"), html.indexOf("</main>") + 7));
   process.exit(0);
 }
-const lockPage = () => `${head({ title: `Private interview assignment | ${profile.brand}`, desc: "A time-boxed interview assignment, shared on request.", path: "/work/interview-assignment.html", noindex: true })}
-${header("../")}
-<main class="case" id="main"><div class="wrap case-head canvas-pad">
-  <p class="frame rise"><span>🔒</span> Private</p>
-  <h1 class="case-h1 rise" style="--d:80ms">Interview <em>assignment.</em></h1>
-  <p class="case-sum rise" style="--d:160ms">A time-boxed exercise from a hiring process, shared only on request. Enter the password you were given.</p>
-  <form class="lock rise" style="--d:240ms" id="lock" autocomplete="off">
-    <label class="label" for="lock-pw">Password</label>
-    <div class="lock-row"><input id="lock-pw" type="password" required autocomplete="off" autofocus><button class="btn solid" type="submit">Unlock</button></div>
-    <p class="lock-msg" id="lock-msg" role="status" aria-live="polite"></p>
-  </form>
-</div></main>
-${footer("../")}
-<script>
-const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
-document.getElementById("lock").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const msg = document.getElementById("lock-msg"), btn = e.target.querySelector("button");
-  msg.textContent = "Unlocking…"; btn.disabled = true;
-  try {
-    const f = await (await fetch("assignment.enc")).json();
-    const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(f.salt), iterations: f.iter, hash: "SHA-256" },
-      await crypto.subtle.importKey("raw", new TextEncoder().encode(document.getElementById("lock-pw").value), "PBKDF2", false, ["deriveKey"]),
-      { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
-    const html = new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(f.iv) }, key, b64(f.data)));
-    const main = document.getElementById("main");
-    main.outerHTML = html;
-    document.title = "Interview assignment | ${esc(profile.brand)}";
-    scrollTo(0, 0);
-  } catch { msg.textContent = "That password didn't work. Please try again."; btn.disabled = false; }
-});
-</script>`;
 
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT + "work", { recursive: true });
 writeFileSync(OUT + "index.html", home());
 for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, fcPage(k));
-if (existsSync(STATIC + "private/assignment.enc")) {
-  writeFileSync(OUT + "work/interview-assignment.html", lockPage());
-  cpSync(STATIC + "private/assignment.enc", OUT + "work/assignment.enc");
-}
+if (hasPrivate) cpSync(STATIC + "private/assignment.enc", OUT + "assignment.enc");
 writeFileSync(OUT + "404.html", notFound());
 const ICONS = ["favicon.ico", "favicon-32.png", "favicon-96.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "og-image.jpg"];
 for (const f of ["styles.css", "main.js", "profile.webp", "profile-portrait.jpg", ...ICONS]) cpSync(STATIC + f, OUT + f);
