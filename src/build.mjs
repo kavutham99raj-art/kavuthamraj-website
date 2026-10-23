@@ -643,7 +643,7 @@ if (process.env.EXPORT_PRIVATE) {
   writeFileSync(PRIVATE + "export.html", html.slice(html.indexOf("<main"), html.indexOf("</main>") + 7));
   process.exit(0);
 }
-const lockPage = () => `${head({ title: `Private interview assignment | ${profile.brand}`, desc: "A time-boxed interview assignment, shared on request.", path: "/work/assignment.html", noindex: true })}
+const lockPage = () => `${head({ title: `Private interview assignment | ${profile.brand}`, desc: "A time-boxed interview assignment, shared on request.", path: "/work/interview-assignment.html", noindex: true })}
 ${header("../")}
 <main class="case" id="main"><div class="wrap case-head canvas-pad">
   <p class="frame rise"><span>🔒</span> Private</p>
@@ -681,7 +681,7 @@ mkdirSync(OUT + "work", { recursive: true });
 writeFileSync(OUT + "index.html", home());
 for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, fcPage(k));
 if (existsSync(STATIC + "private/assignment.enc")) {
-  writeFileSync(OUT + "work/assignment.html", lockPage());
+  writeFileSync(OUT + "work/interview-assignment.html", lockPage());
   cpSync(STATIC + "private/assignment.enc", OUT + "work/assignment.enc");
 }
 writeFileSync(OUT + "404.html", notFound());
