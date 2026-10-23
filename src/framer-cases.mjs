@@ -940,7 +940,7 @@ export const framerCases = {
  },
  "assignment": {
   "title": "Assignment - First Party Data",
-  "client": "Assignment",
+  "client": "Interview assignment",
   "duration": "2 Days",
   "tags": [
    "Web App Design",
@@ -1032,12 +1032,6 @@ export const framerCases = {
     "w": 1600,
     "h": 1040
    }
-  ],
-  "links": [
-   [
-    "Visit Assignment",
-    "https://www.assignment.com/"
-   ]
   ]
  },
  "rang-clothing": {

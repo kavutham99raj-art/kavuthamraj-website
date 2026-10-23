@@ -511,7 +511,7 @@ const durText = (d) => {
   const n = Number(m[1]), u = m[2].toLowerCase();
   return `${n} ${u}${n > 1 ? "s" : ""}`;
 };
-const isConcept = (c) => /self-initiated|concept/i.test(c.client || "") || /hour/i.test(c.duration || "") || /^[12] days?$/i.test(String(c.duration || "").trim()) && !/assignment/i.test(c.client || "");
+const isConcept = (c) => /self-initiated|concept/i.test(c.client || "") || /hour/i.test(c.duration || "") || /^[12] days?$/i.test(String(c.duration || "").trim()) && !/interview/i.test(c.client || "");
 // Cyberdine: the old and new ordering flows from the case text, replayed step by step (main.js), so the new flow is
 // sent while the old one is still waiting. Without JS or with reduced motion every step simply shows.
 const tapFlow = () => {
@@ -581,7 +581,7 @@ const fcPage = (key) => {
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;
   // With the outcome numbers shown, the TL;DR keeps only Problem and What I did.
   const tldr = c.tldr && (feat ? c.tldr.filter(([k]) => k !== "Outcome") : c.tldr);
-  const meta = (c.meta || [["Role", "UI/UX designer"], ["Client", c.client], ["Duration", durText(c.duration)], ["Type", concept ? "Concept, time-boxed" : "Client project"]]).filter(([, v]) => v);
+  const meta = (c.meta || [["Role", "UI/UX designer"], ["Client", c.client], ["Duration", durText(c.duration)], ["Type", concept ? "Concept, time-boxed" : /interview/i.test(c.client || "") ? "Time-boxed exercise" : "Client project"]]).filter(([, v]) => v);
   const path = `/work/${key}.html`, image = coverSrc ? coverSrc : `work/${thumb(proj.cover || key + ".png")}`;
   const pageTitle = `${title.replace(/^Case Study:\s*/i, "")} – ${concept ? "UI/UX Concept" : "UX Case Study"} | ${profile.brand}`;
   const pageDesc = clip(desc, 158);
