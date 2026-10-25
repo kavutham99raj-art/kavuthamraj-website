@@ -18,7 +18,8 @@ const all = process.argv.includes("--all");
 
 const walk = (d) => readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(join(d, e.name)) : [join(d, e.name)]));
 // Skip the top-level work/*.png originals (not published) and the older -900.jpg cuts.
-const sources = walk(STATIC + "work").filter((f) => /\.(jpe?g|png)$/i.test(f) && !/-\d+\.\w+$/.test(f) && relative(STATIC + "work", f).includes("/"));
+// WebP originals are accepted only in work/visual (the posters), so other images are not re-encoded.
+const sources = walk(STATIC + "work").filter((f) => (/\.(jpe?g|png)$/i.test(f) || (/\.webp$/i.test(f) && f.includes("/work/visual/"))) && !/-\d+\.\w+$/.test(f) && relative(STATIC + "work", f).includes("/"));
 const manifestPath = STATIC + "img.json";
 const manifest = existsSync(manifestPath) && !all ? JSON.parse(readFileSync(manifestPath, "utf8")) : {};
 

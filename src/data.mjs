@@ -308,3 +308,28 @@ export const testimonials = [
   },
 ];
 
+
+// Visual design: posters and social creatives, shown in the home page's "Visual design" section.
+// w and h are the pixel size of the file in static/work/visual (variants are listed in static/img.json).
+export const designWork = [
+  {
+    company: "SRM Technologies", logo: "logos/srm.png",
+    note: "Event posters and social creatives.",
+    items: [
+      { src: "work/visual/srm-womens-day-workshop.webp", w: 1333, h: 2000, cap: "Women's Day workshop", alt: "SRMTech poster for a Women's Day meditation and sound bath workshop, with an illustration of a woman meditating beside a singing bowl" },
+      { src: "work/visual/srm-ideathon-launch.webp", w: 2000, h: 2000, cap: "Ideathon 2024 launch", alt: "SRMTech Ideathon 2024 poster: a lightbulb rising from an open box under the line Where ideas ignite impact, innovation and growth" },
+      { src: "work/visual/srm-ideathon-prizes.webp", w: 2000, h: 2000, cap: "Ideathon 2024 prizes", alt: "SRMTech poster announcing the Ideathon 2024 prizes: 1st prize INR 1,00,000 and 2nd prize INR 50,000, with two winners holding medals" },
+      { src: "work/visual/srm-artwork-contest.webp", w: 1477, h: 2000, cap: "Women's Day artwork contest", alt: "SRMTech poster for a Women's Day artwork contest with the theme A day in the life of a woman, showing a woman running across a clock" },
+      { src: "work/visual/srm-salesforce-einstein.webp", w: 2000, h: 2000, cap: "Salesforce Einstein post", alt: "SRMTech social post: Boost your manufacturing efficiency and innovation with Salesforce Einstein, with the Einstein mascot" },
+    ],
+  },
+  {
+    company: "Sporfy", logo: "logos/sporfy.png",
+    note: "Promotion creatives for the booking app.",
+    items: [
+      { src: "work/visual/sporfy-giveaway.webp", w: 1780, h: 1780, cap: "Giveaway, Coimbatore", alt: "Sporfy giveaway poster for Coimbatore: 35 lucky people receive free bookings, with swimming, virtual cricket, water roller and ladder climbing" },
+      { src: "work/visual/sporfy-activities-badminton.webp", w: 1780, h: 1780, cap: "Activities offer", alt: "Sporfy Activities poster: join badminton doubles at 60 rupees per person, with a group of smiling people" },
+      { src: "work/visual/sporfy-activities-scan.webp", w: 1780, h: 1780, cap: "Activities, scan to join", alt: "Sporfy Activities poster with a QR code to join badminton doubles at 59 rupees per person, with a surprised character" },
+    ],
+  },
+];

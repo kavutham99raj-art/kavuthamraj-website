@@ -233,7 +233,7 @@ const onScroll = (fn) => {
   addEventListener("pointerover", (e) => {
     const t = e.target;
     const link = !!t.closest("a, button, summary, [role=button], [tabindex]");
-    const zoom = !!t.closest(".shot a, .board a");
+    const zoom = !!t.closest(".shot a, .board a, .vd-grid a");
     cur.classList.toggle("link", link && !zoom);
     cur.classList.toggle("zoom", zoom);
     cur.classList.toggle("off", zoom);
@@ -470,4 +470,13 @@ const onScroll = (fn) => {
     });
     show(d);
   });
+})();
+
+/* visual design: the banner opens every poster in a full-screen dialog (markup is in the page, images load when it opens) */
+(() => {
+  const btn = document.querySelector("[data-vd]"), dlg = document.querySelector(".vd-dialog");
+  if (!btn || !dlg || !dlg.showModal) return;
+  btn.addEventListener("click", () => { document.documentElement.style.overflow = "hidden"; dlg.showModal(); dlg.querySelector(".pv-body").scrollTop = 0; });
+  dlg.querySelector(".pv-x").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("close", () => { if (!document.querySelector("dialog[open]")) document.documentElement.style.overflow = ""; });
 })();

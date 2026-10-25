@@ -536,5 +536,51 @@
  "work/titan/24-pages-custom-components.jpg": [
   800,
   966
+ ],
+ "work/visual/sporfy-activities-badminton.webp": [
+  800,
+  1200,
+  1600,
+  1780
+ ],
+ "work/visual/sporfy-activities-scan.webp": [
+  800,
+  1200,
+  1600,
+  1780
+ ],
+ "work/visual/sporfy-giveaway.webp": [
+  800,
+  1200,
+  1600,
+  1780
+ ],
+ "work/visual/srm-artwork-contest.webp": [
+  800,
+  1200,
+  1477
+ ],
+ "work/visual/srm-ideathon-launch.webp": [
+  800,
+  1200,
+  1600,
+  2000
+ ],
+ "work/visual/srm-ideathon-prizes.webp": [
+  800,
+  1200,
+  1600,
+  2000
+ ],
+ "work/visual/srm-salesforce-einstein.webp": [
+  800,
+  1200,
+  1600,
+  2000
+ ],
+ "work/visual/srm-womens-day-workshop.webp": [
+  800,
+  1200,
+  1333
  ]
 }

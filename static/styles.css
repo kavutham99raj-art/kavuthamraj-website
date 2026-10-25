@@ -859,8 +859,8 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 .concept.locked .concept-img img{filter:blur(16px) saturate(.9);scale:1.25}
 .concept.locked:hover .concept-img img{scale:1.25}
 .lock-ico{position:absolute;left:50%;top:50%;width:44px;height:44px;translate:-50% -50%;padding:11px;border-radius:50%;background:rgba(21,17,14,.78);fill:none;stroke:var(--cream);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.pw-dialog,.private-view{border:0;color:var(--ink)}
-.pw-dialog::backdrop,.private-view::backdrop{background:rgba(21,17,14,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.pw-dialog,.private-view,.vd-dialog{border:0;color:var(--ink)}
+.pw-dialog::backdrop,.private-view::backdrop,.vd-dialog::backdrop{background:rgba(21,17,14,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .pw-dialog{width:min(440px,calc(100vw - 32px));margin:auto;padding:0;border-radius:var(--r-md);background:var(--surface);box-shadow:0 40px 80px -30px rgba(0,0,0,.5)}
 .pw-form{position:relative;padding:32px 28px 28px}
 .pw-form h2{margin:0 0 10px;font-size:22px;line-height:1.15;text-transform:uppercase}
@@ -872,10 +872,44 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 .pw-form .pw-msg{min-height:1.4em;margin:12px 0 0;font-size:14px;color:var(--rust)}
 .pw-x,.pv-x{position:absolute;right:12px;top:12px;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:var(--ink);font-size:26px;line-height:1;cursor:pointer}
 .pw-x:hover,.pv-x:hover{background:var(--sunk)}
-.private-view{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;background:var(--canvas);overflow:hidden}
+.private-view,.vd-dialog{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;background:var(--canvas);overflow:hidden}
 .pv-x{position:fixed;right:max(16px,2vw);top:16px;z-index:2;width:48px;height:48px;background:var(--surface);border:1px solid var(--line);box-shadow:0 10px 24px -12px rgba(23,18,15,.4)}
 .pv-body{height:100%;overflow-y:auto;overscroll-behavior:contain}
 /* the custom cursor sits behind a dialog, so give the visitor the normal one while it is open */
-.you-on dialog.pw-dialog,.you-on dialog.pw-dialog *,.you-on dialog.private-view,.you-on dialog.private-view *{cursor:auto!important}
+.you-on dialog.pw-dialog,.you-on dialog.pw-dialog *,.you-on dialog.private-view,.you-on dialog.private-view *,.you-on dialog.vd-dialog,.you-on dialog.vd-dialog *{cursor:auto!important}
 .you-on dialog button,.you-on dialog a{cursor:pointer!important}
 .you-on dialog input{cursor:text!important}
+
+/* visual design: justified rows, every poster the same height; each figure grows by its aspect ratio */
+.vd{margin-top:var(--s7)}
+.vd-title{margin:0;padding:72px 0 0;font-size:clamp(26px,3.2vw,44px);line-height:1.1;text-transform:uppercase}
+.vd-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding-bottom:14px;margin:0 0 var(--s4);border-bottom:1px solid var(--ink)}
+.vd-head img{width:28px;height:28px;border-radius:8px;object-fit:cover}
+.vd-head b{font-weight:600;font-size:15px}
+.vd-head span{color:var(--mut);font-size:13px}
+.vd-grid{--rh:clamp(230px,24vw,360px);display:flex;flex-wrap:wrap;gap:var(--grid-gap)}
+.vd-grid::after{content:"";flex-grow:1000000}
+.vd-grid figure{flex:calc(var(--ar) * 100) 1 calc(var(--ar) * var(--rh));margin:0;min-width:0}
+.vd-grid a{display:block;overflow:hidden;border-radius:var(--r-sm);background:var(--sunk);border:1px solid var(--line);cursor:zoom-in}
+.vd-grid img{display:block;width:100%;height:auto;transition:scale .7s var(--ease)}
+.vd-grid a:hover img{scale:1.04}
+.vd-grid figcaption{margin-top:8px;font-size:13px;color:var(--mut)}
+@media (max-width:700px){.vd-grid{--rh:148px}}
+
+/* visual design: a banner with the posters fanned out; it opens everything in a full-screen dialog */
+.vd-banner{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:center;gap:var(--s6);width:100%;margin-top:var(--s7);padding:clamp(28px,4.5vw,64px);border:0;border-radius:var(--r-lg);background:var(--night);color:var(--cream);font:inherit;text-align:left;cursor:pointer;overflow:hidden;isolation:isolate}
+.vd-banner::before{content:"";position:absolute;inset:auto -10% -60% 20%;height:120%;z-index:-1;background:radial-gradient(closest-side,rgba(212,144,111,.32),transparent);pointer-events:none}
+.vd-copy{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.vd-copy .label{color:var(--cream-mut)}
+.vd-copy strong{font-size:clamp(24px,3vw,42px);line-height:1.1;text-transform:uppercase;font-weight:400}
+.vd-sub{font-size:15px;color:var(--cream-mut)}
+.vd-cta{display:inline-flex;align-items:center;gap:10px;margin-top:10px;padding:13px 22px;border-radius:999px;background:var(--cream);color:var(--night);font-weight:600;font-size:15px;transition:translate .35s var(--ease),background .3s}
+.vd-cta i{font-style:normal;transition:translate .3s var(--ease)}
+.vd-banner:hover .vd-cta{translate:0 -2px}
+.vd-banner:hover .vd-cta i{translate:2px -2px}
+.vd-banner:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.vd-stack{display:flex;justify-content:center;align-items:center;padding:12px 0}
+.vd-stack img{--rot:calc((var(--i) - 2) * 4deg);width:28%;height:auto;margin-left:-10%;border-radius:12px;border:1px solid rgba(244,236,224,.14);box-shadow:0 24px 40px -18px rgba(0,0,0,.65);rotate:var(--rot);translate:0 calc((var(--i) - 2) * (var(--i) - 2) * 3px);transition:rotate .6s var(--ease),translate .6s var(--ease)}
+.vd-stack img:first-child{margin-left:0}
+.vd-banner:hover .vd-stack img{rotate:calc(var(--rot) * 1.6);translate:calc((var(--i) - 2) * 6px) calc((var(--i) - 2) * (var(--i) - 2) * 3px - 6px)}
+@media (max-width:700px){.vd-banner{grid-template-columns:1fr;gap:var(--s4)}}

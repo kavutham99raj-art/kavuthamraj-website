@@ -73,7 +73,7 @@ It only converts images that are not yet in `static/img.json`; pass `--all` to r
 
 ## Features
 
-- Home page: hero with an opening animation, proof figures, three flagship case studies, more work and concepts, how I work, design-system specimen, experience timeline, Figma activity, skills, testimonials and contact.
+- Home page: hero with an opening animation, proof figures, three flagship case studies, more work and concepts, a visual design gallery (posters in `static/work/visual`, listed in `designWork` in `src/data.mjs`), how I work, design-system specimen, experience timeline, Figma activity, skills, testimonials and contact.
 - 14 case-study pages under `/work/`, with chapter navigation and next-case links.
 - Accessibility: a skip link, semantic landmarks, one `h1` per page, an `alt` attribute on every image (empty for decorative ones), visible keyboard focus. Motion respects `prefers-reduced-motion`, and visitors with reduced motion can opt in with the hero's "Play motion" button.
 - Responsive from phones to wide desktops.

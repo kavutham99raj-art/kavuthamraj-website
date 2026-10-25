@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import {
   site, profile, projects, experience, skills, education, companies,
-  heroCopy, proof, strengths, featured, testimonials, recommendationsUrl,
+  heroCopy, proof, strengths, featured, testimonials, recommendationsUrl, designWork,
 } from "./data.mjs";
 
 const ROOT = fileURLToPath(new URL("../", import.meta.url));
@@ -28,6 +28,8 @@ const pic = (r, src, sizes) => {
   return `src="${at(ws.at(-1))}" srcset="${ws.map((w) => `${at(w)} ${w}w`).join(", ")}" sizes="${sizes}"`;
 };
 const WIDE = "(max-width:1240px) 100vw, 1180px";
+// the posters fanned out on the "Visual design" banner, in this order
+const VD_COVER = ["work/visual/srm-womens-day-workshop.webp", "work/visual/srm-ideathon-launch.webp", "work/visual/sporfy-giveaway.webp", "work/visual/srm-artwork-contest.webp", "work/visual/sporfy-activities-scan.webp"];
 // Krona One and Inter are Google Fonts' own files (latin and latin-ext only), declared here rather than
 // through the fonts.googleapis.com stylesheet: that stylesheet blocked rendering and the browser found the
 // font files only after loading it. The latin files are preloaded; Inter is one variable file for 400 to 700.
@@ -385,10 +387,38 @@ ${header("")}
   </div>
 </section>
 
+<section id="visual" class="sec sec-tight">
+  <div class="wrap">
+    <div class="sec-head row">
+      <div>${frame("03", "Visual design")}<h2 class="krona h2 reveal">Posters, social, <em>event creatives.</em></h2></div>
+      <p class="sec-lede reveal">Some of the visual design I have done alongside product work, for SRM Technologies and Sporfy.</p>
+    </div>
+    <button class="vd-banner reveal" type="button" data-vd aria-haspopup="dialog">
+      <span class="vd-copy">
+        <span class="label">${designWork.reduce((n, g) => n + g.items.length, 0)} pieces</span>
+        <strong class="krona">Posters, social<br>and event creatives</strong>
+        <span class="vd-sub">${designWork.map((g) => esc(g.company)).join(" · ")}</span>
+        <span class="vd-cta">View all <i aria-hidden="true">↗</i></span>
+      </span>
+      <span class="vd-stack" aria-hidden="true">${VD_COVER.map((src, k) => `<img ${pic("", src, "(max-width:700px) 30vw, 220px")} alt="" width="${designWork.flatMap((g) => g.items).find((x) => x.src === src).w}" height="${designWork.flatMap((g) => g.items).find((x) => x.src === src).h}" loading="lazy" decoding="async" style="--i:${k}">`).join("")}</span>
+    </button>
+    <dialog class="vd-dialog" aria-label="Visual design: posters, social and event creatives">
+      <button class="pv-x" type="button" aria-label="Close">×</button>
+      <div class="pv-body"><div class="wrap">
+        <p class="vd-title krona">Visual design</p>
+        ${designWork.map((g) => `<div class="vd">
+          <p class="vd-head"><img src="${esc(g.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><b>${esc(g.company)}</b><span>${esc(g.note)}</span></p>
+          <div class="vd-grid">${g.items.map((i) => `<figure style="--ar:${(i.w / i.h).toFixed(4)}"><a href="${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic("", i.src, "(max-width:700px) 50vw, 25vw")} alt="${esc(i.alt)}" width="${i.w}" height="${i.h}" loading="lazy" decoding="async">${newTab}</a><figcaption>${esc(i.cap)}</figcaption></figure>`).join("")}</div>
+        </div>`).join("")}
+      </div></div>
+    </dialog>
+  </div>
+</section>
+
 <section id="approach" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("03", "How I work")}<h2 class="krona h2 reveal">Understand the problem. <em>Design the system.</em></h2></div>
+      <div>${frame("04", "How I work")}<h2 class="krona h2 reveal">Understand the problem. <em>Design the system.</em></h2></div>
       <p class="sec-lede reveal">Four habits, each one backed by work you can open.</p>
     </div>
     <ol class="principles">
@@ -401,7 +431,7 @@ ${header("")}
 <section id="experience" class="sec night-2 xp">
   <div class="wrap xp-grid">
     <div class="xp-side">
-      ${frame("04", "Experience")}
+      ${frame("05", "Experience")}
       <h2 class="krona h2 reveal">Forged in startups. <em>Designed for&nbsp;scale.</em></h2>
       <p class="xp-sum reveal"><span><b>${xpYears()}+</b>years</span><span><b>${experience.length}</b>product teams</span></p>
       <p class="xp-lede reveal">End to end across B2B, B2C, SaaS, ERP and back-office products. I design the system. Then I build it.</p>
@@ -425,7 +455,7 @@ ${header("")}
 <section id="activity" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("05", "Figma activity")}<h2 class="krona h2 reveal">Always <em>designing.</em></h2></div>
+      <div>${frame("06", "Figma activity")}<h2 class="krona h2 reveal">Always <em>designing.</em></h2></div>
       <p class="sec-lede reveal">Five years of product design, shipped every month, in Figma.</p>
     </div>
     <div class="always">
@@ -451,7 +481,7 @@ ${header("")}
 <section id="about" class="sec">
   <div class="wrap">
     <div class="about">
-      <div>${frame("06", "About")}<h2 class="krona h2 reveal">Designer, <em>analyst, builder.</em></h2></div>
+      <div>${frame("07", "About")}<h2 class="krona h2 reveal">Designer, <em>analyst, builder.</em></h2></div>
       <div class="about-copy">${profile.about.map((t) => `<p class="reveal">${esc(t)}</p>`).join("")}</div>
     </div>
     <div class="bento" id="skills">
@@ -481,7 +511,7 @@ ${header("")}
 <section id="testimonials" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("07", "Testimonials")}<h2 class="krona h2 reveal">In their own <em>words.</em></h2></div>
+      <div>${frame("08", "Testimonials")}<h2 class="krona h2 reveal">In their own <em>words.</em></h2></div>
       <p class="sec-lede reveal">Recommendations on LinkedIn from a design lead who managed me, a fellow designer and two engineers I built with. <a class="text-link" href="${recommendationsUrl}" target="_blank" rel="noopener">Read them on LinkedIn ↗${newTab}</a></p>
     </div>
     <div class="quotes">
@@ -492,7 +522,7 @@ ${header("")}
 
 <section id="contact" class="sec night contact">
   <div class="wrap">
-    ${frame("08", "Contact")}
+    ${frame("09", "Contact")}
     <h2 class="krona display reveal">Let's build <em>what's next.</em></h2>
     <p class="contact-lede reveal">Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
     <div class="contact-line reveal"><a class="contact-mail" href="${mailto}">${esc(profile.email)}<span aria-hidden="true">↗</span></a><button class="copy-mail btn ghost-light" type="button" data-copy="${esc(profile.email)}">Copy email</button><span class="sr copy-status" role="status" aria-live="polite"></span></div>
