@@ -29,7 +29,7 @@ const pic = (r, src, sizes) => {
 };
 const WIDE = "(max-width:1240px) 100vw, 1180px";
 // the posters fanned out on the "Visual design" banner, in this order
-const VD_COVER = ["work/visual/srm-womens-day-workshop.webp", "work/visual/srm-ideathon-launch.webp", "work/visual/sporfy-giveaway.webp", "work/visual/srm-artwork-contest.webp", "work/visual/sporfy-activities-scan.webp"];
+const VD_COVER = ["work/visual/srm-womens-day-workshop.webp", "work/visual/srm-ideathon-launch.webp", "work/visual/sporfy-giveaway.webp", "work/visual/cyberdine-upsell.webp", "work/visual/srm-artwork-contest.webp"];
 // Krona One and Inter are Google Fonts' own files (latin and latin-ext only), declared here rather than
 // through the fonts.googleapis.com stylesheet: that stylesheet blocked rendering and the browser found the
 // font files only after loading it. The latin files are preloaded; Inter is one variable file for 400 to 700.

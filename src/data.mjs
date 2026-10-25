@@ -332,4 +332,14 @@ export const designWork = [
       { src: "work/visual/sporfy-activities-scan.webp", w: 1780, h: 1780, cap: "Activities, scan to join", alt: "Sporfy Activities poster with a QR code to join badminton doubles at 59 rupees per person, with a surprised character" },
     ],
   },
+  {
+    company: "Liffto Technologies", logo: "logos/liffto.png",
+    note: "Social posts for Cyberdine, the restaurant ordering app.",
+    items: [
+      { src: "work/visual/cyberdine-coming-together.webp", w: 1440, h: 1440, cap: "Good things come together", alt: "Cyberdine post: Good things have a way of coming together, showing a pizza mascot plus a QR code plus a smiling face" },
+      { src: "work/visual/cyberdine-transform.webp", w: 1440, h: 1440, cap: "Transform or be left behind", alt: "Cyberdine post: Transform or be left behind, with three hands holding phones that show a burger, a pizza and noodles" },
+      { src: "work/visual/cyberdine-refer.webp", w: 1440, h: 1440, cap: "Refer a restaurant", alt: "Cyberdine post: Refer a restaurant and get 1 month free once they sign up, with three phones showing the restaurant app" },
+      { src: "work/visual/cyberdine-upsell.webp", w: 1440, h: 1440, cap: "Upsell and increase sales", alt: "Cyberdine post: Upsell and increase sales in restaurants with the Cyberdine digital menu, with a phone showing the Our Special list" },
+    ],
+  },
 ];
