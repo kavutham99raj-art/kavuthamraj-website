@@ -480,3 +480,52 @@ const onScroll = (fn) => {
   dlg.querySelector(".pv-x").addEventListener("click", () => dlg.close());
   dlg.addEventListener("close", () => { if (!document.querySelector("dialog[open]")) document.documentElement.style.overflow = ""; });
 })();
+
+/* visual design: a poster or the video opens in a popup viewer (previous, next, arrow keys, swipe) instead of a new tab.
+   The links stay real, so a modified click (new tab) and no-JS still work. */
+(() => {
+  const dlg = document.querySelector(".vd-dialog");
+  if (!dlg || !dlg.showModal) return;
+  const items = [...dlg.querySelectorAll(".vd-grid figure")].map((fig) => {
+    const a = fig.querySelector("a"), img = fig.querySelector("img");
+    return { a, video: a.dataset.video, poster: a.dataset.poster, href: a.href, alt: (img && img.alt) || "", cap: fig.querySelector("figcaption").textContent };
+  });
+  let lb, stage, cap, idx = 0;
+  const build = () => {
+    lb = document.createElement("dialog"); lb.className = "vd-lb"; lb.setAttribute("aria-label", "Poster viewer");
+    lb.innerHTML = `<button class="vd-lb-x" type="button" aria-label="Close">×</button><button class="vd-lb-prev" type="button" aria-label="Previous">‹</button><button class="vd-lb-next" type="button" aria-label="Next">›</button><figure class="vd-lb-stage"></figure><p class="vd-lb-cap" aria-live="polite"></p>`;
+    document.body.append(lb);
+    stage = lb.querySelector(".vd-lb-stage"); cap = lb.querySelector(".vd-lb-cap");
+    lb.querySelector(".vd-lb-x").addEventListener("click", () => lb.close());
+    lb.querySelector(".vd-lb-prev").addEventListener("click", () => show(idx - 1));
+    lb.querySelector(".vd-lb-next").addEventListener("click", () => show(idx + 1));
+    stage.addEventListener("click", (e) => { if (e.target === stage) lb.close(); });
+    lb.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") show(idx - 1); else if (e.key === "ArrowRight") show(idx + 1); });
+    let x0 = null;
+    lb.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", (e) => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 60) show(idx + (dx < 0 ? 1 : -1)); }, { passive: true });
+    lb.addEventListener("close", () => {
+      stage.textContent = "";
+      if (!document.querySelector("dialog[open]")) document.documentElement.style.overflow = "";
+    });
+  };
+  const show = (i) => {
+    idx = (i + items.length) % items.length;
+    const it = items[idx];
+    stage.textContent = "";
+    let el;
+    if (it.video) { el = document.createElement("video"); el.controls = true; el.autoplay = true; el.playsInline = true; el.poster = it.poster; el.src = it.video; }
+    else { el = document.createElement("img"); el.src = it.href; el.alt = it.alt; }
+    stage.append(el);
+    cap.textContent = `${it.cap}  ·  ${idx + 1} / ${items.length}`;
+  };
+  items.forEach((it, k) => it.a.addEventListener("click", (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+    e.preventDefault();
+    if (!lb) build();
+    show(k);
+    document.documentElement.style.overflow = "hidden";
+    if (!lb.open) lb.showModal();
+    lb.querySelector(".vd-lb-x").focus({ preventScroll: true });
+  }));
+})();
