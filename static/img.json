@@ -542,7 +542,17 @@
   1200,
   1440
  ],
+ "work/visual/cyberdine-dont-interrupt.webp": [
+  800,
+  1200,
+  1440
+ ],
  "work/visual/cyberdine-refer.webp": [
+  800,
+  1200,
+  1440
+ ],
+ "work/visual/cyberdine-save-time.webp": [
   800,
   1200,
   1440
@@ -556,6 +566,9 @@
   800,
   1200,
   1440
+ ],
+ "work/visual/cyberdine-video-frame.jpg": [
+  720
  ],
  "work/visual/sporfy-activities-badminton.webp": [
   800,

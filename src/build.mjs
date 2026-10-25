@@ -408,7 +408,7 @@ ${header("")}
         <p class="vd-title krona">Visual design</p>
         ${designWork.map((g) => `<div class="vd">
           <p class="vd-head"><img src="${esc(g.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><b>${esc(g.company)}</b><span>${esc(g.note)}</span></p>
-          <div class="vd-grid">${g.items.map((i) => `<figure style="--ar:${(i.w / i.h).toFixed(4)}"><a href="${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic("", i.src, "(max-width:700px) 50vw, 25vw")} alt="${esc(i.alt)}" width="${i.w}" height="${i.h}" loading="lazy" decoding="async">${newTab}</a><figcaption>${esc(i.cap)}</figcaption></figure>`).join("")}</div>
+          <div class="vd-grid">${g.items.map((i) => i.video ? `<figure class="vd-video" style="--ar:${(i.w / i.h).toFixed(4)}"><video controls playsinline preload="none" poster="${esc(i.poster)}" width="${i.w}" height="${i.h}" aria-label="${esc(i.alt)}"><source src="${esc(i.video)}" type="video/mp4"></video><figcaption>${esc(i.cap)}</figcaption></figure>` : `<figure style="--ar:${(i.w / i.h).toFixed(4)}"><a href="${esc(i.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic("", i.src, "(max-width:700px) 50vw, 25vw")} alt="${esc(i.alt)}" width="${i.w}" height="${i.h}" loading="lazy" decoding="async">${newTab}</a><figcaption>${esc(i.cap)}</figcaption></figure>`).join("")}</div>
         </div>`).join("")}
       </div></div>
     </dialog>

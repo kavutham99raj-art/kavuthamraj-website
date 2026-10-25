@@ -336,10 +336,13 @@ export const designWork = [
     company: "Liffto Technologies", logo: "logos/liffto.png",
     note: "Social posts for Cyberdine, the restaurant ordering app.",
     items: [
+      { video: "work/visual/cyberdine-video.mp4", src: "work/visual/cyberdine-video-frame.jpg", poster: "work/visual/cyberdine-video-frame-720.webp", w: 720, h: 720, cap: "Cyberdine motion video, 28 seconds", alt: "Cyberdine motion video: no need for costly computers or bulky CPU" },
       { src: "work/visual/cyberdine-coming-together.webp", w: 1440, h: 1440, cap: "Good things come together", alt: "Cyberdine post: Good things have a way of coming together, showing a pizza mascot plus a QR code plus a smiling face" },
       { src: "work/visual/cyberdine-transform.webp", w: 1440, h: 1440, cap: "Transform or be left behind", alt: "Cyberdine post: Transform or be left behind, with three hands holding phones that show a burger, a pizza and noodles" },
       { src: "work/visual/cyberdine-refer.webp", w: 1440, h: 1440, cap: "Refer a restaurant", alt: "Cyberdine post: Refer a restaurant and get 1 month free once they sign up, with three phones showing the restaurant app" },
       { src: "work/visual/cyberdine-upsell.webp", w: 1440, h: 1440, cap: "Upsell and increase sales", alt: "Cyberdine post: Upsell and increase sales in restaurants with the Cyberdine digital menu, with a phone showing the Our Special list" },
+      { src: "work/visual/cyberdine-save-time.webp", w: 1440, h: 1440, cap: "Save time, get your digital menu", alt: "Cyberdine post: Save time, get your digital menu now, with a winged alarm clock and a smiling waiter carrying two plates" },
+      { src: "work/visual/cyberdine-dont-interrupt.webp", w: 1440, h: 1440, cap: "Don't interrupt your customers", alt: "Cyberdine post: Don't interrupt your customers, with iMenu they reach out when they need you, showing a Request Waiter button on a phone beside an illustrated couple eating" },
     ],
   },
 ];

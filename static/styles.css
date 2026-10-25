@@ -913,3 +913,4 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 .vd-stack img:first-child{margin-left:0}
 .vd-banner:hover .vd-stack img{rotate:calc(var(--rot) * 1.6);translate:calc((var(--i) - 2) * 6px) calc((var(--i) - 2) * (var(--i) - 2) * 3px - 6px)}
 @media (max-width:700px){.vd-banner{grid-template-columns:1fr;gap:var(--s4)}}
+.vd-video video{display:block;width:100%;height:auto;aspect-ratio:var(--ar);border-radius:var(--r-sm);border:1px solid var(--line);background:#0c0b0a}
