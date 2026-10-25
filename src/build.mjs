@@ -495,9 +495,9 @@ ${header("")}
     <div class="bento" id="skills">
       ${skillTile(skills[0], 0, "b-design")}
       <article class="tile-b b-figma dark reveal">
-        <p class="label">Main tool</p>
+        <p class="label">Main tools</p>
         <h3 class="krona">Figma</h3>
-        <p>Variables, Auto Layout and Dev Mode for product work. FigJam for flows and workshops.</p>
+        <p>Variables, Auto Layout and Dev Mode for product work. FigJam for flows and workshops.<br>Adobe Creative Cloud: Photoshop and Illustrator for graphics and marketing visuals; Premiere Pro and After Effects for video and motion.</p>
       </article>
       ${skills.slice(1, 4).map((g, i) => skillTile(g, i + 1)).join("")}
       ${skillTile(skills[4], 4)}

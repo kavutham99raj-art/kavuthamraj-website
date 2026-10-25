@@ -185,7 +185,7 @@ export const experience = [
 export const skills = [
   { key: "product", label: "Product design", title: "Discovery to *delivery.*", items: [
     "Product design", "Product discovery", "JTBD", "User research", "UX audits", "Journey mapping", "Information architecture",
-    "Interaction design", "Wireframing and prototyping", "Usability testing", "Visual design",
+    "Interaction design", "Wireframing and prototyping", "Usability testing", "Visual design", "Graphic design", "Motion graphics", "Adobe Creative Cloud",
   ] },
   { key: "enterprise", label: "Enterprise and product thinking", title: "Complex, made *simple.*", items: [
     "B2B SaaS", "ERP and back-office UX", "Complex workflows", "Data-dense tables and dashboards", "Role-based access",
