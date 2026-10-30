@@ -61,7 +61,7 @@ Then open http://localhost:4321. There is no lint or test script; the build prin
 
 To edit content, change `src/data.mjs` or `src/framer-cases.mjs` and rebuild.
 
-A private interview assignment is not in the repository. Its data and images live in `private/` (ignored by git; keep your own backup). The site shows it only as a blurred card at the end of the home page's Concepts list: a button, not a link. It opens a password dialog (`static/main.js`), which decrypts `assignment.enc` in the browser. No page, sitemap entry, meta tag or structured data exists for it. To change the password or the content, run `node scripts/lock.mjs <password>` and then `npm run build`. The password is not stored anywhere in the repository.
+A private interview assignment is not in the repository. Its data and images live in `private/` (ignored by git; keep your own backup). The site shows it only as a card at the end of the home page's Concepts list (a desktop screen shown as its preview, a lock in the corner): a button, not a link. It opens a password dialog (`static/main.js`), which decrypts `assignment.enc` in the browser. No page, sitemap entry, meta tag or structured data exists for it. To change the password or the content, run `node scripts/lock.mjs <password>` and then `npm run build`. The password is not stored anywhere in the repository.
 
 After adding or replacing an image under `static/work`, make its WebP copies (macOS, needs Google Chrome; no packages):
 

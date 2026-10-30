@@ -2,11 +2,11 @@
 //   node scripts/lock.mjs <password>
 // The assignment's data and images live in private/assignment/ (ignored by git; keep your own backup).
 // It renders the page through the normal build (EXPORT_PRIVATE=1), inlines the images, and writes
-// static/private/assignment.enc (PBKDF2-SHA256 + AES-256-GCM) and a tiny blurred cover for the home page card
-// (static/private/assignment-blur.txt). The password is never stored.
+// static/private/assignment.enc (PBKDF2-SHA256 + AES-256-GCM) and the desktop-screen preview for the home page card
+// (static/work/covers/assignment-preview.webp). The password is never stored.
 // Run `npm run build` afterwards; the card is in src/build.mjs and the unlock dialog in static/main.js.
 import { execFileSync } from "node:child_process";
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, copyFileSync } from "node:fs";
 import { randomBytes, pbkdf2Sync, createCipheriv } from "node:crypto";
 
 const ROOT = new URL("../", import.meta.url).pathname;
@@ -36,10 +36,9 @@ html = html.replace(/href="\.\.\/(?!work\/)/g, 'href="').replace(/href="([a-z0-9
 const left = [...html.matchAll(/(?:src|href)="(\.\.\/work\/[^"]+)"/g)].map((m) => m[1]);
 if (left.length) { console.error("Unresolved asset links:", left.slice(0, 5)); process.exit(1); }
 
-// the card on the home page shows the cover as a 40px-wide thumbnail, blurred further in CSS: colour and mood only
-const cover = DIR + "files/work/covers/assignment.jpg", tiny = ROOT + "private/blur.jpg";
-execFileSync("sips", ["-Z", "40", "-s", "format", "jpeg", "-s", "formatOptions", "50", cover, "--out", tiny], { stdio: "ignore" });
-writeFileSync(ROOT + "static/private/assignment-blur.txt", `data:image/jpeg;base64,${readFileSync(tiny).toString("base64")}`);
+// the card on the home page shows a 16:9 desktop screen as its preview (private/assignment/preview.webp, cropped so no
+// product name shows); the rest of the case stays encrypted
+copyFileSync(DIR + "preview.webp", ROOT + "static/work/covers/assignment-preview.webp");
 
 const iter = 600000, salt = randomBytes(16), iv = randomBytes(12);
 const cipher = createCipheriv("aes-256-gcm", pbkdf2Sync(password, salt, iter, 32, "sha256"), iv);

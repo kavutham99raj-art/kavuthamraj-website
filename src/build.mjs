@@ -676,9 +676,9 @@ ${footer("")}`;
 // The site publishes only that encrypted file and a card in the home page's concepts list that opens a password
 // dialog (static/main.js). The card is a button: no page, link, meta tag, sitemap entry or structured data exists for it.
 const PRIVATE = ROOT + "private/assignment/";
-const hasPrivate = existsSync(STATIC + "private/assignment.enc") && existsSync(STATIC + "private/assignment-blur.txt");
+const hasPrivate = existsSync(STATIC + "private/assignment.enc") && existsSync(STATIC + "work/covers/assignment-preview.webp");
 const privateCard = () => hasPrivate ? `<li><button class="concept locked" type="button" data-private="assignment.enc" aria-haspopup="dialog">
-          <span class="concept-img"><img src="${readFileSync(STATIC + "private/assignment-blur.txt", "utf8").trim()}" alt="" width="40" height="30" decoding="async"><span class="concept-time">2 days</span><svg class="lock-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg></span>
+          <span class="concept-img"><img src="${withVer("work/covers/assignment-preview.webp")}" alt="" width="960" height="540" loading="lazy" decoding="async"><span class="concept-time">Desktop app · 2 days</span><svg class="lock-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg></span>
           <span class="concept-body"><strong>Interview assignment</strong><span>Private · password on request</span></span>
         </button></li>` : "";
 if (process.env.EXPORT_PRIVATE) {
