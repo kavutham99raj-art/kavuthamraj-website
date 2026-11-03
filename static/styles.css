@@ -156,6 +156,87 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
 .outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-top:18px;border-top:1px solid var(--line)}
 .outcomes dt{font:400 clamp(20px,1.9vw,26px)/1 var(--display);white-space:nowrap}
 .outcomes dd{margin-top:8px;font-size:13px;line-height:1.45;color:var(--mut)}
+
+/* QR Raj: an Apple-style product reveal on a night band. Centred app icon and headline, the live site on a
+   laptop with the phone view beside it, big figures, then a bento of product decisions. The product's own
+   blue lights the stage, its gradient fills the accent phrase; everything else keeps the portfolio's type. */
+.built{--qr:#2f6bff;--qr-2:#6ee7e0;--qr-l:#7ea2ff;overflow:hidden}
+.bt-grad,.bt-title em,.bt-stats dt{background:linear-gradient(92deg,var(--qr-l) 10%,var(--qr-2) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bt-intro{display:flex;flex-direction:column;align-items:center;max-width:960px;margin:var(--s7) auto 0;text-align:center}
+.bt-icon{width:clamp(72px,7vw,96px);height:auto;border-radius:23%;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 20px 60px -10px rgba(47,107,255,.55)}
+.bt-name{margin-top:var(--s4);font:600 clamp(18px,1.6vw,22px)/1.2 var(--sans);color:var(--cream)}
+.bt-title{margin-top:var(--s4);font-size:clamp(34px,5.6vw,84px);line-height:1.02;text-transform:uppercase;color:var(--cream)}
+.built h2.bt-title em{color:transparent}
+.bt-text{max-width:36em;margin-top:var(--s5);font-size:clamp(17px,1.5vw,21px);line-height:1.55;color:var(--cream-mut)}
+.bt-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 28px;margin-top:var(--s6)}
+.bt-btn{background:var(--qr);color:#fff;box-shadow:0 12px 30px -12px rgba(47,107,255,.8)}.bt-btn:hover{background:#4b7fff}
+.built .chev-link{color:var(--qr-l)}
+.bt-eyebrow{display:inline-flex;align-items:center;gap:8px;margin-top:var(--s5);font-size:13.5px;color:var(--cream-mut)}
+.bt-eyebrow i{width:7px;height:7px;border-radius:50%;background:#3ccf6e;box-shadow:0 0 0 3px rgba(60,207,110,.2)}
+
+/* the stage: laptop and phone, built in CSS so the screenshots stay real */
+.bt-stage{position:relative;margin-top:clamp(48px,6vw,88px);padding-bottom:clamp(24px,4vw,56px)}
+.bt-stage::before{content:"";position:absolute;left:50%;top:40%;width:110%;aspect-ratio:2/1;translate:-50% -50%;background:radial-gradient(closest-side,rgba(47,107,255,.42),rgba(110,231,224,.08) 55%,transparent 75%);filter:blur(10px);pointer-events:none}
+.bt-mac{position:relative;width:min(1000px,88%);margin:0 auto}
+.bt-lid{position:relative;display:block;padding:1.7% 1.7% 2.4%;border-radius:clamp(10px,1.8vw,22px) clamp(10px,1.8vw,22px) 0 0;background:#0a0a0b;box-shadow:0 0 0 1.5px #3a3a3e,0 0 0 3px #1b1b1e,0 50px 100px -40px rgba(0,0,0,.9)}
+.bt-lid img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:4px}
+.bt-cam{position:absolute;left:50%;top:.55%;width:.6%;aspect-ratio:1;translate:-50% 0;border-radius:50%;background:#26262a}
+.bt-base{position:relative;display:block;width:114%;height:clamp(8px,1.5vw,18px);margin-left:-7%;border-radius:2px 2px 50% 50%/2px 2px 100% 100%;background:linear-gradient(#e4e4e8,#a9a9ae 60%,#6f6f74)}
+.bt-base::before{content:"";position:absolute;left:50%;top:0;width:15%;height:42%;translate:-50% 0;border-radius:0 0 10px 10px;background:linear-gradient(#a5a5aa,#c9c9ce)}
+/* the phone: titanium rim, black bezel, status bar with the Dynamic Island, home indicator, a soft glare.
+   Sizes are in cqi (the phone's own width) so every part scales together. */
+.bt-phone{position:absolute;right:max(1%,calc(50% - 580px));bottom:0;width:clamp(112px,21%,252px);container-type:inline-size;filter:drop-shadow(0 40px 50px rgba(0,0,0,.7)) drop-shadow(0 0 40px rgba(47,107,255,.25))}
+.bt-rim{position:relative;display:block;padding:1.3cqi;border-radius:17cqi;background:linear-gradient(140deg,#c9c9ce 0%,#55555b 18%,#2a2a2e 45%,#3d3d42 70%,#a8a8ae 100%);box-shadow:0 0 0 .5px rgba(255,255,255,.25) inset}
+.bt-rim::before{content:"";position:absolute;left:-1.1cqi;top:20%;width:1.4cqi;height:5.5%;border-radius:1cqi 0 0 1cqi;background:#6a6a70;box-shadow:0 10cqi 0 #6a6a70,0 22cqi 0 #6a6a70}
+.bt-power{position:absolute;right:-1.1cqi;top:30%;width:1.4cqi;height:12%;border-radius:0 1cqi 1cqi 0;background:#6a6a70}
+.bt-bezel{display:block;padding:3.2cqi;border-radius:15.7cqi;background:#030303}
+.bt-screen{position:relative;display:flex;flex-direction:column;aspect-ratio:1170/2532;overflow:hidden;border-radius:12.6cqi;background:#fff}
+.bt-status{position:relative;flex:none;display:flex;align-items:center;justify-content:space-between;height:14cqi;padding:1.5cqi 6.5cqi 0 10cqi;color:#000}
+.bt-status b{font:600 4.8cqi/1 -apple-system,"SF Pro Text",Inter,sans-serif;letter-spacing:-.01em}
+.bt-status svg{width:19cqi;height:auto}
+.bt-island{position:absolute;left:50%;top:3.2cqi;width:30cqi;height:8.8cqi;translate:-50% 0;border-radius:99px;background:#000}
+.bt-screen img{flex:1;min-height:0;width:100%;object-fit:cover;object-position:top}
+.bt-home{position:absolute;left:50%;bottom:2.4cqi;width:35cqi;height:1.4cqi;translate:-50% 0;border-radius:99px;background:rgba(0,0,0,.82)}
+.bt-glare{position:absolute;inset:0;z-index:2;background:linear-gradient(118deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.04) 28%,transparent 42%);pointer-events:none}
+.bt-lid .bt-glare{inset:1.7% 1.7% 2.4%;border-radius:4px;background:linear-gradient(115deg,rgba(255,255,255,.07),transparent 40%)}
+.js .bt-stage.reveal{transform:none}
+.js .bt-stage .bt-mac{scale:.92;transition:scale 1.2s var(--ease)}
+.js .bt-stage .bt-phone{translate:0 70px;opacity:0;transition:translate 1.1s var(--ease) .25s,opacity .8s var(--ease) .25s}
+.js .bt-stage.in .bt-mac{scale:1}
+.js .bt-stage.in .bt-phone{translate:0 0;opacity:1}
+
+/* figures */
+.bt-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6);margin-top:clamp(64px,8vw,120px);text-align:center}
+.bt-stats dt{font:400 clamp(48px,6.4vw,96px)/1 var(--display);letter-spacing:-.02em}
+.bt-stats dd{max-width:15em;margin:14px auto 0;font-size:16px;line-height:1.5;color:var(--cream-mut)}
+
+/* bento */
+.bt-bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4);margin-top:clamp(64px,8vw,120px)}
+.bt-tile{position:relative;display:flex;flex-direction:column;gap:var(--s5);min-height:320px;padding:clamp(24px,2.6vw,36px);overflow:hidden;border-radius:var(--r-lg);background:linear-gradient(180deg,#221c18,#1a1512);box-shadow:0 0 0 1px var(--line-d) inset}
+.bt-tile .label{color:var(--qr-l)}
+.bt-tile h3{margin-top:10px;font:600 clamp(22px,2vw,28px)/1.18 var(--sans);letter-spacing:-.015em;color:var(--cream)}
+.bt-tile-copy>p:not(.label){max-width:30em;margin-top:10px;font-size:15.5px;line-height:1.6;color:var(--cream-mut)}
+.bt-art{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-top:auto;flex:1}
+.bt-t-editor{grid-column:span 2}
+.bt-t-editor .bt-art{display:block;flex:none;margin:auto calc(-1 * clamp(24px,2.6vw,36px)) calc(-1 * clamp(24px,2.6vw,36px)) 12%}
+.bt-t-editor .bt-art img{border-radius:14px 0 0 0;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 -20px 60px -20px rgba(47,107,255,.5);transition:translate .6s var(--ease)}
+@media (hover:hover){.bt-t-editor:hover .bt-art img{translate:-8px -8px}}
+.bt-switch{position:relative;width:132px;height:76px;border-radius:99px;background:var(--qr);box-shadow:0 0 50px -6px rgba(47,107,255,.75),inset 0 0 0 1px rgba(255,255,255,.15)}
+.bt-switch i{position:absolute;top:6px;right:6px;width:64px;height:64px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.bt-art small{font-size:13px;color:var(--cream-mut)}
+.bt-art code{padding:8px 14px;border-radius:10px;border:1px solid var(--line-d);font:500 14px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--cream)}
+.bt-art .bt-hashv{border-color:rgba(110,231,224,.4);background:rgba(110,231,224,.08);color:var(--qr-2)}
+.bt-arrow{color:var(--cream-mut)}
+.bt-stack{grid-column:span 2;min-height:0}
+.bt-stack ul{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.bt-stack ul li{padding:9px 16px;border-radius:999px;background:rgba(244,236,224,.06);box-shadow:0 0 0 1px var(--line-d) inset;font-size:14px;color:var(--cream)}
+@media (max-width:900px){
+  .bt-bento{grid-template-columns:1fr}.bt-t-editor,.bt-stack{grid-column:auto}
+  .bt-stats{grid-template-columns:1fr;gap:var(--s7)}
+  .bt-mac{width:calc(100% / 1.14)}.bt-phone{right:0;width:28%}.bt-stage{padding-bottom:10%}
+  .bt-tile{min-height:0}.bt-art{min-height:160px}
+}
+@media (max-width:560px){.bt-cta .btn{width:100%}.bt-phone{width:31%}}
 /* phone screens on a warm panel, staggered like an artboard row */
 .phones-panel{display:flex;justify-content:center;align-items:flex-start;gap:3%;height:100%;padding:5% 5% 0;overflow:hidden;background-color:var(--sunk);background-image:radial-gradient(rgba(23,18,15,.08) 1px,transparent 1.3px);background-size:18px 18px}
 .phones-panel img{width:16%;height:auto;border:5px solid var(--night);border-radius:20px;box-shadow:0 24px 40px -24px rgba(23,18,15,.55);transition:translate .6s var(--ease)}

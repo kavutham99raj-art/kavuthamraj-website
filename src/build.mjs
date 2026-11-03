@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import {
   site, profile, projects, experience, skills, education, companies,
-  heroCopy, proof, strengths, featured, testimonials, recommendationsUrl, designWork,
+  heroCopy, proof, strengths, featured, built, testimonials, recommendationsUrl, designWork,
 } from "./data.mjs";
 
 const ROOT = fileURLToPath(new URL("../", import.meta.url));
@@ -366,10 +366,48 @@ ${header("")}
   </div>
 </section>
 
+<section id="qr-raj" class="sec night built" aria-labelledby="qr-title">
+  <div class="wrap">
+    ${frame("02", "Designed and built")}
+    <div class="bt-intro">
+      <img class="bt-icon reveal" src="${esc(withVer(built.icon))}" alt="" width="192" height="192" loading="lazy" decoding="async">
+      <p class="bt-name reveal">${esc(built.name)}</p>
+      <h2 class="krona bt-title reveal" id="qr-title">${rich(built.title)}</h2>
+      <p class="bt-text reveal">${esc(built.text)}</p>
+      <div class="bt-cta reveal"><a class="btn bt-btn lg" href="${esc(built.url)}" target="_blank" rel="noopener">Try it live <span aria-hidden="true">↗</span>${newTab}</a><a class="chev-link" href="${mailto}">Ask me how I built it <span aria-hidden="true">›</span></a></div>
+      <p class="bt-eyebrow reveal"><i aria-hidden="true"></i>${esc(built.eyebrow)}</p>
+    </div>
+    <div class="bt-stage reveal">
+      <figure class="bt-mac">
+        <span class="bt-lid"><span class="bt-cam" aria-hidden="true"></span><span class="bt-glare" aria-hidden="true"></span><img ${pic("", built.mac.src, "(max-width:900px) 92vw, 1000px")} alt="${esc(built.mac.alt)}" width="2400" height="1500" loading="lazy" decoding="async"></span>
+        <span class="bt-base" aria-hidden="true"></span>
+      </figure>
+      <figure class="bt-phone"><span class="bt-rim"><span class="bt-power" aria-hidden="true"></span><span class="bt-bezel"><span class="bt-screen">
+        <span class="bt-status" aria-hidden="true"><b>9:41</b><span class="bt-island"></span><svg viewBox="0 0 68 12"><g fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="4.5" y="6" width="3" height="6" rx=".8"/><rect x="9" y="3.5" width="3" height="8.5" rx=".8"/><rect x="13.5" y="1" width="3" height="11" rx=".8"/><path d="M30 2.2a10.6 10.6 0 0 1 7.6 3.1l1.2-1.2A12.3 12.3 0 0 0 30 .5a12.3 12.3 0 0 0-8.8 3.6l1.2 1.2A10.6 10.6 0 0 1 30 2.2zm0 3.4a7.2 7.2 0 0 1 5.2 2.1l1.2-1.2A8.9 8.9 0 0 0 30 3.9a8.9 8.9 0 0 0-6.4 2.6l1.2 1.2A7.2 7.2 0 0 1 30 5.6zm0 3.4c1 0 1.9.4 2.6 1L30 12.6 27.4 10c.7-.6 1.6-1 2.6-1z"/><rect x="43.5" y=".8" width="21" height="10.4" rx="3" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.6" width="15.5" height="6.8" rx="1.6"/><path d="M66 4.2v3.6a2 2 0 0 0 0-3.6z" fill-opacity=".4"/></g></svg></span>
+        <img ${pic("", built.phone.src, "(max-width:900px) 30vw, 260px")} alt="${esc(built.phone.alt)}" width="1170" height="2532" loading="lazy" decoding="async">
+        <span class="bt-home" aria-hidden="true"></span><span class="bt-glare" aria-hidden="true"></span>
+      </span></span></span></figure>
+    </div>
+    <dl class="bt-stats">${built.stats.map(([v, l], i) => `<div class="reveal" style="--d:${i * 90}ms"><dt>${esc(v)}</dt><dd>${esc(l)}</dd></div>`).join("")}</dl>
+    <ul class="bt-bento">
+      ${built.decisions.map((d, i) => `<li class="bt-tile bt-t-${d.art} reveal" style="--d:${i * 90}ms">
+        <div class="bt-tile-copy"><p class="label">Decision 0${i + 1}</p><h3>${esc(d.t)}</h3><p>${esc(d.d)}</p></div>
+        ${d.art === "editor" ? `<span class="bt-art"><img ${pic("", built.editor.src, "(max-width:900px) 90vw, 640px")} alt="${esc(built.editor.alt)}" width="2400" height="1500" loading="lazy" decoding="async"></span>`
+        : d.art === "switch" ? `<span class="bt-art" aria-hidden="true"><span class="bt-switch"><i></i></span><small>Keep it editable after printing</small></span>`
+        : `<span class="bt-art" aria-hidden="true"><code>IP + browser</code><span class="bt-arrow">↓</span><code class="bt-hashv">9f2c·41ab·e07d</code><small>Stored. Nothing else.</small></span>`}
+      </li>`).join("")}
+      <li class="bt-tile bt-stack reveal" style="--d:270ms">
+        <div class="bt-tile-copy"><p class="label">Built with</p><h3>One designer. The whole stack.</h3><p>From the first screen to the database schema, designed and coded by me with Claude Code, then shipped to production.</p></div>
+        <ul aria-label="Built with">${built.stack.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <section id="more" class="sec sec-tight">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("02", "More work")}<h2 class="krona h2 reveal">Shorter <em>engagements.</em></h2></div>
+      <div>${frame("03", "More work")}<h2 class="krona h2 reveal">Shorter <em>engagements.</em></h2></div>
       <p class="sec-lede reveal">Client work from two days to three months: payroll, data products, e-commerce and healthcare.</p>
     </div>
     <div class="tiles">
@@ -398,7 +436,7 @@ ${header("")}
 <section id="visual" class="sec sec-tight">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("03", "Visual design")}<h2 class="krona h2 reveal">Posters, social, <em>event creatives.</em></h2></div>
+      <div>${frame("04", "Visual design")}<h2 class="krona h2 reveal">Posters, social, <em>event creatives.</em></h2></div>
       <p class="sec-lede reveal">Some of the visual design I have done alongside product work, for SRM Technologies and Sporfy.</p>
     </div>
     <button class="vd-banner reveal" type="button" data-vd aria-haspopup="dialog">
@@ -426,7 +464,7 @@ ${header("")}
 <section id="approach" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("04", "How I work")}<h2 class="krona h2 reveal">Understand the problem. <em>Design the system.</em></h2></div>
+      <div>${frame("05", "How I work")}<h2 class="krona h2 reveal">Understand the problem. <em>Design the system.</em></h2></div>
       <p class="sec-lede reveal">Four habits, each one backed by work you can open.</p>
     </div>
     <ol class="principles">
@@ -439,7 +477,7 @@ ${header("")}
 <section id="experience" class="sec night-2 xp">
   <div class="wrap xp-grid">
     <div class="xp-side">
-      ${frame("05", "Experience")}
+      ${frame("06", "Experience")}
       <h2 class="krona h2 reveal">Forged in startups. <em>Designed for&nbsp;scale.</em></h2>
       <p class="xp-sum reveal"><span><b>${xpYears()}+</b>years</span><span><b>${experience.length}</b>product teams</span></p>
       <p class="xp-lede reveal">End to end across B2B, B2C, SaaS, ERP and back-office products. I design the system. Then I build it.</p>
@@ -463,7 +501,7 @@ ${header("")}
 <section id="activity" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("06", "Figma activity")}<h2 class="krona h2 reveal">Always <em>designing.</em></h2></div>
+      <div>${frame("07", "Figma activity")}<h2 class="krona h2 reveal">Always <em>designing.</em></h2></div>
       <p class="sec-lede reveal">Five years of product design, shipped every month, in Figma.</p>
     </div>
     <div class="always">
@@ -489,7 +527,7 @@ ${header("")}
 <section id="about" class="sec">
   <div class="wrap">
     <div class="about">
-      <div>${frame("07", "About")}<h2 class="krona h2 reveal">Designer, <em>analyst, builder.</em></h2></div>
+      <div>${frame("08", "About")}<h2 class="krona h2 reveal">Designer, <em>analyst, builder.</em></h2></div>
       <div class="about-copy">${profile.about.map((t) => `<p class="reveal">${esc(t)}</p>`).join("")}</div>
     </div>
     <div class="bento" id="skills">
@@ -519,7 +557,7 @@ ${header("")}
 <section id="testimonials" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("08", "Testimonials")}<h2 class="krona h2 reveal">In their own <em>words.</em></h2></div>
+      <div>${frame("09", "Testimonials")}<h2 class="krona h2 reveal">In their own <em>words.</em></h2></div>
       <p class="sec-lede reveal">Recommendations on LinkedIn from a design lead who managed me, a fellow designer and two engineers I built with. <a class="text-link" href="${recommendationsUrl}" target="_blank" rel="noopener">Read them on LinkedIn ↗${newTab}</a></p>
     </div>
     <div class="quotes">
@@ -530,7 +568,7 @@ ${header("")}
 
 <section id="contact" class="sec night contact">
   <div class="wrap">
-    ${frame("09", "Contact")}
+    ${frame("10", "Contact")}
     <h2 class="krona display reveal">Let's build <em>what's next.</em></h2>
     <p class="contact-lede reveal">Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
     <div class="contact-line reveal"><a class="contact-mail" href="${mailto}">${esc(profile.email)}<span aria-hidden="true">↗</span></a><button class="copy-mail btn ghost-light" type="button" data-copy="${esc(profile.email)}">Copy email</button><span class="sr copy-status" role="status" aria-live="polite"></span></div>

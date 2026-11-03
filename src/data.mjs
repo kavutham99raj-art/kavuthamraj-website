@@ -29,7 +29,7 @@ export const profile = {
   about: [
     "Most of my work lives in the hard, unglamorous parts of software: dense tables, approval flows, payroll and billing. Over 5+ years at AffinityX, Liffto Technologies, SRM Technologies and Sporfy, I've been the sole designer on a product more than once, and I've worked alongside PMs and developers in India, the US and the Philippines.",
     "My work runs from research and audits through information architecture, interaction design, design systems and handoff. I write handoff notes for accessibility (WCAG 2.1 AA) so it survives into code, and an MBA in Business Analytics keeps me asking what a design change does to the numbers.",
-    "I prototype in Figma, Framer and Claude, and I take designs to code myself. Recently I designed and vibe-coded a live QR-code SaaS with Claude Code and React, from first screen to production.",
+    "I prototype in Figma, Framer and Claude, and I take designs to code myself. Recently I designed and built QR Raj, a live QR-code app, with Claude Code and React, from first screen to production.",
   ],
   industries: ["Sports", "Retail", "E-commerce", "Healthcare", "AI", "Accounts & Finance"],
   links: [
@@ -285,6 +285,28 @@ export const featured = [
   },
 ];
 export { erpScreens };
+
+// QR Raj: a live product designed and coded end to end, shown on the home page after the flagship cases.
+// Facts come from the app itself (qr.kavuthamraj.com) and its repository (README, api/app/services/visitor.py).
+// Screenshots were taken from the live app in Nov 2026.
+export const built = {
+  key: "qr-raj", name: "QR Raj", url: "https://qr.kavuthamraj.com", host: "qr.kavuthamraj.com", icon: "logos/qr-raj.png",
+  eyebrow: "Designed and built by me · Live now",
+  title: "QR codes you can change *after printing.*",
+  text: "Print a code once, point it at a new link whenever you need to, and watch every scan come in. I designed QR Raj and built it myself with Claude Code, from the first screen to the database. It's free for everyone.",
+  // Apple-style figures: big value, short caption.
+  stats: [["Solo", "Design, front end, API and database"], ["13", "QR types, each with a guided form"], ["₹0", "No ads, no watermark, no paid tier"]],
+  stack: ["React 18", "Vite", "Tailwind CSS", "FastAPI", "PostgreSQL", "WebSockets", "Google sign-in", "Claude Code"],
+  mac: { src: "work/qr-raj/landing.jpg", alt: "QR Raj on a laptop: Create a QR code in seconds. Free. A link field, a sample QR code and a live scan counter" },
+  phone: { src: "work/qr-raj/phone.jpg", alt: "QR Raj on a phone: Change it after printing. The same QR code now opens your-cafe.com/summer-menu" },
+  editor: { src: "work/qr-raj/editor.jpg", alt: "QR Raj design editor: logo, frame and pattern options on the left, a live preview and a Download button on the right" },
+  // Product decisions, each one visible in the live app. `art` picks the tile's illustration.
+  decisions: [
+    { art: "editor", t: "No account for your first code.", d: "A static code is designed and downloaded without signing in. Google sign-in is asked for only when a code needs a short link to track." },
+    { art: "switch", t: "Editable is the default.", d: "A wrong link on 10,000 printed flyers is the expensive mistake, so the switch that keeps a code repointable starts on." },
+    { art: "hash", t: "Count devices, not people.", d: "Unique scans come from a keyed hash of the phone's address and browser. The originals are thrown away." },
+  ],
+};
 
 // LinkedIn recommendations, quoted word for word (Oct 2026). *asterisks* mark the phrase highlighted in the accent colour.
 // Anything with placeholder: true renders as a marked draft card.
