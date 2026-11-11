@@ -291,9 +291,13 @@ export { erpScreens };
 // Screenshots were taken from the live app in Nov 2026.
 export const built = {
   key: "qr-raj", name: "QR Raj", url: "https://qr.kavuthamraj.com", host: "qr.kavuthamraj.com", icon: "logos/qr-raj.png",
-  eyebrow: "Designed and built by me · Live now",
-  title: "QR codes you can change *after printing.*",
-  text: "Print a code once, point it at a new link whenever you need to, and watch every scan come in. I designed QR Raj and built it myself with Claude Code, from the first screen to the database. It's free for everyone.",
+  eyebrow: "Solo project · Live now",
+  // The headline is the hiring point: one person did the design and the build. The product pitch sits under it.
+  title: "Designed it. *Built it myself.*",
+  pitch: "QR Raj makes QR codes you can change after printing.",
+  text: "Print a code once, point it at a new link whenever you need to, and watch every scan come in. No team and no hand-off: I did the research, the design, the React front end, the API and the database myself, with Claude Code as my pair. It's free for everyone.",
+  // Every stage of the work, all done by me. Shown as a strip under the text.
+  steps: ["Research", "UX and UI design", "React front end", "API and database", "Launch"],
   // Apple-style figures: big value, short caption.
   stats: [["Solo", "Design, front end, API and database"], ["13", "QR types, each with a guided form"], ["₹0", "No ads, no watermark, no paid tier"]],
   stack: ["React 18", "Vite", "Tailwind CSS", "FastAPI", "PostgreSQL", "WebSockets", "Google sign-in", "Claude Code"],

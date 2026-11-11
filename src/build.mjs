@@ -373,7 +373,12 @@ ${header("")}
       <img class="bt-icon reveal" src="${esc(withVer(built.icon))}" alt="" width="192" height="192" loading="lazy" decoding="async">
       <p class="bt-name reveal">${esc(built.name)}</p>
       <h2 class="krona bt-title reveal" id="qr-title">${rich(built.title)}</h2>
+      <p class="bt-pitch reveal">${esc(built.pitch)}</p>
       <p class="bt-text reveal">${esc(built.text)}</p>
+      <div class="bt-solo reveal">
+        <p class="bt-solo-label">Every step, by me</p>
+        <ol class="bt-steps">${built.steps.map((s, i) => `<li><b>${String(i + 1).padStart(2, "0")}</b>${esc(s)}</li>`).join("")}</ol>
+      </div>
       <div class="bt-cta reveal"><a class="btn bt-btn lg" href="${esc(built.url)}" target="_blank" rel="noopener">Try it live <span aria-hidden="true">↗</span>${newTab}</a><a class="chev-link" href="${mailto}">Ask me how I built it <span aria-hidden="true">›</span></a></div>
       <p class="bt-eyebrow reveal"><i aria-hidden="true"></i>${esc(built.eyebrow)}</p>
     </div>

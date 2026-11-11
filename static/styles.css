@@ -166,8 +166,14 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
 .bt-icon{width:clamp(72px,7vw,96px);height:auto;border-radius:23%;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 20px 60px -10px rgba(47,107,255,.55)}
 .bt-name{margin-top:var(--s4);font:600 clamp(18px,1.6vw,22px)/1.2 var(--sans);color:var(--cream)}
 .bt-title{margin-top:var(--s4);font-size:clamp(34px,5.6vw,84px);line-height:1.02;text-transform:uppercase;color:var(--cream)}
-.built h2.bt-title em{color:transparent}
-.bt-text{max-width:36em;margin-top:var(--s5);font-size:clamp(17px,1.5vw,21px);line-height:1.55;color:var(--cream-mut)}
+.built h2.bt-title em{display:block;width:fit-content;margin-inline:auto;color:transparent}
+.bt-pitch{margin-top:var(--s5);font:600 clamp(20px,2vw,28px)/1.3 var(--sans);color:var(--cream)}
+.bt-text{max-width:36em;margin-top:var(--s4);font-size:clamp(17px,1.5vw,21px);line-height:1.55;color:var(--cream-mut)}
+.bt-solo{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:var(--s6)}
+.bt-solo-label{font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--qr-2)}
+.bt-steps{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:0;padding:0;list-style:none}
+.bt-steps li{display:inline-flex;white-space:nowrap;align-items:center;gap:8px;padding:9px 16px 9px 10px;border:1px solid rgba(126,162,255,.28);border-radius:999px;background:rgba(47,107,255,.1);font-size:15px;font-weight:500;color:var(--cream)}
+.bt-steps b{display:grid;place-items:center;min-width:26px;height:26px;padding:0 4px;border-radius:999px;background:linear-gradient(135deg,var(--qr),var(--qr-2));font-size:11.5px;font-weight:700;color:#08111f}
 .bt-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 28px;margin-top:var(--s6)}
 .bt-btn{background:var(--qr);color:#fff;box-shadow:0 12px 30px -12px rgba(47,107,255,.8)}.bt-btn:hover{background:#4b7fff}
 .built .chev-link{color:var(--qr-l)}
@@ -236,7 +242,7 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
   .bt-mac{width:calc(100% / 1.14)}.bt-phone{right:0;width:28%}.bt-stage{padding-bottom:10%}
   .bt-tile{min-height:0}.bt-art{min-height:160px}
 }
-@media (max-width:560px){.bt-cta .btn{width:100%}.bt-phone{width:31%}}
+@media (max-width:560px){.bt-cta .btn{width:100%}.bt-steps{gap:8px}.bt-steps li{padding:7px 13px 7px 8px;font-size:14px}.bt-phone{width:31%}}
 /* phone screens on a warm panel, staggered like an artboard row */
 .phones-panel{display:flex;justify-content:center;align-items:flex-start;gap:3%;height:100%;padding:5% 5% 0;overflow:hidden;background-color:var(--sunk);background-image:radial-gradient(rgba(23,18,15,.08) 1px,transparent 1.3px);background-size:18px 18px}
 .phones-panel img{width:16%;height:auto;border:5px solid var(--night);border-radius:20px;box-shadow:0 24px 40px -24px rgba(23,18,15,.55);transition:translate .6s var(--ease)}
