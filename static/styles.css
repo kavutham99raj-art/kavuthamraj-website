@@ -1480,3 +1480,30 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 @media (max-width:700px){.vd-lb-prev,.vd-lb-next{top:auto;bottom:16px;translate:none;width:44px;height:44px}.vd-lb-prev{left:16px}.vd-lb-next{right:16px}.vd-lb-stage{padding:64px 12px 84px}.vd-lb-stage img,.vd-lb-stage video{max-height:calc(100vh - 160px);max-height:calc(100dvh - 160px)}.vd-lb-cap{bottom:30px;padding:0 72px}}
 .you-on dialog.vd-lb,.you-on dialog.vd-lb *{cursor:auto!important}
 .you-on dialog.vd-lb button{cursor:pointer!important}
+
+/* Steadfast case, final polish: screens sit in a browser frame, cards lift on hover, grids reveal one card at a time,
+   and the chapter numbers and the statement carry the brand gradient. Motion stays off with reduced motion. */
+.theme-sf .mod-body .shot a,.theme-sf .x2u-img{position:relative;padding-top:30px;border-radius:14px;background:#fff;border:1px solid #E3E6EE;box-shadow:0 30px 60px -36px rgba(21,19,56,.38)}
+.theme-sf .mod-body .shot a::before,.theme-sf .x2u-img::before{content:"";position:absolute;top:11px;left:14px;width:8px;height:8px;border-radius:50%;background:#FF5F57;box-shadow:14px 0 #FEBC2E,28px 0 #28C840}
+.theme-sf .mod-body .shot a::after,.theme-sf .x2u-img::after{content:"steadfast.app";position:absolute;top:7px;left:50%;translate:-50% 0;padding:2px 14px;border-radius:6px;background:#F1F3F5;font-size:10.5px;color:#6A7178}
+.theme-sf .mod-body .shot img,.theme-sf .x2u-img img{border:0;border-top:1px solid #E9ECEF;border-radius:0 0 13px 13px;box-shadow:none}
+.theme-sf .x2u-img img{aspect-ratio:16/10.4}
+.theme-sf :is(.sf-cards li,.personas li,.journey li){transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.theme-sf :is(.sf-cards li,.personas li,.journey li):hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(21,19,56,.04),0 22px 40px -18px rgba(61,56,227,.28)}
+.theme-sf .sfc-ic,.theme-sf .st-ic{transition:transform .35s var(--ease)}
+.theme-sf .sf-cards li:hover .sfc-ic,.theme-sf .process.steps li:hover .st-ic{transform:scale(1.08) rotate(-4deg)}
+.js .theme-sf :is(.sf-cards,.personas ul,.journey,.process,.ia-cols)>li{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease),box-shadow .35s var(--ease)}
+.js .theme-sf :is(.sf-cards,.process,.journey).in>li,.js .theme-sf .in :is(.personas ul,.ia-cols,.journey)>li,.js .theme-sf .personas.in ul>li{opacity:1;transform:none}
+.theme-sf :is(.sf-cards,.personas ul,.journey,.process,.ia-cols)>li:nth-child(2){transition-delay:80ms}
+.theme-sf :is(.sf-cards,.personas ul,.journey,.process,.ia-cols)>li:nth-child(3){transition-delay:160ms}
+.theme-sf :is(.sf-cards,.personas ul,.journey,.process,.ia-cols)>li:nth-child(4){transition-delay:240ms}
+.theme-sf :is(.sf-cards,.personas ul,.journey,.process,.ia-cols)>li:nth-child(n+5){transition-delay:320ms}
+.theme-sf :is(.sf-cards,.personas ul,.journey,.process,.ia-cols)>li:hover{transition-delay:0ms}
+.theme-sf .cs-h2::before{display:table;margin-bottom:12px;padding:3px 10px;border-radius:999px;background:linear-gradient(92deg,#605BFF,#26C0E2);color:#fff;font-size:12px}
+.theme-sf .stmt-x em{background:linear-gradient(92deg,#605BFF,#1BA9C9,#B16FF3,#605BFF);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;animation:sf-sheen 8s linear infinite}
+@keyframes sf-sheen{to{background-position:300% 0}}
+.theme-sf .ch-stats dt{background:linear-gradient(180deg,#fff 30%,#9D99FF);-webkit-background-clip:text;background-clip:text}
+.theme-sf .mod-head>i{transition:transform .5s var(--ease)}
+.theme-sf .mod:hover .mod-head>i{transform:rotate(-6deg) scale(1.05)}
+@media (prefers-reduced-motion:reduce){html:not(.motion-ok) .theme-sf .stmt-x em{animation:none}html:not(.motion-ok) .theme-sf :is(.sf-cards,.personas ul,.journey,.process,.ia-cols)>li{opacity:1;transform:none;transition:none}}
+@media (max-width:560px){.theme-sf .mod-body .shot a,.theme-sf .x2u-img{padding-top:22px}.theme-sf .mod-body .shot a::before,.theme-sf .x2u-img::before{top:8px;left:10px;width:6px;height:6px;box-shadow:10px 0 #FEBC2E,20px 0 #28C840}.theme-sf .mod-body .shot a::after,.theme-sf .x2u-img::after{display:none}}
