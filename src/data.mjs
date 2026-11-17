@@ -151,6 +151,14 @@ export const projects = [
     summary: "A modern digital payment concept for individuals, teams and enterprises. Clean layouts, clear flows and a calm visual hierarchy.",
     case: "slay",
   },
+  {
+    key: "customerlabs",
+    title: "CustomerLabs: First-party data web app",
+    tags: ["Interview assignment", "Web App Design", "Branding"],
+    cover: "customerlabs.png",
+    summary: "A two-day interview assignment for CustomerLabs: a first-party data web app, from branding to screens.",
+    case: "customerlabs",
+  },
 ];
 
 export const experience = [
@@ -268,6 +276,23 @@ const erpScreens = [
 ];
 export const featured = [
   {
+    key: "steadfast", meta: ["Liffto Technologies", "AI SaaS", "2025"],
+    title: "AI does the work. *People stay in charge.*",
+    text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. As the only designer, I took Steadfast from founder sessions to a shipped product: five modules on one shell where AI agents and people share the work, with a clear signal wherever the AI needs a human.",
+    // No usage metrics exist for Steadfast yet; these are confirmed facts (it was built and used, one designer, five modules).
+    outcomes: [["Shipped", "built and used, from my designs"], ["Solo", "designer, founder sessions to handoff"], ["5", "AI modules on one shell"]],
+    visual: { src: "work/steadfast/hero.jpg", alt: "Steadfast: the Vortex lead list with AI winning scores, and Turing Sync asking a person to choose a database" },
+    href: "work/steadfast.html", cover: "steadfast.png",
+  },
+  {
+    key: "erp", meta: ["Sporfy", "Sports ERP", "Mobile"],
+    title: "Off the desktop. *Into the pocket.*",
+    text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
+    outcomes: [["Solo", "designer, from brief to developer handoff"], ["5", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],
+    visual: { phones: erpScreens },
+    href: "work/erp.html", cover: "erp-solution.png",
+  },
+  {
     key: "titan", meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
     title: "Stop the spinner. *Keep the work moving.*",
     text: "One slow table froze the whole back office. I audited every table and dashboard, won the PM over with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components. “App is stuck” reports dropped to zero.",
@@ -284,21 +309,12 @@ export const featured = [
     href: "work/cyberdine.html", cover: "cyberdine.png",
   },
   {
-    key: "steadfast", meta: ["Liffto Technologies", "AI SaaS", "2025"],
-    title: "AI does the work. *People stay in charge.*",
-    text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. As the only designer, I took Steadfast from founder sessions to a shipped product: five modules on one shell where AI agents and people share the work, with a clear signal wherever the AI needs a human.",
-    // No usage metrics exist for Steadfast yet; these are confirmed facts (it was built and used, one designer, five modules).
-    outcomes: [["Shipped", "built and used, from my designs"], ["Solo", "designer, founder sessions to handoff"], ["5", "AI modules on one shell"]],
-    visual: { src: "work/steadfast/hero.jpg", alt: "Steadfast: the Vortex lead list with AI winning scores, and Turing Sync asking a person to choose a database" },
-    href: "work/steadfast.html", cover: "steadfast.png",
-  },
-  {
-    key: "erp", meta: ["Sporfy", "Sports ERP", "Mobile"],
-    title: "Off the desktop. *Into the pocket.*",
-    text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
-    outcomes: [["Solo", "designer, from brief to developer handoff"], ["5", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],
-    visual: { phones: erpScreens },
-    href: "work/erp.html", cover: "erp-solution.png",
+    key: "educonnect", meta: ["Self-initiated", "EdTech", "iOS"],
+    title: "Tuition and courses. *One app.*",
+    text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
+    outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],
+    visual: { src: "work/educonnect/02.jpg", alt: "Educonnect on two iPhones: tuition and online courses, suggested teachers with chat, on a green brand background" },
+    href: "work/educonnect.html", cover: "educonnect.png",
   },
 ];
 export { erpScreens };

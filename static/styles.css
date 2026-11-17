@@ -1564,3 +1564,6 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 .theme-sf .mod:hover .mod-head>i{transform:rotate(-6deg) scale(1.05)}
 @media (prefers-reduced-motion:reduce){html:not(.motion-ok) .theme-sf .stmt-x em{animation:none}html:not(.motion-ok) .theme-sf :is(.sf-cards,.personas ul,.journey,.process,.ia-cols)>li{opacity:1;transform:none;transition:none}}
 @media (max-width:560px){.theme-sf .mod-body .shot a{padding-top:22px}.theme-sf .mod-body .shot a::before{top:8px;left:10px;width:6px;height:6px;box-shadow:10px 0 #FEBC2E,20px 0 #28C840}.theme-sf .mod-body .shot a::after{display:none}}
+
+/* long case page: sections far below the fold skip layout and paint until they near the screen */
+.theme-sf :is(.mod,.x2u,.dsk,.tspec,.palette,.fl-tabs,.sf-wrap,.cs-cta){content-visibility:auto;contain-intrinsic-size:auto 900px}

@@ -1,5 +1,6 @@
 import { framerCases } from "./framer-cases.mjs";
 import steadfast from "./steadfast-case.mjs";
+import customerlabs from "./customerlabs-case.mjs";
 import { writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
@@ -10,6 +11,7 @@ import {
 
 // Steadfast is written by hand in its own file rather than in the generated Framer export.
 framerCases.steadfast = steadfast;
+framerCases.customerlabs = customerlabs;
 
 const ROOT = fileURLToPath(new URL("../", import.meta.url));
 const STATIC = ROOT + "static/";
@@ -80,7 +82,7 @@ const abs = (p) => SITE + (p.startsWith("/") ? p : `/${p}`);
 const metaIf = (name, content) => (content ? `<meta name="${name}" content="${esc(content)}">\n` : "");
 const ldTag = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
 
-const head = ({ title, desc, path = "/", image = "og-image.jpg", imageAlt = "", imageSize = null, type = "website", noindex = false, ld = null }) => {
+const head = ({ title, desc, path = "/", image = "og-image.jpg", imageAlt = "", imageSize = null, type = "website", noindex = false, ld = null, preload = [] }) => {
   const r = path.startsWith("/work/") ? "../" : "";
   return `<!doctype html>
 <html lang="en">
@@ -104,7 +106,7 @@ ${ld ? ldTag(ld) + "\n" : ""}<meta name="theme-color" content="#f3efe8">
 <link rel="apple-touch-icon" href="${r}apple-touch-icon.png">
 <link rel="manifest" href="${r}site.webmanifest">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-${FONTS.map(([, , latin]) => `<link rel="preload" href="${GF + latin}" as="font" type="font/woff2" crossorigin>`).join("\n")}
+${[...FONTS.map(([, , latin]) => GF + latin), ...preload].map((u) => `<link rel="preload" href="${u}" as="font" type="font/woff2" crossorigin>`).join("\n")}
 <style>${fontFace}</style>
 <link rel="stylesheet" href="${r}styles.css?v=${cssV}">
 <script>document.documentElement.classList.add("js")</script>
@@ -350,8 +352,8 @@ ${header("")}
   <div class="wrap">
     <div class="sec-head">
       ${frame("01", "Selected work")}
-      <h2 class="krona h2 lg reveal">25+ shipped.<br> <em>Four, up close.</em></h2>
-      <p class="sec-lede reveal">Four picks from 25+ products: enterprise SaaS, restaurant ordering, an AI delivery platform and a sports ERP. Each case shows the problem, the decisions I made, and what changed.</p>
+      <h2 class="krona h2 lg reveal">25+ shipped.<br> <em>Five, up close.</em></h2>
+      <p class="sec-lede reveal">Five picks from 25+ products: an AI delivery platform, a sports ERP, enterprise SaaS, restaurant ordering and an education app. Each case shows the problem, the decisions I made, and what changed.</p>
     </div>
     <div class="cards">
       ${featured.map((f, i) => `<article class="card reveal" aria-labelledby="c-${f.key}">
@@ -440,7 +442,7 @@ ${header("")}
           <span class="concept-body"><strong>${esc(p.title)}</strong><span>${esc(p.tags.slice(0, 2).join(" · "))}</span></span>
           <i aria-hidden="true">↗</i>
         </a></li>`;
-      }).join("")}${privateCard()}</ul>
+      }).join("")}</ul>
     </div>
   </div>
 </section>
@@ -599,7 +601,7 @@ const durText = (d) => {
   const n = Number(m[1]), u = m[2].toLowerCase();
   return `${n} ${u}${n > 1 ? "s" : ""}`;
 };
-const isConcept = (c) => /self-initiated|concept/i.test(c.client || "") || /hour/i.test(c.duration || "") || /^[12] days?$/i.test(String(c.duration || "").trim()) && !/interview/i.test(c.client || "");
+const isConcept = (c) => /self-initiated|concept|interview/i.test(c.client || "") || /hour/i.test(c.duration || "") || /^[12] days?$/i.test(String(c.duration || "").trim()) && !/interview/i.test(c.client || "");
 // Cyberdine: the old and new ordering flows from the case text, replayed step by step (main.js), so the new flow is
 // sent while the old one is still waiting. Without JS or with reduced motion every step simply shows.
 const tapFlow = () => {
@@ -830,7 +832,7 @@ const SUMMARIES = {
   "sports-ecommerce": "A sports and fitness e-commerce storefront, designed in one week.",
   "next-messenger": "A concept for a cross-platform chat app for text, image, video and audio messages and stories.",
 };
-const ORDER = ["titan", "cyberdine", "steadfast", "erp", "payroll", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "educonnect", "m-music", "evento", "next-messenger", "slay"];
+const ORDER = ["steadfast", "erp", "titan", "cyberdine", "educonnect", "payroll", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "customerlabs", "m-music", "evento", "next-messenger", "slay"];
 
 const fcPage = (key) => {
   const c = framerCases[key], r = "../";
@@ -887,7 +889,7 @@ const fcPage = (key) => {
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;
   // With the outcome numbers shown, the TL;DR keeps only Problem and What I did.
   const tldr = c.tldr && (feat ? c.tldr.filter(([k]) => k !== "Outcome") : c.tldr);
-  const meta = (c.meta || [["Role", "UI/UX designer"], ["Client", c.client], ["Duration", durText(c.duration)], ["Type", concept ? "Concept, time-boxed" : /interview/i.test(c.client || "") ? "Time-boxed exercise" : "Client project"]]).filter(([, v]) => v);
+  const meta = (c.meta || [["Role", "UI/UX designer"], ["Client", c.client], ["Duration", durText(c.duration)], ["Type", /interview/i.test(c.client || "") ? "Time-boxed exercise" : concept ? "Concept, time-boxed" : "Client project"]]).filter(([, v]) => v);
   const path = `/work/${key}.html`, image = coverSrc ? coverSrc : `work/${thumb(proj.cover || key + ".png")}`;
   const pageTitle = `${title.replace(/^Case Study:\s*/i, "")} – ${concept ? "UI/UX Concept" : "UX Case Study"} | ${profile.brand}`;
   const pageDesc = clip(desc, 158);
@@ -898,7 +900,7 @@ const fcPage = (key) => {
       { "@type": "ListItem", position: 1, name: "Portfolio", item: abs("/") },
       { "@type": "ListItem", position: 2, name, item: abs(path) }] },
   ] };
-  return `${head({ title: pageTitle, desc: pageDesc, path, image, imageAlt: `${name}: ${concept ? "concept" : "case study"} by ${profile.brand}`, type: "article", ld })}
+  return `${head({ title: pageTitle, desc: pageDesc, path, image, imageAlt: `${name}: ${concept ? "concept" : "case study"} by ${profile.brand}`, type: "article", ld, preload: c.theme === "sf" ? ["pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk", "pxiEyp8kv8JHgFVrJJfecnFHGPc"].map((f) => `${GF}poppins/v24/${f}.woff2`) : [] })}
 ${header(r)}
 <main class="case${c.theme ? ` theme-${c.theme}` : ""}" id="main">
   ${c.hero ? caseHero(c, { r, name, h1, summary, eyebrow, feat }) : `<div class="wrap case-head canvas-pad">
@@ -961,10 +963,11 @@ rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT + "work", { recursive: true });
 writeFileSync(OUT + "index.html", home());
 for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, fcPage(k));
-if (hasPrivate) cpSync(STATIC + "private/assignment.enc", OUT + "assignment.enc");
 writeFileSync(OUT + "404.html", notFound());
 const ICONS = ["favicon.ico", "favicon-32.png", "favicon-96.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "og-image.jpg"];
-for (const f of ["styles.css", "main.js", "profile.webp", "profile-portrait.jpg", ...ICONS]) cpSync(STATIC + f, OUT + f);
+for (const f of ["main.js", "profile.webp", "profile-portrait.jpg", ...ICONS]) cpSync(STATIC + f, OUT + f);
+// the deployed stylesheet drops comments and spare whitespace (strings and url()s in it hold no such runs)
+writeFileSync(OUT + "styles.css", readFileSync(STATIC + "styles.css", "utf8").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").replace(/\s*([{};,>])\s*/g, "$1").replace(/;}/g, "}").trim());
 // resume.pdf stays published too, so links shared before the rename keep working.
 if (hasResume) for (const f of [resumeFile, "resume.pdf"]) cpSync(STATIC + "resume.pdf", OUT + f);
 cpSync(STATIC + "logos", OUT + "logos", { recursive: true });
