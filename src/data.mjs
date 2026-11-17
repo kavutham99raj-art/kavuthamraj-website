@@ -51,6 +51,14 @@ export const projects = [
     case: "cyberdine",
   },
   {
+    key: "steadfast",
+    title: "Steadfast: AI service-delivery platform",
+    tags: ["UX Case Study", "AI product", "B2B SaaS"],
+    cover: "steadfast.png",
+    summary: "AI does the work. People stay in charge. Five modules where AI agents and people take a software deal from the first lead to delivered code.",
+    case: "steadfast",
+  },
+  {
     key: "payroll",
     title: "Payroll Module for Sports ERP",
     tags: ["Case study", "Payroll", "Accounts"],
@@ -160,7 +168,7 @@ export const experience = [
     team: "Founding team · design lead for 3 products on one shared design system · sole designer on Cyberdine",
     tags: ["Founding team", "Hospitality", "AI SaaS", "E-commerce"],
     dates: "Nov 2024 to Jul 2025",
-    note: "Led UI/UX from idea to launch for 3 products on one shared Figma design system. Sole designer on Cyberdine, QR ordering and billing for restaurants. On Steadfast, an AI client-management app, designed how staff review and correct the AI's output.",
+    note: "Led UI/UX from idea to launch for 3 products on one shared Figma design system. Sole designer on Cyberdine, QR ordering and billing for restaurants. On Steadfast, an AI service-delivery platform, designed how staff review and correct the AI's output.",
   },
   {
     role: "UI/UX Designer",
@@ -274,6 +282,15 @@ export const featured = [
     outcomes: [["~235", "screens across two apps, sole designer"], ["15", "restaurants live at peak"], ["~600", "orders a day at peak"]],
     visual: { src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
     href: "work/cyberdine.html", cover: "cyberdine.png",
+  },
+  {
+    key: "steadfast", meta: ["Liffto Technologies", "AI SaaS", "2025"],
+    title: "AI does the work. *People stay in charge.*",
+    text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. From a business analyst's requirements, I designed Steadfast: five modules on one shell where AI agents and people share the same work, with a clear signal wherever the AI needs a human.",
+    // No outcome metrics exist for Steadfast, so these are facts of the design itself.
+    outcomes: [["5", "modules, from first lead to delivered code"], ["8", "apps in one colour-coded switcher"], ["1", "design system shared by every module"]],
+    visual: { src: "work/steadfast/hero.jpg", alt: "Steadfast: the Vortex lead list with AI winning scores, and Turing Sync asking a person to choose a database" },
+    href: "work/steadfast.html", cover: "steadfast.png",
   },
   {
     key: "erp", meta: ["Sporfy", "Sports ERP", "Mobile"],

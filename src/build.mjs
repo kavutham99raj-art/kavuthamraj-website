@@ -1,4 +1,5 @@
 import { framerCases } from "./framer-cases.mjs";
+import steadfast from "./steadfast-case.mjs";
 import { writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
@@ -6,6 +7,9 @@ import {
   site, profile, projects, experience, skills, education, companies,
   heroCopy, proof, strengths, featured, built, testimonials, recommendationsUrl, designWork,
 } from "./data.mjs";
+
+// Steadfast is written by hand in its own file rather than in the generated Framer export.
+framerCases.steadfast = steadfast;
 
 const ROOT = fileURLToPath(new URL("../", import.meta.url));
 const STATIC = ROOT + "static/";
@@ -343,8 +347,8 @@ ${header("")}
   <div class="wrap">
     <div class="sec-head">
       ${frame("01", "Selected work")}
-      <h2 class="krona h2 lg reveal">25+ shipped.<br> <em>Three, up close.</em></h2>
-      <p class="sec-lede reveal">Three picks from 25+ products: enterprise SaaS, restaurant ordering and a sports ERP. Each case shows the problem, the decisions I made, and what changed.</p>
+      <h2 class="krona h2 lg reveal">25+ shipped.<br> <em>Four, up close.</em></h2>
+      <p class="sec-lede reveal">Four picks from 25+ products: enterprise SaaS, restaurant ordering, an AI delivery platform and a sports ERP. Each case shows the problem, the decisions I made, and what changed.</p>
     </div>
     <div class="cards">
       ${featured.map((f, i) => `<article class="card reveal" aria-labelledby="c-${f.key}">
@@ -613,7 +617,7 @@ const SUMMARIES = {
   "sports-ecommerce": "A sports and fitness e-commerce storefront, designed in one week.",
   "next-messenger": "A concept for a cross-platform chat app for text, image, video and audio messages and stories.",
 };
-const ORDER = ["titan", "cyberdine", "erp", "payroll", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "educonnect", "m-music", "evento", "next-messenger", "slay"];
+const ORDER = ["titan", "cyberdine", "steadfast", "erp", "payroll", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "educonnect", "m-music", "evento", "next-messenger", "slay"];
 
 const fcPage = (key) => {
   const c = framerCases[key], r = "../";
@@ -640,12 +644,19 @@ const fcPage = (key) => {
     else units.push(tall ? { t: "tall", items: [b] } : b);
   }
   // Alt text names the section a screen sits in; on pages without sections, screens are numbered.
-  const imgCount = blocks.filter((b) => b.t === "img").length;
+  const imgCount = blocks.reduce((k, b) => k + (b.t === "img" ? 1 : b.t === "pair" ? b.items.length : 0), 0);
   let section = "", n = 0;
-  const alt = () => (n++, section ? `${name}: ${section}` : `${name}: screen ${n} of ${imgCount}`);
-  const shot = (b, sizes = WIDE) => `<a href="${r}${esc(b.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic(r, b.src, sizes)} width="${b.w}" height="${b.h}" alt="${esc(alt())}" loading="lazy" decoding="async">${newTab}</a>`;
+  const alt = (cap) => (n++, cap ? `${name}: ${cap}` : section ? `${name}: ${section}` : `${name}: screen ${n} of ${imgCount}`);
+  const shot = (b, sizes = WIDE) => `<a href="${r}${esc(b.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic(r, b.src, sizes)} width="${b.w}" height="${b.h}" alt="${esc(alt(b.cap))}" loading="lazy" decoding="async">${newTab}</a>`;
+  const cap = (b) => (b.cap ? `<figcaption>${esc(b.cap)}</figcaption>` : "");
   const render = (b) =>
-    b.t === "img" ? `<figure class="shot reveal">${shot(b)}</figure>`
+    b.t === "img" ? `<figure class="shot reveal">${shot(b)}${cap(b)}</figure>`
+    // two screens side by side, each with its caption (a wireframe and the screen it became, or a before and after)
+    : b.t === "pair" ? `<div class="shot-pair reveal">${b.items.map((i) => `<figure class="shot">${shot(i, "(max-width:900px) 100vw, 580px")}${cap(i)}</figure>`).join("")}</div>`
+    // the stages of one journey, each tagged with its module's colour
+    : b.t === "journey" ? `<ol class="journey reveal">${b.items.map((i, k) => `<li style="--c:${esc(i.c)}"><span class="journey-n">${String(k + 1).padStart(2, "0")}</span><strong>${esc(i.m)}</strong><p>${esc(i.x)}</p></li>`).join("")}</ol>`
+    : b.t === "palette" ? `<ul class="palette reveal">${b.items.map(([hex, l]) => `<li><i style="background:${esc(hex)}"></i><strong>${esc(l)}</strong><code>${esc(hex)}</code></li>`).join("")}</ul>`
+    : b.t === "note" ? `<p class="cs-note reveal">${esc(b.x)}</p>`
     : b.t === "tall" ? `<div class="shot-grid reveal">${b.items.map((i) => `<figure class="shot">${shot(i, "(max-width:900px) 50vw, 400px")}</figure>`).join("")}</div>`
     : b.t === "h2" ? ((section = b.x), `<h2 class="krona cs-h2 reveal" id="${slug(b.x)}">${esc(b.x)}</h2>`)
     : b.t === "h3" ? `<h3 class="cs-h3 reveal">${esc(b.x)}</h3>`

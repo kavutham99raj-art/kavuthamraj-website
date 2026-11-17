@@ -35,6 +35,9 @@
  "work/covers/600/sports-ecommerce.jpg": [
   600
  ],
+ "work/covers/600/steadfast.jpg": [
+  600
+ ],
  "work/covers/600/titan.jpg": [
   600
  ],
@@ -83,6 +86,10 @@
   1200
  ],
  "work/covers/sports-ecommerce.jpg": [
+  800,
+  1200
+ ],
+ "work/covers/steadfast.jpg": [
   800,
   1200
  ],
@@ -490,6 +497,140 @@
   800,
   1200,
   1600
+ ],
+ "work/steadfast/axiom-editor.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/axiom-modules.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/axiom-pick-template.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/axiom-templates.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/cadence-dashboard.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/cadence-sprints.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/cadence-team.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/ds-buttons.png": [
+  800,
+  1200,
+  1600,
+  2400
+ ],
+ "work/steadfast/ds-tabs.png": [
+  800,
+  1200,
+  1600,
+  2290
+ ],
+ "work/steadfast/ds-tag.png": [
+  800,
+  1200,
+  1600,
+  2400
+ ],
+ "work/steadfast/ds-text-field.png": [
+  800,
+  1200,
+  1600,
+  2400
+ ],
+ "work/steadfast/hero.jpg": [
+  800,
+  1200,
+  1600
+ ],
+ "work/steadfast/prism-estimation.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/prism-pricing.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/prism-proposal.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/prism-studio-sizing.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/turing-quality.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/turing-setup.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/turing-sync.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/vortex-add-lead.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/vortex-ai-filled.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/vortex-ai-processing.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/vortex-ai-scoring.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/vortex-leads.png": [
+  800,
+  1200,
+  1366
+ ],
+ "work/steadfast/wf-sparks.png": [
+  800,
+  1200,
+  1440
+ ],
+ "work/steadfast/wf-sprints.png": [
+  800,
+  1200,
+  1440
  ],
  "work/titan-story/01.jpg": [
   800,
