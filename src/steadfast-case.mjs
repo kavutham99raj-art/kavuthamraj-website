@@ -121,9 +121,9 @@ export default {
     ] },
 
     { t: "h2", x: "Wireframes" },
-    { t: "compare", ratio: "1366/900", cap: "Drag to compare. The list structure survived; the final adds stat cards, a high-priority rule and AI score pills.",
+    { t: "compare", ratio: "1366/886", cap: "Drag to compare the Prism Sparks list. The wireframe's columns carried straight into the final, which adds colour-coded status and AI score pills.",
       before: { src: S + "wf-sparks.png", w: 1440, h: 850, alt: "Wireframe of the Sparks list in greyscale" },
-      after: { src: S + "vortex-leads.png", w: 1366, h: 956, alt: "Final UI of the Sparks list in Vortex, with stat cards, a high-priority rule and AI winning score pills" } },
+      after: { src: S + "prism-sparks.png", w: 1366, h: 886, alt: "Final UI of the Sparks list in Prism, with status pills and AI winning score pills" } },
 
     { t: "h2", x: "Design" },
     { t: "module", n: "01", m: "Vortex", c: "#605BFF", title: "A lead in seconds", x: "Sales drops in whatever they have; AI fills the form and scores the deal.", items: [
