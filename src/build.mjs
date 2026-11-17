@@ -779,7 +779,7 @@ const sf = {
       <header class="mod-head"><i aria-hidden="true">${esc(b.m[0])}</i><div><p class="label">Module ${esc(b.n)} · ${esc(b.m)}</p><h3 id="mod-${slug(b.m)}">${esc(b.title)}</h3><p>${esc(b.x)}</p>${b.ba ? `<p class="mod-ba"><span><b>Before</b>${esc(b.ba[0])}</span><i aria-hidden="true">${ico("flow")}</i><span><b>Now</b>${esc(b.ba[1])}</span></p>` : ""}</div></header>
       <div class="mod-body">${b.items.map((i) => b.render(i)).join("")}</div>
     </section>`,
-  cards: (b) => `<ul class="sf-cards${b.tone ? ` is-${b.tone}` : ""} n${b.items.length} reveal">${b.items.map(([i, t, x], k) => `<li><span class="sfc-ic">${ico(i)}</span><span class="sfc-t"><strong>${esc(t)}</strong><span>${esc(x)}</span></span></li>`).join("")}</ul>`,
+  cards: (b) => `<ul class="sf-cards${b.tone ? ` is-${b.tone}` : ""} n${b.items.length} reveal">${b.items.map(([i, t, x, href]) => `<li${href ? ' class="has-link"' : ""}><span class="sfc-ic">${ico(i)}</span><span class="sfc-t"><strong>${href ? `<a href="${esc(href)}">${esc(t)}</a>` : esc(t)}</strong><span>${esc(x)}</span>${href ? `<small class="sfc-go" aria-hidden="true">See it ${ico("arrowUp")}</small>` : ""}</span></li>`).join("")}</ul>`,
   personas: (b) => `<figure class="personas reveal"><ul>${b.items.map((p) => `<li style="--c:${esc(p.c)}">
         <p class="pr-head"><i aria-hidden="true">${esc(p.m[0])}</i><span><strong>${esc(p.r)}</strong><small>Works in ${esc(p.m)}</small></span></p>
         <dl><div class="pr-goal">${ico("target")}<dt>Goal</dt><dd>${esc(p.goal)}</dd></div><div class="pr-pain">${ico("alert")}<dt>Pain</dt><dd>${esc(p.pain)}</dd></div><div class="pr-ai">${ico("spark")}<dt>AI</dt><dd>${esc(p.ai)}</dd></div></dl>
@@ -976,7 +976,7 @@ const fcPage = (key) => {
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
     : b.t === "module" ? sf.module({ ...b, render }, r)
     // detail for designers, closed by default so the main story stays short
-    : b.t === "fold" ? `<details class="fold reveal"><summary><span class="fold-ic" aria-hidden="true">${ico("layers")}</span><span class="fold-t"><b>${esc(b.title)}</b><small>${esc(b.x)}</small></span><span class="fold-btn"><span class="fold-open">Open</span><span class="fold-close">Close</span>${ico("arrowUp")}</span></summary><div class="fold-body">${b.blocks.map(render).join("\n")}</div></details>`
+    : b.t === "fold" ? `<details class="fold reveal"${b.id ? ` id="${esc(b.id)}"` : ""}><summary><span class="fold-ic" aria-hidden="true">${ico("layers")}</span><span class="fold-t"><b>${esc(b.title)}</b><small>${esc(b.x)}</small></span><span class="fold-btn"><span class="fold-open">Open it</span><span class="fold-close">Close</span>${ico("arrowUp")}</span></summary><div class="fold-body">${b.blocks.map(render).join("\n")}</div></details>`
     : sf[b.t] ? sf[b.t](b, r)
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;
   // With the outcome numbers shown, the TL;DR keeps only Problem and What I did.

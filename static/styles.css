@@ -1989,3 +1989,27 @@ p,li,dd{text-wrap:pretty}
   .est-more[aria-expanded=true]::after{content:"−"}
   .est-g:not(.is-open) .est-row{display:none}
 }
+
+/* the 90-second decisions: each card is one link to where the decision shows */
+.sf-cards li.has-link{position:relative;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.sf-cards li.has-link a{color:inherit;text-decoration:none}
+.sf-cards li.has-link a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.sf-cards li.has-link:hover{transform:translateY(-4px);box-shadow:0 16px 32px -16px rgba(21,19,56,.6)}
+.sf-cards li.has-link:focus-within{outline:2px solid #8E8AFF;outline-offset:2px}
+.sfc-go{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:13px;font-weight:600;color:#B8B5FF}
+.sfc-go svg{width:14px;height:14px;transform:rotate(180deg);transition:transform .3s var(--ease)}
+.sf-cards li.has-link:hover .sfc-go svg{transform:rotate(180deg) translateY(-3px)}
+/* section intros: one short lead line under each heading */
+.theme-sf .cs-h2+.cs-p{max-width:60ch;margin-top:-8px;margin-bottom:var(--s6);font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:#4B4A6B}
+
+/* "See the full process": a pulse ring and a nudging arrow say it opens, until someone opens it */
+.fold-btn{position:relative}
+.js .fold.in:not([open]) .fold-btn::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(96,91,255,.55);animation:fold-ring 2.2s var(--ease) infinite}
+.js .fold.in:not([open]) .fold-btn svg{animation:fold-nudge 2.2s var(--ease) infinite}
+.js .fold.in:not([open])>summary{animation:fold-glow 2.2s ease-in-out infinite}
+.fold:not([open])>summary:hover .fold-btn{background:#3D38E3}
+@keyframes fold-ring{0%{box-shadow:0 0 0 0 rgba(96,91,255,.55)}70%,100%{box-shadow:0 0 0 14px rgba(96,91,255,0)}}
+@keyframes fold-nudge{0%,40%,100%{transform:rotate(180deg) translateY(0)}20%{transform:rotate(180deg) translateY(-4px)}}
+@keyframes fold-glow{0%,100%{box-shadow:none}50%{box-shadow:inset 0 0 0 2px rgba(96,91,255,.35)}}
+.motion-off .fold :is(.fold-btn,.fold-btn svg,summary),.motion-off .fold .fold-btn::before{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){html:not(.motion-ok) .fold :is(summary,.fold-btn svg),html:not(.motion-ok) .fold .fold-btn::before{animation:none}}

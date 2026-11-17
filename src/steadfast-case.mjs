@@ -48,7 +48,17 @@ export default {
       after: ["One place for all five steps", "AI does the typing and the maths", "A person checks and approves every AI step"],
     },
 
+    { t: "h2", x: "Four decisions, in 90 seconds" },
+    { t: "p", x: "Short on time? These four choices shaped the whole product. Each one links to where you can see it." },
+    { t: "cards", items: [
+      ["layout", "One shell, colour-coded apps", "Always know which tool you're in.", "#the-five-steps-screen-by-screen"],
+      ["activity", "AI shown as a process", "Progress and logs, never a frozen screen.", "#mod-vortex"],
+      ["hand", "“Needs a human” is a state", "Highlighted, counted, sorted to the top.", "#what-if-the-ai-gets-it-wrong"],
+      ["bot", "AI agents with names", "Clear owners on a shared board.", "#mod-cadence"],
+    ] },
+
     { t: "h2", x: "What was going wrong" },
+    { t: "p", x: "Every client went through five tools, and the same details were typed again at each one." },
     { t: "cards", tone: "pain", items: [
       ["keyboard", "Typing everything by hand", "Client details copied from emails, PDFs and calls."],
       ["fileGap", "Plans full of holes", "Missing and repeated requirements."],
@@ -59,6 +69,7 @@ export default {
     { t: "statement", kicker: "The idea", x: "Let AI do the boring work, and let a person *see, fix and approve* every step." },
 
     { t: "h2", x: "The five steps, screen by screen" },
+    { t: "p", x: "One app per step, all in one place. Each shows what changed for the person using it." },
     { t: "module", n: "01", ba: ["Typed by hand from emails and calls", "AI fills it from what sales already has"], m: "Vortex", c: "#605BFF", title: "Win the client: a new lead in seconds", x: "Sales pastes an email or a PDF. The AI fills in the form and says how likely the deal is to win.", items: [
       { t: "leadDemo", prompt: "Brief from Northwind Pay, a fintech company: a payments app for small shops, about 1.5M. Contact Priya Raman, Head of Product. Proposal due 30 May.", file: "northwind-rfp.pdf",
         fields: [["Client name", "Northwind Pay"], ["Vertical", "Fintech"], ["Deal size", "1.5M"], ["Contact person", "Priya Raman"], ["Lead source", "RFP"], ["Due date", "30 May"]],
@@ -127,15 +138,7 @@ export default {
       ["history", "Who changed what?", "Every action is logged."],
     ] },
 
-    { t: "h2", x: "The big design choices" },
-    { t: "cards", items: [
-      ["layout", "One shell, colour-coded apps", "Always know which tool you're in."],
-      ["activity", "AI shown as a process", "Progress and logs, never a frozen screen."],
-      ["hand", "“Needs a human” is a state", "Highlighted, counted, sorted to the top."],
-      ["bot", "AI agents with names", "Clear owners on a shared board."],
-    ] },
-
-    { t: "fold", title: "See the full process", x: "Research, personas, structure, flows and the design system.", blocks: [
+    { t: "fold", id: "full-process", title: "See the full process", x: "Research, personas, structure, flows and the design system.", blocks: [
       { t: "h3", x: "How I worked" },
       { t: "process", items: [
         ["search", "Understand", "Founders, requirements, competitors"],
@@ -208,6 +211,7 @@ export default {
     ] },
 
     { t: "h2", x: "What I delivered and learned" },
+    { t: "p", x: "What I handed over, and what I'd do differently next time." },
     { t: "wrap",
       did: [
         "The structure and key flows for five apps",
