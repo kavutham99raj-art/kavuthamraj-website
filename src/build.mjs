@@ -723,9 +723,10 @@ const sf = {
       <div class="fc-head"><p class="label">Click through a task's life</p><span class="tf-nav"><button type="button" class="flow-play" data-prev aria-label="Previous state">←</button><button type="button" class="flow-play" data-next aria-label="Next state">→</button></span></div>
       <ol class="tf-states">${b.states.map((s, i) => `<li><button type="button" class="tf-s is-${s.who}" aria-pressed="${i === 0}" data-i="${i}" data-owner="${esc(s.owner)}" data-x="${esc(s.x)}">${esc(s.n)}</button></li>`).join("")}</ol>
       <div class="tf-card is-${b.states[0].who}" aria-live="polite">
-        <p class="tf-id">${esc(b.task.id)} · <span data-state>${esc(b.states[0].n)}</span></p>
-        <strong>${esc(b.task.t)}</strong>
-        <p class="tf-owner"><i aria-hidden="true">${b.states[0].who === "ai" ? "AI" : b.states[0].who === "human" ? "BB" : "··"}</i><span data-owner>${esc(b.states[0].owner)}</span></p>
+        <p class="tf-top"><span class="tf-type" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4.5 2.5h7a1 1 0 0 1 1 1v10l-4.5-2.8L3.5 13.5v-10a1 1 0 0 1 1-1z"/></svg></span><span class="tf-id">${esc(b.task.id)}</span><span class="tf-pill" data-state>${esc(b.states[0].n)}</span></p>
+        <strong class="tf-title">${esc(b.task.t)}</strong>
+        <ul class="tf-tags">${(b.task.tags || []).map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+        <div class="tf-foot"><span class="tf-av" aria-hidden="true">+</span><span class="tf-who"><small>Owner</small><span data-owner>${esc(b.states[0].owner)}</span></span></div>
         <p class="tf-x" data-x>${esc(b.states[0].x)}</p>
       </div>
       <figcaption>${esc(b.cap)}</figcaption>

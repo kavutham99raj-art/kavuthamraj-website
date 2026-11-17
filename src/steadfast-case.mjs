@@ -153,7 +153,7 @@ export default {
     ] },
 
     { t: "module", n: "05", m: "Cadence", c: "#FB8050", title: "AI agents on the team", x: "Agents and people share one board, and every state says who owns the task.", items: [
-      { t: "taskFlow", task: { id: "PLTX-12", t: "As a user I need to share dashboards with clients" }, cap: "The task flow from the requirements, rebuilt in code. Each state names who owns the task.", states: [
+      { t: "taskFlow", task: { id: "PLTX-12", t: "As a user I need to share dashboards with clients", tags: ["UI Screens", "API"] }, cap: "The task flow from the requirements, rebuilt in code. Each state names who owns the task.", states: [
         { n: "Unassigned", who: "wait", owner: "Nobody yet: AI assigns it by default", x: "New from the backlog. Unless a person steps in, the AI picks the owner, human or agent." },
         { n: "In progress · AI", who: "ai", owner: "AI agent AG PM 001", x: "An AI agent works the task and logs every step." },
         { n: "Pending · human", who: "human", owner: "Bonnie Barstow, product manager", x: "The AI needs a person. The card is highlighted and jumps to the top of its column." },

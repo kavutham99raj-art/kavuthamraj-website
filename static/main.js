@@ -601,7 +601,7 @@ const onScroll = (fn) => {
 
   document.querySelectorAll("[data-tf]").forEach((tf) => {
     const btns = [...tf.querySelectorAll(".tf-s")], card = tf.querySelector(".tf-card");
-    const state = card.querySelector("[data-state]"), owner = card.querySelector("[data-owner]"), x = card.querySelector("[data-x]"), av = card.querySelector(".tf-owner i");
+    const state = card.querySelector("[data-state]"), owner = card.querySelector("[data-owner]"), x = card.querySelector("[data-x]"), av = card.querySelector(".tf-av");
     let cur = 0;
     const show = (i) => {
       cur = (i + btns.length) % btns.length;
@@ -609,7 +609,7 @@ const onScroll = (fn) => {
       btns.forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
       card.className = `tf-card is-${who}`;
       state.textContent = b.textContent; owner.textContent = b.dataset.owner; x.textContent = b.dataset.x;
-      av.textContent = who === "ai" ? "AI" : who === "human" ? b.dataset.owner.split(/[ ,]/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase() : "··";
+      av.textContent = who === "ai" ? "AI" : who === "human" ? b.dataset.owner.split(/[ ,]/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase() : who === "done" ? "✓" : "+";
     };
     btns.forEach((b, i) => b.addEventListener("click", () => show(i)));
     tf.querySelector("[data-prev]").addEventListener("click", () => show(cur - 1));
