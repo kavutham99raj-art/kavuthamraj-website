@@ -1601,5 +1601,5 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 .hero-cred img{width:26px;height:26px;border-radius:7px;object-fit:cover}
 .card h3,.hero-lead{text-transform:none;letter-spacing:-.02em}
 /* product logo in place of the company name and years */
-.prod-logo{display:inline-flex;align-items:center;height:52px;padding:8px 14px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 16px -12px rgba(23,18,15,.35)}
-.prod-logo img{display:block;height:34px;width:auto;border-radius:8px}
+.prod-logo{display:flex;align-items:center;min-height:40px;margin-bottom:4px}
+.prod-logo img{display:block;height:auto;width:auto;max-height:40px;max-width:180px;object-fit:contain}

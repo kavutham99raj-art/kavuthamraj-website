@@ -314,7 +314,7 @@ export const featured = [
   },
   {
     key: "educonnect", name: "Educonnect", what: "Tuition and online-course app", how: "Students find tutors or courses, chat with teachers and share posts.",
-    logo: "logos/products/educonnect.png", meta: ["Self-initiated", "EdTech", "iOS"],
+    meta: ["Self-initiated", "EdTech", "iOS"],
     title: "Tuition and courses. *One app.*",
     text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
     outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],

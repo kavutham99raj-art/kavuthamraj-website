@@ -357,7 +357,7 @@ ${header("")}
         <div class="card-visual${f.visual.phones ? " is-phones" : ""}">${visual(f.visual)}</div>
         <div class="card-copy">
           <div>
-            <p class="prod-logo"><img src="${esc(withVer(f.logo))}" alt="${esc(f.name)} logo" height="34" loading="lazy" decoding="async"></p>
+            ${f.logo ? `<p class="prod-logo"><img src="${esc(withVer(f.logo))}" alt="${esc(f.name)} logo" loading="lazy" decoding="async"></p>` : ""}
             <p class="card-meta label"><span>0${i + 1}</span>${f.meta.slice(1).map(esc).join(" · ")}</p>
             <p class="card-prod"><b>${esc(f.name)}</b><span>${esc(f.what)}</span></p>
             <h3 id="c-${f.key}"><a class="card-link" href="${esc(f.href)}">${rich(f.title)}</a></h3>
@@ -904,7 +904,7 @@ ${header(r)}
   ${c.hero ? caseHero(c, { r, name, h1, summary, eyebrow, feat }) : `<div class="wrap case-head canvas-pad">
     <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
     <p class="frame rise"><span>${String(keys.indexOf(key) + 1).padStart(2, "0")}</span> ${eyebrow.map(esc).join(" · ")}</p>
-    ${feat ? `<p class="prod-logo rise" style="--d:40ms"><img src="${r}${esc(withVer(feat.logo))}" alt="${esc(feat.name)} logo" height="34" decoding="async"></p>` : ""}
+    ${feat && feat.logo ? `<p class="prod-logo rise" style="--d:40ms"><img src="${r}${esc(withVer(feat.logo))}" alt="${esc(feat.name)} logo" decoding="async"></p>` : ""}
     ${feat ? `<p class="case-prod rise" style="--d:60ms"><b>${esc(feat.name)}</b><span>${esc(feat.what)}</span></p>` : ""}
     <h1 class="case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
     ${summary && summary !== plain(h1) ? `<p class="case-sum rise" style="--d:160ms">${esc(summary)}</p>` : ""}
