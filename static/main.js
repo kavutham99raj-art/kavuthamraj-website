@@ -529,3 +529,112 @@ const onScroll = (fn) => {
     lb.querySelector(".vd-lb-x").focus({ preventScroll: true });
   }));
 })();
+
+/* Steadfast case: swimlane flow charts play step by step; the add-a-lead demo, the wireframe slider, the task-flow
+   stepper and the estimation model respond to input. Without JS everything shows its first, complete state. */
+(() => {
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  document.querySelectorAll("[data-fc]").forEach((fc) => {
+    const btn = fc.querySelector(".flow-play"), nodes = [...fc.querySelectorAll(".fc-node")];
+    if (reduceMotion) return;
+    btn.hidden = false;
+    let timer = 0;
+    const play = () => {
+      clearInterval(timer);
+      fc.classList.add("is-playing");
+      nodes.forEach((n) => n.classList.remove("on", "hit"));
+      let i = 0;
+      timer = setInterval(() => {
+        const n = nodes[i++];
+        n.classList.add("on", "hit");
+        setTimeout(() => n.classList.remove("hit"), 420);
+        if (i >= nodes.length) { clearInterval(timer); setTimeout(() => fc.classList.remove("is-playing"), 600); }
+      }, 650);
+    };
+    btn.addEventListener("click", play);
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.4 });
+    io.observe(fc);
+  });
+
+  document.querySelectorAll("[data-lead]").forEach((demo) => {
+    const run = demo.querySelector("[data-run]"), prompt = demo.querySelector("[data-prompt]"), text = prompt.textContent;
+    const prog = demo.querySelector("[data-prog]"), pct = demo.querySelector("[data-pct]"), msg = demo.querySelector("[data-msg]");
+    const form = demo.querySelector("[data-form]"), submit = form.querySelector("button"), result = demo.querySelector("[data-result]");
+    const inputs = [...form.querySelectorAll("input")];
+    run.hidden = false;
+    let token = 0;
+    const setP = (p) => { prog.style.setProperty("--p", `${p}%`); pct.textContent = `${p}%`; };
+    const go = async () => {
+      const me = ++token;
+      run.disabled = true; submit.disabled = true; result.textContent = "";
+      inputs.forEach((i) => { i.value = ""; i.parentElement.classList.remove("is-ai", "is-you"); });
+      if (!reduceMotion) {
+        demo.classList.add("is-typing"); prompt.textContent = "";
+        for (let k = 0; k < text.length && me === token; k += 3) { prompt.textContent = text.slice(0, k + 3); await wait(18); }
+        demo.classList.remove("is-typing");
+      }
+      prompt.textContent = text;
+      msg.textContent = "Smart AI in action! Reading your files";
+      for (let p = 0; p <= 100 && me === token; p += reduceMotion ? 100 : 5) { setP(p); await wait(reduceMotion ? 0 : 60); }
+      if (me !== token) return;
+      msg.textContent = "Done. Check the fields, then submit";
+      for (const i of inputs) { i.value = i.dataset.v; i.parentElement.classList.add("is-ai"); if (!reduceMotion) await wait(180); }
+      submit.disabled = false; run.disabled = false; run.textContent = "Run again";
+    };
+    run.addEventListener("click", go);
+    inputs.forEach((i) => i.addEventListener("input", () => {
+      const l = i.parentElement;
+      if (l.classList.contains("is-ai") || l.classList.contains("is-you")) { l.classList.remove("is-ai"); l.classList.add("is-you"); }
+    }));
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const edited = inputs.filter((i) => i.parentElement.classList.contains("is-you")).length;
+      result.innerHTML = `Lead added${edited ? `, ${edited} field${edited > 1 ? "s" : ""} corrected by you` : ""}. AI winning score <b>72%</b>`;
+      submit.disabled = true;
+    });
+  });
+
+  document.querySelectorAll("[data-cmp]").forEach((c) => {
+    const stage = c.querySelector(".cmp-stage"), range = c.querySelector("input");
+    range.addEventListener("input", () => stage.style.setProperty("--x", `${range.value}%`));
+  });
+
+  document.querySelectorAll("[data-tf]").forEach((tf) => {
+    const btns = [...tf.querySelectorAll(".tf-s")], card = tf.querySelector(".tf-card");
+    const state = card.querySelector("[data-state]"), owner = card.querySelector("[data-owner]"), x = card.querySelector("[data-x]"), av = card.querySelector(".tf-owner i");
+    let cur = 0;
+    const show = (i) => {
+      cur = (i + btns.length) % btns.length;
+      const b = btns[cur], who = [...b.classList].find((k) => k.startsWith("is-")).slice(3);
+      btns.forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
+      card.className = `tf-card is-${who}`;
+      state.textContent = b.textContent; owner.textContent = b.dataset.owner; x.textContent = b.dataset.x;
+      av.textContent = who === "ai" ? "AI" : who === "human" ? b.dataset.owner.split(/[ ,]/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase() : "··";
+    };
+    btns.forEach((b, i) => b.addEventListener("click", () => show(i)));
+    tf.querySelector("[data-prev]").addEventListener("click", () => show(cur - 1));
+    tf.querySelector("[data-next]").addEventListener("click", () => show(cur + 1));
+  });
+
+  document.querySelectorAll("[data-est]").forEach((est) => {
+    const fmt = (n) => `${n.toLocaleString("en-IN")} h`;
+    const calc = () => {
+      const base = [...est.querySelectorAll("[data-h]")].reduce((s, i) => s + Math.max(0, Number(i.value) || 0), 0);
+      let total = base;
+      est.querySelector('[data-sub="base"]').textContent = fmt(base);
+      est.querySelectorAll("fieldset").forEach((f) => {
+        const sub = f.querySelector("legend b");
+        if (/^\d+$/.test(sub.dataset.sub)) {
+          const v = [...f.querySelectorAll("[data-p]")].reduce((s, i) => s + (i.checked ? Math.round((base * Number(i.dataset.p)) / 100) : 0), 0);
+          sub.textContent = fmt(v); total += v;
+        }
+      });
+      const sprints = Math.max(0, Number(est.querySelector("[data-sprints]").value) || 0);
+      const agile = sprints * [...est.querySelectorAll("[data-ah]")].reduce((s, i) => s + (i.checked ? Number(i.dataset.ah) : 0), 0);
+      est.querySelector('[data-sub="agile"]').textContent = fmt(agile);
+      est.querySelector("[data-total]").textContent = fmt(total + agile);
+    };
+    est.addEventListener("input", calc);
+    est.addEventListener("change", calc);
+  });
+})();

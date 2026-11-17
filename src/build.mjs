@@ -610,6 +610,88 @@ const tapFlow = () => {
   </figure>`;
 };
 
+// Steadfast case: process, how-might-we, sitemap, swimlane flow charts and four small interactive pieces (main.js
+// drives them). Each one renders complete without JS: the charts show every step, the demos show their first state.
+const pad2 = (n) => String(n).padStart(2, "0");
+const WHO = { human: "Person", ai: "AI", decision: "Decision", start: "Start", end: "End" };
+const estTotals = (b) => {
+  const base = b.base.reduce((s, [, h]) => s + h, 0);
+  const groups = b.groups.map((g) => g.rows.reduce((s, [, p, on]) => s + (on ? Math.round((base * p) / 100) : 0), 0));
+  const agile = b.agile.sprints * b.agile.rows.reduce((s, [, h]) => s + h, 0);
+  return { base, groups, agile, total: base + groups.reduce((s, x) => s + x, 0) + agile };
+};
+const hrs = (n) => `${n.toLocaleString("en-IN")} h`;
+const sf = {
+  process: (b) => `<ol class="process reveal">${b.items.map(([t, x], k) => `<li><span class="process-n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ol>`,
+  hmw: (b) => `<ul class="hmw reveal">${b.items.map((x) => `<li><span class="label">How might we</span><p>${esc(x)}</p></li>`).join("")}</ul>`,
+  sitemap: (b) => `<figure class="ia reveal">
+      <div class="ia-root"><strong>${esc(b.root)}</strong><span>${esc(b.rootx)}</span></div>
+      <ul class="ia-cols">${b.cols.map((c) => `<li style="--c:${esc(c.c)}"><strong>${esc(c.m)}</strong><ul>${c.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul></li>`).join("")}</ul>
+      <figcaption>${esc(b.cap)}</figcaption>
+    </figure>`,
+  // a swimlane chart: person on the left, AI on the right, decisions and ends across the spine
+  flowchart: (b) => `<figure class="fc reveal" data-fc>
+      <div class="fc-head"><p class="label">${esc(b.title)}</p><button class="flow-play" type="button" hidden>Play the flow</button></div>
+      <div class="fc-lanes" aria-hidden="true"><span class="k-human">Person</span><span class="k-ai">AI</span></div>
+      <ol class="fc-steps">${b.nodes.map((n) => `<li class="fc-node is-${n.k}"><span class="fc-box"><b class="fc-who">${WHO[n.k]}</b>${esc(n.x)}${n.no ? `<span class="fc-branch"><i>Yes</i> carry on <i class="no">No</i> ${esc(n.no)}</span>` : ""}</span></li>`).join("")}</ol>
+      <figcaption>${esc(b.cap)}</figcaption>
+    </figure>`,
+  // add a lead with AI, rebuilt in code with example data: the AI fills the form, the person can edit any field
+  leadDemo: (b) => `<figure class="sfd reveal" data-lead>
+      <div class="fc-head"><p class="label">Try it: add a lead with AI</p><button class="flow-play" type="button" data-run hidden>Run the AI</button></div>
+      <div class="sfd-app">
+        <div class="sfd-in">
+          <p class="sfd-k">Prompt</p>
+          <p class="sfd-prompt" data-prompt>${esc(b.prompt)}</p>
+          <p class="sfd-file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>${esc(b.file)}</p>
+          <div class="sfd-prog" data-prog><p><span data-msg>Waiting for the AI</span><b data-pct>0%</b></p><i><em></em></i></div>
+        </div>
+        <form class="sfd-form" data-form novalidate>
+          <p class="sfd-k">Lead details</p>
+          <div class="sfd-grid">${b.fields.map(([l, v], k) => `<label><span>${esc(l)}</span><input name="f${k}" data-v="${esc(v)}" autocomplete="off"><small class="sfd-tag" aria-hidden="true"></small></label>`).join("")}</div>
+          <div class="sfd-foot"><p class="sfd-result" data-result role="status" aria-live="polite"></p><button class="sfd-submit" type="submit" disabled>Submit lead</button></div>
+        </form>
+      </div>
+      <figcaption>${esc(b.cap)}</figcaption>
+    </figure>`,
+  // drag to compare a wireframe with the screen it became
+  compare: (b, r) => `<figure class="cmp reveal" data-cmp>
+      <div class="cmp-stage" style="--x:50%;aspect-ratio:${b.ratio}">
+        <img ${pic(r, b.after.src, WIDE)} alt="${esc(b.after.alt)}" width="${b.after.w}" height="${b.after.h}" loading="lazy" decoding="async">
+        <div class="cmp-top"><img ${pic(r, b.before.src, WIDE)} alt="${esc(b.before.alt)}" width="${b.before.w}" height="${b.before.h}" loading="lazy" decoding="async"></div>
+        <span class="cmp-tag l">Wireframe</span><span class="cmp-tag r">Final UI</span>
+        <span class="cmp-bar" aria-hidden="true"><i>↔</i></span>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare the wireframe (left) with the final UI (right)">
+      </div>
+      <figcaption>${esc(b.cap)}</figcaption>
+    </figure>`,
+  // one task stepped through the task flow, showing who owns it at each state
+  taskFlow: (b) => `<figure class="tf reveal" data-tf>
+      <div class="fc-head"><p class="label">Click through a task's life</p><span class="tf-nav"><button type="button" class="flow-play" data-prev aria-label="Previous state">←</button><button type="button" class="flow-play" data-next aria-label="Next state">→</button></span></div>
+      <ol class="tf-states">${b.states.map((s, i) => `<li><button type="button" class="tf-s is-${s.who}" aria-pressed="${i === 0}" data-i="${i}" data-owner="${esc(s.owner)}" data-x="${esc(s.x)}">${esc(s.n)}</button></li>`).join("")}</ol>
+      <div class="tf-card is-${b.states[0].who}" aria-live="polite">
+        <p class="tf-id">${esc(b.task.id)} · <span data-state>${esc(b.states[0].n)}</span></p>
+        <strong>${esc(b.task.t)}</strong>
+        <p class="tf-owner"><i aria-hidden="true">${b.states[0].who === "ai" ? "AI" : b.states[0].who === "human" ? "BB" : "··"}</i><span data-owner>${esc(b.states[0].owner)}</span></p>
+        <p class="tf-x" data-x>${esc(b.states[0].x)}</p>
+      </div>
+      <figcaption>${esc(b.cap)}</figcaption>
+    </figure>`,
+  // the estimation method as a live model with example numbers: switch lines on and off, change hours and sprints
+  estimate: (b) => {
+    const t = estTotals(b);
+    return `<figure class="est reveal" data-est>
+      <div class="fc-head"><p class="label">Try the estimation model</p><p class="est-total">Grand total <b data-total>${hrs(t.total)}</b></p></div>
+      <div class="est-grid">
+        <fieldset><legend>Engineering effort <b data-sub="base">${hrs(t.base)}</b></legend>${b.base.map(([l, h]) => `<label class="est-row"><span>${esc(l)}</span><input type="number" min="0" max="9999" step="10" value="${h}" data-h aria-label="${esc(l)}, hours"> h</label>`).join("")}</fieldset>
+        ${b.groups.map((g, k) => `<fieldset><legend>${esc(g.g)} <b data-sub="${k}">${hrs(t.groups[k])}</b></legend>${g.rows.map(([l, p, on]) => `<label class="est-row"><input type="checkbox" ${on ? "checked " : ""}data-p="${p}"><span>${esc(l)}</span><em>${p}%</em></label>`).join("")}</fieldset>`).join("")}
+        <fieldset><legend>Agile ceremonies <b data-sub="agile">${hrs(t.agile)}</b></legend><label class="est-row"><span>Sprints</span><input type="number" min="1" max="40" value="${b.agile.sprints}" data-sprints aria-label="Number of sprints"></label>${b.agile.rows.map(([l, h]) => `<label class="est-row"><input type="checkbox" checked data-ah="${h}"><span>${esc(l)}</span><em>${h} h a sprint</em></label>`).join("")}</fieldset>
+      </div>
+      <figcaption>${esc(b.cap)}</figcaption>
+    </figure>`;
+  },
+};
+
 // Descriptions: cut at a word boundary so search snippets end cleanly.
 const clip = (t, n) => { const s = plain(t).replace(/\s+/g, " ").trim(); return s.length <= n ? s : s.slice(0, s.lastIndexOf(" ", n - 1)).replace(/[,;:.\s]+$/, "") + "…"; };
 const SUMMARIES = {
@@ -669,6 +751,7 @@ const fcPage = (key) => {
     : b.t === "video" ? `<figure class="shot video reveal" style="aspect-ratio:${b.w}/${b.h}"><iframe src="${esc(b.src)}" title="${esc(b.x)}" loading="lazy" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms"></iframe></figure>`
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
+    : sf[b.t] ? sf[b.t](b, r)
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;
   // With the outcome numbers shown, the TL;DR keeps only Problem and What I did.
   const tldr = c.tldr && (feat ? c.tldr.filter(([k]) => k !== "Outcome") : c.tldr);
