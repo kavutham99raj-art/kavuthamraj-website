@@ -638,3 +638,26 @@ const onScroll = (fn) => {
     est.addEventListener("change", calc);
   });
 })();
+
+/* Steadfast case: key flows sit behind tabs (arrow keys move between them); picking a tab plays its chart. */
+(() => {
+  document.querySelectorAll("[data-flows]").forEach((box) => {
+    const bar = box.querySelector(".fl-bar"), tabs = [...bar.querySelectorAll("[role=tab]")], panels = [...box.querySelectorAll(".fl-panel")];
+    bar.hidden = false;
+    const pick = (i, focus) => {
+      tabs.forEach((t, k) => { t.setAttribute("aria-selected", String(k === i)); t.tabIndex = k === i ? 0 : -1; panels[k].hidden = k !== i; });
+      if (focus) tabs[i].focus();
+      const play = panels[i].querySelector(".flow-play");
+      if (play && !play.hidden && box.dataset.seen) play.click();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => pick(i));
+      t.addEventListener("keydown", (e) => {
+        const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+        if (d) { e.preventDefault(); pick((i + d + tabs.length) % tabs.length, true); }
+      });
+    });
+    pick(0);
+    box.dataset.seen = "1";
+  });
+})();

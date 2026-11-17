@@ -623,7 +623,25 @@ const estTotals = (b) => {
 const hrs = (n) => `${n.toLocaleString("en-IN")} h`;
 const sf = {
   process: (b) => `<ol class="process reveal">${b.items.map(([t, x], k) => `<li><span class="process-n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ol>`,
-  hmw: (b) => `<ul class="hmw reveal">${b.items.map((x) => `<li><span class="label">How might we</span><p>${esc(x)}</p></li>`).join("")}</ul>`,
+  cards: (b) => `<ul class="sf-cards${b.tone ? ` is-${b.tone}` : ""} n${b.items.length} reveal">${b.items.map(([t, x], k) => `<li><span class="sf-cards-n">${b.tone === "pain" ? "Pain point" : b.tone === "goal" ? "Goal" : "Decision"} ${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ul>`,
+  personas: (b) => `<figure class="personas reveal"><ul>${b.items.map((p) => `<li style="--c:${esc(p.c)}">
+        <p class="pr-head"><i aria-hidden="true">${esc(p.m[0])}</i><span><strong>${esc(p.r)}</strong><small>Works in ${esc(p.m)}</small></span></p>
+        <dl><div><dt>Goal</dt><dd>${esc(p.goal)}</dd></div><div><dt>Pain point</dt><dd>${esc(p.pain)}</dd></div><div class="pr-ai"><dt>Where AI helps</dt><dd>${esc(p.ai)}</dd></div></dl>
+      </li>`).join("")}</ul><figcaption>${esc(b.cap)}</figcaption></figure>`,
+  // several flow charts behind tabs; without JS they simply stack
+  flows: (b) => `<div class="fl-tabs reveal" data-flows>
+      <div class="fl-bar" role="tablist" aria-label="Key flows" hidden>${b.items.map((f, k) => `<button type="button" role="tab" id="fl-t${k}" aria-controls="fl-p${k}" aria-selected="${k === 0}" tabindex="${k ? -1 : 0}">${esc(f.tab)}</button>`).join("")}</div>
+      ${b.items.map((f, k) => `<div class="fl-panel" role="tabpanel" id="fl-p${k}" aria-labelledby="fl-t${k}">${sf.flowchart(f).replace(' reveal"', '"')}</div>`).join("")}
+    </div>`,
+  // type scale set in the product's own font, loaded only on this page
+  type: (b) => `<figure class="tspec reveal"><style>${[[400, "pxiEyp8kv8JHgFVrJJfecnFHGPc"], [500, "pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk"], [600, "pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk"]].map(([w, f]) => `@font-face{font-family:"Poppins";font-weight:${w};font-display:swap;src:url(${GF}poppins/v24/${f}.woff2) format("woff2");unicode-range:${LATIN}}`).join("")}</style>
+      <p class="tspec-fam"><span>Aa</span><span><strong>${esc(b.family)}</strong><small>Regular 400 · Medium 500 · SemiBold 600</small></span></p>
+      <ul>${b.rows.map(([px, w, use]) => `<li><span class="tspec-meta">${px} px · ${w}</span><span class="tspec-s" style="font-size:${px}px;font-weight:${w}">${esc(b.sample)}</span><span class="tspec-use">${esc(use)}</span></li>`).join("")}</ul>
+    </figure>`,
+  wrap: (b) => `<div class="sf-wrap reveal">
+      <div><p class="label">What I delivered</p><ul class="sf-did">${b.did.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+      <div><p class="label">What I learned</p><dl class="sf-learnt">${b.learnt.map(([t, x]) => `<div><dt>${esc(t)}</dt><dd>${esc(x)}</dd></div>`).join("")}</dl></div>
+    </div>`,
   sitemap: (b) => `<figure class="ia reveal">
       <div class="ia-root"><strong>${esc(b.root)}</strong><span>${esc(b.rootx)}</span></div>
       <ul class="ia-cols">${b.cols.map((c) => `<li style="--c:${esc(c.c)}"><strong>${esc(c.m)}</strong><ul>${c.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul></li>`).join("")}</ul>
@@ -736,7 +754,7 @@ const fcPage = (key) => {
     // two screens side by side, each with its caption (a wireframe and the screen it became, or a before and after)
     : b.t === "pair" ? `<div class="shot-pair reveal">${b.items.map((i) => `<figure class="shot">${shot(i, "(max-width:900px) 100vw, 580px")}${cap(i)}</figure>`).join("")}</div>`
     // the stages of one journey, each tagged with its module's colour
-    : b.t === "journey" ? `<ol class="journey reveal">${b.items.map((i, k) => `<li style="--c:${esc(i.c)}"><span class="journey-n">${String(k + 1).padStart(2, "0")}</span><strong>${esc(i.m)}</strong><p>${esc(i.x)}</p></li>`).join("")}</ol>`
+    : b.t === "journey" ? `<figure class="jmap reveal">${b.title ? `<figcaption class="label">${esc(b.title)}</figcaption>` : ""}<ol class="journey${b.items[0].before ? " is-map" : ""}">${b.items.map((i, k) => `<li style="--c:${esc(i.c)}"><span class="journey-n">${String(k + 1).padStart(2, "0")}${i.s ? ` · ${esc(i.s)}` : ""}</span><strong>${esc(i.m)}</strong>${i.before ? `<p class="j-before"><b>Before</b>${esc(i.before)}</p><p class="j-now"><b>With Steadfast</b>${esc(i.now)}</p>` : `<p>${esc(i.x)}</p>`}</li>`).join("")}</ol></figure>`
     : b.t === "palette" ? `<ul class="palette reveal">${b.items.map(([hex, l]) => `<li><i style="background:${esc(hex)}"></i><strong>${esc(l)}</strong><code>${esc(hex)}</code></li>`).join("")}</ul>`
     : b.t === "note" ? `<p class="cs-note reveal">${esc(b.x)}</p>`
     : b.t === "tall" ? `<div class="shot-grid reveal">${b.items.map((i) => `<figure class="shot">${shot(i, "(max-width:900px) 50vw, 400px")}</figure>`).join("")}</div>`
