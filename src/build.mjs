@@ -759,6 +759,19 @@ const sf = {
       </div>`).join("")}
     </div>`;
   },
+  // the whole product in plain words, before any detail: the five steps of the job, then before and after
+  explain: (b) => `<section class="ex reveal" aria-labelledby="ex-h">
+      <p class="label">${esc(b.kicker)}</p>
+      <h2 class="ex-h" id="ex-h">${esc(b.title)}</h2>
+      <p class="ex-x">${esc(b.x)}</p>
+      <ol class="ex-road">${b.steps.map(([ic, t, m, c], k) => `<li style="--c:${esc(c)};--d:${k * 90}ms"><span class="ex-ic">${ico(ic)}</span><small>Step ${k + 1}</small><strong>${esc(t)}</strong><em>${esc(m)}</em></li>`).join("")}</ol>
+      <div class="ex-ba">
+        <div class="ex-b"><p class="label">Before</p><ul>${b.before.map((x) => `<li>${ico("xCircle")}${esc(x)}</li>`).join("")}</ul></div>
+        <span class="ex-arrow" aria-hidden="true">${ico("flow")}</span>
+        <div class="ex-a"><p class="label">With Steadfast</p><ul>${b.after.map((x) => `<li>${ico("check")}${esc(x)}</li>`).join("")}</ul></div>
+      </div>
+      <p class="ex-me">${ico("user")}<span><b>My part.</b> ${esc(b.me)}</span></p>
+    </section>`,
   statement: (b) => `<blockquote class="stmt reveal"><p class="label">${esc(b.kicker)}</p><p class="stmt-x krona">${rich(b.x)}</p></blockquote>`,
   // one module of the product: its letter tile and colour, then its screens and demos on a stage in that colour
   module: (b, r) => `<section class="mod reveal" style="--c:${esc(b.c)}" aria-labelledby="mod-${slug(b.m)}">
@@ -937,6 +950,8 @@ const fcPage = (key) => {
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
     : b.t === "module" ? sf.module({ ...b, render }, r)
+    // detail for designers, closed by default so the main story stays short
+    : b.t === "fold" ? `<details class="fold reveal"><summary><span class="fold-ic" aria-hidden="true">${ico("layers")}</span><span class="fold-t"><b>${esc(b.title)}</b><small>${esc(b.x)}</small></span><span class="fold-btn"><span class="fold-open">Open</span><span class="fold-close">Close</span></span></summary><div class="fold-body">${b.blocks.map(render).join("\n")}</div></details>`
     : sf[b.t] ? sf[b.t](b, r)
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;
   // With the outcome numbers shown, the TL;DR keeps only Problem and What I did.
@@ -969,7 +984,7 @@ ${header(r)}
       ? `<img ${pic(r, coverSrc, WIDE)} alt="${esc(feat.visual.alt)}" width="1600" height="1000" decoding="async" fetchpriority="high">`
       : `<img ${pic(r, `work/${thumb(proj.cover || key + ".png")}`, WIDE)} alt="" width="1200" height="1200" decoding="async" fetchpriority="high">`}</figure>`}
     <dl class="case-meta reveal">${meta.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
-    ${feat || tldr ? `<section class="glance reveal" aria-label="At a glance">
+    ${(feat && !c.hero) || tldr ? `<section class="glance reveal" aria-label="At a glance">
       ${feat && !c.hero ? outcomes(feat.outcomes) : ""}
       ${tldr ? `<dl class="tldr${tldr.length === 2 ? " two" : ""}">${tldr.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
     </section>` : ""}
