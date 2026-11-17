@@ -281,7 +281,7 @@ export const featured = [
     title: "AI does the work. *People stay in charge.*",
     text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. As the only designer, I took Steadfast from founder sessions to a shipped product: five modules on one shell where AI agents and people share the work, with a clear signal wherever the AI needs a human.",
     // No usage metrics exist for Steadfast yet; these are confirmed facts (it was built and used, one designer, five modules).
-    outcomes: [["Shipped", "built and used, from my designs"], ["Solo", "designer, founder sessions to handoff"], ["5", "AI modules on one shell"]],
+    outcomes: [["5", "AI apps on one shell"], ["1", "designer, founder talks to handoff"], ["Shipped", "built and used, from my designs"]],
     visual: { demo: "steadfast", label: "Steadfast Vortex: AI fills a lead from an RFP prompt, scores it 90% likely to win, and flags one task for a person to review", src: "work/steadfast/hero.jpg", alt: "Steadfast: the Vortex lead list with AI winning scores, and Turing Sync asking a person to choose a database" },
     href: "work/steadfast.html", cover: "steadfast.png",
   },

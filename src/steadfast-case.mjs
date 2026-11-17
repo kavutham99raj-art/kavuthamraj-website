@@ -28,6 +28,7 @@ export default {
       { src: S + "turing-sync.png", w: 1366, h: 887, alt: "Steadfast Turing Sync: the AI asks a person which database to use" },
     ],
     // status lines the product itself shows, used as floating chips
+    role: ["Only designer", "Founder talks to handoff", "Shipped"],
     chips: [["AI filled 6 fields", "ai"], ["1 task needs a human", "human"], ["AI winning score 90%", "ai"], ["Sprint planned with AI", "ok"]],
   },
   duration: "",
@@ -45,7 +46,7 @@ export default {
       ],
       before: ["Five separate tools", "The same details typed again at every step", "Nobody noticed when the AI got stuck"],
       after: ["One place for all five steps", "AI does the typing and the maths", "A person checks and approves every AI step"],
-      me: "I designed all of it, alone: from the first talks with the founders to the final screens. It shipped, and the team uses it." },
+    },
 
     { t: "h2", x: "What was going wrong" },
     { t: "cards", tone: "pain", items: [
@@ -57,28 +58,19 @@ export default {
 
     { t: "statement", kicker: "The idea", x: "Let AI do the boring work, and let a person *see, fix and approve* every step." },
 
-    { t: "h2", x: "One client, before and after" },
-    { t: "journey", title: "One client, step by step", items: [
-      { m: "Vortex", c: "#605BFF", s: "Lead", before: "Typed by hand from emails and calls", now: "AI fills it from what sales already has" },
-      { m: "Axiom", c: "#B16FF3", s: "Requirements", before: "Drafts with gaps and duplicates", now: "AI tidies them and points out what's missing" },
-      { m: "Prism", c: "#26C0E2", s: "Estimate", before: "Rebuilt in a spreadsheet per deal", now: "A clear price list anyone can read" },
-      { m: "Cadence", c: "#FB8050", s: "Delivery", before: "Work planned by hand", now: "AI drafts the plan, the manager adjusts it" },
-      { m: "Turing", c: "#86C270", s: "Build", before: "Nobody sees when the AI is stuck", now: "The AI asks, and a person answers in one place" },
-    ] },
-
     { t: "h2", x: "The five steps, screen by screen" },
-    { t: "module", n: "01", m: "Vortex", c: "#605BFF", title: "Win the client: a new lead in seconds", x: "Sales pastes an email or a PDF. The AI fills in the form and says how likely the deal is to win.", items: [
+    { t: "module", n: "01", ba: ["Typed by hand from emails and calls", "AI fills it from what sales already has"], m: "Vortex", c: "#605BFF", title: "Win the client: a new lead in seconds", x: "Sales pastes an email or a PDF. The AI fills in the form and says how likely the deal is to win.", items: [
       { t: "leadDemo", prompt: "Brief from Northwind Pay, a fintech company: a payments app for small shops, about 1.5M. Contact Priya Raman, Head of Product. Proposal due 30 May.", file: "northwind-rfp.pdf",
         fields: [["Client name", "Northwind Pay"], ["Vertical", "Fintech"], ["Deal size", "1.5M"], ["Contact person", "Priya Raman"], ["Lead source", "RFP"], ["Due date", "30 May"]],
         cap: "Rebuilt in code with made-up example data. Fields the AI fills are marked; edit one and it becomes yours. Nothing counts until a person submits." },
       img("vortex-ai-scoring.png", 2000, 1818, "The AI score explains itself: strengths, weaknesses, next best actions and the factors behind the number"),
     ] },
 
-    { t: "module", n: "02", m: "Axiom", c: "#B16FF3", title: "Write down what to build", x: "The AI turns rough notes into a proper plan. The analyst approves or rejects every change.", items: [
+    { t: "module", n: "02", ba: ["Drafts with gaps and duplicates", "AI tidies them and points out what's missing"], m: "Axiom", c: "#B16FF3", title: "Write down what to build", x: "The AI turns rough notes into a proper plan. The analyst approves or rejects every change.", items: [
       two(at("axiom-pick-template.png", 1366, 886, "Pick a template, and the AI sorts the notes into it"), at("axiom-editor.png", 1366, 886, "Edit the plan with an AI assistant beside it")),
     ] },
 
-    { t: "module", n: "03", m: "Prism", c: "#26C0E2", title: "Put a price on it", x: "No more hidden spreadsheet maths. Every hour and every cost is a line anyone can read.", items: [
+    { t: "module", n: "03", ba: ["Rebuilt in a spreadsheet for every client", "A clear price list anyone can read"], m: "Prism", c: "#26C0E2", title: "Put a price on it", x: "No more hidden spreadsheet maths. Every hour and every cost is a line anyone can read.", items: [
       { t: "estimate", cap: "Example numbers, not a real deal. Buffers and overheads are a share of engineering effort, ceremonies scale with sprints, and any line can be switched off.",
         base: [["Design", 100], ["Front end", 400], ["Back end", 400], ["Testing", 100]],
         groups: [
@@ -89,7 +81,7 @@ export default {
       two(at("prism-studio-sizing.png", 1366, 938, "Studio sizing: design effort by screen type and complexity"), at("prism-proposal.png", 1366, 929, "Proposal studio: AI drafts, people edit")),
     ] },
 
-    { t: "module", n: "04", m: "Cadence", c: "#FB8050", title: "Plan the work with AI teammates", x: "AI helpers and people share one task board. Every task shows who owns it right now.", items: [
+    { t: "module", n: "04", ba: ["Work planned by hand", "AI drafts the plan, the manager adjusts it"], m: "Cadence", c: "#FB8050", title: "Plan the work with AI teammates", x: "AI helpers and people share one task board. Every task shows who owns it right now.", items: [
       { t: "taskFlow", task: { id: "PLTX-12", t: "As a user I need to share dashboards with clients", tags: ["UI Screens", "API"] }, cap: "The task flow from the requirements, rebuilt in code. Each state names who owns the task.", states: [
         { n: "Unassigned", who: "wait", owner: "Nobody yet: AI assigns it by default", x: "New from the backlog. Unless a person steps in, the AI picks the owner, human or agent." },
         { n: "In progress · AI", who: "ai", owner: "AI agent AG PM 001", x: "An AI agent works the task and logs every step." },
@@ -103,8 +95,25 @@ export default {
       two(at("cadence-team.png", 1366, 948, "AI agents and people on one team"), at("cadence-sprints.png", 1366, 893, "One sprint board for both")),
     ] },
 
-    { t: "module", n: "05", m: "Turing", c: "#86C270", title: "Build it, and ask when stuck", x: "When the AI writing the code can't decide, it asks a person, and the answer box is right there.", items: [
+    { t: "module", n: "05", ba: ["Nobody sees when the AI is stuck", "The AI asks, and a person answers in one place"], m: "Turing", c: "#86C270", title: "Build it, and ask when stuck", x: "When the AI writing the code can't decide, it asks a person, and the answer box is right there.", items: [
       img("turing-sync.png", 1366, 887, "Turing Sync: messages grouped by stage with health dots, and the AI's question answered in place"),
+    ] },
+
+    { t: "h2", x: "From a spreadsheet row to a real screen" },
+    { t: "p", x: "Every screen started as a row in the requirements spreadsheet. Follow one feature through." },
+    { t: "srs2ui", items: [
+      { tab: "Prism Sparks list", module: "Prism", rows: [
+        ["Overview", "Estimation, P&L, planning and proposal tool", "P1"],
+        ["Landing", "Sparks in a Kanban or list view; a click opens the spark", "P1", true],
+        ["Summary", "Every detail of the selected proposal", "P1"],
+      ], wf: { src: S + "wf-sparks.png", w: 1440, h: 850 }, ui: { src: S + "prism-sparks.png", w: 1366, h: 886 },
+        notes: ["It starts as one row in the requirements spreadsheet.", "The wireframe agrees the columns and actions in greyscale.", "The final design adds status pills, AI scores and Prism's colour."] },
+      { tab: "Cadence sprint board", module: "Cadence", rows: [
+        ["Kanban", "Backlog, Sprint 1, Sprint 2… as columns", "P1", true],
+        ["Plan with AI", "AI spreads tasks by priority and effort", "P1"],
+        ["Kanban", "Each sprint column shows its ticket count", "P1"],
+      ], wf: { src: S + "wf-sprints.png", w: 1440, h: 820 }, ui: { src: S + "cadence-sprints.png", w: 1366, h: 893 },
+        notes: ["It starts as three rows in the requirements spreadsheet.", "The wireframe places the columns, counts and Plan with AI.", "The final design adds priority rules, tags and owners."] },
     ] },
 
     { t: "h2", x: "What if the AI gets it wrong?" },
@@ -117,7 +126,6 @@ export default {
       ["arrowUp", "The work is too risky", "Escalated to a person."],
       ["history", "Who changed what?", "Every action is logged."],
     ] },
-    { t: "p", x: "Next: a confidence level per field, linked to the sentence it came from." },
 
     { t: "h2", x: "The big design choices" },
     { t: "cards", items: [
@@ -127,7 +135,7 @@ export default {
       ["bot", "AI agents with names", "Clear owners on a shared board."],
     ] },
 
-    { t: "fold", title: "Behind the design", x: "For designers: research, personas, structure, flows and the design system.", blocks: [
+    { t: "fold", title: "See the full process", x: "Research, personas, structure, flows and the design system.", blocks: [
       { t: "h3", x: "How I worked" },
       { t: "process", items: [
         ["search", "Understand", "Founders, requirements, competitors"],
@@ -146,7 +154,7 @@ export default {
         ["eye", "AI you can check", "Visible, editable, signed off."],
         ["bell", "No hidden waiting", "Every wait is seen and counted."],
       ] },
-      { t: "switcher", kicker: "The shell", title: "Eight apps. *One place to switch.*", x: "Each app gets a letter tile and a colour, and the colour follows it through the product. Pick a tile.", apps: [
+      { t: "switcher", kicker: "The shell", title: "Five apps, plus three shared tools. *One place to switch.*", x: "Each app gets a letter tile and a colour, and the colour follows it through the product. Pick a tile.", apps: [
         { n: "Vortex", c: "#605BFF", designed: true, x: "AI-assisted sales: capture leads, assign them, track stages and score the chance of winning." },
         { n: "Axiom", c: "#B16FF3", designed: true, x: "Turns draft requirements into a structured SRS, with AI checks for gaps and duplicates." },
         { n: "Prism", c: "#26C0E2", designed: true, x: "Sizes, prices and writes the proposal, with a readable estimation model." },
@@ -190,23 +198,6 @@ export default {
         ] },
       ] },
 
-      { t: "h3", x: "From a spreadsheet row to a real screen" },
-      { t: "p", x: "Every screen started as a row in the requirements spreadsheet. Follow one feature through." },
-      { t: "srs2ui", items: [
-        { tab: "Prism Sparks list", module: "Prism", rows: [
-          ["Overview", "Estimation, P&L, planning and proposal tool", "P1"],
-          ["Landing", "Sparks in a Kanban or list view; a click opens the spark", "P1", true],
-          ["Summary", "Every detail of the selected proposal", "P1"],
-        ], wf: { src: S + "wf-sparks.png", w: 1440, h: 850 }, ui: { src: S + "prism-sparks.png", w: 1366, h: 886 },
-          notes: ["It starts as one row in the requirements spreadsheet.", "The wireframe agrees the columns and actions in greyscale.", "The final design adds status pills, AI scores and Prism's colour."] },
-        { tab: "Cadence sprint board", module: "Cadence", rows: [
-          ["Kanban", "Backlog, Sprint 1, Sprint 2… as columns", "P1", true],
-          ["Plan with AI", "AI spreads tasks by priority and effort", "P1"],
-          ["Kanban", "Each sprint column shows its ticket count", "P1"],
-        ], wf: { src: S + "wf-sprints.png", w: 1440, h: 820 }, ui: { src: S + "cadence-sprints.png", w: 1366, h: 893 },
-          notes: ["It starts as three rows in the requirements spreadsheet.", "The wireframe places the columns, counts and Plan with AI.", "The final design adds priority rules, tags and owners."] },
-      ] },
-
       { t: "h3", x: "Design system" },
       { t: "palette", items: [
         ["#605BFF", "Primary"], ["#3D38E3", "Pressed"], ["#151338", "Ink"], ["#ECEBFF", "Primary tint"], ["#F5F7FA", "App background"],
@@ -229,6 +220,7 @@ export default {
         ["Give the AI a face", "Named agents read as teammates."],
         ["Test with users early", "Next time, sales and delivery staff before handoff."],
         ["Check colour as text", "Cyan and green need darker text tones."],
+        ["What I'd build next", "A confidence level per field, linked to the sentence it came from."],
       ] },
     { t: "note", x: "Client names and figures in the screens are placeholder data, not real clients or results." },
   ],
