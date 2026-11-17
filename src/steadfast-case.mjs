@@ -75,7 +75,7 @@ export default {
         base: [["Design", 100], ["Front end", 400], ["Back end", 400], ["Testing", 100]],
         groups: [
           { g: "Buffers", rows: [["Contingency", 10, true], ["Review and rework", 5, false]] },
-          { g: "SDLC overheads", rows: [["Project management", 7, true], ["Requirements analysis", 2, true], ["Architecture and design", 2, true], ["DevOps", 2, true], ["SIT and UAT", 4, true], ["Hyper-care", 7, true], ["Warranty", 6, false]] },
+          { g: "Project overheads", rows: [["Project management", 7, true], ["Requirements analysis", 2, true], ["Architecture and design", 2, true], ["DevOps", 2, true], ["SIT and UAT", 4, true], ["Hyper-care", 7, true], ["Warranty", 6, false]] },
         ],
         agile: { sprints: 5, rows: [["Sprint planning", 2], ["Sprint demo", 2], ["Retrospective", 2]] } },
       two(at("prism-studio-sizing.png", 1366, 938, "Studio sizing: design effort by screen type and complexity"), at("prism-proposal.png", 1366, 929, "Proposal studio: AI drafts, people edit")),
@@ -118,7 +118,7 @@ export default {
 
     { t: "h2", x: "What if the AI gets it wrong?" },
     { t: "p", x: "It will, sometimes. So every mistake is easy to spot, cheap to fix and never final without a person." },
-    { t: "cards", tone: "guard", items: [
+    { t: "guard", cap: "One screen, rebuilt in code with made-up example data. Hover or tap a number.", items: [
       ["pen", "It fills a field wrong", "Fields stay editable until submit."],
       ["xCircle", "It suggests a bad change", "Add or Cancel. No silent edits."],
       ["chart", "Its score looks arbitrary", "Reasons and factors are shown."],

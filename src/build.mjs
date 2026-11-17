@@ -877,14 +877,38 @@ const sf = {
       <figcaption>${esc(b.cap)}</figcaption>
     </figure>`,
   // the estimation method as a live model with example numbers: switch lines on and off, change hours and sprints
+  // the safeguards shown where they live: one lead screen with a numbered marker on each, and the list beside it
+  guard: (b) => {
+    const m = (n) => `<b class="gd-m" data-n="${n}" aria-hidden="true">${n}</b>`;
+    return `<figure class="gd reveal">
+      <div class="gd-ui" aria-hidden="true">
+        <p class="gd-top"><b>STEAD<i>FAST</i></b><span>Vortex · Northwind Pay</span></p>
+        <div class="gd-body">
+          <div class="gd-col">
+            <div class="gd-f">${m(1)}<span>Deal size</span><p>1.5M<i>AI</i>${ico("pen")}</p></div>
+            <div class="gd-f"><span>Contact person</span><p>Priya Raman<i>AI</i>${ico("pen")}</p></div>
+            <div class="gd-sug">${m(2)}<p>${ico("spark")}<span>Add <b>Payments compliance</b> to the scope?</span></p><p class="gd-btns"><em>Add</em><em class="is-ghost">Cancel</em></p></div>
+            <div class="gd-score">${m(3)}<p><span>AI winning score</span><b>90%</b></p><ul><li>Clear brief</li><li>High deal size</li><li>Decision maker known</li></ul></div>
+          </div>
+          <div class="gd-col">
+            <div class="gd-ask">${m(4)}<p><i>!</i><b>Needs a human</b></p><span>Which payment gateway should the app use?</span><p class="gd-btns"><em>Answer</em></p></div>
+            <p class="gd-esc">${m(5)}${ico("arrowUp")}Escalate to delivery manager</p>
+            <div class="gd-log">${m(6)}<p class="gd-k">Activity</p><ol><li><b>AI</b> filled 6 fields<time>10:42</time></li><li><b>Bonnie</b> edited Deal size<time>10:44</time></li><li><b>Bonnie</b> approved the lead<time>10:45</time></li></ol></div>
+          </div>
+        </div>
+      </div>
+      <ol class="gd-list">${b.items.map(([, t, x], k) => `<li data-n="${k + 1}" tabindex="0"><b class="gd-n">${k + 1}</b><span><strong>${esc(t)}</strong>${esc(x)}</span></li>`).join("")}</ol>
+      <figcaption>${esc(b.cap)}</figcaption>
+    </figure>`;
+  },
   estimate: (b) => {
     const t = estTotals(b);
     return `<figure class="est reveal" data-est>
       <div class="fc-head"><p class="label">Try the estimation model</p><p class="est-total">Grand total <b data-total>${hrs(t.total)}</b></p></div>
       <div class="est-grid">
         <fieldset><legend>Engineering effort <b data-sub="base">${hrs(t.base)}</b></legend>${b.base.map(([l, h]) => `<label class="est-row"><span>${esc(l)}</span><input type="number" min="0" max="9999" step="10" value="${h}" data-h aria-label="${esc(l)}, hours"> h</label>`).join("")}</fieldset>
-        ${b.groups.map((g, k) => `<fieldset><legend>${esc(g.g)} <b data-sub="${k}">${hrs(t.groups[k])}</b></legend>${g.rows.map(([l, p, on]) => `<label class="est-row"><input type="checkbox" ${on ? "checked " : ""}data-p="${p}"><span>${esc(l)}</span><em>${p}%</em></label>`).join("")}</fieldset>`).join("")}
-        <fieldset><legend>Agile ceremonies <b data-sub="agile">${hrs(t.agile)}</b></legend><label class="est-row"><span>Sprints</span><input type="number" min="1" max="40" value="${b.agile.sprints}" data-sprints aria-label="Number of sprints"></label>${b.agile.rows.map(([l, h]) => `<label class="est-row"><input type="checkbox" checked data-ah="${h}"><span>${esc(l)}</span><em>${h} h a sprint</em></label>`).join("")}</fieldset>
+        ${b.groups.map((g, k) => `<fieldset class="est-g"><legend>${esc(g.g)} <b data-sub="${k}">${hrs(t.groups[k])}</b><button type="button" class="est-more" aria-expanded="false">${g.rows.length} lines</button></legend>${g.rows.map(([l, p, on]) => `<label class="est-row"><input type="checkbox" ${on ? "checked " : ""}data-p="${p}"><span>${esc(l)}</span><em>${p}%</em></label>`).join("")}</fieldset>`).join("")}
+        <fieldset class="est-g"><legend>Agile ceremonies <b data-sub="agile">${hrs(t.agile)}</b><button type="button" class="est-more" aria-expanded="false">${b.agile.rows.length + 1} lines</button></legend><label class="est-row"><span>Sprints</span><input type="number" min="1" max="40" value="${b.agile.sprints}" data-sprints aria-label="Number of sprints"></label>${b.agile.rows.map(([l, h]) => `<label class="est-row"><input type="checkbox" checked data-ah="${h}"><span>${esc(l)}</span><em>${h} h a sprint</em></label>`).join("")}</fieldset>
       </div>
       <figcaption>${esc(b.cap)}</figcaption>
     </figure>`;

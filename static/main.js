@@ -616,6 +616,23 @@ const onScroll = (fn) => {
     tf.querySelector("[data-next]").addEventListener("click", () => show(cur + 1));
   });
 
+  /* safeguards screen: pointing at, focusing or tapping an item lights its spot on the screen */
+  document.querySelectorAll(".gd").forEach((gd) => {
+    const set = (li) => { gd.querySelectorAll(".gd-list li").forEach((x) => x.classList.toggle("is-on", x === li)); li ? (gd.dataset.on = li.dataset.n) : delete gd.dataset.on; };
+    gd.querySelectorAll(".gd-list li").forEach((li) => {
+      li.addEventListener("pointerenter", () => set(li));
+      li.addEventListener("focus", () => set(li));
+      li.addEventListener("click", () => set(li));
+    });
+    gd.querySelector(".gd-list").addEventListener("pointerleave", (e) => e.pointerType === "mouse" && set(null));
+    gd.addEventListener("focusout", (e) => !gd.contains(e.relatedTarget) && set(null));
+  });
+  /* on phones each group of the estimator shows only its total until opened */
+  document.querySelectorAll(".est-more").forEach((btn) => btn.addEventListener("click", () => {
+    const open = btn.getAttribute("aria-expanded") !== "true";
+    btn.setAttribute("aria-expanded", open);
+    btn.closest(".est-g").classList.toggle("is-open", open);
+  }));
   document.querySelectorAll("[data-est]").forEach((est) => {
     const fmt = (n) => `${n.toLocaleString("en-IN")} h`;
     const calc = () => {
