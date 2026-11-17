@@ -1575,3 +1575,18 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 .case-prod{margin:var(--s4) 0 var(--s3)}
 .card-how{display:block;margin-bottom:2px;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rust)}
 .ch-kicker b{font-weight:600;color:#fff}
+
+/* Selected work, desktop: screen and story side by side, alternating, so each case reads in one view and the
+   section is about half as tall. The call to action is a real button. */
+@media (min-width:1100px){
+  .card{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:stretch;gap:0}
+  .card:nth-child(even){grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+  .card:nth-child(even) .card-visual{order:2}
+  .card-visual{aspect-ratio:16/10;align-self:center}
+  .card-visual:has(.ld),.card-visual.is-phones{aspect-ratio:auto;align-self:stretch}
+  .card-copy{grid-template-columns:1fr;align-content:center;align-items:start;gap:22px;padding:clamp(24px,2.6vw,40px)}
+  .card h3{font-size:clamp(22px,1.9vw,30px)}
+  .card .outcomes{padding-top:16px}
+}
+.card .arrow-link{gap:10px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--ink);color:var(--canvas);font-size:14.5px;transition:background .25s}
+.card:hover .arrow-link{background:var(--rust)}
