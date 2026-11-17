@@ -680,3 +680,27 @@ const onScroll = (fn) => {
     }));
   });
 })();
+
+
+/* Steadfast case, spreadsheet to screen: the step header switches the stage; it plays through once when it scrolls
+   into view, and stops as soon as someone picks a step. No autoplay with reduced motion. */
+(() => {
+  document.querySelectorAll("[data-x2u]").forEach((p) => {
+    const btns = [...p.querySelectorAll(".x2u-step")], frames = [...p.querySelectorAll(".x2u-f")], caps = [...p.querySelectorAll("[data-c]")];
+    let timer = 0;
+    const show = (n) => {
+      btns.forEach((b, k) => b.setAttribute("aria-pressed", String(k === n)));
+      frames.forEach((f, k) => f.classList.toggle("is-on", k === n));
+      caps.forEach((c, k) => (c.hidden = k !== n));
+    };
+    btns.forEach((b, n) => b.addEventListener("click", () => { clearInterval(timer); show(n); }));
+    if (reduceMotion) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      let n = 0;
+      timer = setInterval(() => { n += 1; show(n); if (n >= btns.length - 1) clearInterval(timer); }, 2600);
+    }, { threshold: 0.5 });
+    io.observe(p.querySelector(".x2u-stage"));
+  });
+})();

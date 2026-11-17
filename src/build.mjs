@@ -640,6 +640,10 @@ const ICON = {
   activity: '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
   hand: '<path d="M8 13V6a1.5 1.5 0 0 1 3 0v5M11 10V4.5a1.5 1.5 0 0 1 3 0V11M14 10.5V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3 14a1.5 1.5 0 0 1 2.5-1.7L8 15"/>',
   check: '<path d="m5 12 5 5 9-10"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  play: '<path d="M8 5v14l11-7z"/>',
+  flag: '<path d="M5 21V4h11l-2 4 2 4H5"/>',
+  help: '<path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><path d="M12 17.5h.01"/>',
 };
 const ico = (n) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[n] || ""}</svg>`;
 const pad2 = (n) => String(n).padStart(2, "0");
@@ -679,19 +683,28 @@ const sf = {
         <div class="sw-info" aria-live="polite"><p class="sw-n" data-n style="--c:${esc(b.apps[0].c)}">${esc(b.apps[0].n)}</p><p data-x>${esc(b.apps[0].x)}</p><small data-d>Designed in this case study</small></div>
       </div>
     </figure>`,
-  // one feature followed from its spreadsheet row to the wireframe and the final screen; tabs pick the feature
-  srs2ui: (b, r) => `<div class="x2u reveal" data-flows>
+  // one feature followed from its spreadsheet row to the wireframe and the final screen, one big step at a time:
+  // a step header on top, a fixed stage below. main.js plays the steps when the stage comes into view; tabs pick the feature.
+  srs2ui: (b, r) => {
+    const STEPS = [["sheet", "Requirement"], ["layout", "Wireframe"], ["spark", "Final design"]];
+    const frame = (img, alt) => `<div class="x2u-win"><span class="x2u-bar" aria-hidden="true"><i></i><i></i><i></i><em>steadfast.app</em></span><img ${pic(r, img.src, "(max-width:900px) 92vw, 900px")} alt="${esc(alt)}" width="${img.w}" height="${img.h}" decoding="async"></div>`;
+    return `<div class="x2u reveal" data-flows>
       <div class="fl-bar" role="tablist" aria-label="Features" hidden>${b.items.map((f, k) => `<button type="button" role="tab" id="x2u-t${k}" aria-controls="x2u-p${k}" aria-selected="${k === 0}" tabindex="${k ? -1 : 0}">${esc(f.tab)}</button>`).join("")}</div>
-      ${b.items.map((f, k) => `<div class="fl-panel" role="tabpanel" id="x2u-p${k}" aria-labelledby="x2u-t${k}"><ol class="x2u-row">
-        <li><p class="x2u-k"><b>1</b>Requirement, in the spreadsheet</p><div class="xl" role="table" aria-label="Requirement rows for ${esc(f.tab)}">
-          <div class="xl-bar" aria-hidden="true"><i></i><i></i><i></i><span>SRS.xlsx · ${esc(f.module)}</span></div>
-          <div class="xl-row xl-h" role="row"><span role="columnheader">Sub-module</span><span role="columnheader">Feature</span><span role="columnheader">P</span></div>
-          ${f.rows.map(([sub, x, p, hot]) => `<div class="xl-row${hot ? " is-hot" : ""}" role="row"><span role="cell">${esc(sub)}</span><span role="cell">${esc(x)}</span><span role="cell">${esc(p)}</span></div>`).join("")}
-        </div><p class="x2u-n">${esc(f.notes[0])}</p></li>
-        <li><p class="x2u-k"><b>2</b>Wireframe</p><a class="x2u-img" href="${r}${esc(f.wf.src)}" target="_blank" rel="noopener"><img ${pic(r, f.wf.src, "(max-width:900px) 90vw, 380px")} alt="Wireframe of the ${esc(f.tab)} in greyscale" width="${f.wf.w}" height="${f.wf.h}" loading="lazy" decoding="async">${newTab}</a><p class="x2u-n">${esc(f.notes[1])}</p></li>
-        <li><p class="x2u-k"><b>3</b>Final design</p><a class="x2u-img" href="${r}${esc(f.ui.src)}" target="_blank" rel="noopener"><img ${pic(r, f.ui.src, "(max-width:900px) 90vw, 380px")} alt="Final Steadfast design of the ${esc(f.tab)}" width="${f.ui.w}" height="${f.ui.h}" loading="lazy" decoding="async">${newTab}</a><p class="x2u-n">${esc(f.notes[2])}</p></li>
-      </ol></div>`).join("")}
-    </div>`,
+      ${b.items.map((f, k) => `<div class="fl-panel x2u-panel" role="tabpanel" id="x2u-p${k}" aria-labelledby="x2u-t${k}" data-x2u>
+        <ol class="x2u-steps">${STEPS.map(([ic, l], n) => `<li><button type="button" class="x2u-step" aria-pressed="${n === 0}" data-n="${n}"><span class="x2u-ic">${ico(ic)}</span><span class="x2u-l"><small>Step ${n + 1}</small>${l}</span></button></li>`).join("")}</ol>
+        <div class="x2u-stage">
+          <figure class="x2u-f is-on" data-f="0"><div class="xl"><div class="xl-bar" aria-hidden="true"><b>X</b>SRS.xlsx<span>${esc(f.module)}</span></div>
+            <div class="xl-grid" role="table" aria-label="Requirement rows for ${esc(f.tab)}">
+              <div class="xl-row xl-h" role="row"><span role="columnheader">Module</span><span role="columnheader">Sub-module</span><span role="columnheader">Feature</span><span role="columnheader">Priority</span></div>
+              ${f.rows.map(([sub, x, p, hot]) => `<div class="xl-row${hot ? " is-hot" : ""}" role="row"><span role="cell">${esc(f.module)}</span><span role="cell">${esc(sub)}</span><span role="cell">${esc(x)}${hot ? `<em class="xl-tag">This row became the screen</em>` : ""}</span><span role="cell">${esc(p)}</span></div>`).join("")}
+            </div></div></figure>
+          <figure class="x2u-f" data-f="1">${frame(f.wf, `Wireframe of the ${f.tab} in greyscale`)}</figure>
+          <figure class="x2u-f" data-f="2">${frame(f.ui, `Final Steadfast design of the ${f.tab}`)}</figure>
+        </div>
+        <p class="x2u-cap" aria-live="polite">${f.notes.map((t, n) => `<span data-c="${n}"${n ? " hidden" : ""}>${esc(t)}</span>`).join("")}</p>
+      </div>`).join("")}
+    </div>`;
+  },
   statement: (b) => `<blockquote class="stmt reveal"><p class="label">${esc(b.kicker)}</p><p class="stmt-x krona">${rich(b.x)}</p></blockquote>`,
   // one module of the product: its letter tile and colour, then its screens and demos on a stage in that colour
   module: (b, r) => `<section class="mod reveal" style="--c:${esc(b.c)}" aria-labelledby="mod-${slug(b.m)}">
@@ -738,13 +751,21 @@ const sf = {
       <ul class="ia-cols">${b.cols.map((c) => `<li style="--c:${esc(c.c)}"><strong>${esc(c.m)}</strong><ul>${c.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul></li>`).join("")}</ul>
       <figcaption>${esc(b.cap)}</figcaption>
     </figure>`,
-  // a swimlane chart: person on the left, AI on the right, decisions and ends across the spine
-  flowchart: (b) => `<figure class="fc reveal" data-fc>
+  // a swimlane timeline: a Person lane over an AI lane, read left to right along a centre track; start, decisions and
+  // the end sit on the track. On phones it becomes a vertical list.
+  flowchart: (b) => {
+    const IC = { human: "user", ai: "spark", start: "play", end: "flag", decision: "help" };
+    return `<figure class="fc sl-fc reveal" data-fc>
       <div class="fc-head"><p class="label">${esc(b.title)}</p><button class="flow-play" type="button" hidden>Play the flow</button></div>
-      <div class="fc-lanes" aria-hidden="true"><span class="k-human">Person</span><span class="k-ai">AI</span></div>
-      <ol class="fc-steps">${b.nodes.map((n) => `<li class="fc-node is-${n.k}"><span class="fc-box"><b class="fc-who">${WHO[n.k]}</b>${esc(n.x)}${n.no ? `<span class="fc-branch"><i>Yes</i> carry on <i class="no">No</i> ${esc(n.no)}</span>` : ""}</span></li>`).join("")}</ol>
+      <div class="sl" style="--n:${b.nodes.length}">
+        <span class="sl-band is-h" aria-hidden="true"><b>${ico("user")}</b>Person</span>
+        <span class="sl-band is-a" aria-hidden="true"><b>${ico("spark")}</b>AI</span>
+        <span class="sl-track" aria-hidden="true"></span>
+        <ol class="fc-steps sl-steps">${b.nodes.map((n, k) => `<li class="fc-node is-${n.k}" style="--c:${k + 2}"><span class="sl-card"><span class="sl-ic">${ico(IC[n.k])}</span><span class="sl-x"><b class="fc-who">${WHO[n.k]}</b>${esc(n.x)}</span>${n.no ? `<span class="sl-no"><i>No</i>${esc(n.no)}</span>` : ""}</span></li>`).join("")}</ol>
+      </div>
       <figcaption>${esc(b.cap)}</figcaption>
-    </figure>`,
+    </figure>`;
+  },
   // add a lead with AI, rebuilt in code with example data: the AI fills the form, the person can edit any field
   leadDemo: (b) => `<figure class="sfd reveal" data-lead>
       <div class="fc-head"><p class="label">Try it: add a lead with AI</p><button class="flow-play" type="button" data-run hidden>Run the AI</button></div>
