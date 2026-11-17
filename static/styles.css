@@ -731,6 +731,52 @@ h1 em,h2 em,h3 em,.hero-lead em,blockquote em{font-style:normal;color:var(--rust
   .mod-head>i{width:48px;height:48px;font-size:20px;border-radius:14px}
 }
 @media (prefers-reduced-motion:reduce){html:not(.motion-ok) .ch-chip{animation:none}}
+/* Steadfast design system on its own case page: the product's tokens replace the portfolio's inside <main>.
+   Poppins, #605BFF primary with #3D38E3 pressed, #151338 ink, #F5F7FA app background with white cards,
+   10 px corners (8 px fields), filled inputs, underline tabs and outlined secondary buttons. The site header
+   and footer keep the portfolio's look. */
+main.theme-sf{--canvas:#F5F7FA;--surface:#fff;--sunk:#E9ECF8;--ink:#151338;--body:#4A4F58;--mut:#6A7178;--rust:#605BFF;--accent:#605BFF;--brown:#151338;--night:#151338;--night-2:#1F1C4A;--cream:#fff;--cream-mut:rgba(255,255,255,.72);--line:#E3E6EE;--line-d:rgba(255,255,255,.14);--display:Poppins,system-ui,sans-serif;--sans:Poppins,system-ui,sans-serif;--r-xl:24px;--r-lg:24px;--r-md:16px;--r-sm:12px;--r-xs:10px;font-family:var(--sans);color:var(--ink)}
+body:has(main.theme-sf){background:#F5F7FA}
+body:has(main.theme-sf) .top{background:rgba(255,255,255,.88)}
+.theme-sf .cs{--who-h:#C2410C}
+.theme-sf :is(.ch-h1,.cs-h2,.case-h1,.journey strong,.process strong,.ia-root strong,.ia-cols strong,.mod-head h3,.sw-copy h3,.stmt-x,.cs-cta h2,.next-case strong,.sw-n,.sw-t b,.mod-head>i,.pr-head i,.ch-kicker i,.ch-stats dt,.est-total b,.outcomes dt){font-family:Poppins,system-ui,sans-serif;font-weight:600;text-transform:none;letter-spacing:-.02em}
+.theme-sf .ch-h1{font-size:clamp(36px,5.6vw,84px);line-height:1.05}
+.theme-sf .cs-h2{font-size:clamp(26px,2.8vw,38px);line-height:1.15}
+.theme-sf .cs-h2::before{font-weight:600;letter-spacing:.04em}
+.theme-sf .stmt-x{font-size:clamp(24px,2.8vw,40px);line-height:1.2}
+.theme-sf .label{font-size:12.5px;font-weight:600;letter-spacing:.02em;text-transform:none}
+.theme-sf .cs-p,.theme-sf .cs-item p{color:var(--body)}
+/* white cards with Steadfast's soft shadow instead of outlined paper */
+.theme-sf :is(.sf-cards li,.personas li,.journey li,.process li,.ia,.fc,.sfd,.tf,.est,.tldr>div,.sf-wrap>div){background:#fff;border-color:#E9ECEF;box-shadow:0 1px 2px rgba(21,19,56,.04),0 8px 24px -12px rgba(21,19,56,.12)}
+.theme-sf .sf-cards li{border-radius:16px}
+.theme-sf .mod-body{background:radial-gradient(90% 70% at 0% 0%,color-mix(in srgb,var(--c) 14%,transparent),transparent 65%),#fff;border-color:#E9ECEF}
+.theme-sf .mod-body :is(.sfd,.est,.tf){background:#fff}
+.theme-sf .est fieldset{background:#F8F9FA;border-color:#E9ECEF}
+.theme-sf .ia-cols>li{background:#F8F9FA}
+.theme-sf .ia-cols ul li{background:#fff;border:1px solid #E9ECEF}
+/* buttons: primary filled, secondary outlined in the primary colour, 10 px corners */
+.theme-sf .btn{border-radius:10px}
+.theme-sf .cs-cta .btn.light{background:#605BFF;color:#fff;border-color:#605BFF}
+.theme-sf .cs-cta .btn.light:hover{background:#7470FF}
+.theme-sf .flow-play{border-radius:10px;border-color:#605BFF;color:#605BFF;font-weight:500;background:#fff}
+.theme-sf .flow-play:hover{background:#ECEBFF}
+.theme-sf .flow-play:active{background:#605BFF;color:#fff}
+/* tabs: a 1 px baseline with a 2 px primary underline under the active tab */
+.theme-sf .fl-bar{gap:0;padding:0;border-radius:0;background:none;border-bottom:1px solid #CED4DA}
+.theme-sf .fl-bar button{border-radius:0;padding:0 18px;min-height:44px;color:#6A7178}
+.theme-sf .fl-bar button[aria-selected="true"]{background:none;box-shadow:inset 0 -2px #605BFF;color:#605BFF}
+/* tags and status pills */
+.theme-sf .tf-s{border-radius:999px;background:#F5F7FA;border-color:#E9ECEF}
+.theme-sf .tf-s[aria-pressed="true"].is-ai{background:#605BFF;border-color:#605BFF}
+/* filled inputs */
+.theme-sf .est-row input[type=number]{border:0;border-radius:8px;background:#EFF1F9}
+.theme-sf .est-row input[type=number]:focus-visible{outline:1px solid #605BFF;background:#E9ECF8}
+.theme-sf .est-row input[type=checkbox]{border-radius:4px}
+.theme-sf .toc a.on{color:#605BFF;border-left-color:#605BFF}
+.theme-sf .next-case{border-top-color:#CED4DA}
+.theme-sf .next-case:hover strong{color:#605BFF}
+.theme-sf .cs-note{border-left-color:#605BFF;background:#fff}
+.theme-sf .stmt .label{color:#605BFF}
 /* add-a-lead demo */
 .sfd-app{display:grid;grid-template-columns:5fr 7fr;overflow:hidden;border-radius:14px;border:1px solid #E9ECEF;background:#fff;color:var(--sf-ink);font-size:14px}
 .sfd-in{display:flex;flex-direction:column;gap:12px;padding:20px;background:#F5F7FA}

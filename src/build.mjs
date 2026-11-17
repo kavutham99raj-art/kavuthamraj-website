@@ -53,7 +53,10 @@ const FONTS = [
   ["Krona One", "400", "kronaone/v15/jAnEgHdjHcjgfIb1ZcUyNoWg_8a0Ww.woff2", "kronaone/v15/jAnEgHdjHcjgfIb1ZcUyOIWg_8a0Wy2V.woff2"],
 ];
 const fontFace = FONTS.map(([family, weight, latin, ext]) => [[ext, LATIN_EXT], [latin, LATIN]]
-  .map(([file, range]) => `@font-face{font-family:"${family}";font-style:normal;font-weight:${weight};font-display:swap;src:url(${GF + file}) format("woff2");unicode-range:${range}}`).join("")).join("");
+  .map(([file, range]) => `@font-face{font-family:"${family}";font-style:normal;font-weight:${weight};font-display:swap;src:url(${GF + file}) format("woff2");unicode-range:${range}}`).join("")).join("")
+  // Poppins is Steadfast's typeface; the Steadfast case page is set in it
+  + [[400, "pxiEyp8kv8JHgFVrJJfecnFHGPc"], [500, "pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk"], [600, "pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk"]]
+    .map(([w, f]) => `@font-face{font-family:"Poppins";font-style:normal;font-weight:${w};font-display:swap;src:url(${GF}poppins/v24/${f}.woff2) format("woff2");unicode-range:${LATIN}}`).join("");
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const hasResume = existsSync(new URL("../static/resume.pdf", import.meta.url));
 // Content hashes on CSS and JS links, so browsers fetch the new files after every change.
@@ -665,8 +668,8 @@ const sf = {
       <div class="fl-bar" role="tablist" aria-label="Key flows" hidden>${b.items.map((f, k) => `<button type="button" role="tab" id="fl-t${k}" aria-controls="fl-p${k}" aria-selected="${k === 0}" tabindex="${k ? -1 : 0}">${esc(f.tab)}</button>`).join("")}</div>
       ${b.items.map((f, k) => `<div class="fl-panel" role="tabpanel" id="fl-p${k}" aria-labelledby="fl-t${k}">${sf.flowchart(f).replace(' reveal"', '"')}</div>`).join("")}
     </div>`,
-  // type scale set in the product's own font, loaded only on this page
-  type: (b) => `<figure class="tspec reveal"><style>${[[400, "pxiEyp8kv8JHgFVrJJfecnFHGPc"], [500, "pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk"], [600, "pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk"]].map(([w, f]) => `@font-face{font-family:"Poppins";font-weight:${w};font-display:swap;src:url(${GF}poppins/v24/${f}.woff2) format("woff2");unicode-range:${LATIN}}`).join("")}</style>
+  // type scale set in the product's own font
+  type: (b) => `<figure class="tspec reveal">
       <p class="tspec-fam"><span>Aa</span><span><strong>${esc(b.family)}</strong><small>Regular 400 · Medium 500 · SemiBold 600</small></span></p>
       <ul>${b.rows.map(([px, w, use]) => `<li><span class="tspec-meta">${px} px · ${w}</span><span class="tspec-s" style="font-size:${px}px;font-weight:${w}">${esc(b.sample)}</span><span class="tspec-use">${esc(use)}</span></li>`).join("")}</ul>
     </figure>`,
