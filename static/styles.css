@@ -1590,3 +1590,16 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 }
 .card .arrow-link{gap:10px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--ink);color:var(--canvas);font-size:14.5px;transition:background .25s}
 .card:hover .arrow-link{background:var(--rust)}
+
+/* design review: long headlines in sentence case, a quieter second name line, and the hero's credibility strip */
+.long{text-transform:none!important;letter-spacing:-.02em}
+.hero-last{font-size:calc(var(--nf) * .24)}
+.hero-cred{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--line)}
+.hero-cred .label{color:var(--mut)}
+.hero-cred ul{display:flex;flex-wrap:wrap;gap:10px 18px;list-style:none}
+.hero-cred li{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--body)}
+.hero-cred img{width:26px;height:26px;border-radius:7px;object-fit:cover}
+.card h3,.hero-lead{text-transform:none;letter-spacing:-.02em}
+/* product logo in place of the company name and years */
+.prod-logo{display:inline-flex;align-items:center;height:52px;padding:8px 14px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 16px -12px rgba(23,18,15,.35)}
+.prod-logo img{display:block;height:34px;width:auto;border-radius:8px}

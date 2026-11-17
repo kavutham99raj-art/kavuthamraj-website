@@ -331,6 +331,7 @@ ${header("")}
         <p class="hero-lead">${rich(heroCopy.lead)}</p>
         <p class="hero-sub">${esc(heroCopy.subhead)}</p>
         <div class="hero-cta"><a class="btn solid lg" href="#work">See the work</a><a class="chev-link" href="${mailto}">Email me <span aria-hidden="true">›</span></a></div>
+        <div class="hero-cred"><span class="label">Worked at</span><ul>${companies.map((c) => `<li><img src="${esc(c.logo)}" alt="" width="90" height="90" decoding="async"><span>${esc(c.name)}</span></li>`).join("")}</ul></div>
       </div>
     </div>
   </div>
@@ -340,10 +341,6 @@ ${header("")}
   <div class="wrap">
     <div class="proof-panel reveal">
       <dl class="big-proof">${proof.map((x) => `<div><dt>${esc(x.value)}${x.flags ? `<span class="flags" aria-hidden="true">${x.flags.map((f) => FLAGS[f]).join("")}</span>` : ""}</dt><dd>${esc(x.label)}</dd>${x.src ? `<dd class="proof-src">${x.href ? `<a href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.src)} ↗${newTab}</a>` : esc(x.src)}</dd>` : ""}</div>`).join("")}</dl>
-      <div class="shipped">
-        <p class="label">Worked at</p>
-        <ul class="logos">${companies.map((c) => `<li><img src="${esc(c.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><span><b>${esc(c.name)}</b><small>${esc(c.years)}</small></span></li>`).join("")}</ul>
-      </div>
     </div>
   </div>
 </section>
@@ -360,7 +357,7 @@ ${header("")}
         <div class="card-visual${f.visual.phones ? " is-phones" : ""}">${visual(f.visual)}</div>
         <div class="card-copy">
           <div>
-            ${coBadge(f.meta[0])}
+            <p class="prod-logo"><img src="${esc(withVer(f.logo))}" alt="${esc(f.name)} logo" height="34" loading="lazy" decoding="async"></p>
             <p class="card-meta label"><span>0${i + 1}</span>${f.meta.slice(1).map(esc).join(" · ")}</p>
             <p class="card-prod"><b>${esc(f.name)}</b><span>${esc(f.what)}</span></p>
             <h3 id="c-${f.key}"><a class="card-link" href="${esc(f.href)}">${rich(f.title)}</a></h3>
@@ -448,38 +445,10 @@ ${header("")}
   </div>
 </section>
 
-<section id="visual" class="sec sec-tight">
-  <div class="wrap">
-    <div class="sec-head row">
-      <div>${frame("04", "Visual design")}<h2 class="krona h2 reveal">Posters, social, <em>event creatives.</em></h2></div>
-      <p class="sec-lede reveal">Some of the visual design I have done alongside product work, for SRM Technologies and Sporfy.</p>
-    </div>
-    <button class="vd-banner reveal" type="button" data-vd aria-haspopup="dialog">
-      <span class="vd-copy">
-        <span class="label">${designWork.reduce((n, g) => n + g.items.length, 0)} pieces</span>
-        <strong class="krona">Posters, social<br>and event creatives</strong>
-        <span class="vd-sub">${designWork.map((g) => esc(g.company)).join(" · ")}</span>
-        <span class="vd-cta">View all <i aria-hidden="true">↗</i></span>
-      </span>
-      <span class="vd-stack" aria-hidden="true">${VD_COVER.map((src, k) => `<img ${pic("", src, "(max-width:700px) 30vw, 220px")} alt="" width="${designWork.flatMap((g) => g.items).find((x) => x.src === src).w}" height="${designWork.flatMap((g) => g.items).find((x) => x.src === src).h}" loading="lazy" decoding="async" style="--i:${k}">`).join("")}</span>
-    </button>
-    <dialog class="vd-dialog" aria-label="Visual design: posters, social and event creatives">
-      <button class="pv-x" type="button" aria-label="Close">×</button>
-      <div class="pv-body"><div class="wrap">
-        <p class="vd-title krona">Visual design</p>
-        ${designWork.map((g) => `<div class="vd">
-          <p class="vd-head"><img src="${esc(g.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><b>${esc(g.company)}</b><span>${esc(g.note)}</span></p>
-          <div class="vd-grid">${g.items.map((i) => i.video ? `<figure class="vd-video" style="--ar:${(i.w / i.h).toFixed(4)}"><a class="vd-vbtn" href="${esc(withVer(i.video))}" data-video="${esc(withVer(i.video))}" data-poster="${esc(withVer(i.poster))}" target="_blank" rel="noopener" aria-label="Play video: ${esc(i.alt)}"><img src="${esc(withVer(i.poster))}" alt="" width="${i.w}" height="${i.h}" loading="lazy" decoding="async"><span class="vd-play" aria-hidden="true"></span></a><figcaption>${esc(i.cap)}</figcaption></figure>` : `<figure style="--ar:${(i.w / i.h).toFixed(4)}"><a href="${esc(withVer(i.src))}" target="_blank" rel="noopener" title="Open full size"><img ${pic("", i.src, "(max-width:700px) 50vw, 25vw")} alt="${esc(i.alt)}" width="${i.w}" height="${i.h}" loading="lazy" decoding="async">${newTab}</a><figcaption>${esc(i.cap)}</figcaption></figure>`).join("")}</div>
-        </div>`).join("")}
-      </div></div>
-    </dialog>
-  </div>
-</section>
-
 <section id="approach" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("05", "How I work")}<h2 class="krona h2 reveal">Understand the problem. <em>Design the system.</em></h2></div>
+      <div>${frame("04", "How I work")}<h2 class="krona h2 reveal">Understand the problem. <em>Design the system.</em></h2></div>
       <p class="sec-lede reveal">Four habits, each one backed by work you can open.</p>
     </div>
     <ol class="principles">
@@ -492,7 +461,7 @@ ${header("")}
 <section id="experience" class="sec night-2 xp">
   <div class="wrap xp-grid">
     <div class="xp-side">
-      ${frame("06", "Experience")}
+      ${frame("05", "Experience")}
       <h2 class="krona h2 reveal">Forged in startups. <em>Designed for&nbsp;scale.</em></h2>
       <p class="xp-sum reveal"><span><b>${xpYears()}+</b>years</span><span><b>${experience.length}</b>product teams</span></p>
       <p class="xp-lede reveal">End to end across B2B, B2C, SaaS, ERP and back-office products. I design the system. Then I build it.</p>
@@ -513,36 +482,10 @@ ${header("")}
   </div>
 </section>
 
-<section id="activity" class="sec">
-  <div class="wrap">
-    <div class="sec-head row">
-      <div>${frame("07", "Figma activity")}<h2 class="krona h2 reveal">Always <em>designing.</em></h2></div>
-      <p class="sec-lede reveal">Five years of product design, shipped every month, in Figma.</p>
-    </div>
-    <div class="always">
-      <div class="always-copy">
-        <p class="streak reveal"><b class="streak-n" aria-hidden="true" data-to="${streak}">${streak}</b><span class="streak-l"><span class="sr">${streak} </span>months in a row<small>Not one skipped since July 2021</small></span></p>
-        <dl class="always-proof">
-          <div class="reveal"><dt class="label">In Figma</dt><dd>Variables, Auto Layout and Dev Mode for product work; FigJam for flows and workshops.</dd></div>
-          <div class="reveal"><dt class="label">Systems</dt><dd>Tokens, components and light and dark modes, built once and reused across products.</dd></div>
-          <div class="reveal"><dt class="label">Handoff</dt><dd>Specs, every state, and WCAG 2.1 AA notes, so developers build straight from the file.</dd></div>
-        </dl>
-      </div>
-      <figure class="heat reveal">
-        <div class="heat-grid" role="img" aria-label="Activity grid: every month designing in Figma and XD since July 2021">
-          <span></span>${"JFMAMJJASOND".split("").map((m) => `<span class="heat-m">${m}</span>`).join("")}
-          ${rows.map((r, y) => `<span class="heat-y">${r.y}</span>${r.cells.map((n, m) => `<i class="${n < 0 ? "lx" : "l" + n}${r.y === nowCell[0] && m === nowCell[1] ? " now" : ""}" style="--w:${y + m}"${n > 0 ? ` title="${"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ")[m]} ${r.y}"` : ""}></i>`).join("")}`).join("")}
-        </div>
-        <figcaption><span>Designing in Figma &amp; XD, every month since July 2021</span><span class="legend">less <i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> more</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
 <section id="about" class="sec">
   <div class="wrap">
     <div class="about">
-      <div>${frame("08", "About")}<h2 class="krona h2 reveal">Designer, <em>analyst, builder.</em></h2></div>
+      <div>${frame("06", "About")}<h2 class="krona h2 reveal">Designer, <em>analyst, builder.</em></h2></div>
       <div class="about-copy">${profile.about.map((t) => `<p class="reveal">${esc(t)}</p>`).join("")}</div>
     </div>
     <div class="bento" id="skills">
@@ -572,11 +515,65 @@ ${header("")}
 <section id="testimonials" class="sec">
   <div class="wrap">
     <div class="sec-head row">
-      <div>${frame("09", "Testimonials")}<h2 class="krona h2 reveal">In their own <em>words.</em></h2></div>
+      <div>${frame("07", "Testimonials")}<h2 class="krona h2 reveal">In their own <em>words.</em></h2></div>
       <p class="sec-lede reveal">Recommendations on LinkedIn from a design lead who managed me, a fellow designer and two engineers I built with. <a class="text-link" href="${recommendationsUrl}" target="_blank" rel="noopener">Read them on LinkedIn ↗${newTab}</a></p>
     </div>
     <div class="quotes">
       ${testimonials.map((t, i) => quoteCard(t, i)).join("")}
+    </div>
+  </div>
+</section>
+
+<section id="visual" class="sec sec-tight">
+  <div class="wrap">
+    <div class="sec-head row">
+      <div>${frame("08", "Visual design")}<h2 class="krona h2 reveal">Posters, social, <em>event creatives.</em></h2></div>
+      <p class="sec-lede reveal">Some of the visual design I have done alongside product work, for SRM Technologies and Sporfy.</p>
+    </div>
+    <button class="vd-banner reveal" type="button" data-vd aria-haspopup="dialog">
+      <span class="vd-copy">
+        <span class="label">${designWork.reduce((n, g) => n + g.items.length, 0)} pieces</span>
+        <strong class="krona">Posters, social<br>and event creatives</strong>
+        <span class="vd-sub">${designWork.map((g) => esc(g.company)).join(" · ")}</span>
+        <span class="vd-cta">View all <i aria-hidden="true">↗</i></span>
+      </span>
+      <span class="vd-stack" aria-hidden="true">${VD_COVER.map((src, k) => `<img ${pic("", src, "(max-width:700px) 30vw, 220px")} alt="" width="${designWork.flatMap((g) => g.items).find((x) => x.src === src).w}" height="${designWork.flatMap((g) => g.items).find((x) => x.src === src).h}" loading="lazy" decoding="async" style="--i:${k}">`).join("")}</span>
+    </button>
+    <dialog class="vd-dialog" aria-label="Visual design: posters, social and event creatives">
+      <button class="pv-x" type="button" aria-label="Close">×</button>
+      <div class="pv-body"><div class="wrap">
+        <p class="vd-title krona">Visual design</p>
+        ${designWork.map((g) => `<div class="vd">
+          <p class="vd-head"><img src="${esc(g.logo)}" alt="" width="90" height="90" loading="lazy" decoding="async"><b>${esc(g.company)}</b><span>${esc(g.note)}</span></p>
+          <div class="vd-grid">${g.items.map((i) => i.video ? `<figure class="vd-video" style="--ar:${(i.w / i.h).toFixed(4)}"><a class="vd-vbtn" href="${esc(withVer(i.video))}" data-video="${esc(withVer(i.video))}" data-poster="${esc(withVer(i.poster))}" target="_blank" rel="noopener" aria-label="Play video: ${esc(i.alt)}"><img src="${esc(withVer(i.poster))}" alt="" width="${i.w}" height="${i.h}" loading="lazy" decoding="async"><span class="vd-play" aria-hidden="true"></span></a><figcaption>${esc(i.cap)}</figcaption></figure>` : `<figure style="--ar:${(i.w / i.h).toFixed(4)}"><a href="${esc(withVer(i.src))}" target="_blank" rel="noopener" title="Open full size"><img ${pic("", i.src, "(max-width:700px) 50vw, 25vw")} alt="${esc(i.alt)}" width="${i.w}" height="${i.h}" loading="lazy" decoding="async">${newTab}</a><figcaption>${esc(i.cap)}</figcaption></figure>`).join("")}</div>
+        </div>`).join("")}
+      </div></div>
+    </dialog>
+  </div>
+</section>
+
+<section id="activity" class="sec">
+  <div class="wrap">
+    <div class="sec-head row">
+      <div>${frame("09", "Figma activity")}<h2 class="krona h2 reveal">Always <em>designing.</em></h2></div>
+      <p class="sec-lede reveal">Five years of product design, shipped every month, in Figma.</p>
+    </div>
+    <div class="always">
+      <div class="always-copy">
+        <p class="streak reveal"><b class="streak-n" aria-hidden="true" data-to="${streak}">${streak}</b><span class="streak-l"><span class="sr">${streak} </span>months in a row<small>Not one skipped since July 2021</small></span></p>
+        <dl class="always-proof">
+          <div class="reveal"><dt class="label">In Figma</dt><dd>Variables, Auto Layout and Dev Mode for product work; FigJam for flows and workshops.</dd></div>
+          <div class="reveal"><dt class="label">Systems</dt><dd>Tokens, components and light and dark modes, built once and reused across products.</dd></div>
+          <div class="reveal"><dt class="label">Handoff</dt><dd>Specs, every state, and WCAG 2.1 AA notes, so developers build straight from the file.</dd></div>
+        </dl>
+      </div>
+      <figure class="heat reveal">
+        <div class="heat-grid" role="img" aria-label="Activity grid: every month designing in Figma and XD since July 2021">
+          <span></span>${"JFMAMJJASOND".split("").map((m) => `<span class="heat-m">${m}</span>`).join("")}
+          ${rows.map((r, y) => `<span class="heat-y">${r.y}</span>${r.cells.map((n, m) => `<i class="${n < 0 ? "lx" : "l" + n}${r.y === nowCell[0] && m === nowCell[1] ? " now" : ""}" style="--w:${y + m}"${n > 0 ? ` title="${"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ")[m]} ${r.y}"` : ""}></i>`).join("")}`).join("")}
+        </div>
+        <figcaption><span>Designing in Figma &amp; XD, every month since July 2021</span><span class="legend">less <i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> more</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -907,7 +904,7 @@ ${header(r)}
   ${c.hero ? caseHero(c, { r, name, h1, summary, eyebrow, feat }) : `<div class="wrap case-head canvas-pad">
     <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
     <p class="frame rise"><span>${String(keys.indexOf(key) + 1).padStart(2, "0")}</span> ${eyebrow.map(esc).join(" · ")}</p>
-    ${feat ? coBadge(feat.meta[0], r).replace('class="co"', 'class="co rise" style="--d:40ms"') : ""}
+    ${feat ? `<p class="prod-logo rise" style="--d:40ms"><img src="${r}${esc(withVer(feat.logo))}" alt="${esc(feat.name)} logo" height="34" decoding="async"></p>` : ""}
     ${feat ? `<p class="case-prod rise" style="--d:60ms"><b>${esc(feat.name)}</b><span>${esc(feat.what)}</span></p>` : ""}
     <h1 class="case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
     ${summary && summary !== plain(h1) ? `<p class="case-sum rise" style="--d:160ms">${esc(summary)}</p>` : ""}
@@ -963,8 +960,11 @@ if (process.env.EXPORT_PRIVATE) {
 
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT + "work", { recursive: true });
-writeFileSync(OUT + "index.html", home());
-for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, fcPage(k));
+// Headlines longer than four words read faster in sentence case than in capitals: they get the "long" class.
+const sentenceCase = (html) => html.replace(/<(h[123]) class="([^"]*\b(?:h2|case-h1|hero-lead|cs-h2)\b[^"]*)"([^>]*)>([\s\S]*?)<\/\1>/g, (m, tag, cls, rest, inner) =>
+  inner.replace(/<[^>]+>/g, " ").trim().split(/\s+/).length > 4 ? `<${tag} class="${cls} long"${rest}>${inner}</${tag}>` : m);
+writeFileSync(OUT + "index.html", sentenceCase(home()));
+for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, sentenceCase(fcPage(k)));
 writeFileSync(OUT + "404.html", notFound());
 const ICONS = ["favicon.ico", "favicon-32.png", "favicon-96.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "og-image.jpg"];
 for (const f of ["main.js", "profile.webp", "profile-portrait.jpg", ...ICONS]) cpSync(STATIC + f, OUT + f);
