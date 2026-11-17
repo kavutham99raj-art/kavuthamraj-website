@@ -21,6 +21,15 @@ export default {
     ["Services", "IA, UX, UI, design system"],
   ],
   client: "Liffto Technologies",
+  theme: "sf",
+  hero: {
+    layers: [
+      { src: S + "vortex-leads.png", w: 1366, h: 956, alt: "Steadfast Vortex: the lead list with stat cards and AI winning scores" },
+      { src: S + "turing-sync.png", w: 1366, h: 887, alt: "Steadfast Turing Sync: the AI asks a person which database to use" },
+    ],
+    // status lines the product itself shows, used as floating chips
+    chips: [["AI filled 6 fields", "ai"], ["1 task needs a human", "human"], ["AI winning score 90%", "ai"], ["Sprint planned with AI", "ok"]],
+  },
   duration: "",
   tags: ["AI product", "B2B SaaS", "Design system"],
   tldr: [
@@ -38,6 +47,8 @@ export default {
       ["Estimates in spreadsheets", "Sizing and pricing were rebuilt for every deal, the method hidden in cells."],
       ["AI with no one to ask", "Nobody could see where an AI agent was stuck waiting for a person."],
     ] },
+
+    { t: "statement", kicker: "The idea", x: "One platform where AI does the work, and every AI step is *visible, editable and signed off by a person.*" },
 
     { t: "h2", x: "Discover" },
     { t: "process", items: [
@@ -64,6 +75,16 @@ export default {
       ["No retyping", "Every module starts from what the last one produced."],
       ["AI you can check", "Every AI output is visible, editable, and needs a person's yes to count."],
       ["No hidden waiting", "Wherever AI needs a person is a state you can see, count and act on."],
+    ] },
+    { t: "switcher", kicker: "The shell", title: "Eight apps. *One place to switch.*", x: "Each app gets a letter tile and a colour, and the colour follows it through the product. Pick a tile.", apps: [
+      { n: "Vortex", c: "#605BFF", designed: true, x: "AI-assisted sales: capture leads, assign them, track stages and score the chance of winning." },
+      { n: "Axiom", c: "#B16FF3", designed: true, x: "Turns draft requirements into a structured SRS, with AI checks for gaps and duplicates." },
+      { n: "Prism", c: "#26C0E2", designed: true, x: "Sizes, prices and writes the proposal, with a readable estimation model." },
+      { n: "Probe", c: "#FFC227", designed: false, x: "Planned in the switcher; not part of the five specified modules." },
+      { n: "Cadence", c: "#FB8050", designed: true, x: "Project management by AI agents and people: team, sprints, tracking and reporting." },
+      { n: "Turing", c: "#86C270", designed: true, x: "AI software engineering: repo setup, code generation, testing and quality reports." },
+      { n: "Action Hub", c: "#F15E5E", designed: false, x: "Planned in the switcher; not part of the five specified modules." },
+      { n: "Alerts", c: "#4263EB", designed: false, x: "Planned in the switcher; not part of the five specified modules." },
     ] },
     { t: "sitemap", root: "Steadfast shell", rootx: "Google sign-in · app switcher · notifications · profile", cap: "Information architecture. One shell, then a short menu per module; each opens on a list of deals or projects.", cols: [
       { m: "Vortex", c: "#605BFF", items: ["Spark list and board", "Add a lead with AI", "Spark detail and AI score", "Firms, peers, insights"] },
@@ -105,40 +126,45 @@ export default {
       after: { src: S + "vortex-leads.png", w: 1366, h: 956, alt: "Final UI of the Sparks list in Vortex, with stat cards, a high-priority rule and AI winning score pills" } },
 
     { t: "h2", x: "Design" },
-    { t: "h3", x: "Vortex: a lead in seconds" },
-    { t: "leadDemo", prompt: "RFP from Northwind Pay, a fintech company: a payments app for small shops, about 1.5M. Contact Priya Raman, Head of Product. Proposal due 30 May.", file: "northwind-rfp.pdf",
-      fields: [["Client name", "Northwind Pay"], ["Vertical", "Fintech"], ["Deal size", "1.5M"], ["Contact person", "Priya Raman"], ["Lead source", "RFP"], ["Due date", "30 May"]],
-      cap: "Rebuilt in code with made-up example data. Fields the AI fills are marked; edit one and it becomes yours. Nothing counts until a person submits." },
-    img("vortex-ai-scoring.png", 1366, 1242, "The AI score explains itself: strengths, weaknesses, next best actions and the factors behind the number"),
-
-    { t: "h3", x: "Axiom: drafts into a real SRS" },
-    two(at("axiom-pick-template.png", 1366, 886, "Pick a template for the AI to map the draft onto"), at("axiom-editor.png", 1366, 886, "Edit the SRS with an AI assistant beside it")),
-
-    { t: "h3", x: "Prism: estimates you can read" },
-    { t: "estimate", cap: "Example numbers, not a real deal. Buffers and overheads are a share of engineering effort, ceremonies scale with sprints, and any line can be switched off.",
-      base: [["Design", 100], ["Front end", 400], ["Back end", 400], ["Testing", 100]],
-      groups: [
-        { g: "Buffers", rows: [["Contingency", 10, true], ["Review and rework", 5, false]] },
-        { g: "SDLC overheads", rows: [["Project management", 7, true], ["Requirements analysis", 2, true], ["Architecture and design", 2, true], ["DevOps", 2, true], ["SIT and UAT", 4, true], ["Hyper-care", 7, true], ["Warranty", 6, false]] },
-      ],
-      agile: { sprints: 5, rows: [["Sprint planning", 2], ["Sprint demo", 2], ["Retrospective", 2]] } },
-    two(at("prism-studio-sizing.png", 1366, 938, "Studio sizing: design effort by screen type and complexity"), at("prism-proposal.png", 1366, 929, "Proposal studio: AI drafts, people edit")),
-
-    { t: "h3", x: "Turing: the AI asks, a person answers" },
-    img("turing-sync.png", 1366, 887, "Turing Sync: messages grouped by stage with health dots, and the AI's question answered in place"),
-
-    { t: "h3", x: "Cadence: AI agents on the team" },
-    { t: "taskFlow", task: { id: "PLTX-12", t: "As a user I need to share dashboards with clients" }, cap: "The task flow from the requirements, rebuilt in code. Each state names who owns the task.", states: [
-      { n: "Unassigned", who: "wait", owner: "Nobody yet: AI assigns it by default", x: "New from the backlog. Unless a person steps in, the AI picks the owner, human or agent." },
-      { n: "In progress · AI", who: "ai", owner: "AI agent AG PM 001", x: "An AI agent works the task and logs every step." },
-      { n: "Pending · human", who: "human", owner: "Bonnie Barstow, product manager", x: "The AI needs a person. The card is highlighted and jumps to the top of its column." },
-      { n: "Approved", who: "human", owner: "Bonnie Barstow, product manager", x: "A person signed off the AI's work." },
-      { n: "Escalated", who: "human", owner: "Delivery manager", x: "Raised to a person with more authority to decide." },
-      { n: "In progress · human", who: "human", owner: "Templeton Peck, front-end developer", x: "A person takes over, with the AI's notes in the thread." },
-      { n: "Blocked", who: "wait", owner: "Waiting on another task", x: "Waiting for input or a dependent task, like testing or approval." },
-      { n: "Done", who: "done", owner: "Closed", x: "Finished. Leftovers return to the backlog when the sprint ends." },
+    { t: "module", n: "01", m: "Vortex", c: "#605BFF", title: "A lead in seconds", x: "Sales drops in whatever they have; AI fills the form and scores the deal.", items: [
+      { t: "leadDemo", prompt: "RFP from Northwind Pay, a fintech company: a payments app for small shops, about 1.5M. Contact Priya Raman, Head of Product. Proposal due 30 May.", file: "northwind-rfp.pdf",
+        fields: [["Client name", "Northwind Pay"], ["Vertical", "Fintech"], ["Deal size", "1.5M"], ["Contact person", "Priya Raman"], ["Lead source", "RFP"], ["Due date", "30 May"]],
+        cap: "Rebuilt in code with made-up example data. Fields the AI fills are marked; edit one and it becomes yours. Nothing counts until a person submits." },
+      img("vortex-ai-scoring.png", 1366, 1242, "The AI score explains itself: strengths, weaknesses, next best actions and the factors behind the number"),
     ] },
-    two(at("cadence-team.png", 1366, 948, "AI agents and people on one team"), at("cadence-sprints.png", 1366, 893, "One sprint board for both")),
+
+    { t: "module", n: "02", m: "Axiom", c: "#B16FF3", title: "Drafts into a real SRS", x: "AI maps the draft to a template; the analyst accepts or rejects every suggestion.", items: [
+      two(at("axiom-pick-template.png", 1366, 886, "Pick a template for the AI to map the draft onto"), at("axiom-editor.png", 1366, 886, "Edit the SRS with an AI assistant beside it")),
+    ] },
+
+    { t: "module", n: "03", m: "Prism", c: "#26C0E2", title: "Estimates you can read", x: "The spreadsheet becomes a model anyone can follow, line by line.", items: [
+      { t: "estimate", cap: "Example numbers, not a real deal. Buffers and overheads are a share of engineering effort, ceremonies scale with sprints, and any line can be switched off.",
+        base: [["Design", 100], ["Front end", 400], ["Back end", 400], ["Testing", 100]],
+        groups: [
+          { g: "Buffers", rows: [["Contingency", 10, true], ["Review and rework", 5, false]] },
+          { g: "SDLC overheads", rows: [["Project management", 7, true], ["Requirements analysis", 2, true], ["Architecture and design", 2, true], ["DevOps", 2, true], ["SIT and UAT", 4, true], ["Hyper-care", 7, true], ["Warranty", 6, false]] },
+        ],
+        agile: { sprints: 5, rows: [["Sprint planning", 2], ["Sprint demo", 2], ["Retrospective", 2]] } },
+      two(at("prism-studio-sizing.png", 1366, 938, "Studio sizing: design effort by screen type and complexity"), at("prism-proposal.png", 1366, 929, "Proposal studio: AI drafts, people edit")),
+    ] },
+
+    { t: "module", n: "04", m: "Turing", c: "#86C270", title: "The AI asks, a person answers", x: "Questions arrive grouped by stage, with the right input right beside them.", items: [
+      img("turing-sync.png", 1366, 887, "Turing Sync: messages grouped by stage with health dots, and the AI's question answered in place"),
+    ] },
+
+    { t: "module", n: "05", m: "Cadence", c: "#FB8050", title: "AI agents on the team", x: "Agents and people share one board, and every state says who owns the task.", items: [
+      { t: "taskFlow", task: { id: "PLTX-12", t: "As a user I need to share dashboards with clients" }, cap: "The task flow from the requirements, rebuilt in code. Each state names who owns the task.", states: [
+        { n: "Unassigned", who: "wait", owner: "Nobody yet: AI assigns it by default", x: "New from the backlog. Unless a person steps in, the AI picks the owner, human or agent." },
+        { n: "In progress · AI", who: "ai", owner: "AI agent AG PM 001", x: "An AI agent works the task and logs every step." },
+        { n: "Pending · human", who: "human", owner: "Bonnie Barstow, product manager", x: "The AI needs a person. The card is highlighted and jumps to the top of its column." },
+        { n: "Approved", who: "human", owner: "Bonnie Barstow, product manager", x: "A person signed off the AI's work." },
+        { n: "Escalated", who: "human", owner: "Delivery manager", x: "Raised to a person with more authority to decide." },
+        { n: "In progress · human", who: "human", owner: "Templeton Peck, front-end developer", x: "A person takes over, with the AI's notes in the thread." },
+        { n: "Blocked", who: "wait", owner: "Waiting on another task", x: "Waiting for input or a dependent task, like testing or approval." },
+        { n: "Done", who: "done", owner: "Closed", x: "Finished. Leftovers return to the backlog when the sprint ends." },
+      ] },
+      two(at("cadence-team.png", 1366, 948, "AI agents and people on one team"), at("cadence-sprints.png", 1366, 893, "One sprint board for both")),
+    ] },
 
     { t: "h2", x: "Design system" },
     { t: "palette", items: [

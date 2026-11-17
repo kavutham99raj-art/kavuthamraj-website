@@ -613,6 +613,24 @@ const tapFlow = () => {
 // Steadfast case: process, how-might-we, sitemap, swimlane flow charts and four small interactive pieces (main.js
 // drives them). Each one renders complete without JS: the charts show every step, the demos show their first state.
 const pad2 = (n) => String(n).padStart(2, "0");
+// A product-launch hero for cases that set `hero`: a dark stage in the product's colours, real screens layered in
+// depth (they tilt flat as the page scrolls, main.js), status chips from the product, and the card's figures.
+const caseHero = (c, { r, name, h1, summary, eyebrow, feat }) => `<section class="ch" aria-labelledby="ch-title">
+    <div class="wrap">
+      <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
+      <div class="ch-copy">
+        <p class="ch-kicker rise"><i aria-hidden="true">${esc(name[0])}</i>${eyebrow.map(esc).join(" · ")}</p>
+        <h1 class="ch-h1 rise" id="ch-title" style="--d:80ms">${rich(h1)}</h1>
+        <p class="ch-sum rise" style="--d:160ms">${esc(summary)}</p>
+      </div>
+      <div class="ch-stage rise" style="--d:240ms" data-tilt>
+        <div class="ch-glow" aria-hidden="true"></div>
+        ${c.hero.layers.map((l, k) => `<img class="ch-l ch-l${k + 1}" ${pic(r, l.src, k ? "(max-width:900px) 60vw, 640px" : WIDE)} alt="${esc(l.alt)}" width="${l.w}" height="${l.h}" decoding="async"${k ? ' loading="lazy"' : ' fetchpriority="high"'}>`).join("")}
+        ${c.hero.chips.map(([t, tone], k) => `<span class="ch-chip ch-c${k + 1} is-${tone}" aria-hidden="true"><i></i>${esc(t)}</span>`).join("")}
+      </div>
+      ${feat ? `<dl class="ch-stats">${feat.outcomes.map(([n, l]) => `<div class="reveal"><dt>${esc(n)}</dt><dd>${esc(l)}</dd></div>`).join("")}</dl>` : ""}
+    </div>
+  </section>`;
 const WHO = { human: "Person", ai: "AI", decision: "Decision", start: "Start", end: "End" };
 const estTotals = (b) => {
   const base = b.base.reduce((s, [, h]) => s + h, 0);
@@ -623,6 +641,20 @@ const estTotals = (b) => {
 const hrs = (n) => `${n.toLocaleString("en-IN")} h`;
 const sf = {
   process: (b) => `<ol class="process reveal">${b.items.map(([t, x], k) => `<li><span class="process-n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ol>`,
+  // the product's app switcher, rebuilt: pick a tile to read what that app does
+  switcher: (b) => `<figure class="sw reveal" data-sw>
+      <div class="sw-copy"><p class="label">${esc(b.kicker)}</p><h3 class="krona">${rich(b.title)}</h3><p>${esc(b.x)}</p></div>
+      <div class="sw-ui">
+        <div class="sw-card" role="group" aria-label="App switcher">${b.apps.map((a, k) => `<button type="button" class="sw-t${a.designed ? "" : " is-soon"}" style="--c:${esc(a.c)}" aria-pressed="${k === 0}" data-x="${esc(a.x)}" data-d="${a.designed ? "Designed in this case study" : "In the switcher, outside this case study"}"><b>${esc(a.n[0])}</b><span>${esc(a.n)}</span></button>`).join("")}</div>
+        <div class="sw-info" aria-live="polite"><p class="sw-n" data-n style="--c:${esc(b.apps[0].c)}">${esc(b.apps[0].n)}</p><p data-x>${esc(b.apps[0].x)}</p><small data-d>Designed in this case study</small></div>
+      </div>
+    </figure>`,
+  statement: (b) => `<blockquote class="stmt reveal"><p class="label">${esc(b.kicker)}</p><p class="stmt-x krona">${rich(b.x)}</p></blockquote>`,
+  // one module of the product: its letter tile and colour, then its screens and demos on a stage in that colour
+  module: (b, r) => `<section class="mod reveal" style="--c:${esc(b.c)}" aria-labelledby="mod-${slug(b.m)}">
+      <header class="mod-head"><i aria-hidden="true">${esc(b.m[0])}</i><div><p class="label">Module ${esc(b.n)} · ${esc(b.m)}</p><h3 id="mod-${slug(b.m)}">${esc(b.title)}</h3><p>${esc(b.x)}</p></div></header>
+      <div class="mod-body">${b.items.map((i) => b.render(i)).join("")}</div>
+    </section>`,
   cards: (b) => `<ul class="sf-cards${b.tone ? ` is-${b.tone}` : ""} n${b.items.length} reveal">${b.items.map(([t, x], k) => `<li><span class="sf-cards-n">${b.tone === "pain" ? "Pain point" : b.tone === "goal" ? "Goal" : "Decision"} ${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ul>`,
   personas: (b) => `<figure class="personas reveal"><ul>${b.items.map((p) => `<li style="--c:${esc(p.c)}">
         <p class="pr-head"><i aria-hidden="true">${esc(p.m[0])}</i><span><strong>${esc(p.r)}</strong><small>Works in ${esc(p.m)}</small></span></p>
@@ -769,6 +801,7 @@ const fcPage = (key) => {
     : b.t === "video" ? `<figure class="shot video reveal" style="aspect-ratio:${b.w}/${b.h}"><iframe src="${esc(b.src)}" title="${esc(b.x)}" loading="lazy" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms"></iframe></figure>`
     : b.t === "chips" ? `<ul class="cs-chips reveal">${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : b.t === "item" ? `<div class="cs-item reveal"><strong>${esc(b.l)}</strong><p>${esc(b.x)}</p></div>`
+    : b.t === "module" ? sf.module({ ...b, render }, r)
     : sf[b.t] ? sf[b.t](b, r)
     : `<p class="cs-p reveal">${esc(b.x)}</p>`;
   // With the outcome numbers shown, the TL;DR keeps only Problem and What I did.
@@ -786,22 +819,22 @@ const fcPage = (key) => {
   ] };
   return `${head({ title: pageTitle, desc: pageDesc, path, image, imageAlt: `${name}: ${concept ? "concept" : "case study"} by ${profile.brand}`, type: "article", ld })}
 ${header(r)}
-<main class="case" id="main">
-  <div class="wrap case-head canvas-pad">
+<main class="case${c.theme ? ` theme-${c.theme}` : ""}" id="main">
+  ${c.hero ? caseHero(c, { r, name, h1, summary, eyebrow, feat }) : `<div class="wrap case-head canvas-pad">
     <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
     <p class="frame rise"><span>${String(keys.indexOf(key) + 1).padStart(2, "0")}</span> ${eyebrow.map(esc).join(" · ")}</p>
     ${feat ? coBadge(feat.meta[0], r).replace('class="co"', 'class="co rise" style="--d:40ms"') : ""}
     <h1 class="case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
     ${summary && summary !== plain(h1) ? `<p class="case-sum rise" style="--d:160ms">${esc(summary)}</p>` : ""}
     ${!c.lead && !feat && c.tags.length ? `<ul class="cs-chips rise" style="--d:200ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
-  </div>
+  </div>`}
   <div class="wrap">
-    <figure class="case-cover rise" style="--d:240ms">${coverSrc
+    ${c.hero ? "" : `<figure class="case-cover rise" style="--d:240ms">${coverSrc
       ? `<img ${pic(r, coverSrc, WIDE)} alt="${esc(feat.visual.alt)}" width="1600" height="1000" decoding="async" fetchpriority="high">`
-      : `<img ${pic(r, `work/${thumb(proj.cover || key + ".png")}`, WIDE)} alt="" width="1200" height="1200" decoding="async" fetchpriority="high">`}</figure>
+      : `<img ${pic(r, `work/${thumb(proj.cover || key + ".png")}`, WIDE)} alt="" width="1200" height="1200" decoding="async" fetchpriority="high">`}</figure>`}
     <dl class="case-meta reveal">${meta.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
     ${feat || tldr ? `<section class="glance reveal" aria-label="At a glance">
-      ${feat ? outcomes(feat.outcomes) : ""}
+      ${feat && !c.hero ? outcomes(feat.outcomes) : ""}
       ${tldr ? `<dl class="tldr${tldr.length === 2 ? " two" : ""}">${tldr.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
     </section>` : ""}
     <div class="case-body${chapters.length > 2 ? " has-toc" : ""}">

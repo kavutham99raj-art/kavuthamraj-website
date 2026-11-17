@@ -661,3 +661,22 @@ const onScroll = (fn) => {
     box.dataset.seen = "1";
   });
 })();
+
+/* Steadfast case: the hero's screens start tilted back and settle flat as you scroll; the app switcher shows what
+   each app does. With reduced motion the screens stay flat. */
+(() => {
+  const st = document.querySelector("[data-tilt]");
+  if (st && !reduceMotion) onScroll(() => {
+    const top = st.getBoundingClientRect().top;
+    st.style.setProperty("--t", Math.min(1, Math.max(0, (top - innerHeight * 0.1) / (innerHeight * 0.55))).toFixed(3));
+  });
+  document.querySelectorAll("[data-sw]").forEach((sw) => {
+    const tiles = [...sw.querySelectorAll(".sw-t")], info = sw.querySelector(".sw-info");
+    const n = info.querySelector("[data-n]"), x = info.querySelector("[data-x]"), d = info.querySelector("[data-d]");
+    tiles.forEach((t) => t.addEventListener("click", () => {
+      tiles.forEach((o) => o.setAttribute("aria-pressed", String(o === t)));
+      n.textContent = t.querySelector("span").textContent; n.style.setProperty("--c", t.style.getPropertyValue("--c"));
+      x.textContent = t.dataset.x; d.textContent = t.dataset.d;
+    }));
+  });
+})();
