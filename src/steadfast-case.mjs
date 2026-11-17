@@ -24,7 +24,7 @@ export default {
   theme: "sf",
   hero: {
     layers: [
-      { src: S + "vortex-leads.png", w: 1366, h: 956, alt: "Steadfast Vortex: the lead list with stat cards and AI winning scores" },
+      { src: S + "vortex-leads.png", w: 2000, h: 1400, alt: "Steadfast Vortex: the lead list with stat cards and AI winning scores" },
       { src: S + "turing-sync.png", w: 1366, h: 887, alt: "Steadfast Turing Sync: the AI asks a person which database to use" },
     ],
     // status lines the product itself shows, used as floating chips
@@ -130,7 +130,7 @@ export default {
       { t: "leadDemo", prompt: "RFP from Northwind Pay, a fintech company: a payments app for small shops, about 1.5M. Contact Priya Raman, Head of Product. Proposal due 30 May.", file: "northwind-rfp.pdf",
         fields: [["Client name", "Northwind Pay"], ["Vertical", "Fintech"], ["Deal size", "1.5M"], ["Contact person", "Priya Raman"], ["Lead source", "RFP"], ["Due date", "30 May"]],
         cap: "Rebuilt in code with made-up example data. Fields the AI fills are marked; edit one and it becomes yours. Nothing counts until a person submits." },
-      img("vortex-ai-scoring.png", 1366, 1242, "The AI score explains itself: strengths, weaknesses, next best actions and the factors behind the number"),
+      img("vortex-ai-scoring.png", 2000, 1818, "The AI score explains itself: strengths, weaknesses, next best actions and the factors behind the number"),
     ] },
 
     { t: "module", n: "02", m: "Axiom", c: "#B16FF3", title: "Drafts into a real SRS", x: "AI maps the draft to a template; the analyst accepts or rejects every suggestion.", items: [
