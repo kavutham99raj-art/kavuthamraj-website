@@ -361,7 +361,7 @@ ${header("")}
             <p class="card-meta label"><span>0${i + 1}</span>${f.meta.slice(1).map(esc).join(" · ")}</p>
             <p class="card-prod"><b>${esc(f.name)}</b><span>${esc(f.what)}</span></p>
             <h3 id="c-${f.key}"><a class="card-link" href="${esc(f.href)}">${rich(f.title)}</a></h3>
-            <p class="card-text"><span class="card-how">How it works</span>${esc(f.how)}</p>
+            <p class="card-text">${esc(f.how)}</p>
           </div>
           <div>
             ${outcomes(f.outcomes)}
