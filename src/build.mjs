@@ -673,6 +673,22 @@ const sf = {
       <p class="tspec-fam"><span>Aa</span><span><strong>${esc(b.family)}</strong><small>Regular 400 · Medium 500 · SemiBold 600</small></span></p>
       <ul>${b.rows.map(([px, w, use]) => `<li><span class="tspec-meta">${px} px · ${w}</span><span class="tspec-s" style="font-size:${px}px;font-weight:${w}">${esc(b.sample)}</span><span class="tspec-use">${esc(use)}</span></li>`).join("")}</ul>
     </figure>`,
+  // the product's components, rebuilt in code from its tokens, each shown in its states
+  components: () => {
+    const plus = `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 5.2v5.6M5.2 8h5.6"/></svg>`;
+    const btn = (kind, st) => `<span class="dsk-b is-${kind} st-${st}">${plus}Add Lead</span>`;
+    const row = (title, items) => `<div class="dsk-row"><p class="dsk-h">${title}</p><div class="dsk-items">${items.map(([el, cap]) => `<div class="dsk-i">${el}<small>${cap}</small></div>`).join("")}</div></div>`;
+    const field = (st, val, help) => `<span class="dsk-f st-${st}"><span class="dsk-fl">Client name</span><span class="dsk-fv">${val}</span>${help ? `<span class="dsk-help">${help}</span>` : ""}</span>`;
+    return `<figure class="dsk reveal">
+      ${row("Primary button", ["default", "hover", "pressed", "disabled"].map((s) => [btn("primary", s), s[0].toUpperCase() + s.slice(1)]))}
+      ${row("Secondary button", ["default", "hover", "pressed", "disabled"].map((s) => [btn("secondary", s), s[0].toUpperCase() + s.slice(1)]))}
+      ${row("Text field", [[field("default", "Enter name"), "Default"], [field("focus", "Northwind Pay"), "Hover and focus"], [field("filled", "Northwind Pay"), "Filled"], [field("error", "", "Client name is required"), "Error"]])}
+      ${row("Status and score", [[`<span class="dsk-pill is-prog">In Progress</span>`, "Status"], [`<span class="dsk-pill is-done">Completed</span>`, "Status"], [`<span class="dsk-pill is-ready">Ready To Submit</span>`, "Outline status"], [`<span class="dsk-pill is-score">90%</span>`, "AI winning score"]])}
+      ${row("Tabs", [[`<span class="dsk-tabs"><span>Lead Details</span><span>Documents</span><span class="on">AI Scoring</span></span>`, "Active tab: 2 px primary underline on a 1 px baseline"]])}
+      ${row("Search", [[`<span class="dsk-s"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.5 10.5 14 14"/></svg>Search</span>`, "Search"], [`<span class="dsk-s on"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.5 10.5 14 14"/></svg>Northwind<i aria-hidden="true">×</i></span>`, "Search, active"]])}
+      <figcaption>Rebuilt in code from Steadfast's tokens: 10 px corners and 48 px filled fields, #605BFF with #7470FF hover, #3D38E3 pressed and #ACABBF disabled.</figcaption>
+    </figure>`;
+  },
   wrap: (b) => `<div class="sf-wrap reveal">
       <div><p class="label">What I delivered</p><ul class="sf-did">${b.did.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
       <div><p class="label">What I learned</p><dl class="sf-learnt">${b.learnt.map(([t, x]) => `<div><dt>${esc(t)}</dt><dd>${esc(x)}</dd></div>`).join("")}</dl></div>

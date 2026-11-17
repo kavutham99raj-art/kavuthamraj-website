@@ -172,7 +172,7 @@ export default {
       ["#B16FF3", "Axiom"], ["#26C0E2", "Prism"], ["#FB8050", "Cadence"], ["#86C270", "Turing"], ["#F15E5E", "Error, high priority"],
     ] },
     { t: "type", family: "Poppins", sample: "AI winning score 90%", rows: [[32, 600, "Page titles"], [20, 400, "Section titles"], [16, 500, "Body and table text"], [14, 500, "Labels and buttons"], [12, 600, "Tags and captions"]] },
-    two(at("ds-buttons.png", 2698, 1582, "Buttons with default, pressed, hover and disabled states"), at("ds-text-field.png", 3120, 1772, "48 px filled fields: default, hover, focus, filled and error")),
+    { t: "components" },
 
     { t: "h2", x: "When the AI is wrong" },
     { t: "p", x: "AI will get things wrong. Every module was designed so a mistake is easy to spot, cheap to fix and never final without a person." },

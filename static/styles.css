@@ -777,6 +777,58 @@ body:has(main.theme-sf) .top{background:rgba(255,255,255,.88)}
 .theme-sf .next-case:hover strong{color:#605BFF}
 .theme-sf .cs-note{border-left-color:#605BFF;background:#fff}
 .theme-sf .stmt .label{color:#605BFF}
+/* design-system specimen, rebuilt in code */
+.dsk{margin:var(--s6) 0;padding:clamp(20px,2.4vw,32px);border-radius:24px;background:#fff;border:1px solid #E9ECEF;box-shadow:0 8px 24px -12px rgba(21,19,56,.12);color:#151338;font-family:Poppins,system-ui,sans-serif}
+.dsk-row{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:start;padding:18px 0;border-bottom:1px solid #F1F3F5}
+.dsk-row:first-child{padding-top:0}
+.dsk-h{padding-top:10px;font-size:13px;font-weight:600}
+.dsk-items{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 16px;align-items:start}
+.dsk-i:has(.dsk-tabs){grid-column:1/-1}
+.dsk-i{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+.dsk-i small{font-size:11.5px;color:#6A7178}
+.dsk-b{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:10px;border:1.5px solid transparent;font-size:14px;font-weight:500;white-space:nowrap}
+.dsk-b svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round}
+.dsk-b.is-primary{background:#605BFF;color:#fff}
+.dsk-b.is-primary.st-hover{background:#7470FF}
+.dsk-b.is-primary.st-pressed{background:#3D38E3}
+.dsk-b.is-primary.st-disabled{background:#ACABBF}
+.dsk-b.is-secondary{background:#fff;border-color:#605BFF;color:#605BFF}
+.dsk-b.is-secondary.st-hover{background:#ECEBFF}
+.dsk-b.is-secondary.st-pressed{border-color:#3D38E3;color:#3D38E3;background:#ECEBFF}
+.dsk-b.is-secondary.st-disabled{border-color:#CED4DA;color:#ACABBF}
+.dsk-f{display:flex;flex-direction:column;gap:6px;width:100%}
+.dsk-fl{font-size:12px;font-weight:500;color:#4A4F58}
+.dsk-fv{display:block;line-height:42px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:44px;padding:0 12px;border-radius:8px;border:1px solid transparent;background:#EFF1F9;font-size:13.5px;color:#151338}
+.dsk-f.st-default .dsk-fv{color:#6A7178}
+.dsk-f.st-focus .dsk-fv{background:#E9ECF8;border-color:#605BFF}
+.dsk-f.st-error .dsk-fv{background:#FDECEC;border-color:#F15E5E}
+.dsk-help{font-size:11.5px;color:#C92A2A}
+.dsk-pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;font-size:11.5px;font-weight:600;color:#fff}
+.dsk-pill.is-prog{background:#FB8050}
+.dsk-pill.is-done{background:#86C270}
+.dsk-pill.is-ready{background:#fff;border:1px solid #26C0E2;color:#147C93}
+.dsk-pill.is-score{background:#605BFF}
+.dsk-tabs{display:flex;border-bottom:1px solid #CED4DA}
+.dsk-tabs span{padding:0 16px 10px;white-space:nowrap;font-size:13.5px;font-weight:500;color:#6A7178}
+.dsk-tabs span.on{color:#3D38E3;box-shadow:inset 0 -2px #605BFF}
+.dsk-s{display:flex;align-items:center;gap:8px;width:100%;height:40px;padding:0 12px;border-radius:10px;border:1px solid transparent;background:#F5F7FA;font-size:13.5px;color:#6A7178}
+.dsk-s svg{width:16px;height:16px;fill:none;stroke:#151338;stroke-width:1.6;stroke-linecap:round}
+.dsk-s.on{border-color:#605BFF;color:#151338;background:#fff}
+.dsk-s i{margin-left:auto;font-style:normal;font-size:16px;color:#6A7178}
+.dsk figcaption{margin-top:var(--s4);font-size:13.5px;line-height:1.55;color:#6A7178}
+@media (max-width:700px){.dsk-row{grid-template-columns:1fr;gap:10px}.dsk-h{padding-top:0}.dsk-items{grid-template-columns:1fr 1fr}}
+/* 1. small purple text uses the pressed tone (7.6:1), fills keep #605BFF; 2. Steadfast's sentence-case labels */
+main.theme-sf{--rust:#3D38E3}
+.theme-sf .cs{--who-ai:#3D38E3}
+.theme-sf .stmt .label,.theme-sf .toc a.on{color:#3D38E3}
+.theme-sf .fl-bar button[aria-selected="true"]{color:#3D38E3}
+.theme-sf .flow-play{color:#3D38E3}
+.theme-sf :is(.personas dt,.j-before b,.j-now b,.sf-cards-n,.fc-who,.journey-n,.process-n,.sfd-k,.fc-lanes,.sfd-tag){text-transform:none;letter-spacing:0;font-weight:600}
+.theme-sf :is(.personas dt,.sf-cards-n,.j-before b,.j-now b,.sfd-k){font-size:12px}
+/* 4. the type specimen wraps on narrow screens instead of cutting the sample */
+@media (max-width:560px){.tspec-s{white-space:normal}}
+/* 6. step arrows sit in the middle of the gap between the cards */
+.process li:not(:last-child)::after{top:50%;translate:0 -50%}
 /* add-a-lead demo */
 .sfd-app{display:grid;grid-template-columns:5fr 7fr;overflow:hidden;border-radius:14px;border:1px solid #E9ECEF;background:#fff;color:var(--sf-ink);font-size:14px}
 .sfd-in{display:flex;flex-direction:column;gap:12px;padding:20px;background:#F5F7FA}
@@ -812,7 +864,7 @@ body:has(main.theme-sf) .top{background:rgba(255,255,255,.88)}
 .cmp-stage{position:relative;overflow:hidden;border-radius:16px;border:1px solid var(--line);background:#fff;box-shadow:0 30px 60px -44px rgba(23,18,15,.5)}
 .cmp-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left}
 .cmp-top{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--x)) 0 0)}
-.cmp-tag{position:absolute;top:12px;padding:4px 10px;border-radius:999px;background:rgba(21,19,56,.82);font-size:12px;font-weight:600;color:#fff;pointer-events:none}
+.cmp-tag{position:absolute;bottom:12px;padding:4px 10px;border-radius:999px;background:rgba(21,19,56,.82);font-size:12px;font-weight:600;color:#fff;pointer-events:none}
 .cmp-tag.l{left:12px}.cmp-tag.r{right:12px;background:var(--sf)}
 .cmp-bar{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(21,19,56,.25);pointer-events:none}
 .cmp-bar i{position:absolute;top:50%;left:50%;display:grid;place-items:center;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(21,19,56,.3);font-style:normal;font-size:15px;color:var(--sf-ink)}
