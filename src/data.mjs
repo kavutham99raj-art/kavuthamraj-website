@@ -286,9 +286,9 @@ export const featured = [
   {
     key: "steadfast", meta: ["Liffto Technologies", "AI SaaS", "2025"],
     title: "AI does the work. *People stay in charge.*",
-    text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. From a business analyst's requirements, I designed Steadfast: five modules on one shell where AI agents and people share the same work, with a clear signal wherever the AI needs a human.",
-    // No outcome metrics exist for Steadfast, so these are facts of the design itself.
-    outcomes: [["5", "modules, from first lead to delivered code"], ["8", "apps in one colour-coded switcher"], ["1", "design system shared by every module"]],
+    text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. As the only designer, I took Steadfast from founder sessions to a shipped product: five modules on one shell where AI agents and people share the work, with a clear signal wherever the AI needs a human.",
+    // No usage metrics exist for Steadfast yet; these are confirmed facts (it was built and used, one designer, five modules).
+    outcomes: [["Shipped", "built and used, from my designs"], ["Solo", "designer, founder sessions to handoff"], ["5", "AI modules on one shell"]],
     visual: { src: "work/steadfast/hero.jpg", alt: "Steadfast: the Vortex lead list with AI winning scores, and Turing Sync asking a person to choose a database" },
     href: "work/steadfast.html", cover: "steadfast.png",
   },

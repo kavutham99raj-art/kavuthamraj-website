@@ -655,7 +655,7 @@ const sf = {
       <header class="mod-head"><i aria-hidden="true">${esc(b.m[0])}</i><div><p class="label">Module ${esc(b.n)} · ${esc(b.m)}</p><h3 id="mod-${slug(b.m)}">${esc(b.title)}</h3><p>${esc(b.x)}</p></div></header>
       <div class="mod-body">${b.items.map((i) => b.render(i)).join("")}</div>
     </section>`,
-  cards: (b) => `<ul class="sf-cards${b.tone ? ` is-${b.tone}` : ""} n${b.items.length} reveal">${b.items.map(([t, x], k) => `<li><span class="sf-cards-n">${b.tone === "pain" ? "Pain point" : b.tone === "goal" ? "Goal" : "Decision"} ${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ul>`,
+  cards: (b) => `<ul class="sf-cards${b.tone ? ` is-${b.tone}` : ""} n${b.items.length} reveal">${b.items.map(([t, x], k) => `<li><span class="sf-cards-n">${{ pain: "Pain point", goal: "Goal", guard: "Safeguard" }[b.tone] || "Decision"} ${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ul>`,
   personas: (b) => `<figure class="personas reveal"><ul>${b.items.map((p) => `<li style="--c:${esc(p.c)}">
         <p class="pr-head"><i aria-hidden="true">${esc(p.m[0])}</i><span><strong>${esc(p.r)}</strong><small>Works in ${esc(p.m)}</small></span></p>
         <dl><div><dt>Goal</dt><dd>${esc(p.goal)}</dd></div><div><dt>Pain point</dt><dd>${esc(p.pain)}</dd></div><div class="pr-ai"><dt>Where AI helps</dt><dd>${esc(p.ai)}</dd></div></dl>

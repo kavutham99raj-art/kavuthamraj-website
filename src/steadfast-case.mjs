@@ -14,7 +14,7 @@ export default {
   lead: "AI does the work. People stay in charge.",
   summary: "One platform where AI agents and people take a software deal from the first sales lead to delivered code, with a clear signal wherever the AI needs a human.",
   meta: [
-    ["Role", "Product designer, wireframes to final UI"],
+    ["Role", "Lead product designer, the only designer"],
     ["Company", "Liffto Technologies"],
     ["Industry", "IT services, AI SaaS"],
     ["Platform", "Web app, desktop"],
@@ -34,11 +34,11 @@ export default {
   tags: ["AI product", "B2B SaaS", "Design system"],
   tldr: [
     ["Problem", "Leads, requirements, estimates, sprints and code lived in separate tools. Every handoff lost context, and AI agents had no place to ask a person for help."],
-    ["What I did", "Designed five modules on one shell, from a business analyst's requirements: wireframes, final UI and a shared design system, with human-in-the-loop states built into every flow."],
+    ["What I did", "As the only designer, took five modules from founder sessions to developer handoff: IA, wireframes, final UI and a shared design system, with human-in-the-loop states in every flow. It was built and used."],
   ],
   blocks: [
     { t: "h2", x: "Brief" },
-    { t: "p", x: "A software services business wanted one platform for its whole delivery chain, from the first sales lead to delivered code. AI agents do the heavy lifting; people review, decide and sign off. A business analyst wrote the requirements for five modules, and I designed the product from them." },
+    { t: "p", x: "A software services business wanted one platform for its whole delivery chain, from the first sales lead to delivered code. AI agents do the heavy lifting; people review, decide and sign off. A business analyst wrote the requirements for five modules. As the only designer, I took it from founder sessions to developer handoff, and it was built and used." },
 
     { t: "h2", x: "Challenge" },
     { t: "cards", tone: "pain", items: [
@@ -52,12 +52,12 @@ export default {
 
     { t: "h2", x: "Discover" },
     { t: "process", items: [
-      ["Understand", "Read the SRS module by module and marked every AI-to-person handoff."],
+      ["Understand", "Founder and stakeholder sessions, the SRS module by module, and a competitor review."],
       ["Define", "Mapped one deal end to end, set design goals and drew the IA."],
       ["Design", "Greyscale wireframes, then final UI with every state."],
       ["Systemise", "One shell and design system for all five modules."],
     ] },
-    { t: "personas", cap: "User groups taken from the requirements. Solution architects (Prism) and engineers (Turing) complete the chain.", items: [
+    { t: "personas", cap: "Proto-personas from founder and stakeholder sessions and the requirements. Solution architects (Prism) and engineers (Turing) complete the chain.", items: [
       { r: "Sales lead", m: "Vortex", c: "#605BFF", goal: "Log leads fast and chase the right ones.", pain: "Retypes RFPs, emails and call notes into forms.", ai: "Fills the lead from a prompt, voice note or file, and scores it with reasons." },
       { r: "Business analyst", m: "Axiom", c: "#B16FF3", goal: "A complete SRS the first time.", pain: "Drafts arrive with gaps and duplicates.", ai: "Maps the draft to a template and flags gaps; the analyst accepts or rejects each one." },
       { r: "Delivery manager", m: "Cadence", c: "#FB8050", goal: "Plan, staff and track delivery.", pain: "Can't see where AI work is waiting on a person.", ai: "Drafts the sprint plan, and surfaces every task that needs a human." },
@@ -174,6 +174,18 @@ export default {
     { t: "type", family: "Poppins", sample: "AI winning score 90%", rows: [[32, 600, "Page titles"], [20, 400, "Section titles"], [16, 500, "Body and table text"], [14, 500, "Labels and buttons"], [12, 600, "Tags and captions"]] },
     two(at("ds-buttons.png", 2698, 1582, "Buttons with default, pressed, hover and disabled states"), at("ds-text-field.png", 3120, 1772, "48 px filled fields: default, hover, focus, filled and error")),
 
+    { t: "h2", x: "When the AI is wrong" },
+    { t: "p", x: "AI will get things wrong. Every module was designed so a mistake is easy to spot, cheap to fix and never final without a person." },
+    { t: "cards", tone: "guard", items: [
+      ["If it fills a field wrong", "Every AI-filled field stays open and editable, and nothing is saved until a person submits."],
+      ["If it suggests a bad change", "Recommendations need an explicit Add or Cancel. Nothing edits the SRS or proposal silently."],
+      ["If its score looks arbitrary", "The winning score shows strengths, weaknesses and the factors behind it, so sales can disagree with reasons."],
+      ["If it reaches a call it shouldn't make", "It asks in Turing Sync or the task thread, and the task waits in Pending human review."],
+      ["If the work is too risky for AI", "Escalated hands the task to a person with the authority to decide."],
+      ["If someone asks who changed what", "Turing Sync logs and each task's activity thread record what the AI and each person did."],
+    ] },
+    { t: "p", x: "Next, I would add a confidence level to each AI-filled field and a link back to the sentence it came from, so checking takes one glance." },
+
     { t: "h2", x: "Key decisions" },
     { t: "cards", items: [
       ["One shell, colour-coded apps", "Same sidebar, top bar and app switcher everywhere; each module keeps its colour, so people always know where they are."],
@@ -188,12 +200,13 @@ export default {
         "Information architecture and key flows for five modules on one shell",
         "Wireframes, then final UI with empty, loading, AI-working and needs-a-person states",
         "One design system of tokens, components and states shared by every module",
-        "Shell, sign-in, Vortex, Axiom and Prism marked done in the project's status sheet; Turing and Cadence designed in the same system",
+        "A shipped product: developers built it from my designs, and the business used it",
       ],
       learnt: [
         ["Design the waiting", "AI takes time. Progress and partial results mattered as much as the final answer."],
         ["Give the AI a face", "With names and a way to ask, agents read as teammates, not a black box."],
-        ["Test earlier", "The flows came from requirements. Next time, I'd put them in front of sales and delivery staff much sooner."],
+        ["Test with users, not just founders", "My input came from founder and stakeholder sessions. Next time I'd test the key flows with sales and delivery staff before handoff."],
+        ["Check colour as text", "Cyan and green work as module fills but fail as small text on white. I'd add darker text tones to the palette."],
       ] },
     { t: "note", x: "Client names and figures in the screens are placeholder data, not real clients or results." },
   ],
