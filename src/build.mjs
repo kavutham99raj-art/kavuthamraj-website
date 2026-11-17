@@ -362,8 +362,9 @@ ${header("")}
           <div>
             ${coBadge(f.meta[0])}
             <p class="card-meta label"><span>0${i + 1}</span>${f.meta.slice(1).map(esc).join(" · ")}</p>
+            <p class="card-prod"><b>${esc(f.name)}</b><span>${esc(f.what)}</span></p>
             <h3 id="c-${f.key}"><a class="card-link" href="${esc(f.href)}">${rich(f.title)}</a></h3>
-            <p class="card-text">${esc(f.text)}</p>
+            <p class="card-text"><span class="card-how">How it works</span>${esc(f.how)}</p>
           </div>
           <div>
             ${outcomes(f.outcomes)}
@@ -655,7 +656,7 @@ const caseHero = (c, { r, name, h1, summary, eyebrow, feat }) => `<section class
     <div class="wrap">
       <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
       <div class="ch-copy">
-        <p class="ch-kicker rise"><i aria-hidden="true">${esc(name[0])}</i>${eyebrow.map(esc).join(" · ")}</p>
+        <p class="ch-kicker rise"><i aria-hidden="true">${esc(name[0])}</i>${feat ? `<b>${esc(feat.name)}</b> · ${esc(feat.what)}` : eyebrow.map(esc).join(" · ")}</p>
         <h1 class="ch-h1 rise" id="ch-title" style="--d:80ms">${rich(h1)}</h1>
         <p class="ch-sum rise" style="--d:160ms">${esc(summary)}</p>
       </div>
@@ -907,6 +908,7 @@ ${header(r)}
     <nav class="crumbs label" aria-label="Breadcrumb"><a href="${r}index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span></nav>
     <p class="frame rise"><span>${String(keys.indexOf(key) + 1).padStart(2, "0")}</span> ${eyebrow.map(esc).join(" · ")}</p>
     ${feat ? coBadge(feat.meta[0], r).replace('class="co"', 'class="co rise" style="--d:40ms"') : ""}
+    ${feat ? `<p class="case-prod rise" style="--d:60ms"><b>${esc(feat.name)}</b><span>${esc(feat.what)}</span></p>` : ""}
     <h1 class="case-h1 rise" style="--d:80ms">${rich(h1)}</h1>
     ${summary && summary !== plain(h1) ? `<p class="case-sum rise" style="--d:160ms">${esc(summary)}</p>` : ""}
     ${!c.lead && !feat && c.tags.length ? `<ul class="cs-chips rise" style="--d:200ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}

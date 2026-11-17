@@ -276,7 +276,8 @@ const erpScreens = [
 ];
 export const featured = [
   {
-    key: "steadfast", meta: ["Liffto Technologies", "AI SaaS", "2025"],
+    key: "steadfast", name: "Steadfast", what: "AI service-delivery platform", how: "AI agents fill leads, size the work and plan sprints. People review and sign off.",
+    meta: ["Liffto Technologies", "AI SaaS", "2025"],
     title: "AI does the work. *People stay in charge.*",
     text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. As the only designer, I took Steadfast from founder sessions to a shipped product: five modules on one shell where AI agents and people share the work, with a clear signal wherever the AI needs a human.",
     // No usage metrics exist for Steadfast yet; these are confirmed facts (it was built and used, one designer, five modules).
@@ -285,7 +286,8 @@ export const featured = [
     href: "work/steadfast.html", cover: "steadfast.png",
   },
   {
-    key: "erp", meta: ["Sporfy", "Sports ERP", "Mobile"],
+    key: "erp", name: "Sporfy Tracker", what: "Mobile ERP for sports academies", how: "Payroll, attendance, fees, classes and slots in one phone app instead of a desktop.",
+    meta: ["Sporfy", "Sports ERP", "Mobile"],
     title: "Off the desktop. *Into the pocket.*",
     text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
     outcomes: [["Solo", "designer, from brief to developer handoff"], ["5", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],
@@ -293,7 +295,8 @@ export const featured = [
     href: "work/erp.html", cover: "erp-solution.png",
   },
   {
-    key: "titan", meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
+    key: "titan", name: "Titan", what: "B2B back-office and ERP", how: "Tables stay usable while data loads, with skeleton states instead of a full-page spinner.",
+    meta: ["AffinityX", "Enterprise B2B SaaS", "2025"],
     title: "Stop the spinner. *Keep the work moving.*",
     text: "One slow table froze the whole back office. I audited every table and dashboard, won the PM over with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components. “App is stuck” reports dropped to zero.",
     outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
@@ -301,7 +304,8 @@ export const featured = [
     href: "work/titan.html", cover: "titan.png",
   },
   {
-    key: "cyberdine", meta: ["Liffto Technologies", "Restaurant SaaS", "2024–25"],
+    key: "cyberdine", name: "Cyberdine", what: "QR ordering for restaurants", how: "Diners scan, order and pay from the table. Staff approve each dish.",
+    meta: ["Liffto Technologies", "Restaurant SaaS", "2024–25"],
     title: "Don't wait for the captain. *Order from the table.*",
     text: "Diners could build a shortlist but not send it: every order waited for a captain. I redesigned ordering so the table sends it and staff still approve each dish, then added a tip step restaurants track live, plus payment and the full restaurant app.",
     outcomes: [["~235", "screens across two apps, sole designer"], ["15", "restaurants live at peak"], ["~600", "orders a day at peak"]],
@@ -309,7 +313,8 @@ export const featured = [
     href: "work/cyberdine.html", cover: "cyberdine.png",
   },
   {
-    key: "educonnect", meta: ["Self-initiated", "EdTech", "iOS"],
+    key: "educonnect", name: "Educonnect", what: "Tuition and online-course app", how: "Students find tutors or courses, chat with teachers and share posts.",
+    meta: ["Self-initiated", "EdTech", "iOS"],
     title: "Tuition and courses. *One app.*",
     text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
     outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],

@@ -1567,3 +1567,11 @@ button.concept{width:100%;font:inherit;color:inherit;text-align:left;cursor:poin
 
 /* long case page: sections far below the fold skip layout and paint until they near the screen */
 .theme-sf :is(.mod,.x2u,.dsk,.tspec,.palette,.fl-tabs,.sf-wrap,.cs-cta){content-visibility:auto;contain-intrinsic-size:auto 900px}
+
+/* product line: the name and what it is, read before the headline */
+.card-prod,.case-prod{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:4px 0 10px}
+.card-prod b,.case-prod b{font:400 clamp(17px,1.5vw,20px)/1.2 var(--display);text-transform:uppercase;letter-spacing:.01em;color:var(--ink)}
+.card-prod span,.case-prod span{padding:3px 10px;border-radius:999px;background:var(--sunk);font-size:13px;font-weight:500;color:var(--body)}
+.case-prod{margin:var(--s4) 0 var(--s3)}
+.card-how{display:block;margin-bottom:2px;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rust)}
+.ch-kicker b{font-weight:600;color:#fff}
