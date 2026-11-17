@@ -282,7 +282,7 @@ export const featured = [
     text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. As the only designer, I took Steadfast from founder sessions to a shipped product: five modules on one shell where AI agents and people share the work, with a clear signal wherever the AI needs a human.",
     // No usage metrics exist for Steadfast yet; these are confirmed facts (it was built and used, one designer, five modules).
     outcomes: [["Shipped", "built and used, from my designs"], ["Solo", "designer, founder sessions to handoff"], ["5", "AI modules on one shell"]],
-    visual: { src: "work/steadfast/hero.jpg", alt: "Steadfast: the Vortex lead list with AI winning scores, and Turing Sync asking a person to choose a database" },
+    visual: { demo: "steadfast", label: "Steadfast Vortex: AI fills a lead from an RFP prompt, scores it 90% likely to win, and flags one task for a person to review", src: "work/steadfast/hero.jpg", alt: "Steadfast: the Vortex lead list with AI winning scores, and Turing Sync asking a person to choose a database" },
     href: "work/steadfast.html", cover: "steadfast.png",
   },
   {
@@ -291,7 +291,7 @@ export const featured = [
     title: "Off the desktop. *Into the pocket.*",
     text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
     outcomes: [["Solo", "designer, from brief to developer handoff"], ["7", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],
-    visual: { phones: erpScreens },
+    visual: { demo: "tracker", alt: "Sporfy Tracker on a phone: attendance checking in, fees and payroll bars filling, and today's slots and lockers booked" },
     href: "work/erp.html", cover: "erp-solution.png",
   },
   {

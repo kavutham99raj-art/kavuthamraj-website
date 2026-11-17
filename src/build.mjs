@@ -195,10 +195,64 @@ const loadingDemo = (v) => `<div class="ld" role="img" aria-label="${esc(v.alt)}
     <p class="ld-time"><span>Same request, same wait</span><i></i><b>Data in</b></p>
   </div>`;
 
+// Animated card banners, built in code like the Titan loading demo. They play while on screen (main.js adds .play),
+// and show their finished state without it (reduced motion). Decorative: the card's text carries the story.
+const sfBanner = (v) => `<div class="ab ab-sf" role="img" aria-label="${esc(v.label || v.alt)}">
+    <div class="sfx">
+      <p class="sfx-bar"><em><i></i><i></i><i></i></em><span>app.steadfast.ai/vortex/leads</span></p>
+      <div class="sfx-app">
+        <nav class="sfx-side">
+          <b class="sfx-logo">STEAD<i>FAST</i></b>
+          ${[["target", "Vortex", "Leads"], ["layers", "Axiom", "Requirements"], ["chart", "Prism", "Estimates"], ["flow", "Turing", "Build"], ["activity", "Cadence", "Sprints"]].map(([ic, n, x], k) => `<p class="${k ? "" : "on"}">${ico(ic)}<span><b>${n}</b>${x}</span></p>`).join("")}
+          <p class="sfx-me"><i>B</i><span><b>Bonnie</b>Delivery lead</span></p>
+        </nav>
+        <div class="sfx-main">
+          <div class="sfx-head"><p><b>Leads</b><span>Vortex · This quarter</span></p><i class="sfx-search">${ico("search")}Search leads</i><i class="sfx-add">+ Add lead</i></div>
+          <div class="sfx-kpis">
+            <p><span>Total leads</span><b class="sfx-n" style="--n0:127;--n1:128"></b></p>
+            <p><span>Avg. AI score</span><b>71%</b></p>
+            <p><span>Pipeline</span><b>4.8M</b></p>
+            <p class="is-warn"><span>Needs a human</span><b class="sfx-n" style="--n0:0;--n1:1;--s:74"></b></p>
+          </div>
+          <div class="sfx-table">
+            <p class="sfx-th"><span>Client</span><span>Vertical</span><span>Deal size</span><span>Stage</span><span>AI winning score</span></p>
+            <p class="sfx-tr is-new"><span style="--s:50"><i class="sfx-av" style="--c:#605BFF">N</i>Northwind Pay<em>AI</em></span><span style="--s:53">Fintech</span><span style="--s:56">1.5M</span><span style="--s:59"><i class="sfx-st">Qualified</i></span><span class="sfx-sc" style="--v:90;--s:68"><i><em></em></i><b></b></span></p>
+            ${[["Bluepeak Health", "#12B76A", "Healthcare", "820K", "Proposal", 76], ["Orbit Logistics", "#F79009", "Logistics", "1.1M", "Discovery", 64], ["Lumen Learning", "#2E90FA", "Edtech", "460K", "Negotiation", 81], ["Acme Retail", "#EE46BC", "Retail", "300K", "Discovery", 48]].map(([n, c, ve, d, st, sc]) => `<p class="sfx-tr"><span><i class="sfx-av" style="--c:${c}">${n[0]}</i>${n}</span><span>${ve}</span><span>${d}</span><span><i class="sfx-st">${st}</i></span><span class="sfx-sc" style="--v:${sc}"><i><em></em></i><b>${sc}%</b></span></p>`).join("")}
+          </div>
+        </div>
+        <aside class="sfx-ai">
+          <p class="sfx-ai-h">${ico("spark")}<b>Smart AI</b><span>Add lead</span></p>
+          <p class="sfx-k">Prompt</p>
+          <p class="sfx-prompt">${"RFP from Northwind Pay: payments app, 1.5M. Contact Priya Raman.".split(" ").map((w, k) => `<i style="--s:${10 + k}">${w}</i>`).join(" ")}</p>
+          <p class="sfx-file"><i></i>northwind-rfp.pdf</p>
+          <div class="sfx-prog"><p><span>Reading the RFP</span><b></b></p><i><em></em></i></div>
+          <p class="sfx-done">${ico("check")}Lead created, 4 fields filled</p>
+        </aside>
+      </div>
+    </div>
+    <p class="sfx-toast"><i>!</i><span><b>1 task needs a human</b>Assigned to Bonnie · Pending review</span></p>
+  </div>`;
+const trackerBanner = (v) => `<div class="ab ab-st" role="img" aria-label="${esc(v.alt)}">
+    <div class="stb-phone"><div class="stb-screen">
+      <p class="stb-top"><b>Sporfy Tracker</b><span>Today · Academy</span></p>
+      <div class="stb-card"><p><span>Attendance</span><b>42 / 45</b></p><ol class="stb-dots">${Array.from({ length: 15 }, (_, k) => `<li${[3, 9, 13].includes(k) ? ' class="x"' : ""} style="--s:${4 + k * 2}"></li>`).join("")}</ol></div>
+      <div class="stb-card"><p><span>Fees collected</span><b>₹1.2L</b></p><i class="stb-bar" style="--s:34;--d:16;--w:.82"><em></em></i></div>
+      <div class="stb-card"><p><span>Payroll · 18 staff</span><b class="stb-ok">Processed</b></p><i class="stb-bar is-pay" style="--s:50;--d:14;--w:1"><em></em></i></div>
+      <div class="stb-card"><p><span>Slots &amp; lockers</span><b>9 booked</b></p><ol class="stb-slots">${Array.from({ length: 12 }, (_, k) => `<li${[0, 3, 6].includes(k) ? "" : ' class="on"'} style="--s:${68 + k * 1.5}"></li>`).join("")}</ol></div>
+    </div></div>
+    <p class="stb-chip c1"><i></i>+3 check-ins</p>
+    <p class="stb-chip c2"><i></i>Payroll run</p>
+    <p class="stb-chip c3"><i></i>Locker 12 booked</p>
+  </div>`;
+
 // Real UI for a project card or case page: a before/after slide, or a row of phone screens.
 const visual = (v, r = "") =>
   v.demo === "loading"
     ? loadingDemo(v)
+    : v.demo === "steadfast"
+    ? sfBanner(v)
+    : v.demo === "tracker"
+    ? trackerBanner(v)
     : v.phones
     ? `<div class="phones-panel">${v.phones.map((p) => `<img ${pic(r, p.src, "(max-width:900px) 30vw, 200px")} alt="Sporfy Tracker: ${esc(p.cap)}" width="512" height="1100" loading="lazy" decoding="async">`).join("")}</div>`
     : `<img ${pic(r, v.src, WIDE)} alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;

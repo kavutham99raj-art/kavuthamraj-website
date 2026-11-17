@@ -347,9 +347,9 @@ const onScroll = (fn) => {
   btn.parentElement.addEventListener("focusout", (e) => { if (!btn.parentElement.contains(e.relatedTarget)) set(false); });
 })();
 
-/* Titan card: the loading demo only runs while it is on screen */
+/* Titan, Steadfast and Sporfy Tracker cards: the animated banners only run while on screen */
 (() => {
-  const demos = document.querySelectorAll(".ld");
+  const demos = document.querySelectorAll(".ld, .ab");
   if (!demos.length || reduceMotion) return;
   const io = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("play", e.isIntersecting)), { threshold: 0.25 });
   demos.forEach((d) => io.observe(d));
