@@ -615,6 +615,33 @@ const tapFlow = () => {
 
 // Steadfast case: process, how-might-we, sitemap, swimlane flow charts and four small interactive pieces (main.js
 // drives them). Each one renders complete without JS: the charts show every step, the demos show their first state.
+// Line icons (24 px grid, drawn with currentColor) for the Steadfast case's cards, steps and personas.
+const ICON = {
+  keyboard: '<rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/>',
+  fileGap: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h2M13 13h2M9 17h2"/>',
+  sheet: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16"/>',
+  bot: '<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V5M12 5h.01M9 13h.01M15 13h.01M10 17h4"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+  map: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+  pen: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13 7 4 4"/>',
+  layers: '<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>',
+  target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/>',
+  alert: '<path d="M12 4 2.5 20h19z"/><path d="M12 10v4M12 17h.01"/>',
+  spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16v4M17 18h4"/>',
+  flow: '<path d="M4 12h14M13 6l6 6-6 6"/>',
+  eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  bell: '<path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/>',
+  xCircle: '<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/>',
+  chart: '<path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/>',
+  msg: '<path d="M4 5h16v11H9l-5 4z"/><path d="M12 8v3M12 13.5h.01"/>',
+  arrowUp: '<path d="M12 19V5M5 12l7-7 7 7"/>',
+  history: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/>',
+  layout: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M3 9h6"/>',
+  activity: '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+  hand: '<path d="M8 13V6a1.5 1.5 0 0 1 3 0v5M11 10V4.5a1.5 1.5 0 0 1 3 0V11M14 10.5V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3 14a1.5 1.5 0 0 1 2.5-1.7L8 15"/>',
+  check: '<path d="m5 12 5 5 9-10"/>',
+};
+const ico = (n) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[n] || ""}</svg>`;
 const pad2 = (n) => String(n).padStart(2, "0");
 // A product-launch hero for cases that set `hero`: a dark stage in the product's colours, real screens layered in
 // depth (they tilt flat as the page scrolls, main.js), status chips from the product, and the card's figures.
@@ -643,7 +670,7 @@ const estTotals = (b) => {
 };
 const hrs = (n) => `${n.toLocaleString("en-IN")} h`;
 const sf = {
-  process: (b) => `<ol class="process reveal">${b.items.map(([t, x], k) => `<li><span class="process-n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ol>`,
+  process: (b) => `<ol class="process steps reveal">${b.items.map(([i, t, x], k) => `<li><span class="st-ic">${ico(i)}<b>${pad2(k + 1)}</b></span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ol>`,
   // the product's app switcher, rebuilt: pick a tile to read what that app does
   switcher: (b) => `<figure class="sw reveal" data-sw>
       <div class="sw-copy"><p class="label">${esc(b.kicker)}</p><h3 class="krona">${rich(b.title)}</h3><p>${esc(b.x)}</p></div>
@@ -652,16 +679,29 @@ const sf = {
         <div class="sw-info" aria-live="polite"><p class="sw-n" data-n style="--c:${esc(b.apps[0].c)}">${esc(b.apps[0].n)}</p><p data-x>${esc(b.apps[0].x)}</p><small data-d>Designed in this case study</small></div>
       </div>
     </figure>`,
+  // one feature followed from its spreadsheet row to the wireframe and the final screen; tabs pick the feature
+  srs2ui: (b, r) => `<div class="x2u reveal" data-flows>
+      <div class="fl-bar" role="tablist" aria-label="Features" hidden>${b.items.map((f, k) => `<button type="button" role="tab" id="x2u-t${k}" aria-controls="x2u-p${k}" aria-selected="${k === 0}" tabindex="${k ? -1 : 0}">${esc(f.tab)}</button>`).join("")}</div>
+      ${b.items.map((f, k) => `<div class="fl-panel" role="tabpanel" id="x2u-p${k}" aria-labelledby="x2u-t${k}"><ol class="x2u-row">
+        <li><p class="x2u-k"><b>1</b>Requirement, in the spreadsheet</p><div class="xl" role="table" aria-label="Requirement rows for ${esc(f.tab)}">
+          <div class="xl-bar" aria-hidden="true"><i></i><i></i><i></i><span>SRS.xlsx · ${esc(f.module)}</span></div>
+          <div class="xl-row xl-h" role="row"><span role="columnheader">Sub-module</span><span role="columnheader">Feature</span><span role="columnheader">P</span></div>
+          ${f.rows.map(([sub, x, p, hot]) => `<div class="xl-row${hot ? " is-hot" : ""}" role="row"><span role="cell">${esc(sub)}</span><span role="cell">${esc(x)}</span><span role="cell">${esc(p)}</span></div>`).join("")}
+        </div><p class="x2u-n">${esc(f.notes[0])}</p></li>
+        <li><p class="x2u-k"><b>2</b>Wireframe</p><a class="x2u-img" href="${r}${esc(f.wf.src)}" target="_blank" rel="noopener"><img ${pic(r, f.wf.src, "(max-width:900px) 90vw, 380px")} alt="Wireframe of the ${esc(f.tab)} in greyscale" width="${f.wf.w}" height="${f.wf.h}" loading="lazy" decoding="async">${newTab}</a><p class="x2u-n">${esc(f.notes[1])}</p></li>
+        <li><p class="x2u-k"><b>3</b>Final design</p><a class="x2u-img" href="${r}${esc(f.ui.src)}" target="_blank" rel="noopener"><img ${pic(r, f.ui.src, "(max-width:900px) 90vw, 380px")} alt="Final Steadfast design of the ${esc(f.tab)}" width="${f.ui.w}" height="${f.ui.h}" loading="lazy" decoding="async">${newTab}</a><p class="x2u-n">${esc(f.notes[2])}</p></li>
+      </ol></div>`).join("")}
+    </div>`,
   statement: (b) => `<blockquote class="stmt reveal"><p class="label">${esc(b.kicker)}</p><p class="stmt-x krona">${rich(b.x)}</p></blockquote>`,
   // one module of the product: its letter tile and colour, then its screens and demos on a stage in that colour
   module: (b, r) => `<section class="mod reveal" style="--c:${esc(b.c)}" aria-labelledby="mod-${slug(b.m)}">
       <header class="mod-head"><i aria-hidden="true">${esc(b.m[0])}</i><div><p class="label">Module ${esc(b.n)} · ${esc(b.m)}</p><h3 id="mod-${slug(b.m)}">${esc(b.title)}</h3><p>${esc(b.x)}</p></div></header>
       <div class="mod-body">${b.items.map((i) => b.render(i)).join("")}</div>
     </section>`,
-  cards: (b) => `<ul class="sf-cards${b.tone ? ` is-${b.tone}` : ""} n${b.items.length} reveal">${b.items.map(([t, x], k) => `<li><span class="sf-cards-n">${{ pain: "Pain point", goal: "Goal", guard: "Safeguard" }[b.tone] || "Decision"} ${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(x)}</p></li>`).join("")}</ul>`,
+  cards: (b) => `<ul class="sf-cards${b.tone ? ` is-${b.tone}` : ""} n${b.items.length} reveal">${b.items.map(([i, t, x], k) => `<li><span class="sfc-ic">${ico(i)}</span><span class="sfc-t"><strong>${esc(t)}</strong><span>${esc(x)}</span></span><span class="sfc-n" aria-hidden="true">${pad2(k + 1)}</span></li>`).join("")}</ul>`,
   personas: (b) => `<figure class="personas reveal"><ul>${b.items.map((p) => `<li style="--c:${esc(p.c)}">
         <p class="pr-head"><i aria-hidden="true">${esc(p.m[0])}</i><span><strong>${esc(p.r)}</strong><small>Works in ${esc(p.m)}</small></span></p>
-        <dl><div><dt>Goal</dt><dd>${esc(p.goal)}</dd></div><div><dt>Pain point</dt><dd>${esc(p.pain)}</dd></div><div class="pr-ai"><dt>Where AI helps</dt><dd>${esc(p.ai)}</dd></div></dl>
+        <dl><div class="pr-goal">${ico("target")}<dt>Goal</dt><dd>${esc(p.goal)}</dd></div><div class="pr-pain">${ico("alert")}<dt>Pain</dt><dd>${esc(p.pain)}</dd></div><div class="pr-ai">${ico("spark")}<dt>AI</dt><dd>${esc(p.ai)}</dd></div></dl>
       </li>`).join("")}</ul><figcaption>${esc(b.cap)}</figcaption></figure>`,
   // several flow charts behind tabs; without JS they simply stack
   flows: (b) => `<div class="fl-tabs reveal" data-flows>

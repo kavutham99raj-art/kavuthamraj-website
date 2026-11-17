@@ -33,34 +33,34 @@ export default {
   duration: "",
   tags: ["AI product", "B2B SaaS", "Design system"],
   tldr: [
-    ["Problem", "Leads, requirements, estimates, sprints and code lived in separate tools. Every handoff lost context, and AI agents had no place to ask a person for help."],
-    ["What I did", "As the only designer, took five modules from founder sessions to developer handoff: IA, wireframes, final UI and a shared design system, with human-in-the-loop states in every flow. It was built and used."],
+    ["Problem", "Five stages in separate tools. Context lost at every handoff, and AI agents with nobody to ask."],
+    ["What I did", "Designed all five modules alone, from founder sessions to handoff: IA, wireframes, UI and the design system. It shipped."],
   ],
   blocks: [
     { t: "h2", x: "Brief" },
-    { t: "p", x: "A software services business wanted one platform for its whole delivery chain, from the first sales lead to delivered code. AI agents do the heavy lifting; people review, decide and sign off. A business analyst wrote the requirements for five modules. As the only designer, I took it from founder sessions to developer handoff, and it was built and used." },
+    { t: "p", x: "One platform for a software services business, from the first lead to delivered code. AI does the heavy lifting; people review and sign off. I was the only designer, from founder sessions to handoff." },
 
     { t: "h2", x: "Challenge" },
     { t: "cards", tone: "pain", items: [
-      ["Leads typed by hand", "Sales copied details out of RFPs, emails and calls before any real work began."],
-      ["Drafts full of gaps", "Requirements arrived incomplete or duplicated. Garbage in, garbage out."],
-      ["Estimates in spreadsheets", "Sizing and pricing were rebuilt for every deal, the method hidden in cells."],
-      ["AI with no one to ask", "Nobody could see where an AI agent was stuck waiting for a person."],
+      ["keyboard", "Leads typed by hand", "Copied from RFPs, emails and calls."],
+      ["fileGap", "Drafts full of gaps", "Incomplete, duplicated requirements."],
+      ["sheet", "Estimates in spreadsheets", "Rebuilt per deal, logic hidden in cells."],
+      ["bot", "AI with no one to ask", "Stuck agents nobody could see."],
     ] },
 
     { t: "statement", kicker: "The idea", x: "One platform where AI does the work, and every AI step is *visible, editable and signed off by a person.*" },
 
     { t: "h2", x: "Discover" },
     { t: "process", items: [
-      ["Understand", "Founder and stakeholder sessions, the SRS module by module, and a competitor review."],
-      ["Define", "Mapped one deal end to end, set design goals and drew the IA."],
-      ["Design", "Greyscale wireframes, then final UI with every state."],
-      ["Systemise", "One shell and design system for all five modules."],
+      ["search", "Understand", "Founders, SRS, competitors"],
+      ["map", "Define", "Journey, goals, IA"],
+      ["pen", "Design", "Wireframes to final UI"],
+      ["layers", "Systemise", "One shell, one system"],
     ] },
-    { t: "personas", cap: "Proto-personas from founder and stakeholder sessions and the requirements. Solution architects (Prism) and engineers (Turing) complete the chain.", items: [
-      { r: "Sales lead", m: "Vortex", c: "#605BFF", goal: "Log leads fast and chase the right ones.", pain: "Retypes RFPs, emails and call notes into forms.", ai: "Fills the lead from a prompt, voice note or file, and scores it with reasons." },
-      { r: "Business analyst", m: "Axiom", c: "#B16FF3", goal: "A complete SRS the first time.", pain: "Drafts arrive with gaps and duplicates.", ai: "Maps the draft to a template and flags gaps; the analyst accepts or rejects each one." },
-      { r: "Delivery manager", m: "Cadence", c: "#FB8050", goal: "Plan, staff and track delivery.", pain: "Can't see where AI work is waiting on a person.", ai: "Drafts the sprint plan, and surfaces every task that needs a human." },
+    { t: "personas", cap: "Proto-personas from founder sessions and the requirements.", items: [
+      { r: "Sales lead", m: "Vortex", c: "#605BFF", goal: "Log leads fast", pain: "Retyping RFPs and notes", ai: "Autofills and scores leads" },
+      { r: "Business analyst", m: "Axiom", c: "#B16FF3", goal: "A complete SRS, first time", pain: "Gappy, duplicate drafts", ai: "Maps drafts, flags gaps" },
+      { r: "Delivery manager", m: "Cadence", c: "#FB8050", goal: "Plan and track delivery", pain: "Blocked AI work is invisible", ai: "Drafts plans, flags human tasks" },
     ] },
     { t: "journey", title: "Journey map: one deal, before and with Steadfast", items: [
       { m: "Vortex", c: "#605BFF", s: "Lead", before: "Typed by hand from RFPs and calls", now: "AI fills it from what sales already has" },
@@ -72,9 +72,9 @@ export default {
 
     { t: "h2", x: "Define" },
     { t: "cards", tone: "goal", items: [
-      ["No retyping", "Every module starts from what the last one produced."],
-      ["AI you can check", "Every AI output is visible, editable, and needs a person's yes to count."],
-      ["No hidden waiting", "Wherever AI needs a person is a state you can see, count and act on."],
+      ["flow", "No retyping", "Each step reuses the last."],
+      ["eye", "AI you can check", "Visible, editable, signed off."],
+      ["bell", "No hidden waiting", "Every wait is seen and counted."],
     ] },
     { t: "switcher", kicker: "The shell", title: "Eight apps. *One place to switch.*", x: "Each app gets a letter tile and a colour, and the colour follows it through the product. Pick a tile.", apps: [
       { n: "Vortex", c: "#605BFF", designed: true, x: "AI-assisted sales: capture leads, assign them, track stages and score the chance of winning." },
@@ -120,10 +120,22 @@ export default {
       ] },
     ] },
 
-    { t: "h2", x: "Wireframes" },
-    { t: "compare", ratio: "1366/886", cap: "Drag to compare the Prism Sparks list. The wireframe's columns carried straight into the final, which adds colour-coded status and AI score pills.",
-      before: { src: S + "wf-sparks.png", w: 1440, h: 850, alt: "Wireframe of the Sparks list in greyscale" },
-      after: { src: S + "prism-sparks.png", w: 1366, h: 886, alt: "Final UI of the Sparks list in Prism, with status pills and AI winning score pills" } },
+    { t: "h2", x: "From spreadsheet to screen" },
+    { t: "p", x: "Every screen started as a row in the requirements spreadsheet. Follow one feature through." },
+    { t: "srs2ui", items: [
+      { tab: "Prism Sparks list", module: "Prism", rows: [
+        ["Overview", "Estimation, P&L, planning and proposal tool", "P1"],
+        ["Landing", "Sparks in a Kanban or list view; a click opens the spark", "P1", true],
+        ["Summary", "Every detail of the selected proposal", "P1"],
+      ], wf: { src: S + "wf-sparks.png", w: 1440, h: 850 }, ui: { src: S + "prism-sparks.png", w: 1366, h: 886 },
+        notes: ["One row in the SRS", "Columns and actions agreed in greyscale", "Status and AI score pills, module colour"] },
+      { tab: "Cadence sprint board", module: "Cadence", rows: [
+        ["Kanban", "Backlog, Sprint 1, Sprint 2… as columns", "P1", true],
+        ["Plan with AI", "AI spreads tasks by priority and effort", "P1"],
+        ["Kanban", "Each sprint column shows its ticket count", "P1"],
+      ], wf: { src: S + "wf-sprints.png", w: 1440, h: 820 }, ui: { src: S + "cadence-sprints.png", w: 1366, h: 893 },
+        notes: ["Three rows in the SRS", "Columns, counts and Plan with AI placed", "Priority rules, tags and owners"] },
+    ] },
 
     { t: "h2", x: "Design" },
     { t: "module", n: "01", m: "Vortex", c: "#605BFF", title: "A lead in seconds", x: "Sales drops in whatever they have; AI fills the form and scores the deal.", items: [
@@ -175,38 +187,38 @@ export default {
     { t: "components" },
 
     { t: "h2", x: "When the AI is wrong" },
-    { t: "p", x: "AI will get things wrong. Every module was designed so a mistake is easy to spot, cheap to fix and never final without a person." },
+    { t: "p", x: "AI will get things wrong. Every mistake is easy to spot, cheap to fix and never final without a person." },
     { t: "cards", tone: "guard", items: [
-      ["If it fills a field wrong", "Every AI-filled field stays open and editable, and nothing is saved until a person submits."],
-      ["If it suggests a bad change", "Recommendations need an explicit Add or Cancel. Nothing edits the SRS or proposal silently."],
-      ["If its score looks arbitrary", "The winning score shows strengths, weaknesses and the factors behind it, so sales can disagree with reasons."],
-      ["If it reaches a call it shouldn't make", "It asks in Turing Sync or the task thread, and the task waits in Pending human review."],
-      ["If the work is too risky for AI", "Escalated hands the task to a person with the authority to decide."],
-      ["If someone asks who changed what", "Turing Sync logs and each task's activity thread record what the AI and each person did."],
+      ["pen", "It fills a field wrong", "Fields stay editable until submit."],
+      ["xCircle", "It suggests a bad change", "Add or Cancel. No silent edits."],
+      ["chart", "Its score looks arbitrary", "Reasons and factors are shown."],
+      ["msg", "It hits a call it shouldn't make", "It asks, then waits for review."],
+      ["arrowUp", "The work is too risky", "Escalated to a person."],
+      ["history", "Who changed what?", "Every action is logged."],
     ] },
-    { t: "p", x: "Next, I would add a confidence level to each AI-filled field and a link back to the sentence it came from, so checking takes one glance." },
+    { t: "p", x: "Next: a confidence level per field, linked to the sentence it came from." },
 
     { t: "h2", x: "Key decisions" },
     { t: "cards", items: [
-      ["One shell, colour-coded apps", "Same sidebar, top bar and app switcher everywhere; each module keeps its colour, so people always know where they are."],
-      ["AI shown as a process", "Progress cards, logs and planning states show what the AI is doing, so waiting never looks frozen."],
-      ["“Needs a human” is a state", "Pending human review is highlighted, counted and sorted to the top, so blocked AI work is never hidden."],
-      ["AI agents with names", "Agents get a name, a role and tasks of their own, so ownership on a shared board is never a guess."],
+      ["layout", "One shell, colour-coded apps", "Always know which tool you're in."],
+      ["activity", "AI shown as a process", "Progress and logs, never a frozen screen."],
+      ["hand", "“Needs a human” is a state", "Highlighted, counted, sorted to the top."],
+      ["bot", "AI agents with names", "Clear owners on a shared board."],
     ] },
 
     { t: "h2", x: "Conclusion" },
     { t: "wrap",
       did: [
-        "Information architecture and key flows for five modules on one shell",
-        "Wireframes, then final UI with empty, loading, AI-working and needs-a-person states",
-        "One design system of tokens, components and states shared by every module",
-        "A shipped product: developers built it from my designs, and the business used it",
+        "IA and key flows for five modules",
+        "Wireframes and final UI with every state",
+        "One design system for every module",
+        "A shipped product, built from my designs",
       ],
       learnt: [
-        ["Design the waiting", "AI takes time. Progress and partial results mattered as much as the final answer."],
-        ["Give the AI a face", "With names and a way to ask, agents read as teammates, not a black box."],
-        ["Test with users, not just founders", "My input came from founder and stakeholder sessions. Next time I'd test the key flows with sales and delivery staff before handoff."],
-        ["Check colour as text", "Cyan and green work as module fills but fail as small text on white. I'd add darker text tones to the palette."],
+        ["Design the waiting", "Progress matters as much as the answer."],
+        ["Give the AI a face", "Named agents read as teammates."],
+        ["Test with users early", "Next time, sales and delivery staff before handoff."],
+        ["Check colour as text", "Cyan and green need darker text tones."],
       ] },
     { t: "note", x: "Client names and figures in the screens are placeholder data, not real clients or results." },
   ],
