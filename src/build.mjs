@@ -251,13 +251,13 @@ const cyberdineBanner = (v, r = "") => {
   const L = "work/cyberdine-live/";
   const im = (f, w, h, cls, alt = "", sizes = "300px") => `<img class="${cls}" ${pic(r, L + f, sizes)} width="${w}" height="${h}" alt="${alt}" loading="lazy" decoding="async">`;
   return `<div class="ab ab-cd" role="img" aria-label="${esc(v.label || v.alt)}">
-    <figure class="cdl-phone is-back"><span class="cdl-tag"><b>01</b>Scan the table</span><div class="cdl-screen">${im("diner-welcome.png", 375, 813, "")}</div></figure>
-    <figure class="cdl-tab"><span class="cdl-tag"><b>03</b>Staff approves</span><div class="cdl-tab-in">${im("staff-table.png", 2708, 1552, "", "", "(max-width:900px) 70vw, 720px")}</div></figure>
-    <figure class="cdl-phone is-front"><span class="cdl-tag"><b>02</b>Diner orders</span><div class="cdl-screen">
+    <figure class="cdl-phone is-back"><div class="cdl-screen">${im("diner-welcome.png", 375, 813, "")}</div></figure>
+    <figure class="cdl-tab"><div class="cdl-tab-in">${im("staff-table.png", 2708, 1552, "", "", "(max-width:900px) 70vw, 720px")}</div><i class="cdl-glare"></i></figure>
+    <figure class="cdl-phone is-front"><div class="cdl-screen">
       ${im("diner-live-menu.png", 375, 1534, "is-live")}${im("diner-menu.png", 375, 885, "is-menu")}${im("diner-waiting.png", 375, 812, "is-wait")}${im("diner-done.png", 375, 812, "is-done")}
     </div></figure>
-    <figure class="cdl-kot"><span class="cdl-tag"><b>04</b>Kitchen ticket</span>${im("kot.png", 424, 454, "")}</figure>
-    <figure class="cdl-bill"><span class="cdl-tag"><b>05</b>Bill</span><div class="cdl-cut">${im("bill.png", 424, 1498, "")}</div></figure>
+    <figure class="cdl-kot">${im("kot.png", 424, 454, "")}</figure>
+    <figure class="cdl-bill"><div class="cdl-cut">${im("bill.png", 424, 1498, "")}</div></figure>
   </div>`;
 };
 // Real UI for a project card or case page: a before/after slide, or a row of phone screens.
