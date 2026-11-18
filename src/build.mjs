@@ -245,30 +245,21 @@ const trackerBanner = (v) => `<div class="ab ab-st" role="img" aria-label="${esc
     <p class="stb-chip c3"><i></i>Locker 12 booked</p>
   </div>`;
 
-// Cyberdine's own story, table to ticket to bill: the diner orders on the phone, the order flies to the kitchen
-// printer, the KOT prints and gets stamped approved, then the bill with its pay QR slides in.
-const cyberdineBanner = (v) => `<div class="ab ab-cd" role="img" aria-label="${esc(v.label || v.alt)}">
-    <div class="cdb-phone"><div class="cdb-screen">
-      <p class="cdb-top"><span>‹</span><b>Table 1</b><em>Dine-in</em></p>
-      <p class="cdb-cats"><i class="on">Our special</i><i>Starters</i><i>Breads</i></p>
-      ${[["Chicken Tikka", "Non veg", "₹150", 8, "tikka", 1], ["Paneer Butter Masala", "Veg", "₹220", 14, "paneer", 0], ["Garlic Naan", "Veg", "₹60", 20, "naan", 0]].map(([n, t, p, s, f, sp]) => `<div class="cdb-dish"><i class="cdb-food is-${f}">${sp ? "<b>Special</b>" : ""}</i><p><b>${n}</b><span>${t}</span><strong>${p}</strong></p><em style="--s:${s}"><span>Add</span><span>− 1 +</span></em></div>`).join("")}
-      <p class="cdb-cart"><span><b>3 items</b>₹430</span><em>Order now</em></p>
-      <div class="cdb-sent"><div><i>✓</i><b>Order sent successfully</b><span>Table 1 · your order will be verified and sent to the kitchen</span></div></div>
-    </div></div>
-    <p class="cdb-path"><i></i></p>
-    <div class="cdb-kot"><div class="cdb-paper">
-      <p class="cdb-h">KOT</p>
-      <p class="cdb-row"><b>DINE-IN</b><b>TABLE 1</b></p>
-      <p>1 × CHICKEN TIKKA</p><p class="cdb-note">NOTES: SPICY</p>
-      <p>1 × PANEER BUTTER MASALA</p><p>1 × GARLIC NAAN</p>
-      <p class="cdb-dash"></p>
-      ${[["SENT FROM TABLE", 50], ["STAFF APPROVED", 58], ["SENT TO KITCHEN", 66]].map(([x, s]) => `<p class="cdb-tick" style="--s:${s}"><i>[<em>x</em>]</i>${x}</p>`).join("")}
-      <p class="cdb-stamp"><span>APPROVED<b>✓</b></span></p>
-    </div></div>
-    <div class="cdb-printer"><i></i><span>KITCHEN · KOT PRINTER</span><em></em></div>
-    <div class="cdb-bill"><p class="cdb-h">BILL</p><p class="cdb-row"><b>TABLE 1</b><b>DINE-IN</b></p><p class="cdb-row"><span>TOTAL</span><b>₹430</b></p><i class="cdb-qr"></i><p class="cdb-pay">SCAN TO PAY</p><p class="cdb-small">CASH · CARD · UPI</p></div>
-    <p class="cdb-chip"><i>✓</i>Paid ₹430 by UPI</p>
+// Cyberdine from its real screens: the table's welcome screen, the diner's phone (live menu, dishes, awaiting
+// confirmation, order completed), the staff app's table view, and the printed kitchen ticket and bill. Motion stays small.
+const cyberdineBanner = (v, r = "") => {
+  const L = "work/cyberdine-live/";
+  const im = (f, w, h, cls, alt = "", sizes = "300px") => `<img class="${cls}" ${pic(r, L + f, sizes)} width="${w}" height="${h}" alt="${alt}" loading="lazy" decoding="async">`;
+  return `<div class="ab ab-cd" role="img" aria-label="${esc(v.label || v.alt)}">
+    <figure class="cdl-phone is-back"><span class="cdl-tag"><b>01</b>Scan the table</span><div class="cdl-screen">${im("diner-welcome.png", 375, 813, "")}</div></figure>
+    <figure class="cdl-tab"><span class="cdl-tag"><b>03</b>Staff approves</span><div class="cdl-tab-in">${im("staff-table.png", 2708, 1552, "", "", "(max-width:900px) 70vw, 720px")}</div></figure>
+    <figure class="cdl-phone is-front"><span class="cdl-tag"><b>02</b>Diner orders</span><div class="cdl-screen">
+      ${im("diner-live-menu.png", 375, 1534, "is-live")}${im("diner-menu.png", 375, 885, "is-menu")}${im("diner-waiting.png", 375, 812, "is-wait")}${im("diner-done.png", 375, 812, "is-done")}
+    </div></figure>
+    <figure class="cdl-kot"><span class="cdl-tag"><b>04</b>Kitchen ticket</span>${im("kot.png", 424, 454, "")}</figure>
+    <figure class="cdl-bill"><span class="cdl-tag"><b>05</b>Bill</span><div class="cdl-cut">${im("bill.png", 424, 1498, "")}</div></figure>
   </div>`;
+};
 // Real UI for a project card or case page: a before/after slide, or a row of phone screens.
 const visual = (v, r = "") =>
   v.demo === "loading"
@@ -278,7 +269,7 @@ const visual = (v, r = "") =>
     : v.demo === "tracker"
     ? trackerBanner(v)
     : v.demo === "cyberdine"
-    ? cyberdineBanner(v)
+    ? cyberdineBanner(v, r)
     : v.phones
     ? `<div class="phones-panel">${v.phones.map((p) => `<img ${pic(r, p.src, "(max-width:900px) 30vw, 200px")} alt="Sporfy Tracker: ${esc(p.cap)}" width="512" height="1100" loading="lazy" decoding="async">`).join("")}</div>`
     : `<img ${pic(r, v.src, WIDE)} alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;

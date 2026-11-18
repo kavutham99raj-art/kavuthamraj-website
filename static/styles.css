@@ -2014,80 +2014,54 @@ p,li,dd{text-wrap:pretty}
 .motion-off .fold :is(.fold-btn,.fold-btn svg,summary),.motion-off .fold .fold-btn::before{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){html:not(.motion-ok) .fold :is(summary,.fold-btn svg),html:not(.motion-ok) .fold .fold-btn::before{animation:none}}
 
-/* Cyberdine banner: table → ticket → bill, on Cyberdine's dark stage with its green and orange */
-.ab-cd{--g:#1E9E44;--or:#FF7A1A;--paper:#F3EEE3;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--t:10s;background:radial-gradient(45% 60% at 18% 40%,rgba(30,158,68,.28),transparent 70%),radial-gradient(45% 65% at 80% 30%,rgba(255,122,26,.22),transparent 70%),linear-gradient(180deg,#121016 0 78%,#0B0A0D 78%);color:#111}
-.ab-cd::before{content:"";position:absolute;left:0;right:0;top:78%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent)}
-.ab-cd b{font-weight:700}
-/* the diner's phone */
-.cdb-phone{position:absolute;left:7cqw;top:7%;height:86%;aspect-ratio:9/18.6;padding:.9cqw;border-radius:3.6cqw;background:#08090A;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 4cqw 8cqw -2cqw rgba(0,0,0,.8);rotate:-5deg}
-.cdb-screen{position:relative;display:flex;flex-direction:column;gap:.8cqw;height:100%;padding:1.4cqw 1.1cqw 1.1cqw;border-radius:2.8cqw;background:#F4F6F3;overflow:hidden}
-.cdb-top{display:flex;align-items:center;gap:.8cqw;margin:-1.4cqw -1.1cqw 0;padding:2.2cqw 1.4cqw 1.1cqw;background:var(--g);font-size:1.25cqw;color:#fff}
-.cdb-top em{margin-left:auto;padding:.2cqw .8cqw;border-radius:5cqw;background:rgba(255,255,255,.2);font-size:.9cqw;font-style:normal}
-.cdb-cats{display:flex;gap:.5cqw}
-.cdb-cats i{padding:.3cqw .8cqw;border-radius:5cqw;box-shadow:inset 0 0 0 1px #D6DBD4;font-size:.85cqw;font-style:normal;color:#4B5563;white-space:nowrap}
-.cdb-cats i.on{background:#E7F5EB;box-shadow:inset 0 0 0 1px var(--g);color:var(--g);font-weight:600}
-.cdb-dish{display:grid;grid-template-columns:4.2cqw 1fr auto;align-items:center;gap:.9cqw;padding:.7cqw;border-radius:1cqw;background:#fff;box-shadow:0 .2cqw .8cqw rgba(0,0,0,.06)}
-.cdb-food{position:relative;aspect-ratio:1;border-radius:.8cqw;overflow:hidden}
-.cdb-food.is-tikka{background:radial-gradient(circle at 30% 35%,#F97316 0 18%,transparent 19%),radial-gradient(circle at 65% 55%,#C2410C 0 20%,transparent 21%),radial-gradient(circle at 40% 72%,#9A3412 0 16%,transparent 17%),radial-gradient(circle at 70% 25%,#84CC16 0 7%,transparent 8%),#7C2D12}
-.cdb-food.is-paneer{background:radial-gradient(circle at 35% 40%,#FFF7E6 0 12%,transparent 13%),radial-gradient(circle at 62% 60%,#FFF7E6 0 12%,transparent 13%),radial-gradient(circle at 60% 28%,#FFF7E6 0 9%,transparent 10%),radial-gradient(circle at 50% 50%,#F59E0B,#C2410C)}
-.cdb-food.is-naan{background:radial-gradient(circle at 30% 40%,#8B5E34 0 5%,transparent 6%),radial-gradient(circle at 62% 62%,#8B5E34 0 6%,transparent 7%),radial-gradient(circle at 66% 30%,#65A30D 0 5%,transparent 6%),radial-gradient(ellipse at 50% 50%,#F5DEB3,#D4A373)}
-.cdb-food b{position:absolute;left:0;right:0;bottom:0;background:var(--g);font-size:.7cqw;font-weight:600;text-align:center;color:#fff}
-.cdb-dish p{display:grid;min-width:0;font-size:.85cqw;color:#6B7280}
-.cdb-dish p b{font-size:1.05cqw;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cdb-dish strong{font-size:1.05cqw;color:#111}
-.cdb-dish>em{display:grid;font-style:normal}
-.cdb-dish>em span{grid-area:1/1;padding:.35cqw .8cqw;border-radius:.6cqw;box-shadow:inset 0 0 0 1px var(--g);font-size:.9cqw;font-weight:700;text-align:center;color:var(--g);white-space:nowrap}
-.cdb-dish>em span+span{background:var(--g);color:#fff;opacity:var(--a);scale:calc(.7 + var(--a) * .3)}
-.cdb-cart{--s:24;display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding:1cqw 1.1cqw;border-radius:1.1cqw;background:var(--g);font-size:1cqw;color:#fff;opacity:var(--a);translate:0 calc((1 - var(--a)) * 2cqw);box-shadow:0 1.4cqw 2.4cqw -1.4cqw rgba(30,158,68,.9)}
-.cdb-cart span{display:grid}.cdb-cart b{font-size:1.15cqw}
-.cdb-cart em{padding:.5cqw 1cqw;border-radius:.6cqw;background:#fff;font-style:normal;font-weight:700;color:var(--g);scale:calc(1 - clamp(0,(var(--tl) - 30) / 1,1) * clamp(0,(33 - var(--tl)) / 1,1) * .1)}
-.cdb-sent{--s:34;position:absolute;inset:0;display:grid;place-items:center;padding:1.6cqw;background:rgba(17,17,17,.55);opacity:calc(var(--a) * clamp(0,(52 - var(--tl)) / 3,1))}
-.cdb-sent>div{display:grid;justify-items:center;gap:.6cqw;padding:2cqw 1.4cqw;border-radius:1.4cqw;background:#fff;text-align:center;scale:calc(.85 + var(--a) * .15)}
-.cdb-sent i{display:grid;place-items:center;width:4.6cqw;height:4.6cqw;border-radius:50%;background:var(--g);font-size:2.2cqw;font-style:normal;font-weight:800;color:#fff;box-shadow:0 0 0 .9cqw #E7F5EB}
-.cdb-sent b{margin-top:.6cqw;font-size:1.2cqw}.cdb-sent span{font-size:.85cqw;line-height:1.4;color:#6B7280}
-/* the order travelling to the kitchen */
-.cdb-path{--s:34;position:absolute;left:33cqw;top:34%;width:22cqw;height:0;border-top:.25cqw dotted rgba(255,122,26,.55);opacity:calc(var(--a) * clamp(0,(50 - var(--tl)) / 3,1))}
-.cdb-path i{position:absolute;top:-.85cqw;left:calc(clamp(0,(var(--tl) - 34) / 10,1) * 100%);width:1.4cqw;height:1.4cqw;margin-left:-.7cqw;border-radius:50%;background:var(--or);box-shadow:0 0 0 .5cqw rgba(255,122,26,.25),0 0 2cqw .4cqw rgba(255,122,26,.6);opacity:calc(1 - clamp(0,(var(--tl) - 44) / 2,1))}
-/* KOT printing up out of the kitchen printer */
-.cdb-kot{position:absolute;right:8.5cqw;bottom:calc(10% + 4.4cqw);width:26cqw;height:84%;overflow:hidden}
-.cdb-paper{position:absolute;left:0;right:0;bottom:0;padding:2.4cqw 2cqw 3.4cqw;background:var(--paper);font:500 1.3cqw/1.6 var(--mono);color:#1A1A1A;box-shadow:0 2cqw 4cqw -2cqw rgba(0,0,0,.7);translate:0 calc((1 - clamp(0,(var(--tl) - 44) / 14,1)) * 102%);-webkit-mask:conic-gradient(from -45deg at 50% 1cqw,#000 90deg,transparent 0) 50% 0/1.6cqw 1cqw repeat-x,linear-gradient(#000 0 0) 0 1cqw/100% 100% no-repeat;mask:conic-gradient(from -45deg at 50% 1cqw,#000 90deg,transparent 0) 50% 0/1.6cqw 1cqw repeat-x,linear-gradient(#000 0 0) 0 1cqw/100% 100% no-repeat}
-.cdb-paper p{margin:0}
-.cdb-h{margin-bottom:.8cqw !important;font-size:2cqw;font-weight:800;letter-spacing:.12em;text-align:center}
-.cdb-row{display:flex;justify-content:space-between;margin-bottom:.8cqw !important;padding:.3cqw .6cqw;background:#1A1A1A;color:var(--paper)}
-.cdb-note{padding-left:2cqw;color:#666}
-.cdb-dash{margin:.8cqw 0 !important;border-top:.2cqw dashed #9A948A}
-.cdb-tick i{margin-right:.8cqw;font-style:normal}
-.cdb-tick em{display:inline-block;font-style:normal;opacity:var(--a);scale:calc(2 - var(--a))}
-.cdb-stamp{--s:60;position:absolute;right:.6cqw;bottom:2.6cqw;display:grid;place-items:center;width:8cqw;height:8cqw;border:.35cqw solid rgba(234,88,12,.85);border-radius:50%;box-shadow:inset 0 0 0 .5cqw var(--paper),inset 0 0 0 .7cqw rgba(234,88,12,.6);rotate:-14deg;opacity:calc(var(--a) * .9);scale:calc(1.8 - var(--a) * .8)}
-.cdb-stamp span{display:grid;justify-items:center;font-size:1cqw;font-weight:800;letter-spacing:.08em;color:#EA580C}
-.cdb-stamp b{font-size:2.6cqw;line-height:1}
-.cdb-printer{position:absolute;right:6cqw;bottom:10%;display:flex;align-items:flex-end;justify-content:space-between;width:31cqw;height:6.4cqw;padding:0 1.8cqw 1.2cqw;border-radius:1.4cqw 1.4cqw .8cqw .8cqw;background:linear-gradient(180deg,#2A2A30,#16161A);box-shadow:0 0 0 1px rgba(255,255,255,.1),0 3cqw 5cqw -2cqw rgba(0,0,0,.9);font:600 .95cqw var(--mono);letter-spacing:.14em;color:rgba(255,255,255,.4)}
-.cdb-printer>i{position:absolute;left:2.6cqw;right:2.6cqw;top:1.4cqw;height:.6cqw;border-radius:1cqw;background:#050505;box-shadow:inset 0 .2cqw .3cqw rgba(0,0,0,.9)}
-.cdb-printer em{width:1cqw;height:1cqw;border-radius:50%;background:var(--or);box-shadow:0 0 1.4cqw .3cqw rgba(255,122,26,calc(.3 + clamp(0,(var(--tl) - 44) / 2,1) * clamp(0,(58 - var(--tl)) / 2,1) * .7))}
-/* the bill with its pay QR */
-.cdb-bill{--s:74;position:absolute;left:42cqw;bottom:12%;width:15cqw;padding:1.8cqw 1.4cqw 1.4cqw;background:var(--paper);font:500 .95cqw/1.5 var(--mono);color:#1A1A1A;box-shadow:0 2cqw 4cqw -1.6cqw rgba(0,0,0,.8);rotate:-6deg;translate:0 calc((1 - var(--a)) * 4cqw);-webkit-mask:conic-gradient(from -45deg at 50% .8cqw,#000 90deg,transparent 0) 50% 0/1.2cqw .8cqw repeat-x,linear-gradient(#000 0 0) 0 .8cqw/100% 100% no-repeat;mask:conic-gradient(from -45deg at 50% .8cqw,#000 90deg,transparent 0) 50% 0/1.2cqw .8cqw repeat-x,linear-gradient(#000 0 0) 0 .8cqw/100% 100% no-repeat}
-.cdb-bill .cdb-h{font-size:1.6cqw}
-.cdb-bill .cdb-row{font-size:.85cqw}
-.cdb-bill .cdb-row:nth-of-type(3){padding:0;background:none;color:#1A1A1A;font-size:1.1cqw}
-.cdb-qr{display:block;width:7cqw;aspect-ratio:1;margin:.8cqw auto;background:radial-gradient(#1A1A1A 0 0) 0 0/2cqw 2cqw no-repeat,radial-gradient(#1A1A1A 0 0) 100% 0/2cqw 2cqw no-repeat,radial-gradient(#1A1A1A 0 0) 0 100%/2cqw 2cqw no-repeat,conic-gradient(#1A1A1A 25%,transparent 0 50%,#1A1A1A 0 75%,transparent 0) 0 0/1cqw 1cqw}
-.cdb-pay{text-align:center;font-weight:800}.cdb-small{text-align:center;font-size:.8cqw;color:#666}
-.cdb-chip{--s:84;position:absolute;left:36cqw;top:28%;display:flex;align-items:center;gap:1cqw;padding:1cqw 1.8cqw 1cqw 1cqw;border-radius:5cqw;background:#fff;box-shadow:0 2cqw 4cqw -1cqw rgba(0,0,0,.6);font-size:1.4cqw;font-weight:600;white-space:nowrap;translate:0 calc((1 - var(--a)) * 1.6cqw)}
-.cdb-chip i{display:grid;place-items:center;width:2.4cqw;height:2.4cqw;border-radius:50%;background:var(--g);font-size:1.2cqw;font-style:normal;font-weight:800;color:#fff}
+/* Cyberdine banner: the real screens, staged like the case cover, with little motion */
+.ab-cd{--g:#1E9E44;--or:#FF7A1A;background:radial-gradient(50% 70% at 20% 45%,rgba(30,158,68,.32),transparent 70%),radial-gradient(45% 60% at 85% 20%,rgba(255,122,26,.18),transparent 70%),linear-gradient(180deg,#131116 0 80%,#0C0B0E 80%)}
+.ab-cd.play{animation:none}
+.ab-cd>*{opacity:1}
+.ab-cd::before{content:"";position:absolute;left:0;right:0;top:80%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent)}
+.ab-cd figure{position:absolute;margin:0}
+.ab-cd img{display:block;width:100%;height:auto}
+.cdl-tag{position:absolute;left:0;top:-3cqw;z-index:2;display:flex;gap:.8cqw;padding:.6cqw 1cqw;border-radius:5cqw;background:rgba(12,11,14,.85);box-shadow:0 0 0 1px rgba(255,255,255,.12);font:600 1cqw/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);white-space:nowrap}
+.cdl-tag b{color:var(--or)}
+/* staff app on a tablet, behind */
+.cdl-tab{right:5cqw;top:10%;width:56cqw;padding:1cqw;border-radius:2cqw;background:#0A0A0C;box-shadow:0 0 0 1px rgba(255,255,255,.14),0 4cqw 8cqw -2cqw rgba(0,0,0,.85)}
+.cdl-tab-in{overflow:hidden;border-radius:1.1cqw}
+.cdl-tab .cdl-tag{left:1cqw}
+/* two phones: the table's welcome screen behind, the diner ordering in front */
+.cdl-phone{padding:.9cqw;border-radius:3.6cqw;background:#08090A;box-shadow:0 0 0 1px rgba(255,255,255,.18),0 5cqw 9cqw -2cqw rgba(0,0,0,.9)}
+.cdl-phone.is-back{left:4cqw;top:16%;width:19cqw;rotate:-7deg;padding:.7cqw;border-radius:3cqw}
+.cdl-phone.is-back .cdl-screen{border-radius:2.3cqw}
+.cdl-phone.is-back .cdl-tag{top:-3.4cqw;rotate:7deg}
+.cdl-phone.is-front{left:18cqw;top:11%;width:23cqw}
+.cdl-screen{position:relative;aspect-ratio:375/812;border-radius:2.8cqw;overflow:hidden;background:#fff}
+.cdl-screen img{position:absolute;left:0;top:0}
+.cdl-screen :is(.is-menu,.is-wait,.is-done){opacity:0}
+/* kitchen ticket and bill: paper, slightly turned, resting on the counter */
+.cdl-kot,.cdl-bill{box-shadow:0 2.4cqw 4cqw -1.6cqw rgba(0,0,0,.85)}
+.cdl-kot{left:44cqw;bottom:6%;width:15cqw;rotate:-4deg}
+.cdl-bill{right:4.4cqw;top:47%;width:12cqw;rotate:4deg}
+.cdl-cut{height:30cqw;overflow:hidden}
+.cdl-kot .cdl-tag,.cdl-bill .cdl-tag{top:-3.2cqw}
+.cdl-bill .cdl-tag{left:-3cqw}
+/* the little motion there is: the live menu scrolls a touch, then the phone moves through dishes, awaiting and completed */
+.ab-cd.play .cdl-screen .is-live{animation:cdl-live 16s ease-in-out infinite}
+.ab-cd.play .cdl-screen .is-menu{animation:cdl-menu 16s ease-in-out infinite}
+.ab-cd.play .cdl-screen .is-wait{animation:cdl-wait 16s ease-in-out infinite}
+.ab-cd.play .cdl-screen .is-done{animation:cdl-done 16s ease-in-out infinite}
+@keyframes cdl-live{0%,4%{translate:0 0}20%,100%{translate:0 -22%}}
+@keyframes cdl-menu{0%,24%{opacity:0}28%,49%{opacity:1}53%,100%{opacity:0}}
+@keyframes cdl-wait{0%,49%{opacity:0}53%,73%{opacity:1}77%,100%{opacity:0}}
+@keyframes cdl-done{0%,73%{opacity:0}77%,95%{opacity:1}99%,100%{opacity:0}}
+.ab-cd.play :is(.cdl-kot,.cdl-bill){animation:cdl-settle 1s var(--ease) both}
+.ab-cd.play .cdl-bill{animation-delay:.2s}
+@keyframes cdl-settle{from{translate:0 3cqw;opacity:0}}
+.motion-off .ab-cd.play *{animation-play-state:paused}
 @container (max-width:520px){
-  .cdb-phone{left:3cqw;top:5%;height:90%}
-  .cdb-screen{gap:1.2cqw;padding:1.8cqw 1.4cqw 1.4cqw}
-  .cdb-top{margin:-1.8cqw -1.4cqw 0;font-size:2cqw}.cdb-top em,.cdb-cats{display:none}
-  .cdb-dish{grid-template-columns:5cqw 1fr;padding:1cqw}
-  .cdb-dish>em,.cdb-food b,.cdb-dish:nth-of-type(3){display:none}
-  .cdb-dish p,.cdb-dish p b,.cdb-dish strong{font-size:1.7cqw}
-  .cdb-cart{font-size:1.7cqw}.cdb-cart b{font-size:1.8cqw}.cdb-cart em{display:none}
-  .cdb-sent b{font-size:2cqw}.cdb-sent span{display:none}.cdb-sent i{width:6cqw;height:6cqw;font-size:3cqw}
-  .cdb-path,.cdb-bill{display:none}
-  .cdb-kot{right:6cqw;width:42cqw;bottom:calc(10% + 6.4cqw)}
-  .cdb-paper{font-size:2cqw;padding:3cqw 2.6cqw 2.6cqw}
-  .cdb-h{font-size:3.2cqw}
-  .cdb-note,.cdb-paper>p:nth-of-type(5),.cdb-paper>p:nth-of-type(6){display:none}
-  .cdb-stamp{width:14cqw;height:14cqw}.cdb-stamp span{font-size:1.6cqw}.cdb-stamp b{font-size:4cqw}
-  .cdb-printer{right:3cqw;width:48cqw;height:9cqw;font-size:1.5cqw}
-  .cdb-chip{left:auto;right:3cqw;top:5%;font-size:2.4cqw;padding:1.6cqw 2.6cqw 1.6cqw 1.6cqw}.cdb-chip i{width:3.6cqw;height:3.6cqw;font-size:2cqw}
+  .cdl-tag{font-size:1.9cqw;top:-4cqw}
+  .cdl-phone.is-back{display:none}
+  .cdl-phone.is-front{left:4cqw;width:27cqw}
+  .cdl-tab{right:3cqw;width:64cqw;top:14%}
+  .cdl-kot{left:34cqw;width:20cqw;bottom:4%}
+  .cdl-bill{display:none}
+  .cdl-kot .cdl-tag{top:-3.8cqw}
 }
