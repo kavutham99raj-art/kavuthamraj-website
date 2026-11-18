@@ -309,7 +309,7 @@ export const featured = [
     title: "Don't wait for the captain. *Order from the table.*",
     text: "Diners could build a shortlist but not send it: every order waited for a captain. I redesigned ordering so the table sends it and staff still approve each dish, then added a tip step restaurants track live, plus payment and the full restaurant app.",
     outcomes: [["~235", "screens across two apps, sole designer"], ["15", "restaurants live at peak"], ["~600", "orders a day at peak"]],
-    visual: { src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
+    visual: { demo: "cyberdine", label: "Cyberdine: a diner scans the table QR, adds dishes and orders; the staff app gets the order, approves it, marks it delivered, and the diner tips and pays by UPI", src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
     href: "work/cyberdine.html", cover: "cyberdine.png",
   },
   {

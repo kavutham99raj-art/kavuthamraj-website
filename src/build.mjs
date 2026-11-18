@@ -245,6 +245,28 @@ const trackerBanner = (v) => `<div class="ab ab-st" role="img" aria-label="${esc
     <p class="stb-chip c3"><i></i>Locker 12 booked</p>
   </div>`;
 
+const cyberdineBanner = (v) => `<div class="ab ab-cd" role="img" aria-label="${esc(v.label || v.alt)}">
+    <div class="cdb-phone"><div class="cdb-screen">
+      <div class="cdb-scan"><p class="cdb-k">Table 7</p><div class="cdb-qr"><i></i><em></em></div><p>Scan to order</p></div>
+      <div class="cdb-menu">
+        <p class="cdb-top"><b>Cyber<i>Dine</i></b><span>Table 7 · Lunch</span></p>
+        ${[["Masala Dosa", "₹120", 20], ["Filter Coffee", "₹60", 28], ["Idli Vada", "₹90", 0]].map(([n, p, s]) => `<p class="cdb-dish"><span><b>${n}</b>${p}</span>${s ? `<i style="--s:${s}"><em>Add</em><em>✓</em></i>` : "<i><em>Add</em></i>"}</p>`).join("")}
+        <p class="cdb-cart"><span>2 items · ₹180</span><b>Order now</b></p>
+      </div>
+      <div class="cdb-sent"><i>✓</i><b>Order sent</b><span>Table 7 · sent to the kitchen</span></div>
+    </div></div>
+    <div class="cdb-staff">
+      <p class="cdb-bar"><b>Cyber<i>Dine</i> Staff</b><span>Orders · Ravi</span></p>
+      <div class="cdb-orders">
+        <div class="cdb-o is-new"><p><b>Table 7</b><span>2 items · ₹180</span></p><p class="cdb-items">Masala Dosa · Filter Coffee</p>
+          <p class="cdb-st"><span class="is-wait" style="--s:46;--e:58">Awaiting confirmation</span><span class="is-ok" style="--s:58;--e:72">✓ Approved</span><span class="is-done" style="--s:72">✓ Delivered</span></p></div>
+        <div class="cdb-o"><p><b>Table 3</b><span>4 items · ₹460</span></p><p class="cdb-items">Thali · Lassi · Parotta</p><p class="cdb-st"><span class="is-ok">✓ Approved</span></p></div>
+        <div class="cdb-o"><p><b>Table 12</b><span>1 item · ₹80</span></p><p class="cdb-items">Masala Chai</p><p class="cdb-st"><span class="is-done">✓ Delivered</span></p></div>
+      </div>
+    </div>
+    <p class="cdb-chip c1"><i>₹</i>₹50 tip for Ravi</p>
+    <p class="cdb-chip c2"><i>✓</i>Paid ₹230 by UPI</p>
+  </div>`;
 // Real UI for a project card or case page: a before/after slide, or a row of phone screens.
 const visual = (v, r = "") =>
   v.demo === "loading"
@@ -253,6 +275,8 @@ const visual = (v, r = "") =>
     ? sfBanner(v)
     : v.demo === "tracker"
     ? trackerBanner(v)
+    : v.demo === "cyberdine"
+    ? cyberdineBanner(v)
     : v.phones
     ? `<div class="phones-panel">${v.phones.map((p) => `<img ${pic(r, p.src, "(max-width:900px) 30vw, 200px")} alt="Sporfy Tracker: ${esc(p.cap)}" width="512" height="1100" loading="lazy" decoding="async">`).join("")}</div>`
     : `<img ${pic(r, v.src, WIDE)} alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;
