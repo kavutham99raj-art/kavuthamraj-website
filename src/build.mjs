@@ -245,27 +245,29 @@ const trackerBanner = (v) => `<div class="ab ab-st" role="img" aria-label="${esc
     <p class="stb-chip c3"><i></i>Locker 12 booked</p>
   </div>`;
 
+// Cyberdine's own story, table to ticket to bill: the diner orders on the phone, the order flies to the kitchen
+// printer, the KOT prints and gets stamped approved, then the bill with its pay QR slides in.
 const cyberdineBanner = (v) => `<div class="ab ab-cd" role="img" aria-label="${esc(v.label || v.alt)}">
     <div class="cdb-phone"><div class="cdb-screen">
-      <div class="cdb-scan"><p class="cdb-k">Table 7</p><div class="cdb-qr"><i></i><em></em></div><p>Scan to order</p></div>
-      <div class="cdb-menu">
-        <p class="cdb-top"><b>Cyber<i>Dine</i></b><span>Table 7 · Lunch</span></p>
-        ${[["Masala Dosa", "₹120", 20], ["Filter Coffee", "₹60", 28], ["Idli Vada", "₹90", 0]].map(([n, p, s]) => `<p class="cdb-dish"><span><b>${n}</b>${p}</span>${s ? `<i style="--s:${s}"><em>Add</em><em>✓</em></i>` : "<i><em>Add</em></i>"}</p>`).join("")}
-        <p class="cdb-cart"><span>2 items · ₹180</span><b>Order now</b></p>
-      </div>
-      <div class="cdb-sent"><i>✓</i><b>Order sent</b><span>Table 7 · sent to the kitchen</span></div>
+      <p class="cdb-top"><span>‹</span><b>Table 1</b><em>Dine-in</em></p>
+      <p class="cdb-cats"><i class="on">Our special</i><i>Starters</i><i>Breads</i></p>
+      ${[["Chicken Tikka", "Non veg", "₹150", 8, "tikka", 1], ["Paneer Butter Masala", "Veg", "₹220", 14, "paneer", 0], ["Garlic Naan", "Veg", "₹60", 20, "naan", 0]].map(([n, t, p, s, f, sp]) => `<div class="cdb-dish"><i class="cdb-food is-${f}">${sp ? "<b>Special</b>" : ""}</i><p><b>${n}</b><span>${t}</span><strong>${p}</strong></p><em style="--s:${s}"><span>Add</span><span>− 1 +</span></em></div>`).join("")}
+      <p class="cdb-cart"><span><b>3 items</b>₹430</span><em>Order now</em></p>
+      <div class="cdb-sent"><div><i>✓</i><b>Order sent successfully</b><span>Table 1 · your order will be verified and sent to the kitchen</span></div></div>
     </div></div>
-    <div class="cdb-staff">
-      <p class="cdb-bar"><b>Cyber<i>Dine</i> Staff</b><span>Orders · Ravi</span></p>
-      <div class="cdb-orders">
-        <div class="cdb-o is-new"><p><b>Table 7</b><span>2 items · ₹180</span></p><p class="cdb-items">Masala Dosa · Filter Coffee</p>
-          <p class="cdb-st"><span class="is-wait" style="--s:46;--e:58">Awaiting confirmation</span><span class="is-ok" style="--s:58;--e:72">✓ Approved</span><span class="is-done" style="--s:72">✓ Delivered</span></p></div>
-        <div class="cdb-o"><p><b>Table 3</b><span>4 items · ₹460</span></p><p class="cdb-items">Thali · Lassi · Parotta</p><p class="cdb-st"><span class="is-ok">✓ Approved</span></p></div>
-        <div class="cdb-o"><p><b>Table 12</b><span>1 item · ₹80</span></p><p class="cdb-items">Masala Chai</p><p class="cdb-st"><span class="is-done">✓ Delivered</span></p></div>
-      </div>
-    </div>
-    <p class="cdb-chip c1"><i>₹</i>₹50 tip for Ravi</p>
-    <p class="cdb-chip c2"><i>✓</i>Paid ₹230 by UPI</p>
+    <p class="cdb-path"><i></i></p>
+    <div class="cdb-kot"><div class="cdb-paper">
+      <p class="cdb-h">KOT</p>
+      <p class="cdb-row"><b>DINE-IN</b><b>TABLE 1</b></p>
+      <p>1 × CHICKEN TIKKA</p><p class="cdb-note">NOTES: SPICY</p>
+      <p>1 × PANEER BUTTER MASALA</p><p>1 × GARLIC NAAN</p>
+      <p class="cdb-dash"></p>
+      ${[["SENT FROM TABLE", 50], ["STAFF APPROVED", 58], ["SENT TO KITCHEN", 66]].map(([x, s]) => `<p class="cdb-tick" style="--s:${s}"><i>[<em>x</em>]</i>${x}</p>`).join("")}
+      <p class="cdb-stamp"><span>APPROVED<b>✓</b></span></p>
+    </div></div>
+    <div class="cdb-printer"><i></i><span>KITCHEN · KOT PRINTER</span><em></em></div>
+    <div class="cdb-bill"><p class="cdb-h">BILL</p><p class="cdb-row"><b>TABLE 1</b><b>DINE-IN</b></p><p class="cdb-row"><span>TOTAL</span><b>₹430</b></p><i class="cdb-qr"></i><p class="cdb-pay">SCAN TO PAY</p><p class="cdb-small">CASH · CARD · UPI</p></div>
+    <p class="cdb-chip"><i>✓</i>Paid ₹430 by UPI</p>
   </div>`;
 // Real UI for a project card or case page: a before/after slide, or a row of phone screens.
 const visual = (v, r = "") =>
