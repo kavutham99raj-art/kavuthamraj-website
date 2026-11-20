@@ -2068,3 +2068,12 @@ p,li,dd{text-wrap:pretty}
   .cdl-tab{right:2cqw;width:64cqw;top:16%}
   .cdl-kot{left:38cqw;width:20cqw;bottom:3%}
 }
+
+/* Behance: an icon in the footer bar and an icon button beside LinkedIn */
+.sn-ic{display:inline-grid;place-items:center;width:32px;height:32px;margin-left:auto;color:#fff;background:#1769FF;border-radius:8px;transition:transform .25s var(--ease),background .25s}
+.sn-ic:hover{transform:translateY(-2px);background:#0F57D8}
+.sn-ic svg,.sn-ic-s svg{width:100%;height:100%;display:block}
+.sn-ic .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sn-ic-s{display:inline-block;width:18px;height:18px;margin-right:8px;vertical-align:-3px}
+.sn-btn{display:inline-flex;align-items:center}
+.sn-btn:hover .sn-ic-s{transform:translateY(-1px)}

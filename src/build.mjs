@@ -66,6 +66,9 @@ const v = (file) => createHash("sha1").update(readFileSync(STATIC + file)).diges
 const cssV = v("styles.css"), jsV = v("main.js");
 const linkedin = profile.links.find((l) => l.label === "LinkedIn").href;
 const behance = profile.links.find((l) => l.label === "Behance").href;
+const behanceProfile = profile.links.find((l) => l.label === "Behance profile").href;
+// Behance's mark: a rounded square with the "Bē" letters, in the current colour
+const behanceIcon = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="0" y="0" width="24" height="24" rx="6" fill="#1769FF"/><text x="12" y="16.6" text-anchor="middle" font-family="Poppins,system-ui,sans-serif" font-size="11.5" font-weight="700" fill="#fff">Bē</text></svg>`;
 // The résumé is published under the name a visitor's download should get. Hosts such as Vercel send
 // Content-Disposition with the file's own name, which browsers prefer over the download attribute.
 const resumeFile = "Kavuthamraj_Resume_UI_UX_Product_Designer.pdf";
@@ -167,6 +170,7 @@ const footer = (r) => `<footer class="foot">
   <div class="wrap foot-bar">
     <span>© ${new Date().getFullYear()} ${esc(profile.name)}</span>
     <span>Designed in Figma, coded as a static site.</span>
+    <a class="sn-ic" href="${behanceProfile}" target="_blank" rel="noopener" aria-label="Behance profile, opens in a new tab">${behanceIcon}${newTab}</a>
     <a class="foot-top" href="#top" aria-label="Back to top"><span aria-hidden="true">↑</span></a>
   </div>
 </footer>
@@ -655,7 +659,7 @@ ${header("")}
     <h2 class="krona display reveal">Let's build <em>what's next.</em></h2>
     <p class="contact-lede reveal">Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
     <div class="contact-line reveal"><a class="contact-mail" href="${mailto}">${esc(profile.email)}<span aria-hidden="true">↗</span></a><button class="copy-mail btn ghost-light" type="button" data-copy="${esc(profile.email)}">Copy email</button><span class="sr copy-status" role="status" aria-live="polite"></span></div>
-    <div class="contact-act reveal">${resumeLink("", "btn light", "Download resume")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a></div>
+    <div class="contact-act reveal">${resumeLink("", "btn light", "Download resume")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a><a class="btn ghost-light sn-btn" href="${behanceProfile}" target="_blank" rel="noopener"><span class="sn-ic-s" aria-hidden="true">${behanceIcon}</span>Behance ↗${newTab}</a></div>
   </div>
 </section>
 </main>
@@ -1039,7 +1043,7 @@ ${header(r)}
       ${frame("→", "Hiring a product designer?")}
       <h2 class="krona">Let's talk about <em>your product.</em></h2>
       <p>Open to Senior Product Designer, Product Designer and UI/UX roles. Immediate joiner, open to relocation or remote work.</p>
-      <div class="contact-act"><a class="btn light" href="${mailto}">Email me</a>${resumeLink(r, "btn ghost-light", "Download resume")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a></div>
+      <div class="contact-act"><a class="btn light" href="${mailto}">Email me</a>${resumeLink(r, "btn ghost-light", "Download resume")}<a class="btn ghost-light" href="${linkedin}" target="_blank" rel="noopener">LinkedIn ↗${newTab}</a><a class="btn ghost-light sn-btn" href="${behanceProfile}" target="_blank" rel="noopener"><span class="sn-ic-s" aria-hidden="true">${behanceIcon}</span>Behance ↗${newTab}</a></div>
     </section>
     <a class="next-case reveal" href="${nextKey}.html"><span class="label">Next case study</span><strong class="krona">${esc(nextTitle)}</strong><i aria-hidden="true">→</i></a>
   </div>

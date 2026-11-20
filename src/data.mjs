@@ -34,6 +34,7 @@ export const profile = {
   industries: ["Sports", "Retail", "E-commerce", "Healthcare", "AI", "Accounts & Finance"],
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/kavuthamraj/" },
+    { label: "Behance profile", href: "https://www.behance.net/kavuthamraj" },
     { label: "Behance", text: "ERP case on Behance", href: "https://www.behance.net/gallery/224132329/ERP-Solutionfor-Sports-Industry" },
   ],
   oldSite: "https://kavuthamraj.framer.website/",
