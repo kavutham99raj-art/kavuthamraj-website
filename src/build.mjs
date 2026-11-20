@@ -420,8 +420,8 @@ ${header("")}
   <div class="wrap">
     <div class="sec-head">
       ${frame("01", "Selected work")}
-      <h2 class="krona h2 lg reveal">25+ shipped.<br> <em>Five, up close.</em></h2>
-      <p class="sec-lede reveal">Five picks from 25+ products: an AI delivery platform, a sports ERP, enterprise SaaS, restaurant ordering and an education app. Each case shows the problem, the decisions I made, and what changed.</p>
+      <h2 class="krona h2 lg reveal">25+ shipped.<br> <em>Six, up close.</em></h2>
+      <p class="sec-lede reveal">Six picks from 25+ products: an AI delivery platform, payroll and a sports ERP, enterprise SaaS, restaurant ordering and an education app. Each case shows the problem, the decisions I made, and what changed.</p>
     </div>
     <div class="cards">
       ${featured.map((f, i) => `<article class="card reveal" aria-labelledby="c-${f.key}">

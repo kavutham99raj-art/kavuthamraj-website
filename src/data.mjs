@@ -286,6 +286,15 @@ export const featured = [
     href: "work/steadfast.html", cover: "steadfast.png",
   },
   {
+    key: "payroll", name: "Payroll Module", what: "Payroll for sports academies", how: "Pay runs, deductions and payslips for admins and staff, built into the Sporfy Tracker app.",
+    logo: "logos/products/sporfy-tracker.png", meta: ["Sporfy", "Sports ERP", "Payroll"],
+    title: "Payroll in the *pocket.*",
+    text: "Payroll was the most error-prone part of running an academy: spreadsheets, manual deductions and late payslips. I designed it as a module of the mobile ERP, so admins and staff see the same numbers.",
+    outcomes: [["3", "months, from brief to developer handoff"], ["Live", "inside Sporfy Tracker on Google Play"], ["Mobile", "payroll for admins and staff in one app"]],
+    visual: { src: "work/payroll/02.jpg", alt: "Sporfy Payroll module: pay runs and payslips for admins and staff on mobile" },
+    href: "work/payroll.html", cover: "payroll.png",
+  },
+  {
     key: "erp", name: "Sporfy Tracker", what: "Mobile ERP for sports academies", how: "Payroll, attendance, fees, classes and slots in one phone app instead of a desktop.",
     logo: "logos/products/sporfy-tracker.png", meta: ["Sporfy", "Sports ERP", "Mobile"],
     title: "Off the desktop. *Into the pocket.*",
