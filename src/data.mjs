@@ -295,6 +295,15 @@ export const featured = [
     href: "work/payroll.html", cover: "payroll.png",
   },
   {
+    key: "educonnect", name: "Educonnect", what: "Tuition and online-course app", how: "Students find tutors or courses, chat with teachers and share posts.",
+    meta: ["Self-initiated", "EdTech", "iOS"],
+    title: "Tuition and courses. *One app.*",
+    text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
+    outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],
+    visual: { src: "work/educonnect/02.jpg", alt: "Educonnect on two iPhones: tuition and online courses, suggested teachers with chat, on a green brand background" },
+    href: "work/educonnect.html", cover: "educonnect.png",
+  },
+  {
     key: "erp", name: "Sporfy Tracker", what: "Mobile ERP for sports academies", how: "Payroll, attendance, fees, classes and slots in one phone app instead of a desktop.",
     logo: "logos/products/sporfy-tracker.png", meta: ["Sporfy", "Sports ERP", "Mobile"],
     title: "Off the desktop. *Into the pocket.*",
@@ -320,15 +329,6 @@ export const featured = [
     outcomes: [["~235", "screens across two apps, sole designer"], ["15", "restaurants live at peak"], ["~600", "orders a day at peak"]],
     visual: { demo: "cyberdine", label: "Cyberdine: a diner scans the table QR, adds dishes and orders; the staff app gets the order, approves it, marks it delivered, and the diner tips and pays by UPI", src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
     href: "work/cyberdine.html", cover: "cyberdine.png",
-  },
-  {
-    key: "educonnect", name: "Educonnect", what: "Tuition and online-course app", how: "Students find tutors or courses, chat with teachers and share posts.",
-    meta: ["Self-initiated", "EdTech", "iOS"],
-    title: "Tuition and courses. *One app.*",
-    text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
-    outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],
-    visual: { src: "work/educonnect/02.jpg", alt: "Educonnect on two iPhones: tuition and online courses, suggested teachers with chat, on a green brand background" },
-    href: "work/educonnect.html", cover: "educonnect.png",
   },
 ];
 export { erpScreens };

@@ -961,7 +961,7 @@ const fcPage = (key) => {
   // Runs of tall screenshots sit side by side in a grid instead of one very long column.
   const units = [];
   for (const b of blocks) {
-    const tall = b.t === "img" && b.h > b.w * 1.3, last = units[units.length - 1];
+    const tall = b.t === "img" && b.h > b.w * 1.3 && !b.full, last = units[units.length - 1];
     if (tall && last && last.t === "tall") last.items.push(b);
     else units.push(tall ? { t: "tall", items: [b] } : b);
   }

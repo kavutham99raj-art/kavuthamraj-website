@@ -837,13 +837,15 @@ export const framerCases = {
     "t": "img",
     "src": "work/educonnect/09.jpg",
     "w": 934,
-    "h": 1600
+    "h": 1600,
+    "full": true
    },
    {
     "t": "img",
     "src": "work/educonnect/10.jpg",
     "w": 822,
-    "h": 1600
+    "h": 1600,
+    "full": true
    }
   ]
  },
