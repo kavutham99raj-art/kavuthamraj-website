@@ -775,6 +775,58 @@ html{scroll-behavior:smooth}
 .ex-rows svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:1000px){.ex-g{grid-template-columns:1fr;max-width:460px;margin:0 auto}.ex-c:nth-child(2){margin-top:0}}
 @media(prefers-reduced-motion:reduce){.ex-when i{animation:none}.ex-ph img{transition:none}}
+
+/* ===== Usability testing & iteration ===== */
+.ut-loop{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0 0 18px;padding:0;list-style:none}
+.ut-loop li{position:relative;display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:var(--rl);background:var(--c);border:1px solid rgba(20,26,21,.08);font-weight:800;font-size:1rem;letter-spacing:-.01em;box-shadow:0 12px 24px -18px rgba(20,26,21,.22)}
+.ut-loop li span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ps);color:var(--pd);font-size:.74rem}
+.ut-loop li:last-child{background:var(--ob);color:#fff;border-color:transparent}
+.ut-loop li:last-child span{background:var(--p);color:#fff}
+.ut-loop li:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;z-index:1;display:grid;place-items:center;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px var(--ln);font-size:.75rem;color:var(--m)}
+.ut-find{padding:clamp(28px,4vw,48px);border-radius:var(--rx);background:radial-gradient(60% 120% at 100% 0,rgba(23,148,40,.3),transparent 70%),#0B140D;color:#fff}
+.ut-find .an-k{color:#86EFAC}
+.ut-q{max-width:22ch;margin:0;font-size:clamp(1.8rem,3.6vw,2.9rem);font-weight:800;line-height:1.08;letter-spacing:-.04em}
+.ut-q em{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;color:#86EFAC}
+.ut-why{max-width:60ch;margin:16px 0 0;font-size:1.02rem;line-height:1.55;color:rgba(255,255,255,.7)}
+.ut-ba{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(12px,3vw,40px);margin-top:16px;padding:clamp(24px,4vw,48px);border-radius:var(--rx);background:var(--c);border:1px solid rgba(20,26,21,.08);box-shadow:0 12px 24px -18px rgba(20,26,21,.22)}
+.ut-side{display:flex;flex-direction:column;align-items:center;gap:18px;margin:0}
+.ut-side figcaption{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:30ch;font-size:.9rem;font-weight:600;line-height:1.4;text-align:center;color:var(--m)}
+.ut-tag{padding:5px 14px;border-radius:99px;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.ut-tag.no{background:#FEE2E2;color:#B91C1C}.ut-tag.ok{background:var(--ps);color:var(--pd)}
+.ut-arrow{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--pd)}
+.ut-arrow i{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--p);color:#fff;font-size:1.4rem;font-style:normal;box-shadow:0 14px 26px -12px rgba(23,148,40,.8)}
+.bx-phone{position:relative;width:min(280px,100%);padding:9px;border-radius:40px;background:linear-gradient(145deg,#2a2f2b,#0c0f0d);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)}
+.bx-phone.is-real img{display:block;width:100%;height:auto;border-radius:32px}
+.is-before .bx-phone{filter:saturate(.85)}
+.bx-screen{position:relative;display:flex;flex-direction:column;gap:7px;aspect-ratio:750/1624;overflow:hidden;padding:30px 0 0;border-radius:32px;background:#fff;font-family:"IBM Plex Sans",sans-serif;color:#212121}
+.bx-top{display:flex;align-items:center;gap:8px;margin:0 0 4px;padding:0 12px;font-size:1rem;font-weight:700}
+.bx-top i{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#179428;color:#fff;font-size:.8rem;font-style:normal}
+.bx-bar{margin:0;padding:6px 12px;font-size:.72rem;font-weight:600;color:#fff}
+.bx-bar.wait{background:#FF7D20}.bx-bar.ok{background:#179428}
+.bx-item{display:flex;align-items:center;gap:8px;margin:0 9px;overflow:hidden;border-radius:4px;background:#fff;box-shadow:0 0 0 1px #E4E4E4}
+.bx-item figure{position:relative;flex:none;width:46px;height:46px;margin:0;background:url("/work/cyberdine-case/images/Items%20in%20cart.png") 5.4% 22.6%/510% auto no-repeat}
+.bx-item figure span{position:absolute;left:0;right:0;bottom:0;background:#179428;color:#fff;font-size:.46rem;font-weight:600;text-align:center}
+.bx-item div{flex:1;min-width:0}
+.bx-item div b{display:block;font-size:.7rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bx-item div small{display:block;font-size:.56rem;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bx-amt{display:flex;flex-direction:column;align-items:flex-end;padding-right:8px}
+.bx-amt small{font-size:.54rem;color:#666}
+.bx-amt b{font-size:.78rem;font-weight:700}
+.bx-total{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;padding:14px 16px 20px;background:#212121;color:#fff;font-size:.8rem;font-weight:600}
+.bx-total b{font-size:1.25rem;font-weight:700;letter-spacing:-.01em}
+.bx-total::before{content:"";position:absolute;inset:6px 8px 12px;border:2px dashed #FF4D4D;border-radius:10px;pointer-events:none}
+.ut-pin{position:absolute;right:8%;top:var(--y);width:58px;height:34px;margin-top:-17px;border-radius:12px;box-shadow:0 0 0 2px #22C55E,0 0 0 7px rgba(34,197,94,.22);animation:ut-pin 2.2s ease-in-out infinite}
+@keyframes ut-pin{50%{box-shadow:0 0 0 2px #22C55E,0 0 0 12px rgba(34,197,94,0)}}
+.ut-changes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 0;padding:0;list-style:none}
+.ut-changes li{padding:20px 22px;border-radius:var(--rl);background:var(--c);border:1px solid rgba(20,26,21,.08);font-size:.95rem;line-height:1.45;color:var(--m)}
+.ut-changes b{display:block;margin-bottom:4px;font-size:1.25rem;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.ut-result{display:flex;align-items:center;gap:22px;margin-top:16px;padding:clamp(24px,3vw,36px);border-radius:var(--rx);background:linear-gradient(135deg,#1B9E33,#0B4A14);color:#fff;box-shadow:0 30px 50px -30px rgba(15,107,28,.8)}
+.ut-result .an-k{margin-bottom:6px;color:#BBF7D0}
+.ut-result p:last-child{margin:0;font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:800;line-height:1.2;letter-spacing:-.03em}
+.ut-up{flex:none;display:grid;place-items:center;width:clamp(64px,8vw,88px);aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);font-size:clamp(2rem,4vw,2.8rem);font-weight:800;animation:ut-rise 2.4s ease-in-out infinite}
+@keyframes ut-rise{50%{translate:0 -5px}}
+@media(max-width:960px){.ut-loop{grid-template-columns:1fr 1fr}.ut-loop li::after{display:none}.ut-ba{grid-template-columns:1fr}.ut-arrow i{rotate:90deg}.ut-changes{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.ut-pin,.ut-up{animation:none}}
 </style>
 </head>
 <body>
@@ -1562,6 +1614,56 @@ html{scroll-behavior:smooth}
         <div class="cap-desc" style="font-size:.8rem">Complete order detail terminal showing items, cooking instructions, kitchen ticket approval status, itemized tax calculations, and instant settlement methods.</div>
       </div>
     </div></div>
+</section>
+
+<!-- 16. USABILITY TESTING & ITERATION -->
+<section id="usability-testing" class="ut">
+  <div class="sh">
+    <div>
+      <h2 class="h2"><small class="h2-pre">Test &amp; Iterate</small>Usability <em>Testing</em></h2>
+      <p class="sd">I took the prototype to real diners, watched where they struggled, collected their feedback and kept iterating. One small number changed how much people ordered.</p>
+    </div>
+  </div>
+
+  <ol class="ut-loop"><li><span>01</span>Prototype</li><li><span>02</span>Test with diners</li><li><span>03</span>Observe</li><li><span>04</span>Collect feedback</li><li><span>05</span>Iterate</li></ol>
+
+  <div class="ut-find">
+    <p class="an-k">What testing showed</p>
+    <p class="ut-q">A running total on My Orders made diners <em>order less.</em></p>
+    <p class="ut-why">Mid-meal, a bill-style total turned “what else should we try?” into “how much have we spent?”. People stopped adding dishes.</p>
+  </div>
+
+  <div class="ut-ba">
+    <figure class="ut-side is-before">
+      <figcaption><span class="ut-tag no">Before</span>Tested prototype: price-led, with a running total</figcaption>
+      <div class="bx-phone"><div class="bx-screen">
+          <p class="bx-top"><i>←</i>My Orders</p>
+          <p class="bx-bar wait">Awaiting confirmation…</p>
+          <div class="bx-item"><figure style="background-position:5.4% 22.6%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
+          <div class="bx-item"><figure style="background-position:5.4% 34.6%"><span>Special</span></figure><div><b>Spicy Garlic Chicken</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>1 × ₹150</small><b>₹150</b></span></div>
+          <p class="bx-bar ok">✓ Approved</p>
+          <div class="bx-item"><figure style="background-position:5.4% 22.6%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
+          <div class="bx-total"><span>Total so far</span><b>₹750</b></div>
+        </div></div>
+    </figure>
+    <div class="ut-arrow" aria-hidden="true"><span>Iterate</span><i>→</i></div>
+    <figure class="ut-side is-after">
+      <figcaption><span class="ut-tag ok">After</span>Shipped: no total, quantity is the primary figure</figcaption>
+      <div class="bx-phone is-real"><img src="/work/cyberdine-case/images/Order%20Status.png" alt="Cyberdine My Orders as shipped: dishes grouped by status with quantity on the right and no running total" width="750" height="1624" loading="lazy" decoding="async"><i class="ut-pin" style="--y:20.6%"></i><i class="ut-pin" style="--y:47.2%"></i></div>
+    </figure>
+  </div>
+
+  <ul class="ut-changes">
+    <li><b>Removed</b>the running total from My Orders</li>
+    <li><b>Promoted</b>quantity to the primary figure on every dish</li>
+    <li><b>Moved</b>the full amount to the bill, when the diner asks for it</li>
+  </ul>
+
+  <div class="ut-result">
+    <span class="ut-up" aria-hidden="true">↑</span>
+    <div><p class="an-k">After launch</p><p>Sales went up, and diners kept ordering through the meal.</p></div>
+  </div>
+
 </section>
 <ul class="v-met v-end"><li><b>&lt; 10s</b><span>QR-to-action speed</span></li><li><b>0%</b><span>Sold-out friction</span></li><li><b>Zero</b><span>Range-drop failures</span></li><li><b>+3x</b><span>Tip &amp; review lift</span></li></ul>
 
