@@ -860,6 +860,23 @@ html{scroll-behavior:smooth}
 .ty:hover .ty-track{animation-play-state:paused}
 @keyframes ty-scroll{to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.ty-track{animation:none}}
+
+/* closing: two crossed tapes scrolling in opposite directions */
+.ty2{position:relative;display:grid;place-items:center;height:clamp(280px,34vw,440px);margin-top:24px;overflow:hidden;background:radial-gradient(60% 80% at 50% 50%,rgba(23,148,40,.4),transparent 70%),radial-gradient(rgba(255,255,255,.06) 1px,transparent 1.3px) 0 0/22px 22px,#0B140D}
+.ty2-tape{grid-area:1/1;width:120%;padding:clamp(14px,1.8vw,24px) 0;overflow:hidden}
+.ty2-tape.a{z-index:2;rotate:-4deg;background:linear-gradient(90deg,#14872A,#22B04B 50%,#14872A);box-shadow:0 30px 60px -20px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.35)}
+.ty2-tape.b{z-index:1;rotate:5deg;background:#151F18;box-shadow:inset 0 0 0 1px rgba(134,239,172,.18)}
+.ty2-track{display:flex;align-items:center;width:max-content;animation:ty2 30s linear infinite}
+.ty2-tape.b .ty2-track{animation-duration:42s;animation-direction:reverse}
+.ty2 span,.ty2 em{padding:0 .28em;white-space:nowrap;line-height:1}
+.ty2-tape.a span{font-size:clamp(2.6rem,6.4vw,5.4rem);font-weight:800;letter-spacing:-.045em;color:#0B140D}
+.ty2-tape.a em{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(2.9rem,7vw,6rem);font-weight:400;letter-spacing:-.01em;color:#fff}
+.ty2-tape.a i{font-style:normal;font-size:clamp(1.4rem,3vw,2.4rem);color:#0B140D}
+.ty2-tape.b span{font-size:clamp(1.6rem,3.4vw,2.8rem);font-weight:800;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.2px rgba(134,239,172,.75)}
+.ty2-tape.b i{font-style:normal;font-size:1.2rem;color:#4ADE80;padding:0 .4em}
+.ty2:hover .ty2-track{animation-play-state:paused}
+@keyframes ty2{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ty2-track{animation:none}}
 </style>
 </head>
 <body>
@@ -1702,7 +1719,7 @@ html{scroll-behavior:smooth}
 <ul class="v-met v-end"><li><b>&lt; 10s</b><span>QR-to-action speed</span></li><li><b>0%</b><span>Sold-out friction</span></li><li><b>Zero</b><span>Range-drop failures</span></li><li><b>+3x</b><span>Tip &amp; review lift</span></li></ul>
 
 </div>
-<div class="ty" aria-label="Thank you"><div class="ty-track" aria-hidden="true"><div><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i></div><div><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i></div></div></div>
+<div class="ty2" role="img" aria-label="Thank you for scrolling"><div class="ty2-tape a"><div class="ty2-track"><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i></div></div><div class="ty2-tape b"><div class="ty2-track"><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i></div></div></div>
 <a class="back-pill" href="/#work" aria-label="Back to the portfolio">← Portfolio</a>
 </body>
 </html>
