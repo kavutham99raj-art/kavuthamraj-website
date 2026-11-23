@@ -301,7 +301,7 @@ export const featured = [
     title: "Payday, *without the panic.*",
     text: "Payroll was the most error-prone part of running an academy: spreadsheets, manual deductions and late payslips. I designed it as a module of the mobile ERP, so admins and staff see the same numbers.",
     outcomes: [["3", "months, from brief to developer handoff"], ["Live", "inside Sporfy Tracker on Google Play"], ["Mobile", "payroll for admins and staff in one app"]],
-    visual: { src: "work/payroll/02.jpg", alt: "Sporfy Payroll module: pay runs and payslips for admins and staff on mobile" },
+    visual: { demo: "payroll", alt: "Sporfy Payroll on three phones: the Pay Run for 200 employees, payroll settings, and an employee\u2019s My Payslips with the net pay breakdown" },
     href: "work/payroll.html", cover: "payroll.png",
   },
   {

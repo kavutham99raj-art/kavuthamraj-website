@@ -2192,3 +2192,33 @@ p,li,dd{text-wrap:pretty}
   .card h3{font-size:clamp(28px,8.2vw,36px)}
   .card-copy::before{top:auto;bottom:-10px;font-size:120px}
 }
+
+/* ===== Payroll banner: the real phones from the case cover on a dark Sporfy stage, three live chips ===== */
+.ab-pr{--g:#3FAE49;min-height:100%;aspect-ratio:16/10;background:radial-gradient(60% 75% at 50% 62%,rgba(63,174,73,.34),transparent 70%),radial-gradient(45% 60% at 0 0,rgba(23,179,163,.18),transparent 70%),linear-gradient(180deg,#0E2417,#0A1A11);color:#fff}
+.ab-pr::after{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.3px) 0 0/20px 20px;-webkit-mask:radial-gradient(70% 70% at 50% 40%,#000,transparent);mask:radial-gradient(70% 70% at 50% 40%,#000,transparent);pointer-events:none}
+.prb-shot{position:absolute;left:50%;bottom:-3%;z-index:1;width:84%;height:auto;translate:-50% 0;-webkit-mask:linear-gradient(180deg,transparent 25%,#000 33%),linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-composite:source-in;mask:linear-gradient(180deg,transparent 25%,#000 33%) intersect,linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.prb-chip{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;margin:0;padding:9px 14px 9px 10px;border-radius:14px;background:rgba(12,28,18,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 18px 30px -16px rgba(0,0,0,.7);font-size:clamp(10px,1.5cqw,13px);line-height:1.3;color:rgba(255,255,255,.7);animation:prb-float 6s ease-in-out infinite}
+.prb-chip i{flex:none;display:grid;place-items:center;width:clamp(22px,3.4cqw,30px);aspect-ratio:1;border-radius:50%;background:var(--g);box-shadow:0 0 0 4px rgba(63,174,73,.22)}
+.prb-chip i::before{content:"";width:35%;height:20%;margin-top:-10%;border:solid #fff;border-width:0 0 2px 2px;rotate:-45deg}
+.prb-chip b{display:block;font-weight:600;color:#fff}
+.prb-chip.c1{left:4%;top:9%}
+.prb-chip.c2{right:3%;top:38%;animation-delay:-2s}
+.prb-chip.c3{left:5%;bottom:9%;animation-delay:-4s}
+@keyframes prb-float{50%{translate:0 -6px}}
+.case-cover.is-banner{overflow:hidden;border-radius:var(--r-lg,24px)}
+.case-cover.is-banner .ab{height:auto}
+@media (prefers-reduced-motion:reduce){.prb-chip{animation:none}}
+@media (max-width:560px){.prb-chip.c2{display:none}}
+.ab-pr .prb-shot{width:84%;height:auto;object-fit:initial}
+.case-cover.is-banner{aspect-ratio:16/10}
+.case-cover.is-banner .ab{height:100%}
+.ab-pr .prb-shot{-webkit-mask:linear-gradient(180deg,transparent 27.5%,#000 34%),linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-composite:source-in;mask:linear-gradient(180deg,transparent 27.5%,#000 34%) intersect,linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.ab-pr .prb-shot{width:78%}
+.prb-chip.c1{left:3%;top:7%}.prb-chip.c2{right:2.5%;top:36%}.prb-chip.c3{left:3%;bottom:7%}
+@container (max-width:640px){
+  .prb-chip{gap:7px;padding:6px 10px 6px 7px;border-radius:11px;font-size:9.5px}
+  .prb-chip i{width:20px}
+  .prb-chip.c2{display:none}
+}
+@media (max-width:560px){.prb-chip.c2{display:none}}
+@container (max-width:420px){.prb-chip.c3{display:none}.prb-chip.c1{top:5%;left:3%}}

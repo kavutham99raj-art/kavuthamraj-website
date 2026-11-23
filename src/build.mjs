@@ -264,6 +264,14 @@ const cyberdineBanner = (v, r = "") => {
     <figure class="cdl-bill"><div class="cdl-cut">${im("bill.png", 424, 1498, "")}</div></figure>
   </div>`;
 };
+// Payroll from its real screens (Pay Run, payroll settings, My Payslips), cropped from the case cover onto a dark
+// Sporfy stage, with three small live chips for what each screen does.
+const payrollBanner = (v, r = "") => `<div class="ab ab-pr" role="img" aria-label="${esc(v.alt)}">
+    <img class="prb-shot" ${pic(r, "work/payroll/01.jpg", "(max-width:900px) 100vw, 720px")} width="1024" height="1024" alt="" loading="lazy" decoding="async">
+    <p class="prb-chip c1"><i></i><span><b>Pay run ready</b>200 employees · ₹10,00,000</span></p>
+    <p class="prb-chip c2"><i></i><span><b>Deductions</b>PF, ESI and TDS applied</span></p>
+    <p class="prb-chip c3"><i></i><span><b>Payslip sent</b>January 2022 · Ravi</span></p>
+  </div>`;
 // Real UI for a project card or case page: a before/after slide, or a row of phone screens.
 const visual = (v, r = "") =>
   v.demo === "loading"
@@ -274,6 +282,8 @@ const visual = (v, r = "") =>
     ? trackerBanner(v)
     : v.demo === "cyberdine"
     ? cyberdineBanner(v, r)
+    : v.demo === "payroll"
+    ? payrollBanner(v, r)
     : v.phones
     ? `<div class="phones-panel">${v.phones.map((p) => `<img ${pic(r, p.src, "(max-width:900px) 30vw, 200px")} alt="Sporfy Tracker: ${esc(p.cap)}" width="512" height="1100" loading="lazy" decoding="async">`).join("")}</div>`
     : `<img ${pic(r, v.src, WIDE)} alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;
@@ -1026,7 +1036,9 @@ ${header(r)}
     ${!c.lead && !feat && c.tags.length ? `<ul class="cs-chips rise" style="--d:200ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
   </div>`}
   <div class="wrap">
-    ${c.hero ? "" : `<figure class="case-cover rise" style="--d:240ms">${coverSrc
+    ${c.hero ? "" : `<figure class="case-cover rise${feat && feat.visual.demo === "payroll" ? " is-banner" : ""}" style="--d:240ms">${feat && feat.visual.demo === "payroll"
+      ? payrollBanner(feat.visual, r)
+      : coverSrc
       ? `<img ${pic(r, coverSrc, WIDE)} alt="${esc(feat.visual.alt)}" width="1600" height="1000" decoding="async" fetchpriority="high">`
       : `<img ${pic(r, `work/${thumb(proj.cover || key + ".png")}`, WIDE)} alt="" width="1200" height="1200" decoding="async" fetchpriority="high">`}</figure>`}
     <dl class="case-meta reveal">${meta.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
