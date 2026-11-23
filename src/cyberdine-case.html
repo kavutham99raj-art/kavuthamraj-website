@@ -12,7 +12,7 @@
 <meta property="og:description" content="From table QR to kitchen ticket to bill: the design of a restaurant ordering and POS ecosystem, by Kavuthamraj GS.">
 <meta property="og:url" content="https://www.kavuthamraj.com/work/cyberdine.html">
 <meta property="og:image" content="https://www.kavuthamraj.com/work/covers/cyberdine.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="1200"><meta property="og:image:alt" content="Cyberdine case study cover: QR menu, captain app and POS screens"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Cyberdine: QR dine-in ordering and POS | UX case study"><meta name="twitter:description" content="From table QR to kitchen ticket to bill: the design of a restaurant ordering and POS ecosystem, by Kavuthamraj GS."><meta name="twitter:image" content="https://www.kavuthamraj.com/work/covers/cyberdine.jpg">
 <meta name="theme-color" content="#0B140D">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -589,7 +589,7 @@ html{scroll-behavior:smooth}
 .x-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;font-size:.84rem;font-weight:600;color:#fff}
 .x-bar.wait{background:#FF7D20}.x-bar.ok{background:#179428}.x-bar.no{background:#FF0000}
 .x-item{display:flex;align-items:stretch;overflow:hidden;border-radius:4px;background:#fff;box-shadow:0 0 0 1px #E4E4E4,0 2px 6px rgba(0,0,0,.06)}
-.x-item figure{position:relative;flex:none;align-self:center;width:72px;height:72px;margin:0;background:url("/work/cyberdine-case/images/Items%20in%20cart.png") 5.4% 22.6%/510% auto no-repeat}
+.x-item figure{position:relative;flex:none;align-self:center;width:72px;height:72px;margin:0;background:url("/work/cyberdine-case/images/Items%20in%20cart-750.webp") 5.4% 22.6%/510% auto no-repeat}
 .x-item figure span{position:absolute;left:0;right:0;bottom:0;padding:2px 0;background:#179428;color:#fff;font-size:.62rem;font-weight:600;text-align:center}
 .x-item div{flex:1;min-width:0;padding:10px 12px}.x-item small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .x-item b{display:block;font-size:.86rem;font-weight:600}
@@ -804,7 +804,7 @@ html{scroll-behavior:smooth}
 .bx-bar{margin:0;padding:6px 12px;font-size:.72rem;font-weight:600;color:#fff}
 .bx-bar.wait{background:#FF7D20}.bx-bar.ok{background:#179428}
 .bx-item{display:flex;align-items:center;gap:8px;margin:0 9px;overflow:hidden;border-radius:4px;background:#fff;box-shadow:0 0 0 1px #E4E4E4}
-.bx-item figure{position:relative;flex:none;width:46px;height:46px;margin:0;background:url("/work/cyberdine-case/images/Items%20in%20cart.png") 5.4% 22.6%/510% auto no-repeat}
+.bx-item figure{position:relative;flex:none;width:46px;height:46px;margin:0;background:url("/work/cyberdine-case/images/Items%20in%20cart-750.webp") 5.4% 22.6%/510% auto no-repeat}
 .bx-item figure span{position:absolute;left:0;right:0;bottom:0;background:#179428;color:#fff;font-size:.46rem;font-weight:600;text-align:center}
 .bx-item div{flex:1;min-width:0}
 .bx-item div b{display:block;font-size:.7rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -878,15 +878,53 @@ html{scroll-behavior:smooth}
 @keyframes ty2{to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.ty2-track{animation:none}}
 .ut-up svg{width:46%;height:46%;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== Audit polish ===== */
+/* header chips: the owner asked for them gone; sub-header chips become quiet captions */
+.sh>.bg{display:none}
+section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);font-weight:600}
+/* small green labels pass contrast */
+.w>section .kk{color:var(--pd)}
+/* warm shadows on the browser frames, like every other card */
+.desk-frame{box-shadow:0 12px 24px -18px rgba(20,26,21,.22)}
+/* testing: neutral "Before" tag instead of alarm red */
+.ut-tag.no{background:#EEE9E2;color:var(--m)}
+/* closing tiles: light, so the page doesn't end on four dark slabs before the dark thank-you band */
+.v-met.v-end li{background:var(--c);color:var(--ink);border:1px solid var(--ln);box-shadow:0 12px 24px -18px rgba(20,26,21,.22)}
+.v-met.v-end b{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--p)}
+.v-met.v-end span{color:var(--m)}
+.w>section:last-of-type{margin-bottom:96px}
+/* thank-you band, reduced motion: one static line instead of a frozen strip */
+@media(prefers-reduced-motion:reduce){.ty2-tape.b{display:none}.ty2-tape.a{rotate:0deg}.ty2-track{justify-content:center;width:auto}}
+@media(max-width:960px){
+  .ut-loop li:not(:last-child)::after{display:none}
+  .ut-loop li:last-child{grid-column:1/-1}
+}
+@media(max-width:700px){
+  .v-met.v-end{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  /* the big section numerals sat under the titles */
+  .sh::before{display:none}
+  /* hero phones: a swipeable strip instead of four stacked phones */
+  .stage{display:grid;grid-template-columns:repeat(4,72%);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;align-items:start;padding-bottom:12px;-webkit-overflow-scrolling:touch}
+  .stage>*{scroll-snap-align:center}
+  /* wireframes two up */
+  .wf-row-wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .wf-row-wrap>*{min-width:0}
+  /* micro labels readable */
+  .v-steps em,.v-pc-h em,.ex-says small,.ex-thinks small,.ex-rows small,.cap-title span{font-size:.72rem}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div class="w">
+<main id="main"><div class="w">
 
 <!-- 00. HERO -->
 <header class="hero">
   <div class="hnav">
-    <div class="brand"><img class="brand-logo" src="/work/cyberdine-case/images/logo/cyberdine-logo.png" alt="Cyberdine" width="134" height="72"></div>
+    <div class="brand"><img class="brand-logo" src="/work/cyberdine-case/images/logo/cyberdine-logo.png" alt="Cyberdine" width="134" height="72" decoding="async"></div>
     <div class="hpills"><span>UI/UX Case Study</span><span>Hospitality &amp; POS SaaS</span><span>www.cyberdine.in</span></div>
   </div>
   <div class="hint">
@@ -896,10 +934,10 @@ html{scroll-behavior:smooth}
     <div class="hmeta"><div><small>Role</small><strong>Design Lead (End-to-End)</strong></div><div><small>Timeline</small><strong>Oct 2024 – Aug 2025</strong></div><div><small>Locations</small><strong>Chennai &amp; Coimbatore</strong></div></div>
   </div>
   <div class="stage">
-    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Cyberdine-750.webp" alt="Welcome Screen" /></div></div></div><div class="pcap"><b>01</b>Table Entry &amp; Waiter Call</div></div>
-    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Our%20Menu-750.webp" alt="Our Menu" /></div></div></div><div class="pcap"><b>02</b>Smart Search &amp; Filters</div></div>
-    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/z%20tip-750.webp" alt="My Orders & Tip" /></div></div></div><div class="pcap"><b>03</b>Live Orders &amp; Tipping</div></div>
-    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Manage%20Tables-750.webp" alt="Admin Manage Tables" /></div></div></div><div class="pcap"><b>04</b>Manage Tables (Admin)</div></div>
+    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Cyberdine-750.webp" alt="Welcome Screen"  width="750" height="1626" decoding="async" /></div></div></div><div class="pcap"><b>01</b>Table Entry &amp; Waiter Call</div></div>
+    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Our%20Menu-750.webp" alt="Our Menu"  width="750" height="1632" decoding="async" /></div></div></div><div class="pcap"><b>02</b>Smart Search &amp; Filters</div></div>
+    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/z%20tip-750.webp" alt="My Orders with the tip sheet"  width="750" height="1624" decoding="async" /></div></div></div><div class="pcap"><b>03</b>Live Orders &amp; Tipping</div></div>
+    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Manage%20Tables-750.webp" alt="Admin Manage Tables"  width="750" height="1624" decoding="async" /></div></div></div><div class="pcap"><b>04</b>Manage Tables (Admin)</div></div>
   </div>
 </header>
 
@@ -933,7 +971,7 @@ html{scroll-behavior:smooth}
 
 <!-- 08. EMPATHY MAPPING -->
 <section><div class="sh"><div><h2 class="h2">User Empathy <em>Mapping</em></h2></div><p class="sd">What each persona says, thinks, does, and feels during real restaurant service.</p></div><div class="ex"><p class="ex-k">One restaurant · three people · one service</p><div class="ex-g"><article class="ex-c" style="--d:0ms">
-      <figure class="ex-ph"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" loading="lazy" decoding="async" style="object-position:48% 30%"></figure>
+      <figure class="ex-ph"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" loading="lazy" decoding="async" style="object-position:48% 30%" width="640" height="640"></figure>
       <p class="ex-when"><i></i>Diner · QR menu app</p>
       <div class="ex-body">
         <p class="ex-who"><b>Avanthika, 26</b><span>First-date diner · Chennai</span></p>
@@ -945,7 +983,7 @@ html{scroll-behavior:smooth}
         </ul>
       </div>
     </article><article class="ex-c" style="--d:120ms">
-      <figure class="ex-ph"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" loading="lazy" decoding="async" style="object-position:52% 26%"></figure>
+      <figure class="ex-ph"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" loading="lazy" decoding="async" style="object-position:52% 26%" width="640" height="640"></figure>
       <p class="ex-when"><i></i>Captain · staff app</p>
       <div class="ex-body">
         <p class="ex-who"><b>Manigandan, 45</b><span>Senior captain · Coimbatore</span></p>
@@ -957,7 +995,7 @@ html{scroll-behavior:smooth}
         </ul>
       </div>
     </article><article class="ex-c" style="--d:240ms">
-      <figure class="ex-ph"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" loading="lazy" decoding="async" style="object-position:48% 22%"></figure>
+      <figure class="ex-ph"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" loading="lazy" decoding="async" style="object-position:48% 22%" width="640" height="640"></figure>
       <p class="ex-when"><i></i>Owner · POS and web</p>
       <div class="ex-body">
         <p class="ex-who"><b>Karthikeyan, 35</b><span>Admin / owner</span></p>
@@ -972,7 +1010,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <!-- 09. JOBS-TO-BE-DONE -->
-<section><div class="sh"><div><h2 class="h2">Jobs-To-Be-Done <em>(JTBD)</em></h2></div><p class="sd">Concrete functional and emotional jobs every Cyberdine module must accomplish.</p></div><div class="v-jt"><div class="v-jcol" style="--ac:#179428"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" width="640" height="640" loading="lazy" decoding="async" style="--to:47% 44%;--tf:translate(3%,5%) scale(1.7)"></i><div><h3>Diner jobs</h3><small>Avanthika · QR web app</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb1" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb1)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>First date, crowded hall</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb2" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb2)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Call my captain with one tap</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb3" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb3)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Get help privately, mid-conversation</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb4" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb4)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Ordering with family or elders</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb5" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb5)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>See live dishes with photos in my language</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb6" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb6)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Order fast, no sold-out surprises</li></ol></div><div class="v-jcol" style="--ac:#2F4A36"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" width="640" height="640" loading="lazy" decoding="async" style="--to:52% 37%;--tf:translate(-1%,7%) scale(1.3)"></i><div><h3>Captain jobs</h3><small>Manigandan · Assigned tables only</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb7" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb7)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Punching orders across a big hall</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb8" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb8)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Search by substring, no Wi-Fi drops</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb9" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb9)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Send KOTs in seconds from any table</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb10" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb10)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>My tables ask for help or tip</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb11" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb11)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>See only my tables’ calls and tips</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb12" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb12)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Focus on hospitality, not billing</li></ol></div><div class="v-jcol" style="--ac:#0F6B1C"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" width="640" height="640" loading="lazy" decoding="async" style="--to:48% 30%;--tf:translate(2%,20%) scale(2.5)"></i><div><h3>Admin jobs</h3><small>Karthikeyan · Full floor &amp; billing</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb13" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb13)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Guests finish dining</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb14" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb14)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Monitor tables and close bills</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb15" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb15)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Keep billing secure, speed up turnover</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb16" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb16)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Prices shift or specials launch</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb17" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb17)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Update menus live and see trends</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb18" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb18)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Cut print waste, grow repeat diners</li></ol></div></div></section>
+<section><div class="sh"><div><h2 class="h2">Jobs To Be <em>Done</em></h2></div><p class="sd">Concrete functional and emotional jobs every Cyberdine module must accomplish.</p></div><div class="v-jt"><div class="v-jcol" style="--ac:#179428"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" width="640" height="640" loading="lazy" decoding="async" style="--to:47% 44%;--tf:translate(3%,5%) scale(1.7)"></i><div><h3>Diner jobs</h3><small>Avanthika · QR web app</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb1" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb1)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>First date, crowded hall</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb2" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb2)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Call my captain with one tap</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb3" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb3)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Get help privately, mid-conversation</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb4" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb4)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Ordering with family or elders</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb5" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb5)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>See live dishes with photos in my language</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb6" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb6)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Order fast, no sold-out surprises</li></ol></div><div class="v-jcol" style="--ac:#2F4A36"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" width="640" height="640" loading="lazy" decoding="async" style="--to:52% 37%;--tf:translate(-1%,7%) scale(1.3)"></i><div><h3>Captain jobs</h3><small>Manigandan · Assigned tables only</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb7" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb7)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Punching orders across a big hall</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb8" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb8)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Search by substring, no Wi-Fi drops</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb9" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb9)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Send KOTs in seconds from any table</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb10" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb10)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>My tables ask for help or tip</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb11" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb11)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>See only my tables’ calls and tips</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb12" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb12)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Focus on hospitality, not billing</li></ol></div><div class="v-jcol" style="--ac:#0F6B1C"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" width="640" height="640" loading="lazy" decoding="async" style="--to:48% 30%;--tf:translate(2%,20%) scale(2.5)"></i><div><h3>Admin jobs</h3><small>Karthikeyan · Full floor &amp; billing</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb13" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb13)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Guests finish dining</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb14" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb14)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Monitor tables and close bills</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb15" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb15)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Keep billing secure, speed up turnover</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb16" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb16)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Prices shift or specials launch</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb17" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb17)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Update menus live and see trends</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb18" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb18)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Cut print waste, grow repeat diners</li></ol></div></div></section>
 
 <!-- 10. DEFINE PHASE -->
 <section><div class="sh"><div><h2 class="h2">Define <em>Phase</em></h2></div><p class="sd">Root-cause gate before ideation.</p></div><h3 class="v-sub">Root causes</h3><div class="v-roots"><article><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><i>01</i></span><b>Blind &amp; dated menus</b><p>Sold-out items, no photos, breakfast at dinner, 50% of elders blocked</p></article><article><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M18 20a6 6 0 0 0-3-5.2"/></svg><i>02</i></span><b>Awkward service gap</b><p>Waving for waiters; captains lose track of calls</p></article><article><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><i>03</i></span><b>Rigid legacy POS</b><p>Prefix-only search, Wi-Fi drops, UPI erased tips</p></article><article><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/></svg><i>04</i></span><b>Owner blind spots</b><p>Reprints, costly buzzers, no live insight</p></article></div><h3 class="v-sub">Problem statements</h3><div class="v-probs"><article style="--ac:#179428"><span class="bg">Diner</span><div class="v-phd"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" width="640" height="640" loading="lazy" decoding="async" style="--to:47% 44%;--tf:translate(3%,5%) scale(1.7)"></i><b>Avanthika &amp; guests</b></div><p>need a discreet, visual way to browse live dishes in their own language and call a waiter</p></article><article style="--ac:#2F4A36"><span class="bg">Captain</span><div class="v-phd"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" width="640" height="640" loading="lazy" decoding="async" style="--to:52% 37%;--tf:translate(-1%,7%) scale(1.3)"></i><b>Manigandan &amp; captains</b></div><p>need alerts for their tables, partial-keyword search and steady sync</p></article><article style="--ac:#0F6B1C"><span class="bg">Admin</span><div class="v-phd"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" width="640" height="640" loading="lazy" decoding="async" style="--to:48% 30%;--tf:translate(2%,20%) scale(2.5)"></i><b>Karthikeyan &amp; partners</b></div><p>need live menu and pricing control, all-table billing oversight and wireless KOTs</p></article></div><h3 class="v-sub">How might we</h3><ol class="v-hmw"><li><i>01</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span><p>Call a captain to Table A1 in 1 tap, no buzzers</p></li><li><i>02</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><p>End sold-out surprises; auto-show meal-time, multilingual menus</p></li><li><i>03</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span><p>Let captains search partial keywords and punch orders anywhere</p></li><li><i>04</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h10M7 9h10M9 5c4.5 0 6.5 2 6.5 4S13.5 13 9 13h-.5L16 20"/></svg></span><p>Restore fair tipping in a cashless UPI world</p></li><li><i>05</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/></svg></span><p>Give admins instant price control, all-table billing and review growth</p></li></ol></section>
@@ -997,7 +1035,7 @@ html{scroll-behavior:smooth}
     <div class="ia-cols">
       <div class="ia-col">
         <div class="ia-box head">Food Menu<small>Live Menu Banners &amp; Offers</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Categories<small>Soups, Starters, Tikka's • Veg/Egg/Non-Veg • Search</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Categories<small>Soups, Starters, Tikkas • Veg/Egg/Non-Veg • Search</small></div><div class="ia-arr">↓</div>
         <div class="ia-box">Item Details<small>Portion (1 Plate / ½ Kg / 1 Kg) • Mild / Spicy / Extra Spicy</small></div><div class="ia-arr">↓</div>
         <div class="ia-box">Notes for Chef<small>e.g. "Spicy | Add Pepper for Spice"</small></div><div class="ia-arr">↓</div>
         <div class="ia-box ok">Add Item → Cart<small>Qty Stepper &amp; Live Selection Bar</small></div>
@@ -1158,11 +1196,11 @@ html{scroll-behavior:smooth}
           <div class="wf-box d" style="padding:10px 8px"><div class="wf-row"><b>FOOD MENU</b><span class="wf-tag">35% OFF</span></div><div style="font-size:7px;color:var(--m);margin-top:2px">This Weekend Only</div></div>
           <div style="font-weight:700;font-size:8px">● Live Menu</div>
           <div class="wf-r2" style="flex:1">
-            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Veg Soup's</div>
+            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Veg Soups</div>
             <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Non-Veg</div>
             <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Special Veg</div>
             <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Special Non-Veg</div>
-            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Tikka's</div>
+            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Tikkas</div>
             <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Mushrooms</div>
           </div>
         </div>
@@ -1266,7 +1304,7 @@ html{scroll-behavior:smooth}
             <div class="wf-row"><span>Tip To Captain</span><span>₹150</span></div>
             <div class="wf-row" style="border-top:1px solid var(--w3);padding-top:3px;margin-top:3px;font-weight:800"><span>Grand Total</span><span>₹900</span></div>
           </div>
-          <div style="text-align:center;color:var(--m);font-size:7px">Thank you, Please visit again.</div>
+          <div style="text-align:center;color:var(--m);font-size:7px">Thank you, please visit again.</div>
           <div class="wf-r2"><div class="wf-btn out">Download Bill</div><div class="wf-btn">Order Again</div></div>
         </div>
         <div class="wf-cap"><b>08</b>Digital Bill &amp; Complete</div>
@@ -1429,7 +1467,7 @@ html{scroll-behavior:smooth}
 <section id="design-system" class="ds">
   <div class="sh">
     <div>
-      <h2 class="h2"><small class="h2-pre">High-Fidelity Screens</small>Design <em>System</em></h2>
+      <h2 class="h2"><small class="h2-pre">Design</small>Design <em>System</em></h2>
       <p class="sd">One small kit runs the diner app, the captain app and the POS: a single brand green, three order states that never mean anything else, and a handful of components reused on every screen.</p>
     </div>
   </div>
@@ -1437,8 +1475,8 @@ html{scroll-behavior:smooth}
   <div class="an">
     <p class="an-k">Anatomy of one screen · My Orders</p>
     <div class="an-stage">
-      <figure class="an-ph"><img src="/work/cyberdine-case/images/Order%20Status.png" alt="Cyberdine My Orders screen: awaiting, approved and rejected dishes" width="750" height="1624" loading="lazy" decoding="async"></figure>
-      <ul class="an-calls"><li class="an-c l" style="--y:7.3%"><span class="an-n">01</span><div><b>Back button</b><small><i style="--s:#179428"></i>Round, brand green, always top left</small></div></li><li class="an-c l" style="--y:21%"><span class="an-n">02</span><div><b>Dish card</b><small>Photo, Special tag, name, price, quantity</small></div></li><li class="an-c l" style="--y:40.4%"><span class="an-n">03</span><div><b>Approved</b><small><i style="--s:#179428"></i>The captain said yes</small></div></li><li class="an-c r" style="--y:13.5%"><span class="an-n">04</span><div><b>Awaiting</b><small><i style="--s:#FF7D20"></i>Sent, waiting for the captain</small></div></li><li class="an-c r" style="--y:56.7%"><span class="an-n">05</span><div><b>Rejected</b><small><i style="--s:#FF0000"></i>Refused, with the captain’s note</small></div></li><li class="an-c r" style="--y:95.5%"><span class="an-n">06</span><div><b>Action bar</b><small>65pt, in thumb reach on every screen</small></div></li></ul>
+      <figure class="an-ph"><img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Cyberdine My Orders screen: awaiting, approved and rejected dishes" width="750" height="1624" loading="lazy" decoding="async"></figure>
+      <ul class="an-calls"><li class="an-c l" style="--y:7.3%"><span class="an-n">01</span><div><b>Back button</b><small><i style="--s:#179428"></i>Round, brand green, always top left</small></div></li><li class="an-c l" style="--y:21%"><span class="an-n">02</span><div><b>Dish card</b><small>Photo, Special tag, name, price, quantity</small></div></li><li class="an-c l" style="--y:40.4%"><span class="an-n">03</span><div><b>Approved</b><small><i style="--s:#179428"></i>Order accepted, being prepared</small></div></li><li class="an-c r" style="--y:13.5%"><span class="an-n">04</span><div><b>Awaiting</b><small><i style="--s:#FF7D20"></i>Sent, waiting for confirmation</small></div></li><li class="an-c r" style="--y:56.7%"><span class="an-n">05</span><div><b>Rejected</b><small><i style="--s:#FF0000"></i>Refused, with a note on why</small></div></li><li class="an-c r" style="--y:95.5%"><span class="an-n">06</span><div><b>Action bar</b><small>65pt, in thumb reach on every screen</small></div></li></ul>
     </div>
   </div>
 
@@ -1476,7 +1514,7 @@ html{scroll-behavior:smooth}
   <ul class="ds-rules">
     <li><b>1</b>brand green for every action, so the next step is always obvious</li>
     <li><b>3</b>order states: awaiting, approved, rejected</li>
-    <li><b>8</b>customer screens built from this one kit</li>
+    <li><b>3</b>apps built from this one kit: diner, captain and POS</li>
     <li><b>65pt</b>bottom action bar, in thumb reach on every screen</li>
   </ul>
 </section>
@@ -1493,42 +1531,42 @@ html{scroll-behavior:smooth}
 
   <div class="hifi-grid">
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Cyberdine-750.webp" alt="Table Welcome Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Cyberdine-750.webp" alt="Table Welcome Screen"  width="750" height="1626" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">01 · QR Landing <span>Table A1</span></div><div class="cap-desc">Table-embedded entry point with 1-tap "Request Waiter" and direct brand review channels.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Menu%20Home-750.webp" alt="Live Menu Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Menu%20Home-750.webp" alt="Live Menu Screen"  width="750" height="1626" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">02 · Live Menu Home <span>Offers</span></div><div class="cap-desc">Weekend promo carousel, restaurant location badge, language switcher, and category grid.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Our%20Menu-750.webp" alt="Our Menu Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Our%20Menu-750.webp" alt="Our Menu Screen"  width="750" height="1632" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">03 · Category Rail <span>Filters</span></div><div class="cap-desc">Left navigation rail, Veg/Egg/Non-Veg chips, search bar, and sticky cart review bar.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Item%20Details-750.webp" alt="Item Details &amp; Customizer" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Item%20Details-750.webp" alt="Item Details &amp; Customizer"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">04 · Item Customizer <span>Portions</span></div><div class="cap-desc">Portion options (1 Plate / ½ Kg / 1 Kg), spice intensity chips (Mild/Spicy/Extra), and custom chef notes.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Items%20in%20cart-750.webp" alt="Items in Cart Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Items%20in%20cart-750.webp" alt="Items in Cart Screen"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">05 · Items in Cart <span>Review</span></div><div class="cap-desc">Access to previous orders, stepper controls for quantities, and split action buttons for adding more vs ordering.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Order Status Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Order Status Screen"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">06 · Order Status <span>KOT Sync</span></div><div class="cap-desc">Real-time status banners (Awaiting confirmation, Approved, and Rejected with clear kitchen reasons).</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/z%20tip-750.webp" alt="Captain Tipping Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/z%20tip-750.webp" alt="Captain Tipping Screen"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">07 · Captain Tipping <span>Cashless</span></div><div class="cap-desc">Dedicated bottom sheet featuring serving captain avatar (Manikandan) with one-tap digital tip addition.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Digital%20Bill-750.webp" alt="Digital Bill Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Digital%20Bill-750.webp" alt="Digital Bill Screen"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">08 · Digital Bill <span>Settlement</span></div><div class="cap-desc">Transparent itemized summary with subtotal, taxes, captain tip, PDF invoice download, and one-tap reordering.</div></div>
     </div>
   </div>
@@ -1547,22 +1585,22 @@ html{scroll-behavior:smooth}
   <!-- Row 1: Core Operations -->
   <div class="hifi-grid is-flow">
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Home-750.webp" alt="Admin Home Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Home-750.webp" alt="Admin Home Screen"  width="750" height="1616" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">01 · Admin Home <span>Hub</span></div><div class="cap-desc">8-module central dashboard showing today's revenue summary and instant navigation.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Table%20Orders%20-%20Admin-750.webp" alt="Table Orders Admin" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Table%20Orders%20-%20Admin-750.webp" alt="Table Orders Admin"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">02 · Table Orders <span>Full Floor</span></div><div class="cap-desc">Live floor-wide oversight with Pending, In-Progress, Open tables, and bill settlement.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Quick%20bill-750.webp" alt="Quick Bill POS" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Quick%20bill-750.webp" alt="Quick Bill POS"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">03 · Quick Bill <span>Counter POS</span></div><div class="cap-desc">Rapid counter sales with dish search, category chips, quantity steppers, and Hold Bill.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Orders%20and%20billing-750.webp" alt="Orders and Billing" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Orders%20and%20billing-750.webp" alt="Orders and Billing"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">04 · Orders &amp; Billing <span>Audit</span></div><div class="cap-desc">Historical order logs with captain filters, payment tags, and Edited/Voided badges.</div></div>
     </div>
   </div>
@@ -1570,22 +1608,22 @@ html{scroll-behavior:smooth}
   <!-- Row 2: Kitchen & Hardware Output -->
   <div class="hifi-grid is-flow">
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Notes%20to%20Kitchen-750.webp" alt="Notes to Kitchen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Notes%20to%20Kitchen-750.webp" alt="Notes to Kitchen"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">05 · Kitchen Notes <span>Custom</span></div><div class="cap-desc">Hold Bill naming and spice level assignment pushed directly to kitchen order tickets.</div></div>
     </div>
 
     <div class="hifi-item">
-      <a class="paper paper-kot" href="/work/cyberdine-case/images/admin/KOT.png" target="_blank" rel="noopener" title="Open full size"><img src="/work/cyberdine-case/images/admin/KOT-424.webp" alt="KOT Screen" /></a>
+      <a class="paper paper-kot" href="/work/cyberdine-case/images/admin/KOT.png" target="_blank" rel="noopener" title="Open full size"><img src="/work/cyberdine-case/images/admin/KOT-424.webp" alt="KOT Screen"  width="424" height="454" loading="lazy" decoding="async" /></a>
       <div class="cap-box"><div class="cap-title">06 · Wireless KOT <span>Kitchen</span></div><div class="cap-desc">Instant kitchen ticket generation dispatched wirelessly with zero delay.</div></div>
     </div>
 
     <div class="hifi-item">
-      <a class="paper paper-bill" href="/work/cyberdine-case/images/admin/Bill%20-%20small%20size.png" target="_blank" rel="noopener" title="Open full size"><img src="/work/cyberdine-case/images/admin/Bill%20-%20small%20size-424.webp" alt="Small Size Bill" /></a>
+      <a class="paper paper-bill" href="/work/cyberdine-case/images/admin/Bill%20-%20small%20size.png" target="_blank" rel="noopener" title="Open full size"><img src="/work/cyberdine-case/images/admin/Bill%20-%20small%20size-424.webp" alt="Small Size Bill"  width="424" height="1498" loading="lazy" decoding="async" /></a>
       <div class="cap-box"><div class="cap-title">07 · Thermal Bill <span>58mm</span></div><div class="cap-desc">Compact thermal receipt formatted cleanly for 58mm mobile Bluetooth printers.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Connect%20printer%20to-750.webp" alt="Connect Printer" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Connect%20printer%20to-750.webp" alt="Connect Printer"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">08 · Bluetooth Printer <span>Hardware</span></div><div class="cap-desc">Auto-discovery for thermal printers with 58mm/80mm toggles and test print checks.</div></div>
     </div>
   </div>
@@ -1593,22 +1631,22 @@ html{scroll-behavior:smooth}
   <!-- Row 3: Catalog, Analytics & Access -->
   <div class="hifi-grid is-flow" style="margin-bottom:0">
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Add%20Item-750.webp" alt="Add Item Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Add%20Item-750.webp" alt="Add Item Screen"  width="750" height="2468" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">09 · Catalog Studio <span>Live Menu</span></div><div class="cap-desc">Instant dish creation with time-segment slots (Tiffin/Lunch/Dinner), GST, and variants.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Item%20Wise%20-%20Custom%20Report-750.webp" alt="Item Wise Report" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Item%20Wise%20-%20Custom%20Report-750.webp" alt="Item Wise Report"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">10 · Sales Reports <span>Analytics</span></div><div class="cap-desc">Daily, monthly, and custom date range revenue breakdowns with instant PDF export.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Create%20new%20user%20account-750.webp" alt="Create User Screen" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Create%20new%20user%20account-750.webp" alt="Create User Screen"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">11 · Staff RBAC <span>Security</span></div><div class="cap-desc">User role management (Admin vs Captain) with table assignment mapping.</div></div>
     </div>
 
     <div class="hifi-item">
-      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Subscription%20history-750.webp" alt="Subscription History" /></div></div></div>
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Subscription%20history-750.webp" alt="Subscription History"  width="750" height="1624" loading="lazy" decoding="async" /></div></div></div>
       <div class="cap-box"><div class="cap-title">12 · SaaS Plan <span>Billing</span></div><div class="cap-desc">Active iMenu subscription tracking, transaction history, and GST tax invoices.</div></div>
     </div>
   </div>
@@ -1625,13 +1663,13 @@ html{scroll-behavior:smooth}
   </div>
 
   <div style="display:grid;gap:32px"><!-- Web Screen 03: Web Login -->
-    <div class="desk-frame" style="max-width:860px;margin:0 auto;width:100%">
+    <div class="desk-frame">
       <div class="desk-chrome">
         <div class="desk-dots"><span class="desk-dot r"></span><span class="desk-dot y"></span><span class="desk-dot g"></span></div>
         <div class="desk-url">https://dashboard.cyberdine.in/auth/login</div>
       </div>
       <div class="desk-screen">
-        <img src="/work/cyberdine-case/images/admin/web/Login%20page-2400.webp" alt="Admin Web Login Screen" />
+        <img src="/work/cyberdine-case/images/admin/web/Login%20page-2400.webp" alt="Admin Web Login Screen"  width="2400" height="1370" loading="lazy" decoding="async" />
       </div>
       <div class="cap-box" style="max-width:100%;border-radius:0;border:0;border-top:1px solid var(--ln);padding:14px 20px">
         <div class="cap-title" style="font-size:.9rem">Secure Staff &amp; Manager Authentication <span>Security Gateway</span></div>
@@ -1645,7 +1683,7 @@ html{scroll-behavior:smooth}
         <div class="desk-url">https://dashboard.cyberdine.in/rooms</div>
       </div>
       <div class="desk-screen">
-        <img src="/work/cyberdine-case/images/admin/web/Rooms-2400.webp" alt="Web Rooms Dashboard" />
+        <img src="/work/cyberdine-case/images/admin/web/Rooms-2400.webp" alt="Web Rooms Dashboard"  width="2400" height="1370" loading="lazy" decoding="async" />
       </div>
       <div class="cap-box" style="max-width:100%;border-radius:0;border:0;border-top:1px solid var(--ln);padding:14px 20px">
         <div class="cap-title" style="font-size:.9rem">Visual Floor Management · Multi-Room Live Occupancy <span>Desktop View</span></div>
@@ -1658,7 +1696,7 @@ html{scroll-behavior:smooth}
         <div class="desk-url">https://dashboard.cyberdine.in/tables/A1/orders</div>
       </div>
       <div class="desk-screen">
-        <img src="/work/cyberdine-case/images/admin/web/Inside%20table%20_%20Approved-2400.webp" alt="Inside Table Approved Orders" />
+        <img src="/work/cyberdine-case/images/admin/web/Inside%20table%20_%20Approved-2400.webp" alt="Inside Table Approved Orders"  width="2400" height="1370" loading="lazy" decoding="async" />
       </div>
       <div class="cap-box" style="max-width:100%;border-radius:0;border:0;border-top:1px solid var(--ln);padding:14px 20px">
         <div class="cap-title" style="font-size:.9rem">Active Table Terminal · Multi-Group Order Sync &amp; KOT Status <span>Live Terminal</span></div>
@@ -1701,7 +1739,7 @@ html{scroll-behavior:smooth}
     <div class="ut-arrow" aria-hidden="true"><span>Iterate</span><i>→</i></div>
     <figure class="ut-side is-after">
       <figcaption><span class="ut-tag ok">After</span>Shipped: no total, quantity is the primary figure</figcaption>
-      <div class="bx-phone is-real"><img src="/work/cyberdine-case/images/Order%20Status.png" alt="Cyberdine My Orders as shipped: dishes grouped by status with quantity on the right and no running total" width="750" height="1624" loading="lazy" decoding="async"><i class="ut-pin" style="--y:22.4%"></i><i class="ut-pin" style="--y:49%"></i></div>
+      <div class="bx-phone is-real"><img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Cyberdine My Orders as shipped: dishes grouped by status with quantity on the right and no running total" width="750" height="1624" loading="lazy" decoding="async"><i class="ut-pin" style="--y:22.4%"></i><i class="ut-pin" style="--y:49%"></i></div>
     </figure>
   </div>
 
@@ -1719,7 +1757,7 @@ html{scroll-behavior:smooth}
 </section>
 <ul class="v-met v-end"><li><b>&lt; 10s</b><span>QR-to-action speed</span></li><li><b>0%</b><span>Sold-out friction</span></li><li><b>Zero</b><span>Range-drop failures</span></li><li><b>+3x</b><span>Tip &amp; review lift</span></li></ul>
 
-</div>
+</div></main>
 <div class="ty2" role="img" aria-label="Thank you for scrolling"><div class="ty2-tape a"><div class="ty2-track"><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i><span>Thank you</span><em>for scrolling</em><i>✦</i></div></div><div class="ty2-tape b"><div class="ty2-track"><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i><span>Thank you for scrolling</span><i>✦</i></div></div></div>
 <a class="back-pill" href="/#work" aria-label="Back to the portfolio">← Portfolio</a>
 </body>
