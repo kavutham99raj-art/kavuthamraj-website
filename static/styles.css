@@ -2151,3 +2151,44 @@ p,li,dd{text-wrap:pretty}
 .card .arrow-link{font-weight:500}
 .card-prod span::before{content:none}
 .card-prod b::after{content:" ·";font-weight:400;color:var(--mut)}
+
+/* ===== Home cards v4: numbered, Krona One headlines, still calm ===== */
+.card-copy::before{display:block;right:clamp(14px,2.4vw,40px);top:clamp(10px,1.6vw,26px);font-size:clamp(96px,11vw,176px);opacity:.14}
+.card-meta{display:flex;align-items:center;gap:14px;margin:0 0 clamp(22px,2.2vw,32px);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.card-meta span{padding:7px 14px;border-radius:999px;background:var(--acc);color:#fff;font:400 13px var(--display);letter-spacing:.04em;box-shadow:0 12px 22px -12px var(--acc)}
+.card-meta{font-size:0}.card-meta span{font-size:13px}
+.card .prod-logo{margin-bottom:clamp(14px,1.4vw,20px)}
+.card h3{font-family:var(--display);font-weight:400;font-size:clamp(24px,2.5vw,40px);line-height:1.14;letter-spacing:-.03em}
+.card h3 em{font-family:var(--display);font-style:normal;font-weight:400;color:var(--acc)}
+.card .arrow-link{display:inline-flex;align-items:center;padding:0 8px 0 22px;min-height:52px;gap:14px;border-radius:999px;background:var(--ink);color:#fff;font-weight:500;box-shadow:0 18px 30px -18px rgba(23,18,15,.7)}
+.card .arrow-link span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--acc);color:#fff;font-size:16px}
+.card:hover .arrow-link{background:var(--acc-d)}
+.card:hover .arrow-link span{background:#fff;color:var(--acc-d);translate:3px 0}
+@media (max-width:760px){.card h3{font-size:clamp(22px,6.4vw,30px)}.card-copy::before{font-size:92px}}
+.card-meta{font-size:12px;font-weight:600}
+.card-meta span{font-size:13px}
+.card .card-prod{display:none}
+
+/* ===== Home cards v5 (designer review): numeral grounded bottom-right, bigger headline, framed stage ===== */
+.card{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--acc) 35%,#fff),0 40px 80px -56px color-mix(in srgb,var(--acc) 50%,rgba(23,18,15,.45))}
+.card::after{opacity:.22;width:60%;filter:blur(110px)}
+.card-visual{margin:clamp(20px,2.4vw,36px);align-self:center}
+.card-copy{gap:clamp(32px,3.2vw,48px)}
+.card-copy::before{top:auto;bottom:clamp(-18px,-1vw,-8px);right:0;font-size:clamp(160px,17vw,260px);line-height:.8;letter-spacing:-.06em;opacity:.09;-webkit-mask:linear-gradient(180deg,#000 40%,transparent);mask:linear-gradient(180deg,#000 40%,transparent)}
+.card-meta{gap:12px;margin-bottom:clamp(24px,2.4vw,36px);font-size:11px;letter-spacing:.14em;color:rgba(23,18,15,.55)}
+.card-meta span{background:transparent;color:var(--acc-d);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--acc) 55%,transparent);padding:5px 12px;font-size:12px}
+.card .prod-logo{margin-bottom:clamp(20px,2vw,28px)}
+.prod-logo img{max-height:34px;max-width:160px;width:auto}
+.card h3{font-size:clamp(28px,3.2vw,50px);line-height:1.06;letter-spacing:-.035em;text-wrap:balance}
+.card-text{max-width:34ch;margin-top:20px;font-size:clamp(16px,1.2vw,19px);color:rgba(23,18,15,.58)}
+.card .arrow-link{min-height:48px;padding:0 6px 0 20px;font-size:15px;box-shadow:0 10px 24px -14px rgba(23,18,15,.55)}
+.card:hover .arrow-link{background:var(--ink)}
+.card .arrow-link span{background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 85%,#fff),var(--acc));transition:translate .35s var(--ease)}
+.card:hover .arrow-link span{background:var(--acc);color:#fff;translate:4px 0}
+@media (hover:hover){.js .card.reveal.in:hover{transform:translateY(-4px)}.card:hover .card-copy::before{opacity:.14;translate:-6px 0}.card-copy::before{transition:opacity .6s var(--ease),translate .6s var(--ease)}}
+@media (max-width:760px){
+  .card{--pad:24px}
+  .card-visual{margin:12px 12px 0}
+  .card h3{font-size:clamp(28px,8.2vw,36px)}
+  .card-copy::before{top:auto;bottom:-10px;font-size:120px}
+}

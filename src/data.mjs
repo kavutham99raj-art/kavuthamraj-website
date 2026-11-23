@@ -279,7 +279,7 @@ export const featured = [
   {
     key: "cyberdine", accent: "#22B04B", name: "Cyberdine", what: "Digital menu and POS for restaurants", how: "Diners, captains and kitchens connected in real time: QR ordering, 1-tap waiter calls, wireless KOT and captain tipping.",
     logo: "logos/products/cyberdine.png", meta: ["Liffto Technologies", "Hospitality & POS SaaS"],
-    title: "Revolutionize dining with *intelligent service.*",
+    title: "Scan. Order. *Served in a tap.*",
     text: "Cyberdine connects diners, captains and kitchens in real time: instant QR ordering, 1-tap waiter calls, wireless KOT and direct captain tipping. I led the UI/UX end to end, from October 2024 to August 2025, across the diner QR app, the captain app, the POS and the web dashboard.",
     outcomes: [["Lead", "designer, end to end, Oct 2024 to Aug 2025"], ["3", "modules: QR menu, captain app and POS"], ["2", "cities: Chennai and Coimbatore"]],
     visual: { demo: "cyberdine", label: "Cyberdine: a diner scans the table QR, adds dishes and orders; the staff app gets the order, approves it, marks it delivered, and the diner tips and pays by UPI", src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
@@ -288,7 +288,7 @@ export const featured = [
   {
     key: "steadfast", accent: "#6C67FF", name: "Steadfast", what: "AI service-delivery platform", how: "AI agents fill leads, size the work and plan sprints. People review and sign off.",
     logo: "logos/products/steadfast.png", meta: ["Liffto Technologies", "AI SaaS"],
-    title: "AI does the work. *People stay in charge.*",
+    title: "AI does the work. *You make the call.*",
     text: "Leads, requirements, estimates, sprints and code lived in separate tools, and AI agents had nowhere to ask for help. As the only designer, I took Steadfast from founder sessions to a shipped product: five modules on one shell where AI agents and people share the work, with a clear signal wherever the AI needs a human.",
     // No usage metrics exist for Steadfast yet; these are confirmed facts (it was built and used, one designer, five modules).
     outcomes: [["5", "AI apps on one shell"], ["1", "designer, founder talks to handoff"], ["Shipped", "built and used, from my designs"]],
@@ -298,7 +298,7 @@ export const featured = [
   {
     key: "payroll", accent: "#17B3A3", name: "Payroll Module", what: "Payroll for sports academies", how: "Pay runs, deductions and payslips for admins and staff, built into the Sporfy Tracker app.",
     logo: "logos/products/sporfy-tracker.png", meta: ["Sporfy", "Sports ERP", "Payroll"],
-    title: "Payroll in the *pocket.*",
+    title: "Payday, *without the panic.*",
     text: "Payroll was the most error-prone part of running an academy: spreadsheets, manual deductions and late payslips. I designed it as a module of the mobile ERP, so admins and staff see the same numbers.",
     outcomes: [["3", "months, from brief to developer handoff"], ["Live", "inside Sporfy Tracker on Google Play"], ["Mobile", "payroll for admins and staff in one app"]],
     visual: { src: "work/payroll/02.jpg", alt: "Sporfy Payroll module: pay runs and payslips for admins and staff on mobile" },
@@ -307,29 +307,29 @@ export const featured = [
   {
     key: "educonnect", accent: "#3FBF86", name: "Educonnect", what: "Tuition and online-course app", how: "Students find tutors or courses, chat with teachers and share posts.",
     meta: ["Self-initiated", "EdTech", "iOS"],
-    title: "Tuition and courses. *One app.*",
+    title: "Every tutor. *One app.*",
     text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
     outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],
     visual: { src: "work/educonnect/02.jpg", alt: "Educonnect on two iPhones: tuition and online courses, suggested teachers with chat, on a green brand background" },
     href: "work/educonnect.html", cover: "educonnect.png",
   },
   {
-    key: "erp", accent: "#2F96E8", name: "Sporfy Tracker", what: "Mobile ERP for sports academies", how: "Payroll, attendance, fees, classes and slots in one phone app instead of a desktop.",
-    logo: "logos/products/sporfy-tracker.png", meta: ["Sporfy", "Sports ERP", "Mobile"],
-    title: "Off the desktop. *Into the pocket.*",
-    text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
-    outcomes: [["Solo", "designer, from brief to developer handoff"], ["7", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],
-    visual: { demo: "tracker", alt: "Sporfy Tracker on a phone: attendance checking in, fees and payroll bars filling, and today's slots and lockers booked" },
-    href: "work/erp.html", cover: "erp-solution.png",
-  },
-  {
     key: "titan", accent: "#4C86FF", name: "Titan", what: "B2B back-office and ERP", how: "Tables stay usable while data loads, with skeleton states instead of a full-page spinner.",
     logo: "logos/products/titan.png", meta: ["AffinityX", "Enterprise B2B SaaS"],
-    title: "Stop the spinner. *Keep the work moving.*",
+    title: "Kill the spinner. *Keep work moving.*",
     text: "One slow table froze the whole back office. I audited every table and dashboard, won the PM over with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components. “App is stuck” reports dropped to zero.",
     outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
     visual: { demo: "loading", src: "work/titan-story/05.jpg", alt:"Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
     href: "work/titan.html", cover: "titan.png",
+  },
+  {
+    key: "erp", accent: "#2F96E8", name: "Sporfy Tracker", what: "Mobile ERP for sports academies", how: "Payroll, attendance, fees, classes and slots in one phone app instead of a desktop.",
+    logo: "logos/products/sporfy-tracker.png", meta: ["Sporfy", "Sports ERP", "Mobile"],
+    title: "Run the academy *from your pocket.*",
+    text: "Payroll, attendance, fees, classes and slots were desk-bound ERP work. I rebuilt them as one mobile-first app for admins, trainers and staff, working under the CEO and CTO.",
+    outcomes: [["Solo", "designer, from brief to developer handoff"], ["7", "ERP modules moved to mobile, payroll to lockers"], ["Live", "on Google Play as Sporfy Tracker"]],
+    visual: { demo: "tracker", alt: "Sporfy Tracker on a phone: attendance checking in, fees and payroll bars filling, and today's slots and lockers booked" },
+    href: "work/erp.html", cover: "erp-solution.png",
   },
 ];
 export { erpScreens };
