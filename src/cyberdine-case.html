@@ -18,7 +18,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
 :root{--p:#179428;--pd:#0F6B1C;--ps:#ECFDF0;--pb:#BCECC4;--ob:#0B140D;--bg:#FAFBF9;--c:#FFFFFF;--ink:#141A15;--m:#5A655D;--ln:#E6EBE7;--red:#DC2626;--rs:#FEF2F2;--rx:28px;--rl:20px;--rm:14px;--w1:#F8FAFC;--w2:#E2E8F0;--w3:#CBD5E1;--w4:#475569}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -554,6 +554,62 @@ html{scroll-behavior:smooth}
 .back-pill{position:fixed;left:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:99px;background:rgba(11,20,13,.9);color:#fff;font:700 .8rem/1 'Plus Jakarta Sans',sans-serif;text-decoration:none;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 10px 22px -12px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.14);transition:transform .25s,background .25s}
 .back-pill:hover{background:#179428;transform:translateY(-2px)}
 .back-pill:focus-visible{outline:3px solid rgba(23,148,40,.6);outline-offset:3px}
+
+/* ===== Design system (taken from the live Cyberdine screens) ===== */
+.ds{--dsf:"IBM Plex Sans",-apple-system,sans-serif}
+.ds-sw{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ds-sw li{list-style:none;overflow:hidden;border-radius:var(--rl);background:var(--c);border:1px solid rgba(20,26,21,.08);box-shadow:0 12px 24px -18px rgba(20,26,21,.22)}
+.ds-sw i{display:block;height:96px;background:var(--s)}
+.ds-sw.is-main i{height:150px}
+.ds-sw div{padding:14px 16px 16px}
+.ds-sw b{display:block;font-size:.98rem;font-weight:800;letter-spacing:-.01em}
+.ds-sw code{display:block;margin-top:2px;font:600 .78rem ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--m);text-transform:uppercase}
+.ds-sw small{display:block;margin-top:8px;font-size:.8rem;line-height:1.4;color:var(--m)}
+.ds-sw.is-main{grid-template-columns:2fr 1fr 1fr 1fr}
+.ds-sw+.ds-sw{margin-top:16px}
+.ds-type{border-radius:var(--rx);background:var(--c);border:1px solid rgba(20,26,21,.08);box-shadow:0 12px 24px -18px rgba(20,26,21,.22);overflow:hidden}
+.ds-type li{display:grid;grid-template-columns:200px 1fr 150px;align-items:center;gap:20px;padding:18px 26px;border-bottom:1px solid var(--ln);list-style:none}
+.ds-type li:last-child{border-bottom:0}
+.ds-type span{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--m)}
+.ds-type p{font-family:var(--dsf);color:#212121;line-height:1.25}
+.ds-type em{font:600 .78rem ui-monospace,SFMono-Regular,Menlo,monospace;font-style:normal;color:var(--m);text-align:right}
+.ds-comp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ds-comp article{display:flex;flex-direction:column;gap:18px;padding:24px;border-radius:var(--rx);background:var(--c);border:1px solid rgba(20,26,21,.08);box-shadow:0 12px 24px -18px rgba(20,26,21,.22)}
+.ds-comp h3{font-size:1.05rem;font-weight:800;letter-spacing:-.02em}
+.ds-comp h3 small{display:block;margin-top:4px;font-size:.8rem;font-weight:500;letter-spacing:0;color:var(--m)}
+.ds-stage{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:auto;padding:20px;border-radius:var(--rl);background:#F6F7F6;font-family:var(--dsf);color:#212121}
+.ds-stage.col{flex-direction:column;align-items:stretch}
+.x-btn{display:inline-grid;place-items:center;min-width:120px;height:42px;padding:0 18px;border-radius:4px;font-size:.88rem;font-weight:600}
+.x-btn.pri{background:#179428;color:#fff}
+.x-btn.sec{background:#fff;color:#179428;box-shadow:inset 0 0 0 1.5px #179428}
+.x-btn.dk{background:#0E5918;color:#fff}
+.x-step{display:inline-flex;align-items:center;gap:10px;font-weight:600}
+.x-step b{display:grid;place-items:center;padding-bottom:2px;width:26px;height:26px;border-radius:4px;background:#179428;color:#fff;font-size:1.05rem;line-height:1}
+.x-back{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#179428;color:#fff;font-size:1.1rem}
+.x-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;font-size:.84rem;font-weight:600;color:#fff}
+.x-bar.wait{background:#FF7D20}.x-bar.ok{background:#179428}.x-bar.no{background:#FF0000}
+.x-item{display:flex;align-items:stretch;overflow:hidden;border-radius:4px;background:#fff;box-shadow:0 0 0 1px #E4E4E4,0 2px 6px rgba(0,0,0,.06)}
+.x-item figure{position:relative;flex:none;align-self:center;width:72px;height:72px;margin:0;background:url("/work/cyberdine-case/images/Items%20in%20cart.png") 5.4% 22.6%/510% auto no-repeat}
+.x-item figure span{position:absolute;left:0;right:0;bottom:0;padding:2px 0;background:#179428;color:#fff;font-size:.62rem;font-weight:600;text-align:center}
+.x-item div{flex:1;min-width:0;padding:10px 12px}.x-item small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x-item b{display:block;font-size:.86rem;font-weight:600}
+.x-item small{display:block;font-size:.72rem;color:#666}
+.x-item em{display:block;margin-top:4px;font-size:.76rem;font-style:normal;font-weight:500}
+.x-item .x-step b{display:grid;font-size:1.05rem;font-weight:600}
+.x-item>i{align-self:center;padding-right:12px;font-style:normal;font-weight:600;font-size:.86rem}
+.x-chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:4px;background:#fff;box-shadow:inset 0 0 0 1px #DADADA;font-size:.78rem;font-weight:500}
+.x-chip.on{background:#E0FFD8;box-shadow:inset 0 0 0 1px #179428}
+.x-chip i{width:10px;height:10px;border:1.5px solid var(--k);border-radius:2px;background:radial-gradient(circle,var(--k) 35%,transparent 40%)}
+.x-tables{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.x-tbl{display:grid;place-items:center;aspect-ratio:1/.8;border-radius:4px;font-size:1.05rem;font-weight:700;line-height:1.1;text-align:center}
+.x-tbl small{display:block;font-size:.6rem;font-weight:500;color:#555}
+.x-tbl.pend{background:#FFD8BC}.x-tbl.prog{background:#CDEEFF}.x-tbl.open{background:#fff;box-shadow:inset 0 0 0 1px #DADADA}
+.x-tbl.alert{background:#FFD8BC;box-shadow:inset 0 0 0 2px #FF0000}
+.ds-rules{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px;list-style:none}
+.ds-rules li{padding:20px 22px;border-radius:var(--rl);background:var(--ob);color:rgba(255,255,255,.72);font-size:.84rem;line-height:1.45}
+.ds-rules b{display:block;margin-bottom:6px;font-size:1.6rem;font-weight:800;letter-spacing:-.03em;color:#fff}
+@media(max-width:960px){.ds-sw,.ds-sw.is-main,.ds-rules{grid-template-columns:repeat(2,1fr)}.ds-comp{grid-template-columns:1fr}.ds-type li{grid-template-columns:1fr;gap:6px}.ds-type em{text-align:left}}
+@media(max-width:560px){.ds-sw,.ds-sw.is-main{grid-template-columns:1fr 1fr;gap:10px}.ds-sw i,.ds-sw.is-main i{height:64px}.ds-sw div{padding:10px 12px 12px}.ds-sw small{font-size:.74rem}.ds-rules{grid-template-columns:1fr 1fr;gap:10px}.ds-stage{padding:14px}}
 </style>
 </head>
 <body>
@@ -1062,6 +1118,62 @@ html{scroll-behavior:smooth}
       </div>
     </div>
   </div>
+</section>
+
+<!-- 12b. DESIGN SYSTEM (taken from the live screens) -->
+<section id="design-system" class="ds">
+  <div class="sh">
+    <div>
+      <h2 class="h2"><small class="h2-pre">High-Fidelity Screens</small>Design <em>System</em></h2>
+      <p class="sd">One small kit runs the diner app, the captain app and the POS: a single brand green, three order states that never mean anything else, and a handful of components reused on every screen.</p>
+    </div>
+  </div>
+
+  <h3 class="v-sub">Colour</h3>
+  <ul class="ds-sw is-main">
+    <li style="--s:#179428"><i></i><div><b>Cyberdine Green</b><code>#179428</code><small>Primary actions, headers, Approved, the Special tag</small></div></li>
+    <li style="--s:#0E5918"><i></i><div><b>Deep Green</b><code>#0E5918</code><small>Pressed states and the tip sheet</small></div></li>
+    <li style="--s:#E0FFD8"><i></i><div><b>Mint</b><code>#E0FFD8</code><small>Selected filters and categories</small></div></li>
+    <li style="--s:#212121"><i></i><div><b>Ink</b><code>#212121</code><small>Dish names, prices, titles</small></div></li>
+  </ul>
+  <ul class="ds-sw">
+    <li style="--s:#FF7D20"><i></i><div><b>Awaiting</b><code>#FF7D20</code><small>Order sent, waiting for the captain</small></div></li>
+    <li style="--s:#FF0000"><i></i><div><b>Rejected</b><code>#FF0000</code><small>Dish refused, with the captain's note</small></div></li>
+    <li style="--s:#FFD8BC"><i></i><div><b>Table: Pending</b><code>#FFD8BC</code><small>A table with an order to approve</small></div></li>
+    <li style="--s:#CDEEFF"><i></i><div><b>Table: In progress</b><code>#CDEEFF</code><small>Approved and being served</small></div></li>
+  </ul>
+
+  <h3 class="v-sub">Typography</h3>
+  <ul class="ds-type">
+    <li><span>Screen title</span><p style="font-size:1.35rem;font-weight:700">Items in cart</p><em>18 / Bold</em></li>
+    <li><span>Dish name</span><p style="font-size:1.1rem;font-weight:600">Spicy Garlic Chicken</p><em>14 / Semibold</em></li>
+    <li><span>Status bar &amp; buttons</span><p style="font-size:1.05rem;font-weight:600">Awaiting confirmation…</p><em>14 / Semibold</em></li>
+    <li><span>Description</span><p style="font-size:.95rem;color:#666">Delicious Indian appetizer, marinated overnight</p><em>12 / Regular</em></li>
+    <li><span>Price</span><p style="font-size:.95rem;font-weight:500">₹150</p><em>12 / Medium</em></li>
+  </ul>
+
+  <h3 class="v-sub">Components</h3>
+  <div class="ds-comp">
+    <article><h3>Buttons<small>One filled action per screen, outline for the way back</small></h3>
+      <div class="ds-stage"><span class="x-btn sec">Select More</span><span class="x-btn pri">Order Now</span><span class="x-btn dk">Add Tip</span></div></article>
+    <article><h3>Order status bars<small>Colour and words together, never colour alone</small></h3>
+      <div class="ds-stage col" style="gap:6px"><span class="x-bar wait">Awaiting confirmation… <span>◌</span></span><span class="x-bar ok">✓ Approved</span><span class="x-bar no">Rejected</span></div></article>
+    <article><h3>Dish card<small>Photo, tag, name, price and quantity in one row</small></h3>
+      <div class="ds-stage col"><div class="x-item"><figure><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small><em>₹150</em></div><span class="x-step" style="align-self:center;padding-right:10px"><b>−</b>2<b>+</b></span></div></div></article>
+    <article><h3>Filters<small>Veg and non-veg marks follow the Indian food label</small></h3>
+      <div class="ds-stage"><span class="x-chip on" style="--k:#179428"><i></i>Veg</span><span class="x-chip" style="--k:#FF0000"><i></i>Non Veg</span><span class="x-chip" style="--k:#FF7D20"><i></i>Egg</span></div></article>
+    <article><h3>Table tiles<small>The captain reads the floor at a glance</small></h3>
+      <div class="ds-stage col"><div class="x-tables"><span class="x-tbl pend">2<small>Pending</small></span><span class="x-tbl alert">5<small>Call</small></span><span class="x-tbl prog">7<small>Serving</small></span><span class="x-tbl open">8<small>Open</small></span></div></div></article>
+    <article><h3>Navigation &amp; stepper<small>Round back button, square quantity controls</small></h3>
+      <div class="ds-stage"><span class="x-back">←</span><span class="x-step"><b>−</b>1<b>+</b></span><span class="x-btn sec" style="min-width:0">View Cart</span></div></article>
+  </div>
+
+  <ul class="ds-rules">
+    <li><b>1</b>brand green for every action, so the next step is always obvious</li>
+    <li><b>3</b>order states: awaiting, approved, rejected</li>
+    <li><b>8</b>customer screens built from this one kit</li>
+    <li><b>65pt</b>bottom action bar, in thumb reach on every screen</li>
+  </ul>
 </section>
 
 <!-- 13. HIGH-FIDELITY SCREENS (A · CUSTOMER JOURNEY) -->
