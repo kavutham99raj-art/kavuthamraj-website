@@ -846,6 +846,20 @@ html{scroll-behavior:smooth}
 /* before screen: the same Order More bar as the shipped screen */
 .bx-foot{position:absolute;left:0;right:0;bottom:0;padding:7px 8px 10px;background:#179428}
 .bx-foot span{display:grid;place-items:center;height:30px;border-radius:3px;background:#fff;color:#179428;font-size:.82rem;font-weight:700}
+
+/* closing: a slow "Thank you" marquee across the full width */
+.ty{position:relative;overflow:hidden;margin-top:24px;padding:clamp(28px,4vw,48px) 0;background:radial-gradient(50% 120% at 50% 0,rgba(23,148,40,.35),transparent 70%),#0B140D}
+.ty::before,.ty::after{content:"";position:absolute;top:0;bottom:0;z-index:1;width:12%;pointer-events:none}
+.ty::before{left:0;background:linear-gradient(90deg,#0B140D,transparent)}
+.ty::after{right:0;background:linear-gradient(270deg,#0B140D,transparent)}
+.ty-track{display:flex;width:max-content;animation:ty-scroll 38s linear infinite}
+.ty-track>div{display:flex;align-items:center;flex:none}
+.ty span{padding:0 .35em;font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:1;letter-spacing:-.045em;color:#fff;white-space:nowrap}
+.ty span.o{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em;color:transparent;-webkit-text-stroke:1.5px #86EFAC}
+.ty i{font-style:normal;font-size:clamp(1.4rem,3vw,2.4rem);color:#4ADE80}
+.ty:hover .ty-track{animation-play-state:paused}
+@keyframes ty-scroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ty-track{animation:none}}
 </style>
 </head>
 <body>
@@ -1688,6 +1702,7 @@ html{scroll-behavior:smooth}
 <ul class="v-met v-end"><li><b>&lt; 10s</b><span>QR-to-action speed</span></li><li><b>0%</b><span>Sold-out friction</span></li><li><b>Zero</b><span>Range-drop failures</span></li><li><b>+3x</b><span>Tip &amp; review lift</span></li></ul>
 
 </div>
+<div class="ty" aria-label="Thank you"><div class="ty-track" aria-hidden="true"><div><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i></div><div><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i><span>Thank you</span><i>✦</i><span class="o">Thank you</span><i>✦</i></div></div></div>
 <a class="back-pill" href="/#work" aria-label="Back to the portfolio">← Portfolio</a>
 </body>
 </html>
