@@ -916,6 +916,50 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
   .v-steps em,.v-pc-h em,.ex-says small,.ex-thinks small,.ex-rows small,.cap-title span{font-size:.72rem}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ===== IA as a transit map ===== */
+.mt{position:relative;overflow:hidden;padding:clamp(24px,3vw,40px) clamp(16px,2.6vw,36px) 28px;border-radius:var(--rx);background:radial-gradient(55% 60% at 30% 30%,rgba(23,148,40,.28),transparent 70%),radial-gradient(rgba(255,255,255,.055) 1px,transparent 1.3px) 0 0/24px 24px,#0B140D;color:#fff}
+.mt-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin-bottom:6px}
+.mt .an-k{margin:0;color:#86EFAC}
+.mt-key{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0;padding:0;list-style:none;font-size:.82rem;font-weight:700;color:rgba(255,255,255,.85)}
+.mt-key li{display:flex;align-items:center;gap:8px}
+.mt-key span{font-weight:500;color:rgba(255,255,255,.5)}
+.mt-key i{width:26px;height:6px;border-radius:6px}
+.mt-key .d i{background:#22B04B}.mt-key .c i{background:#E9F5EC}.mt-key .o i{height:4px;background:repeating-linear-gradient(90deg,#86EFAC 0 8px,transparent 8px 12px)}
+.mt-key .x i{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px #22B04B}
+.mt-scroll{overflow-x:auto;scrollbar-width:none}
+.mt-scroll::-webkit-scrollbar{display:none}
+.mt-svg{display:block;width:100%;min-width:900px;height:auto;font-family:"Plus Jakarta Sans",sans-serif;overflow:visible}
+.mt-line{fill:none;stroke-linecap:round}
+.mt-line.d{stroke:#22B04B;stroke-width:12;filter:drop-shadow(0 0 14px rgba(34,176,75,.55))}
+.mt-line.c{stroke:#E9F5EC;stroke-width:9}
+.mt-line.o{stroke:#86EFAC;stroke-width:6;stroke-dasharray:14 9}
+.mt-link{fill:none;stroke:rgba(134,239,172,.55);stroke-width:2;stroke-dasharray:3 7;stroke-linecap:round;animation:mt-flow 1.4s linear infinite}
+@keyframes mt-flow{to{stroke-dashoffset:-20}}
+.mt-ll{fill:#86EFAC;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-anchor:start;paint-order:stroke;stroke:#0B140D;stroke-width:5px}
+.mt-st circle{fill:#0B140D;stroke:#fff;stroke-width:4}
+.mt-st.is-x circle{fill:#fff;stroke:#22B04B;stroke-width:5;filter:drop-shadow(0 0 10px rgba(74,222,128,.7))}
+.mt-l{fill:#fff;font-size:16px;font-weight:800;letter-spacing:-.01em;text-anchor:middle}
+.mt-s{fill:rgba(255,255,255,.55);font-size:12.5px;font-weight:500;text-anchor:middle}
+.mt-run{fill:#fff;offset-rotate:0deg;animation:mt-run 11s cubic-bezier(.6,0,.4,1) infinite}
+.mt-run.d{offset-path:path("M80 170 H1120");fill:#BBF7D0;filter:drop-shadow(0 0 8px #4ADE80)}
+.mt-run.c{offset-path:path("M130 360 H1120");animation-delay:-4s;animation-duration:9s}
+.mt-run.o{offset-path:path("M80 540 H1120");fill:#86EFAC;animation-delay:-7s;animation-duration:13s}
+@keyframes mt-run{0%{offset-distance:0%;opacity:0}6%{opacity:1}94%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.mt-hint{display:none;margin:6px 0 0;font-size:.78rem;font-weight:700;color:rgba(255,255,255,.55)}
+/* owner module index */
+.mi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0;padding:0;list-style:none}
+.mi>li{position:relative;padding:22px 22px 20px;border-radius:var(--rl);background:var(--c);border:1px solid rgba(20,26,21,.08);box-shadow:0 12px 24px -18px rgba(20,26,21,.22);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.mi>li:hover{transform:translateY(-4px);box-shadow:0 22px 34px -22px rgba(20,26,21,.35)}
+.mi-n{position:absolute;right:18px;top:16px;font:400 2.2rem/1 "Instrument Serif",Georgia,serif;color:rgba(23,148,40,.28)}
+.mi b{display:block;font-size:1.12rem;font-weight:800;letter-spacing:-.02em}
+.mi small{display:block;margin-top:2px;font-size:.8rem;color:var(--m)}
+.mi ul{display:grid;gap:7px;margin:16px 0 0;padding:14px 0 0;list-style:none;border-top:1px solid var(--ln)}
+.mi ul li{position:relative;padding-left:16px;font-size:.84rem;line-height:1.35;color:var(--ink)}
+.mi ul li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:50%;background:var(--p)}
+@media(max-width:1000px){.mi{grid-template-columns:repeat(2,1fr)}.mt-hint{display:block}}
+@media(max-width:560px){.mi{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.mt-run{display:none}.mt-link{animation:none}}
 </style>
 </head>
 <body>
@@ -1018,143 +1062,30 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
 <!-- 11. INFORMATION ARCHITECTURE -->
 <section>
   <div class="sh">
-    <div><h2 class="h2">Information <em>Architecture</em></h2></div>
-    <span class="bg g">Customer QR Flow + Admin Console</span>
+    <div><h2 class="h2">Information <em>Architecture</em></h2><p class="sd">One system, three journeys. Every screen is a station; where the lines meet, one person's action changes another person's screen.</p></div>
+    
   </div>
 
-  <!-- 11A. CUSTOMER SIDE IA -->
-  <div class="ia-board">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-      <h3 style="font-size:1.1rem;font-weight:800">Customer Side (Table QR Web App)</h3>
-      <span class="bg g">Zero Download • Instant Scan</span>
-    </div>
-    <div class="ia-top">
-      <div class="ia-home">Home (Table QR Entry)<small>The Golden Spoon • Table A1 • Language Switcher • Social &amp; Review Links</small></div>
-      <div class="ia-stem"></div><div class="ia-bus"></div>
-    </div>
-    <div class="ia-cols">
-      <div class="ia-col">
-        <div class="ia-box head">Food Menu<small>Live Menu Banners &amp; Offers</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Categories<small>Soups, Starters, Tikkas • Veg/Egg/Non-Veg • Search</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Item Details<small>Portion (1 Plate / ½ Kg / 1 Kg) • Mild / Spicy / Extra Spicy</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Notes for Chef<small>e.g. "Spicy | Add Pepper for Spice"</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Add Item → Cart<small>Qty Stepper &amp; Live Selection Bar</small></div>
-      </div>
-      <div class="ia-col">
-        <div class="ia-box head">Drinks Menu<small>Beverages &amp; Refreshments</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Categories<small>Hot / Cold Beverages • Quick Search</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Item Details<small>Size / Glass Options &amp; Pricing</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Notes for Chef<small>Custom Sugar / Ice Preferences</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Add Item → Cart<small>Merges with Food Items</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box cart">Items in Cart<small>View Previous Orders • Select More / Order Now</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box warn">Waiting for Approval<small>Order Sent Successfully • "Awaiting confirmation..."</small></div><div class="ia-arr">↓</div>
-        <div class="ia-split"><div class="ia-box ok">Approved<small>Sent to Kitchen KOT</small></div><div class="ia-box no">Rejected<small>Shows Kitchen Note</small></div></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Delivered<small>Served at Table • Order More</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Add Tip<small>Tip Captain (₹100 / ₹150) • Edit or Delete</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Request Bill<small>Items + Taxes + Captain Tip = Grand Total</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box cart">Complete Order<small>Order Completed • Download Bill / Order Again</small></div>
-      </div>
-      <div class="ia-col">
-        <div class="ia-box head">Waiter Calling System<small>Home &amp; Menu Header</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Request Waiter<small>1-Tap Bell Embedded with Table ID</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Notification Sent<small>Real-Time Alert to Assigned Captain</small></div>
-      </div>
-    </div>
+    <div class="mt">
+    <div class="mt-head"><p class="an-k">The Cyberdine network</p>
+      <ul class="mt-key"><li class="d"><i></i>Diner line <span>10 stops</span></li><li class="c"><i></i>Captain line <span>6 stops</span></li><li class="o"><i></i>Owner line <span>8 stops</span></li><li class="x"><i></i>Interchange</li></ul></div>
+    <div class="mt-scroll"><svg class="mt-svg" viewBox="0 0 1200 620" role="img" aria-labelledby="mt-t mt-d">
+  <title id="mt-t">Cyberdine information architecture as a transit map</title>
+  <desc id="mt-d">Three lines. Diner: Table QR, menu, item, chef notes, cart, awaiting, approved, served, tip, bill. Captain: call alert, floor grid, table and groups, approve or reject, KOT, close bill. Owner: login, home hub with 8 modules, manage menu, users and access, iMenu, printers, accounts, reports. Links: the waiter call reaches the captain, the captain's decision sets the diner's order status, both share one bill, the owner's menu syncs live to the diner menu, tables map to captains, printers drive the KOT and accounts set up payments.</desc>
+  <g class="mt-links"><path class="mt-link" d="M80 170 C80 280 130 250 130 360"/><text class="mt-ll" x="118" y="272">Waiter call</text><path class="mt-link" d="M800 360 L800 170"/><text class="mt-ll" x="812" y="266">Order decision</text><path class="mt-link" d="M1120 360 L1120 170"/><text class="mt-ll" x="1132" y="266">One bill</text><path class="mt-link" d="M360 540 C360 450 270 430 270 360 C270 250 200 260 200 170"/><text class="mt-ll" x="150" y="470">Live menu sync</text><path class="mt-link" d="M520 540 C520 450 480 450 480 360"/><text class="mt-ll" x="512" y="452">Tables mapped</text><path class="mt-link" d="M860 540 C860 450 920 450 920 360"/><text class="mt-ll" x="902" y="452">Printer link</text><path class="mt-link" d="M1000 540 C1000 430 1050 360 1062 360"/><text class="mt-ll" x="1012" y="476">Payment setup</text></g>
+  <path class="mt-line d" d="M80 170 H1120"/>
+  <path class="mt-line c" d="M130 360 H1120"/>
+  <path class="mt-line o" d="M80 540 H1120"/>
+  <circle class="mt-run d" r="7"/><circle class="mt-run c" r="6"/><circle class="mt-run o" r="5"/>
+  <g class="mt-st is-x"><circle cx="80" cy="170" r="13"/><text x="80" y="130" class="mt-l">Table QR</text><text x="80" y="146" class="mt-s">scan, no app</text></g><g class="mt-st"><circle cx="200" cy="170" r="9"/><text x="200" y="130" class="mt-l">Menu</text><text x="200" y="146" class="mt-s">food · drinks</text></g><g class="mt-st"><circle cx="320" cy="170" r="9"/><text x="320" y="130" class="mt-l">Item</text><text x="320" y="146" class="mt-s">portion · spice</text></g><g class="mt-st"><circle cx="440" cy="170" r="9"/><text x="440" y="130" class="mt-l">Chef notes</text></g><g class="mt-st"><circle cx="560" cy="170" r="9"/><text x="560" y="130" class="mt-l">Cart</text><text x="560" y="146" class="mt-s">order now</text></g><g class="mt-st"><circle cx="680" cy="170" r="9"/><text x="680" y="130" class="mt-l">Awaiting</text><text x="680" y="146" class="mt-s">confirmation</text></g><g class="mt-st is-x"><circle cx="800" cy="170" r="13"/><text x="800" y="130" class="mt-l">Approved</text></g><g class="mt-st"><circle cx="910" cy="170" r="9"/><text x="910" y="130" class="mt-l">Served</text><text x="910" y="146" class="mt-s">order more</text></g><g class="mt-st"><circle cx="1010" cy="170" r="9"/><text x="1010" y="130" class="mt-l">Tip</text><text x="1010" y="146" class="mt-s">the captain</text></g><g class="mt-st is-x"><circle cx="1120" cy="170" r="13"/><text x="1120" y="130" class="mt-l">Bill</text><text x="1120" y="146" class="mt-s">UPI · download</text></g>
+  <g class="mt-st"><circle cx="130" cy="360" r="9"/><text x="130" y="398" class="mt-l">Call alert</text><text x="130" y="414" class="mt-s">1-tap bell</text></g><g class="mt-st"><circle cx="350" cy="360" r="9"/><text x="350" y="320" class="mt-l">Floor grid</text><text x="350" y="336" class="mt-s">open · pending</text></g><g class="mt-st"><circle cx="480" cy="360" r="9"/><text x="480" y="320" class="mt-l">Table & groups</text><text x="480" y="336" class="mt-s">add items, notes</text></g><g class="mt-st is-x"><circle cx="800" cy="360" r="13"/><text x="800" y="398" class="mt-l">Approve / reject</text><text x="800" y="414" class="mt-s">with a reason</text></g><g class="mt-st is-x"><circle cx="920" cy="360" r="13"/><text x="920" y="320" class="mt-l">KOT</text><text x="920" y="336" class="mt-s">wireless print</text></g><g class="mt-st is-x"><circle cx="1120" cy="360" r="13"/><text x="1120" y="398" class="mt-l">Close bill</text><text x="1120" y="414" class="mt-s">cash · card · UPI</text></g>
+  <g class="mt-st"><circle cx="80" cy="540" r="9"/><text x="80" y="578" class="mt-l">Login</text><text x="80" y="594" class="mt-s">choose outlet</text></g><g class="mt-st is-x"><circle cx="200" cy="540" r="13"/><text x="200" y="578" class="mt-l">Home hub</text><text x="200" y="594" class="mt-s">8 modules</text></g><g class="mt-st"><circle cx="360" cy="540" r="9"/><text x="360" y="578" class="mt-l">Manage menu</text><text x="360" y="594" class="mt-s">time slots · GST</text></g><g class="mt-st"><circle cx="520" cy="540" r="9"/><text x="520" y="578" class="mt-l">Users & access</text><text x="520" y="594" class="mt-s">map tables</text></g><g class="mt-st"><circle cx="700" cy="540" r="9"/><text x="700" y="578" class="mt-l">iMenu</text><text x="700" y="594" class="mt-s">QR · reviews</text></g><g class="mt-st"><circle cx="860" cy="540" r="9"/><text x="860" y="578" class="mt-l">Printers</text><text x="860" y="594" class="mt-s">58 / 80 mm</text></g><g class="mt-st"><circle cx="1000" cy="540" r="9"/><text x="1000" y="578" class="mt-l">Accounts</text><text x="1000" y="594" class="mt-s">UPI · tax</text></g><g class="mt-st"><circle cx="1120" cy="540" r="9"/><text x="1120" y="578" class="mt-l">Reports</text><text x="1120" y="594" class="mt-s">daily · monthly</text></g>
+</svg></div>
+    <p class="mt-hint">Swipe to follow the lines →</p>
   </div>
 
-  <!-- 11B. ADMINS & OWNERS IA -->
-  <div class="ia-board" style="margin-bottom:0">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-      <h3 style="font-size:1.1rem;font-weight:800">Admins &amp; Owners (Full Control Console)</h3>
-      <span class="bg g">Multi-Outlet • 8 Branches + Billing &amp; Reports</span>
-    </div>
-
-    <div class="ia-top">
-      <div class="ia-box" style="max-width:240px">Login<small>Owner / Admin Credentials</small></div>
-      <div class="ia-arr">↓</div>
-      <div class="ia-box" style="max-width:240px">Choose Outlet<small>Multi-Branch Restaurant Switcher</small></div>
-      <div class="ia-arr">↓</div>
-      <div class="ia-home">Home Page<small>Central Hub • 8 Modules + Orders &amp; Reports</small></div>
-      <div class="ia-stem"></div>
-      <div class="ia-tier-lbl">Primary Floor, Billing &amp; Menu Operations</div>
-      <div class="ia-stem"></div>
-      <div class="ia-bus wide"></div>
-    </div>
-
-    <div class="ia-cols4">
-      <div class="ia-col">
-        <div class="ia-box head">Takeaway &amp; Quick Bill<small>Fast Counter POS</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Dish Search &amp; Sort<small>Categories + Qty Steppers</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Notes to Kitchen<small>Spice Chips &amp; Chef Notes</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box warn">Hold Bill / Payment<small>Hold by Name • Cash / Card / UPI</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Print KOT / Save Bill<small>Orders &amp; Billing (Edit / Void)</small></div>
-      </div>
-
-      <div class="ia-col">
-        <div class="ia-box head">Table Orders<small>All-Captain Floor Board</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Floor Status Grid<small>Open / Pending / In Progress</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Table &amp; Groups<small>Group 1 &amp; 2 • Add Items &amp; Notes</small></div><div class="ia-arr">↓</div>
-        <div class="ia-split"><div class="ia-box ok">Approve<small>Send KOT</small></div><div class="ia-box no">Reject<small>Add Reason</small></div></div><div class="ia-arr">↓</div>
-        <div class="ia-box cart">Close Bill – Payment<small>UPI / Cash / Card • Save &amp; Print</small></div>
-      </div>
-
-      <div class="ia-col">
-        <div class="ia-box head">Manage Menu<small>Live Catalog Control</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Food &amp; Drinks<small>Categories &amp; Combos</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Time Segments<small>Tiffin / Lunch / Dinner Slots</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Add / Edit Item<small>Variants • GST 5% • Today's Special</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Customer Sync<small>Available &amp; Visibility Toggles</small></div>
-      </div>
-
-      <div class="ia-col">
-        <div class="ia-box head">Accounts<small>Payments &amp; Taxes</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">UPI Integration<small>Business UPI ID Setup</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Payment QR<small>Upload QR + Dynamic QR Toggle</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Multi-Slab Tax<small>Food GST 5% • Sweet 11% • CGST</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box cart">Orders &amp; Reports<small>Captain Filter • Daily/Monthly PDF</small></div>
-      </div>
-    </div>
-
-    <div class="ia-top" style="margin-top:4px">
-      <div class="ia-tier-lbl">Growth, Team Access, SaaS &amp; Hardware</div>
-      <div class="ia-stem"></div>
-      <div class="ia-bus wide"></div>
-    </div>
-
-    <div class="ia-cols4">
-      <div class="ia-col">
-        <div class="ia-box head">iMenu<small>Digital QR &amp; Marketing</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">QR Codes &amp; Stands<small>Menu QR vs Order QR • PDF</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Social &amp; Reviews<small>Good-Review Filter • IG / FB / YT</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Banners &amp; Feedback<small>10% Off Banners • Star Logs</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box cart">Scan Report &amp; CRM<small>300+ Scans • Customer List</small></div>
-      </div>
-
-      <div class="ia-col">
-        <div class="ia-box head">User &amp; Access<small>Staff &amp; RBAC Control</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">User Accounts<small>Active / Inactive Staff List</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Create / Edit User<small>Photo • Phone • Password</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Access Type<small>Admin vs Captain Role</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Map Tables to User<small>Locks Captain to Assigned Tables</small></div>
-      </div>
-
-      <div class="ia-col">
-        <div class="ia-box head">Subscription<small>Plan &amp; Billing</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Active Plan (iMenu)<small>₹6,999/yr • Feature Checklist</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Payment History<small>Past Transactions &amp; Dates</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Download Invoice<small>GST Tax Invoice PDF</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box no">Plan Expired State<small>Alert Banner → Renew Now</small></div>
-      </div>
-
-      <div class="ia-col">
-        <div class="ia-box head">Settings<small>Profile, Printers &amp; QR</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">My Profile<small>Brand Color • Tables • Toggles</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Connect Printer<small>Bluetooth 58/80mm • Test Print</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box">Manage Table QR<small>Scan QR to Map Table A2</small></div><div class="ia-arr">↓</div>
-        <div class="ia-box ok">Order vs iMenu<small>Scan-to-Order or View-Only</small></div>
-      </div>
-    </div>
-  </div>
+  <h3 class="v-sub">Inside the owner's home hub</h3>
+  <ol class="mi"><li><span class="mi-n">01</span><b>Quick bill</b><small>Takeaway counter POS</small><ul><li>Dish search & sort</li><li>Spice chips & chef notes</li><li>Hold by name</li><li>Print KOT, save bill</li></ul></li><li><span class="mi-n">02</span><b>Table orders</b><small>All-captain floor board</small><ul><li>Open / pending / in progress</li><li>Groups per table</li><li>Approve or reject</li><li>Close bill & print</li></ul></li><li><span class="mi-n">03</span><b>Manage menu</b><small>Live catalogue control</small><ul><li>Food, drinks, combos</li><li>Tiffin / lunch / dinner</li><li>Variants & GST</li><li>Visibility toggles</li></ul></li><li><span class="mi-n">04</span><b>Accounts</b><small>Payments & taxes</small><ul><li>Business UPI ID</li><li>Dynamic payment QR</li><li>Multi-slab tax</li><li>Daily & monthly PDF</li></ul></li><li><span class="mi-n">05</span><b>iMenu</b><small>Digital QR & marketing</small><ul><li>Menu QR vs order QR</li><li>Good-review filter</li><li>Offer banners</li><li>Scan report & CRM</li></ul></li><li><span class="mi-n">06</span><b>Users & access</b><small>Staff and roles</small><ul><li>Active / inactive staff</li><li>Admin vs captain</li><li>Photo, phone, password</li><li>Tables locked per captain</li></ul></li><li><span class="mi-n">07</span><b>Subscription</b><small>Plan & billing</small><ul><li>iMenu plan, ₹6,999/yr</li><li>Payment history</li><li>GST invoice PDF</li><li>Expired → renew</li></ul></li><li><span class="mi-n">08</span><b>Settings</b><small>Profile, printers & QR</small><ul><li>Brand colour & tables</li><li>Bluetooth 58/80 mm</li><li>Map table QR</li><li>Scan-to-order or view-only</li></ul></li></ol>
 </section>
 
 <!-- 12. LOW-FIDELITY WIREFRAMES & IDEATION -->
