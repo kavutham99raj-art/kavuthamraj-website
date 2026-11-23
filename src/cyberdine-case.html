@@ -842,6 +842,10 @@ html{scroll-behavior:smooth}
 .bx-total{position:static;margin:6px 9px 0;padding:9px 4px;background:none;color:#212121;border-top:1.5px dashed #9A9A9A;border-bottom:1.5px dashed #9A9A9A;font-size:.74rem;font-weight:700}
 .bx-total b{font-size:.78rem;font-weight:700;letter-spacing:0}
 .bx-total::before{content:none}
+
+/* before screen: the same Order More bar as the shipped screen */
+.bx-foot{position:absolute;left:0;right:0;bottom:0;padding:7px 8px 10px;background:#179428}
+.bx-foot span{display:grid;place-items:center;height:30px;border-radius:3px;background:#fff;color:#179428;font-size:.82rem;font-weight:700}
 </style>
 </head>
 <body>
@@ -1659,6 +1663,7 @@ html{scroll-behavior:smooth}
           <p class="bx-bar ok">✓ Approved</p>
           <div class="bx-item"><figure style="background-position:5.2% 21.8%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
           <div class="bx-total"><span>Total Amount</span><b>750.00</b></div>
+          <div class="bx-foot"><span>Order More</span></div>
         </div></div>
     </figure>
     <div class="ut-arrow" aria-hidden="true"><span>Iterate</span><i>→</i></div>
