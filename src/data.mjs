@@ -277,11 +277,11 @@ const erpScreens = [
 ];
 export const featured = [
   {
-    key: "cyberdine", name: "Cyberdine", what: "QR ordering for restaurants", how: "Diners scan, order and pay from the table. Staff approve each dish.",
-    logo: "logos/products/cyberdine.png", meta: ["Liffto Technologies", "Restaurant SaaS"],
-    title: "Don't wait for the captain. *Order from the table.*",
-    text: "Diners could build a shortlist but not send it: every order waited for a captain. I redesigned ordering so the table sends it and staff still approve each dish, then added a tip step restaurants track live, plus payment and the full restaurant app.",
-    outcomes: [["~235", "screens across two apps, sole designer"], ["15", "restaurants live at peak"], ["~600", "orders a day at peak"]],
+    key: "cyberdine", name: "Cyberdine", what: "Digital menu and POS for restaurants", how: "Diners, captains and kitchens connected in real time: QR ordering, 1-tap waiter calls, wireless KOT and captain tipping.",
+    logo: "logos/products/cyberdine.png", meta: ["Liffto Technologies", "Hospitality & POS SaaS"],
+    title: "Revolutionize dining with *intelligent service.*",
+    text: "Cyberdine connects diners, captains and kitchens in real time: instant QR ordering, 1-tap waiter calls, wireless KOT and direct captain tipping. I led the UI/UX end to end, from October 2024 to August 2025, across the diner QR app, the captain app, the POS and the web dashboard.",
+    outcomes: [["Lead", "designer, end to end, Oct 2024 to Aug 2025"], ["3", "modules: QR menu, captain app and POS"], ["2", "cities: Chennai and Coimbatore"]],
     visual: { demo: "cyberdine", label: "Cyberdine: a diner scans the table QR, adds dishes and orders; the staff app gets the order, approves it, marks it delivered, and the diner tips and pays by UPI", src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
     href: "work/cyberdine.html", cover: "cyberdine.png",
   },
