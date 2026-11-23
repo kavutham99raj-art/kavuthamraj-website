@@ -2077,3 +2077,44 @@ p,li,dd{text-wrap:pretty}
 .sn-ic-s{display:inline-block;width:18px;height:18px;margin-right:8px;vertical-align:-3px}
 .sn-btn{display:inline-flex;align-items:center}
 .sn-btn:hover .sn-ic-s{transform:translateY(-1px)}
+
+/* ===== Home cards v2: a tinted stage per product, ghost numeral, bigger stats, richer button ===== */
+.cards{counter-reset:cd;gap:clamp(24px,3vw,40px)}
+.card{counter-increment:cd;--acc:#a3502c;--acc-d:color-mix(in srgb,var(--acc) 70%,#17120f);isolation:isolate;overflow:hidden;
+  background:radial-gradient(70% 90% at 100% 0,color-mix(in srgb,var(--acc) 15%,transparent),transparent 62%),radial-gradient(55% 70% at 0 100%,color-mix(in srgb,var(--acc) 9%,transparent),transparent 70%),linear-gradient(180deg,#fffdf9,#f8f1e6);
+  border:1px solid color-mix(in srgb,var(--acc) 18%,rgba(23,18,15,.1));
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 30px 60px -46px rgba(23,18,15,.4)}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(rgba(23,18,15,.08) 1px,transparent 1.3px) 0 0/22px 22px;-webkit-mask:linear-gradient(120deg,#000,transparent 55%);mask:linear-gradient(120deg,#000,transparent 55%);pointer-events:none}
+.card::after{content:"";position:absolute;z-index:-1;right:-4%;top:6%;width:46%;aspect-ratio:1;border-radius:50%;background:var(--acc);opacity:.15;filter:blur(90px);pointer-events:none}
+.card:nth-child(even)::after{right:auto;left:-4%}
+.card-visual{border-radius:var(--r-md);box-shadow:0 0 0 1px rgba(23,18,15,.1),0 34px 60px -32px color-mix(in srgb,var(--acc) 58%,rgba(23,18,15,.55));transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.card-copy{position:relative;z-index:1}
+.card-copy::before{content:counter(cd,decimal-leading-zero);position:absolute;right:clamp(8px,1.6vw,24px);top:clamp(0px,.6vw,8px);z-index:-1;font:400 clamp(84px,9vw,148px)/.9 var(--display);letter-spacing:-.04em;color:var(--acc);opacity:.11;pointer-events:none;user-select:none}
+.card-meta span{padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--acc) 15%,#fff);color:var(--acc-d);font-weight:700}
+.prod-logo img{max-height:44px}
+.card h3{font-size:clamp(26px,2.6vw,40px);line-height:1.08;letter-spacing:-.03em}
+.card h3 em{color:var(--acc-d)}
+.card-text{font-size:17px;color:color-mix(in srgb,var(--body) 92%,#000)}
+.card .outcomes{position:relative;gap:0;padding-top:22px;border-top:0}
+.card .outcomes::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--acc),transparent)}
+.card .outcomes>div{padding:0 clamp(10px,1.4vw,20px);border-left:1px solid rgba(23,18,15,.12)}
+.card .outcomes>div:first-child{padding-left:0;border-left:0}
+.card .outcomes{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card .outcomes dt{font-size:clamp(20px,1.8vw,26px);letter-spacing:-.02em;color:var(--ink)}
+.card .outcomes dd{margin-top:8px;font-size:13px}
+.card .arrow-link{min-height:54px;padding:0 9px 0 24px;gap:16px;font-size:15px;font-weight:600;box-shadow:0 16px 28px -18px rgba(23,18,15,.65)}
+.card .arrow-link span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--acc);color:#fff;font-size:16px;transition:translate .3s var(--ease),background .3s,color .3s}
+.card:hover .arrow-link{background:var(--acc-d)}
+.card:hover .arrow-link span{background:#fff;color:var(--acc-d)}
+@media (hover:hover){
+  .js .card.reveal.in:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--acc) 40%,rgba(23,18,15,.1));box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 50px 80px -48px color-mix(in srgb,var(--acc) 55%,rgba(23,18,15,.5))}
+  .card:hover .card-visual{transform:scale(1.012)}
+}
+@media (max-width:760px){
+  .card .outcomes{grid-template-columns:1fr;gap:14px}
+  .card .outcomes>div{display:grid;grid-template-columns:112px 1fr;align-items:baseline;gap:12px;padding:0;border-left:0}
+  .card .outcomes dd{margin:0}
+  .card-copy::before{font-size:84px;top:-6px}
+  .card .arrow-link{width:100%;justify-content:space-between}
+}
+@media (prefers-reduced-motion:reduce){.card,.card-visual{transition:none}.card:hover .card-visual{transform:none}}

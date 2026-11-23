@@ -428,7 +428,7 @@ ${header("")}
       <p class="sec-lede reveal">Six picks from 25+ products: an AI delivery platform, payroll and a sports ERP, enterprise SaaS, restaurant ordering and an education app. Each case shows the problem, the decisions I made, and what changed.</p>
     </div>
     <div class="cards">
-      ${featured.map((f, i) => `<article class="card reveal" aria-labelledby="c-${f.key}">
+      ${featured.map((f, i) => `<article class="card reveal" style="--acc:${esc(f.accent || "#a3502c")}" aria-labelledby="c-${f.key}">
         <div class="card-visual${f.visual.phones ? " is-phones" : ""}">${visual(f.visual)}</div>
         <div class="card-copy">
           <div>
