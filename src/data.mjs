@@ -277,6 +277,15 @@ const erpScreens = [
 ];
 export const featured = [
   {
+    key: "cyberdine", name: "Cyberdine", what: "QR ordering for restaurants", how: "Diners scan, order and pay from the table. Staff approve each dish.",
+    logo: "logos/products/cyberdine.png", meta: ["Liffto Technologies", "Restaurant SaaS"],
+    title: "Don't wait for the captain. *Order from the table.*",
+    text: "Diners could build a shortlist but not send it: every order waited for a captain. I redesigned ordering so the table sends it and staff still approve each dish, then added a tip step restaurants track live, plus payment and the full restaurant app.",
+    outcomes: [["~235", "screens across two apps, sole designer"], ["15", "restaurants live at peak"], ["~600", "orders a day at peak"]],
+    visual: { demo: "cyberdine", label: "Cyberdine: a diner scans the table QR, adds dishes and orders; the staff app gets the order, approves it, marks it delivered, and the diner tips and pays by UPI", src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
+    href: "work/cyberdine.html", cover: "cyberdine.png",
+  },
+  {
     key: "steadfast", name: "Steadfast", what: "AI service-delivery platform", how: "AI agents fill leads, size the work and plan sprints. People review and sign off.",
     logo: "logos/products/steadfast.png", meta: ["Liffto Technologies", "AI SaaS"],
     title: "AI does the work. *People stay in charge.*",
@@ -321,15 +330,6 @@ export const featured = [
     outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
     visual: { demo: "loading", src: "work/titan-story/05.jpg", alt:"Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
     href: "work/titan.html", cover: "titan.png",
-  },
-  {
-    key: "cyberdine", name: "Cyberdine", what: "QR ordering for restaurants", how: "Diners scan, order and pay from the table. Staff approve each dish.",
-    logo: "logos/products/cyberdine.png", meta: ["Liffto Technologies", "Restaurant SaaS"],
-    title: "Don't wait for the captain. *Order from the table.*",
-    text: "Diners could build a shortlist but not send it: every order waited for a captain. I redesigned ordering so the table sends it and staff still approve each dish, then added a tip step restaurants track live, plus payment and the full restaurant app.",
-    outcomes: [["~235", "screens across two apps, sole designer"], ["15", "restaurants live at peak"], ["~600", "orders a day at peak"]],
-    visual: { demo: "cyberdine", label: "Cyberdine: a diner scans the table QR, adds dishes and orders; the staff app gets the order, approves it, marks it delivered, and the diner tips and pays by UPI", src: "work/cyberdine/08.jpg", alt: "Cyberdine design rules across both apps: order from the table, status on every dish, tip the person, pay the exact total, and the right menu at the right time" },
-    href: "work/cyberdine.html", cover: "cyberdine.png",
   },
 ];
 export { erpScreens };

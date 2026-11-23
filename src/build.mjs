@@ -943,7 +943,7 @@ const SUMMARIES = {
   "sports-ecommerce": "A sports and fitness e-commerce storefront, designed in one week.",
   "next-messenger": "A concept for a cross-platform chat app for text, image, video and audio messages and stories.",
 };
-const ORDER = ["steadfast", "erp", "titan", "cyberdine", "educonnect", "payroll", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "customerlabs", "m-music", "evento", "next-messenger", "slay"];
+const ORDER = ["cyberdine", "steadfast", "payroll", "educonnect", "erp", "titan", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "customerlabs", "m-music", "evento", "next-messenger", "slay"];
 
 const fcPage = (key) => {
   const c = framerCases[key], r = "../";
@@ -1080,6 +1080,8 @@ const sentenceCase = (html) => html.replace(/<(h[123]) class="([^"]*\b(?:h2|case
   inner.replace(/<[^>]+>/g, " ").trim().split(/\s+/).length > 4 ? `<${tag} class="${cls} long"${rest}>${inner}</${tag}>` : m);
 writeFileSync(OUT + "index.html", sentenceCase(home()));
 for (const k of Object.keys(framerCases)) writeFileSync(OUT + `work/${k}.html`, sentenceCase(fcPage(k)));
+// Cyberdine's case study is its own hand-built page (src/cyberdine-case.html); its images are in static/work/cyberdine-case
+cpSync(ROOT + "src/cyberdine-case.html", OUT + "work/cyberdine.html");
 writeFileSync(OUT + "404.html", notFound());
 const ICONS = ["favicon.ico", "favicon-32.png", "favicon-96.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "og-image.jpg"];
 for (const f of ["main.js", "profile.webp", "profile-portrait.jpg", ...ICONS]) cpSync(STATIC + f, OUT + f);

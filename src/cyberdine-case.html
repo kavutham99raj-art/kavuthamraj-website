@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cyberdine: QR dine-in ordering and POS – UX Case Study | Kavuthamraj GS</title>
+<meta name="description" content="Cyberdine: a QR dine-in ordering and POS ecosystem for restaurants, from table QR to captain app, kitchen printer and owner dashboard. UI/UX case study by Kavuthamraj GS.">
+<link rel="canonical" href="https://www.kavuthamraj.com/work/cyberdine.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kavuthamraj GS">
+<meta property="og:title" content="Cyberdine: QR dine-in ordering and POS | UX case study">
+<meta property="og:description" content="From table QR to kitchen ticket to bill: the design of a restaurant ordering and POS ecosystem, by Kavuthamraj GS.">
+<meta property="og:url" content="https://www.kavuthamraj.com/work/cyberdine.html">
+<meta property="og:image" content="https://www.kavuthamraj.com/work/covers/cyberdine.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B140D">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--p:#179428;--pd:#0F6B1C;--ps:#ECFDF0;--pb:#BCECC4;--ob:#0B140D;--bg:#FAFBF9;--c:#FFFFFF;--ink:#141A15;--m:#5A655D;--ln:#E6EBE7;--red:#DC2626;--rs:#FEF2F2;--rx:28px;--rl:20px;--rm:14px;--w1:#F8FAFC;--w2:#E2E8F0;--w3:#CBD5E1;--w4:#475569}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.w{max-width:1180px;margin:0 auto;padding:28px 22px 100px}
+section{margin-bottom:80px}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:24px;flex-wrap:wrap}
+.kk{display:inline-flex;align-items:center;gap:8px;font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p);margin-bottom:5px}
+.kk::before{content:"";width:22px;height:2px;background:var(--p)}
+.h2{font-size:clamp(1.75rem,3.1vw,2.35rem);font-weight:800;letter-spacing:-.03em;line-height:1.15}
+.sd{max-width:480px;color:var(--m);font-size:.9rem}
+.bg{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;font-size:.72rem;font-weight:600;background:var(--c);border:1px solid var(--ln);color:var(--ink)}
+.bg.g{background:var(--ps);border-color:var(--pb);color:var(--pd)}.bg.r{background:var(--rs);border-color:#FECACA;color:var(--red)}
+.ic{width:16px;height:16px;flex-shrink:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.crd{background:var(--c);border:1px solid var(--ln);border-radius:var(--rx);padding:24px}
+
+/* HERO */
+.hero{position:relative;border-radius:34px;background:radial-gradient(circle at 50% 62%,rgba(23,148,40,.42),transparent 55%),linear-gradient(160deg,#070D08,#101E13 55%,#080E09);color:#fff;padding:32px 34px 46px;overflow:hidden;margin-bottom:76px;box-shadow:0 30px 70px rgba(11,20,13,.24)}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.hnav{position:relative;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:30px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.15rem}
+.bmark{width:40px;height:40px;border-radius:12px;background:var(--p);display:grid;place-items:center;box-shadow:0 8px 24px rgba(23,148,40,.45)}
+.hpills{display:flex;gap:8px;flex-wrap:wrap}.hpills span{padding:6px 14px;border-radius:99px;font-size:.74rem;font-weight:600;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.hint{position:relative;text-align:center;max-width:780px;margin:0 auto 44px}
+.htag{display:inline-flex;padding:5px 14px;border-radius:99px;background:rgba(23,148,40,.2);border:1px solid rgba(74,222,128,.3);color:#4ADE80;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.5rem);font-weight:800;line-height:1.08;letter-spacing:-.035em;margin-bottom:12px}
+.hero h1 em{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-style:italic;color:#4ADE80;font-size:1.14em}
+.hlead{color:rgba(255,255,255,.78);font-size:.98rem;max-width:600px;margin:0 auto 20px}
+.hmeta{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:24px;padding:11px 24px;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.hmeta small{display:block;font-size:.63rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.06em}.hmeta strong{font-size:.83rem;font-weight:600}
+
+/* PHONE FRAMES */
+.stage{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;align-items:center;perspective:1400px;padding:10px 4px}
+.ph{display:flex;flex-direction:column;align-items:center;gap:14px;transition:transform .45s cubic-bezier(.22,1,.36,1);transform-style:preserve-3d}
+.ph:nth-child(1){transform:rotateY(10deg) translateY(10px) scale(.95)}.ph:nth-child(2),.ph:nth-child(3){transform:translateY(-14px) scale(1.03);z-index:2}.ph:nth-child(4){transform:rotateY(-10deg) translateY(10px) scale(.95)}
+.ph:hover{transform:rotateY(0) translateY(-22px) scale(1.06);z-index:10}
+.ipf{position:relative;width:100%;max-width:244px;padding:4px;border-radius:36px;background:linear-gradient(145deg,#5c665e,#1d241e 28%,#0d110e 72%,#475249);box-shadow:0 30px 65px -10px rgba(0,0,0,.7),0 0 30px rgba(23,148,40,.16)}
+.ipf::before{content:"";position:absolute;left:-3px;top:76px;width:3px;height:24px;border-radius:3px 0 0 3px;background:#4a544c;box-shadow:0 34px 0 #4a544c,0 64px 0 #4a544c}
+.ipf::after{content:"";position:absolute;right:-3px;top:100px;width:3px;height:44px;border-radius:0 3px 3px 0;background:#4a544c}
+.ipb{background:#050705;border-radius:32px;padding:5px}
+.ips{position:relative;border-radius:27px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.ips img{width:100%;height:auto;object-fit:contain;display:block}
+.pcap{padding:6px 13px;border-radius:99px;font-size:.72rem;font-weight:600;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.94);white-space:nowrap}
+.pcap b{color:#4ADE80;margin-right:5px}
+
+/* DESKTOP BROWSER MOCKUP FRAME */
+.desk-frame{background:var(--c);border:1px solid var(--ln);border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(15,23,42,.08);display:flex;flex-direction:column}
+.desk-chrome{background:#F1F5F9;border-bottom:1px solid var(--ln);padding:10px 16px;display:flex;align-items:center;gap:12px}
+.desk-dots{display:flex;gap:6px}.desk-dot{width:10px;height:10px;border-radius:50%;background:#CBD5E1}.desk-dot.r{background:#F87171}.desk-dot.y{background:#FBBF24}.desk-dot.g{background:#4ADE80}
+.desk-url{flex:1;background:#FFFFFF;border:1px solid var(--ln);border-radius:6px;padding:3px 12px;font-size:.72rem;color:var(--m);font-family:monospace}
+.desk-screen{background:#050705;position:relative;overflow:hidden}
+.desk-screen img{width:100%;height:auto;display:block;object-fit:cover;object-position:top}
+
+/* SHARED SECTION STYLES */
+.ov{display:grid;grid-template-columns:1.3fr .7fr;gap:20px}.ovp{font-size:clamp(1.2rem,2.1vw,1.6rem);font-weight:600;line-height:1.4;letter-spacing:-.02em}.ovp span{color:var(--p)}
+.ovs{background:var(--ps);border:1px solid var(--pb);border-radius:var(--rx);padding:24px;display:grid;gap:12px;align-content:center}
+.srow{display:flex;justify-content:space-between;align-items:center;padding-bottom:9px;border-bottom:1px solid var(--pb);font-size:.84rem}.srow:last-child{border:0;padding:0}.srow span{color:var(--pd);font-weight:600}
+
+.en{font-size:1.6rem;font-weight:800;color:var(--p);margin-bottom:5px}.eco h3{font-size:1.05rem;margin-bottom:5px}.eco p{font-size:.84rem;color:var(--m);margin-bottom:12px}
+.cw{display:flex;flex-wrap:wrap;gap:6px}.ch{font-size:.69rem;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--bg);border:1px solid var(--ln);color:var(--m)}
+
+.ps{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.psd{background:var(--ob);color:#fff;border-radius:var(--rx);padding:28px}.psd h3{font-size:1.2rem;margin:10px 0 12px}
+.psb{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rm);padding:13px;margin-bottom:11px}.psb h4{font-size:.74rem;color:#FCA5A5;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.ul{list-style:none;display:grid;gap:4px}.psb li{font-size:.81rem;color:rgba(255,255,255,.78);padding-left:14px;position:relative}.psb li::before{content:"—";position:absolute;left:0;color:#F87171}
+.psg{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border-radius:var(--rx);padding:26px}.crd p,.psg p{margin-top:7px;font-size:.87rem}.crd p{color:var(--m)}
+
+.stp{border-radius:var(--rl);padding:16px 14px}.sttop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.sidx{width:26px;height:26px;border-radius:8px;background:var(--p);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.74rem}
+.stag{font-size:.63rem;font-weight:700;color:var(--pd);background:var(--ps);padding:3px 8px;border-radius:99px}.stp h4{font-size:.88rem;margin-bottom:3px}.stp p{font-size:.76rem;margin:0}
+
+.aud{position:relative;height:300px;border-radius:var(--rx);overflow:hidden;background:linear-gradient(145deg,#132A18,#0B140D)}
+.ascr{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,20,13,.12) 25%,rgba(11,20,13,.92));padding:20px;display:flex;flex-direction:column;justify-content:space-between;color:#fff}
+.apil{align-self:flex-start;padding:5px 12px;border-radius:99px;font-size:.71rem;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28)}.ascr p{font-size:.79rem;color:rgba(255,255,255,.82);margin-top:4px}
+
+.res{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.fc{border-radius:var(--rl);padding:13px 16px}.fc h4{font-size:.73rem;text-transform:uppercase;letter-spacing:.06em;color:var(--p);margin-bottom:3px}.fc p{font-size:.82rem;margin:0}
+.ro{background:var(--ob);color:#fff;border-radius:var(--rl);padding:16px;border-left:4px solid var(--p)}.ro p{font-size:.84rem;color:rgba(255,255,255,.88);margin-top:4px}
+.sb{border-radius:var(--rl);padding:18px;display:flex;flex-direction:column;justify-content:space-between}.sv{font-size:2.1rem;font-weight:800;letter-spacing:-.04em;line-height:1}.sv span{color:var(--p);font-size:1.15rem}
+.sb p{font-size:.75rem;margin:7px 0 9px}.pr{height:6px;border-radius:99px;background:var(--ln);overflow:hidden}.pr i{display:block;height:100%;background:var(--p);border-radius:99px}
+
+.pc{background:var(--c);border:1px solid var(--ln);border-radius:var(--rx);overflow:hidden;display:grid;grid-template-columns:245px 1fr}.pcol{position:relative;min-height:275px;background:linear-gradient(145deg,#173A20,#0B140D)}
+.pscr{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(11,20,13,.92));padding:18px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+.page{position:absolute;top:12px;left:12px;background:var(--p);color:#fff;font-size:.69rem;font-weight:700;padding:3px 9px;border-radius:99px}.pscr span{font-size:.75rem;color:#4ADE80;font-weight:600}.pscr small{font-size:.71rem;color:rgba(255,255,255,.72)}
+.pbdy{padding:18px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}.pq{font-size:1.05rem;font-weight:700;line-height:1.35}.pq span{color:var(--p)}
+.pg{background:var(--ps);border:1px solid var(--pb);border-radius:var(--rm);padding:11px 14px}.pp{background:var(--rs);border:1px solid #FECACA;border-radius:var(--rm);padding:11px 14px}
+.pg h4{color:var(--pd);font-size:.75rem;margin-bottom:5px}.pp h4{color:var(--red);font-size:.75rem;margin-bottom:5px}
+.pg li,.pp li{font-size:.77rem;color:var(--ink);padding-left:12px;position:relative}.pg li::before{content:"•";position:absolute;left:0;color:var(--p);font-weight:800}.pp li::before{content:"•";position:absolute;left:0;color:var(--red);font-weight:800}
+.pslv{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--ln);font-size:.72rem;color:var(--m)}
+
+.etop{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:12px}.ewho{display:flex;align-items:center;gap:10px}.eav{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid var(--p);background:var(--ps);flex-shrink:0}
+.egrid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px}.ehub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:var(--ob);color:#fff;border:4px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.15);display:grid;place-items:center;font-weight:800;font-size:.6rem;text-transform:uppercase;z-index:2}
+.qd{border-radius:var(--rl);padding:13px 16px;border:1px solid var(--ln)}.qs{background:var(--ps);border-color:var(--pb);padding-right:30px}.qt{background:#F4F6F5;padding-left:30px}.qdo{background:#FAF8F3;border-color:#EBE4D3;padding-right:30px}.qf{background:var(--rs);border-color:#FECACA;padding-left:30px}
+.qd h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}.qs h4{color:var(--pd)}.qdo h4{color:#92400E}.qf h4{color:var(--red)}
+.qd li{font-size:.77rem;color:var(--ink);padding-left:11px;position:relative}.qd li::before{content:"•";position:absolute;left:0;font-weight:800;color:var(--p)}.qf li::before{color:var(--red)}.qdo li::before{color:#B45309}
+
+.jc{border-radius:var(--rm);padding:11px 13px;border:1px solid var(--ln);background:var(--bg)}.jc.w{background:var(--ps);border-color:var(--pb)}.jc.o{background:var(--ob);color:#fff;border-color:var(--ob)}
+.jc small{display:block;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--m);margin-bottom:2px}.jc.w small{color:var(--pd)}.jc.o small{color:#4ADE80}.jc p{font-size:.78rem;margin:0;color:inherit}
+
+.rc{background:var(--rs);border:1px solid #FECACA;border-top:4px solid var(--red);border-radius:var(--rl);padding:15px}.rc small{font-size:.65rem;font-weight:800;text-transform:uppercase;color:var(--red);display:block;margin-bottom:3px}.rc h4{font-size:.88rem;margin-bottom:4px}.rc p{font-size:.77rem;color:var(--m);margin:0}
+.dp{border-top:4px solid var(--p);border-radius:var(--rl);padding:17px}.dp h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--pd);margin-bottom:5px}.dp p{font-size:.8rem;margin:0}
+.hmw{background:var(--ob);color:#fff;border-radius:var(--rx);padding:20px;display:grid;gap:7px}.hi{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;border-radius:var(--rm);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-size:.78rem;color:rgba(255,255,255,.88)}.hn{font-size:.64rem;font-weight:800;color:#4ADE80;background:rgba(23,148,40,.24);padding:2px 6px;border-radius:6px;flex-shrink:0;margin-top:2px}
+.us{padding:10px 12px;border-radius:var(--rm);background:var(--bg);border:1px solid var(--ln)}.us strong{display:flex;justify-content:space-between;align-items:center;font-size:.81rem;margin-bottom:2px}.us span{font-size:.64rem;font-weight:700;color:var(--pd);background:var(--ps);padding:2px 8px;border-radius:99px}.us p{font-size:.76rem;margin:0}
+.kpi{background:var(--ps);border:1px solid var(--pb);border-radius:var(--rl);padding:15px}.kpi strong{display:block;font-size:1.7rem;font-weight:800;color:var(--pd);line-height:1.1}.kpi b{display:block;font-size:.79rem;margin:3px 0 2px}.kpi small{font-size:.72rem;color:var(--m);display:block;line-height:1.3}
+
+/* IA TREES */
+.ia-board{background:var(--c);border:1px solid var(--ln);border-radius:var(--rx);padding:26px;display:grid;gap:18px;margin-bottom:24px}
+.ia-top{display:flex;flex-direction:column;align-items:center}
+.ia-home{background:var(--ob);color:#fff;padding:10px 26px;border-radius:12px;text-align:center;font-weight:800;font-size:.9rem;border:2px solid var(--p)}
+.ia-home small{display:block;font-size:.67rem;font-weight:500;color:#4ADE80;margin-top:2px}
+.ia-stem{width:2px;height:16px;background:var(--p);margin:0 auto}
+.ia-bus{width:68%;height:2px;background:var(--p);margin:0 auto}
+.ia-bus.wide{width:76%}
+.ia-cols{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:16px;align-items:start}
+.ia-cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;align-items:start}
+.ia-col{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
+.ia-col::before{content:"";width:2px;height:12px;background:var(--p);margin-top:-18px}
+.ia-box{width:100%;background:var(--bg);border:1px solid var(--ln);border-radius:10px;padding:8px 9px;text-align:center;font-size:.75rem;font-weight:700}
+.ia-box small{display:block;font-weight:400;font-size:.66rem;color:var(--m);margin-top:2px;line-height:1.3}
+.ia-box.head{background:var(--p);color:#fff;border-color:var(--p)}.ia-box.head small{color:rgba(255,255,255,.86)}
+.ia-box.cart{background:var(--ob);color:#fff;border-color:var(--ob)}.ia-box.cart small{color:#4ADE80}
+.ia-box.ok{background:var(--ps);border-color:var(--pb);color:var(--pd)}.ia-box.no{background:var(--rs);border-color:#FECACA;color:var(--red)}.ia-box.warn{background:#FFF7ED;border-color:#FED7AA;color:#C2410C}
+.ia-arr{color:var(--p);font-size:.7rem;font-weight:800;line-height:1}
+.ia-split{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%}
+.ia-tier-lbl{text-align:center;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--pd);background:var(--ps);border:1px solid var(--pb);padding:4px 12px;border-radius:99px;margin:4px auto 0}
+
+/* SECTION 12: AUTO-LAYOUT WIREFRAME PHONES */
+.wf-board{background:var(--c);border:1px solid var(--ln);border-radius:var(--rx);padding:24px;margin-bottom:24px}
+.wf-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--ln)}
+.wf-head h3{font-size:1.1rem;font-weight:800}.wf-head small{color:var(--m);font-size:.8rem;display:block}
+.wf-row-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;position:relative}
+.wf-item{display:flex;flex-direction:column;align-items:center;gap:10px}
+.wf-phone{width:100%;max-width:246px;height:430px;background:#fff;border:2px solid var(--w3);border-radius:24px;padding:12px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.03);font-size:8px;color:#334155}
+.wf-phone.dim{background:var(--w2)}
+.wf-top{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:9.5px;color:#1E293B;height:20px;flex-shrink:0}
+.wf-box{background:var(--w1);border:1px solid var(--w3);border-radius:7px;padding:6px 8px;font-size:8px}
+.wf-box.d{background:var(--w2);border-color:var(--w4)}
+.wf-banner{background:var(--w4);color:#fff;border-radius:6px;padding:5px 8px;font-weight:700;font-size:8px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.wf-banner.m{background:#64748B}
+.wf-banner.r{background:#991B1B}
+.wf-btn{background:var(--w4);color:#fff;text-align:center;padding:7px 10px;border-radius:6px;font-weight:700;font-size:8.5px;cursor:default}
+.wf-btn.out{background:#fff;color:var(--w4);border:1px solid var(--w3)}
+.wf-tag{background:var(--w2);padding:2px 6px;border-radius:4px;font-size:7.5px;font-weight:700}
+.wf-r2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.wf-r3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.wf-r4{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.wf-r5{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.wf-row{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.wf-img{background:linear-gradient(to top right,transparent calc(50% - .6px),#94A3B8,transparent calc(50% + .6px)),linear-gradient(to bottom right,transparent calc(50% - .6px),#94A3B8,transparent calc(50% + .6px)) #F1F5F9;border:1px solid var(--w3);border-radius:6px}
+.wf-sheet{background:#fff;border:1px solid var(--w3);border-radius:14px 14px 0 0;padding:10px;margin:auto -12px -12px;display:grid;gap:6px;box-shadow:0 -4px 14px rgba(0,0,0,.08)}
+.wf-tog{width:24px;height:12px;border-radius:99px;background:var(--w4);position:relative;flex-shrink:0}.wf-tog::after{content:"";position:absolute;right:2px;top:2px;width:8px;height:8px;border-radius:50%;background:#fff}
+.wf-tog.off{background:#CBD5E1}.wf-tog.off::after{right:auto;left:2px}
+.wf-cap{font-size:.76rem;font-weight:700;color:var(--w4);text-align:center}
+.wf-cap b{color:var(--p);margin-right:4px}
+
+/* SECTION 13: HIGH-FIDELITY SHOWCASE */
+.hifi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 16px;margin-bottom:28px}
+.hifi-item{display:flex;flex-direction:column;align-items:center;gap:10px}
+.cap-box{width:100%;max-width:244px;background:var(--c);border:1px solid var(--ln);border-radius:12px;padding:11px 13px}
+.cap-title{font-size:.8rem;font-weight:800;color:var(--ink);display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.cap-title span{font-size:.65rem;color:var(--pd);background:var(--ps);padding:2px 7px;border-radius:99px}
+.cap-desc{font-size:.72rem;color:var(--m);line-height:1.38}
+
+@media(max-width:960px){.stage,.ia-cols4,.hifi-grid,.wf-row-wrap{grid-template-columns:repeat(2,1fr)}.ph:nth-child(n){transform:none}.ov,.g2,.g3,.g5,.ps,.res,.pc,.egrid,.ia-cols{grid-template-columns:1fr}.ia-bus,.ia-col::before{display:none}.g4{grid-template-columns:repeat(2,1fr)}.ehub{display:none}.qs,.qt,.qdo,.qf{padding:15px}.pcol{min-height:230px}}
+@media(max-width:560px){.stage,.g4,.ia-cols4,.hifi-grid,.wf-row-wrap{grid-template-columns:1fr}}
+
+/* illustrated avatars in place of stock photos */
+.avx{position:relative;display:grid;place-items:center;width:100%;height:100%;background:radial-gradient(60% 50% at 30% 20%,rgba(255,255,255,.28),transparent 70%),linear-gradient(145deg,var(--a),var(--b));color:#fff;overflow:hidden}
+.avx::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1.4px) 0 0/18px 18px}
+.avx svg{position:relative;width:88px;height:88px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.92;margin-bottom:56px}
+.avx b{position:relative;font:600 clamp(72px,9vw,120px)/1 "Instrument Serif",Georgia,serif;font-weight:400;margin-bottom:12%;text-shadow:0 8px 24px rgba(0,0,0,.25)}
+.avx-s b{font-size:44px;margin:0}
+.avx-p b{margin-bottom:64px}
+
+/* audience cards: real product screens rising out of the card */
+.aud{height:440px}
+.ascr{background:linear-gradient(180deg,transparent 38%,rgba(8,14,10,.55) 62%,rgba(8,14,10,.96) 100%)}
+.avs{position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 28%,rgba(255,255,255,.3),transparent 72%),linear-gradient(150deg,var(--a),var(--b));overflow:hidden}
+.avs::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.16) 1px,transparent 1.4px) 0 0/18px 18px}
+.avs::after{content:"";position:absolute;left:12%;right:12%;top:8%;height:50%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.35),transparent);filter:blur(26px)}
+.aph{position:absolute;z-index:1;display:block;width:46%;padding:5px;border-radius:24px;background:linear-gradient(150deg,#3A3D42,#0C0D0F 45%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),0 26px 40px -12px rgba(0,0,0,.65);transition:rotate .6s cubic-bezier(.2,.7,.2,1),translate .6s cubic-bezier(.2,.7,.2,1)}
+.aph img{display:block;width:100%;height:auto;border-radius:19px}
+.aph::after{content:"";position:absolute;inset:5px;border-radius:19px;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.22),transparent 36%)}
+.aph.b{left:7%;top:44px;rotate:-8deg;filter:brightness(.86)}
+.aph.f{right:7%;top:88px;rotate:6deg;z-index:2}
+.aph.paper{width:62%;padding:0;border-radius:6px;background:#fff;top:150px;right:5%;rotate:-4deg}
+.aph.paper img{border-radius:6px}
+.aph.paper::after{inset:0;border-radius:6px}
+.aud:hover .aph.b{rotate:-11deg;translate:-8px 6px}
+.aud:hover .aph.f{rotate:3deg;translate:8px -12px}
+.ascr h3,.ascr p,.apil{position:relative;z-index:3}
+@media (prefers-reduced-motion:reduce){.aph{transition:none}}
+
+/* audience cards: stock photos full-bleed, a real product screen floating on top */
+.avs{background:none;isolation:isolate;z-index:0}
+.avs::before,.avs::after{display:none}
+.avs .bgph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);transform:scale(1.04);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.aud:hover .bgph{transform:scale(1.1)}
+.avs .tint{position:absolute;inset:0;background:linear-gradient(160deg,color-mix(in srgb,var(--a) 48%,transparent),transparent 62%)}
+.ascr{z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,transparent 26%,transparent 44%,rgba(8,14,10,.78) 70%,rgba(8,14,10,.96) 100%)}
+.aph.solo{left:auto;right:7%;top:34px;width:38%;rotate:5deg}
+.aph.paper.l{left:6%;right:auto;top:62px;width:52%;rotate:-5deg}
+.aud:hover .aph.solo{rotate:2deg;translate:6px -8px}
+.aud:hover .aph.paper.l{rotate:-2deg;translate:-4px -6px}
+.aud-credit{margin:10px 4px 0;font-size:.7rem;color:var(--m)}
+/* ===== Visual-first sections 01–10 (no product screens before the final visual design) ===== */
+.vi{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.v-lead{max-width:780px;margin:-4px 0 30px;font-size:clamp(1.2rem,2.3vw,1.65rem);font-weight:700;letter-spacing:-.025em;line-height:1.3}.v-ic{position:relative;display:grid;place-items:center;width:72px;height:72px;border-radius:22px;background:linear-gradient(145deg,var(--p),var(--pd));color:#fff;font-size:30px;box-shadow:0 14px 28px -12px rgba(23,148,40,.7),inset 0 0 0 1px rgba(255,255,255,.18)}.v-ic i{position:absolute;top:-8px;right:-8px;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ob);font-size:.66rem;font-style:normal;font-weight:800;color:#fff;box-shadow:0 0 0 3px var(--bg)}/* 01 chain */
+.v-chain{display:grid;grid-template-columns:repeat(5,1fr);margin:0 0 26px;padding:34px 12px 28px;list-style:none;border-radius:var(--rx);background:radial-gradient(60% 90% at 50% 0,rgba(23,148,40,.14),transparent 70%),var(--c);border:1px solid var(--ln)}.v-chain li{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}.v-chain li:nth-child(1) .v-ic{background:linear-gradient(145deg,#2A3A2E,#0B140D)}.v-chain li:nth-child(4) .v-ic{background:linear-gradient(145deg,#F59E0B,#B45309)}.v-chain li:nth-child(5) .v-ic{background:linear-gradient(145deg,#2563EB,#1E3A8A)}.v-chain li:not(:last-child)::after{content:"";position:absolute;top:35px;left:calc(50% + 46px);width:calc(100% - 92px);height:2px;background:repeating-linear-gradient(90deg,var(--p) 0 7px,transparent 7px 14px)}.v-chain b{margin-top:8px;font-size:1.02rem}.v-chain small{max-width:16ch;font-size:.78rem;line-height:1.35;color:var(--m)}.v-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;list-style:none}.v-facts li{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:var(--rl);background:var(--c);border:1px solid var(--ln);font-size:.9rem;font-weight:700}.v-facts li>.vi{width:42px;height:42px;padding:10px;border-radius:14px;background:var(--ps);color:var(--pd)}.v-facts small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--m)}/* 02 outcomes */
+.v-out{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.v-out article{position:relative;padding:28px;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}.v-out article::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--ac)}.v-out article:hover{transform:translateY(-6px);box-shadow:0 26px 44px -26px var(--ac)}.v-bigic{display:grid;place-items:center;width:68px;height:68px;margin-bottom:18px;border-radius:22px;background:linear-gradient(145deg,var(--ac),color-mix(in srgb,var(--ac) 55%,#000));color:#fff;font-size:30px;box-shadow:0 16px 28px -14px var(--ac)}.v-out em{font-size:.72rem;font-style:normal;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ac)}.v-out h3{margin:4px 0 18px;font-size:1.3rem;letter-spacing:-.02em}.v-out ul{display:grid;gap:10px;list-style:none}.v-out li{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;background:color-mix(in srgb,var(--ac) 8%,#fff);font-size:.9rem;font-weight:600}.v-out li .vi{width:30px;height:30px;padding:6px;border-radius:10px;background:#fff;color:var(--ac);box-shadow:0 0 0 1px color-mix(in srgb,var(--ac) 22%,transparent)}/* 03 before / after */
+.v-ba{display:grid;grid-template-columns:1fr 60px 1fr;gap:16px;align-items:stretch}.v-bad,.v-good{padding:28px;border-radius:var(--rx);color:#fff}.v-bad{background:radial-gradient(70% 50% at 0 0,rgba(220,38,38,.28),transparent 70%),#140C0C}.v-good{background:radial-gradient(70% 50% at 100% 0,rgba(255,255,255,.22),transparent 70%),linear-gradient(150deg,#179428,#0B4A14)}.v-bad h3,.v-good h3{margin:18px 0 10px;font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}.v-bad ul,.v-good ul{display:grid;grid-template-columns:1fr 1fr;gap:10px;list-style:none}.v-bad li,.v-good li{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);font-size:.86rem;font-weight:600;line-height:1.25}.v-bad li .vi{width:30px;height:30px;padding:6px;border-radius:10px;background:rgba(248,113,113,.18);color:#FCA5A5}.v-good li .vi{width:30px;height:30px;padding:6px;border-radius:10px;background:rgba(255,255,255,.2);color:#fff}.v-arrow{align-self:center;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:var(--ob);color:#fff;font-size:26px;box-shadow:0 0 0 6px var(--bg),0 16px 28px -12px rgba(0,0,0,.5)}.v-goal{display:flex;gap:12px;align-items:flex-start;margin-top:18px;padding:16px;border-radius:16px;background:rgba(255,255,255,.14);font-size:.88rem;line-height:1.45}.v-goal .vi{width:26px;height:26px;margin-top:2px}.v-goal b{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75}/* 04 process */
+.v-steps{display:grid;grid-template-columns:repeat(5,1fr);padding:34px 10px 30px;list-style:none;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln)}.v-steps li{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}.v-steps li:not(:last-child)::after{content:"";position:absolute;top:35px;left:calc(50% + 46px);width:calc(100% - 92px);height:2px;background:linear-gradient(90deg,var(--p),var(--pb))}.v-steps b{margin-top:10px;font-size:1.05rem}.v-steps em{padding:3px 12px;border-radius:99px;background:var(--ps);font-size:.68rem;font-style:normal;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--pd)}.v-steps small{max-width:17ch;font-size:.8rem;line-height:1.35;color:var(--m)}/* 06 research */
+.v-meth{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;list-style:none}.v-meth li{display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:99px;background:var(--c);border:1px solid var(--ln);font-size:.82rem;font-weight:700}.v-meth li .vi{font-size:18px;color:var(--p)}.v-res{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}.v-panel,.v-obs{padding:26px 28px;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln)}.v-panel h3,.v-obs h3{display:flex;align-items:center;gap:12px;margin-bottom:20px;font-size:1.05rem}.v-panel h3 span,.v-obs h3 span{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--ac);color:#fff;font-size:20px}.v-obs h3 span{background:var(--ob)}.v-panel h3 span{background:var(--ac)}.v-bars{display:grid;gap:20px;list-style:none}.v-bars li{display:grid;grid-template-columns:104px 1fr;grid-template-rows:auto auto;column-gap:16px;row-gap:8px;align-items:center}.v-bars b{grid-row:1/3;font-size:2.6rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--ac)}.v-bars b sup{font-size:1.1rem;font-weight:800;vertical-align:top;margin-left:2px}.v-bars span{font-size:.88rem;font-weight:600;line-height:1.35}.v-bars i{display:block;height:12px;border-radius:99px;background:color-mix(in srgb,var(--ac) 12%,#fff);overflow:hidden}.v-bars u{display:block;width:var(--w);height:100%;border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--ac) 60%,#fff),var(--ac))}
+@keyframes vgrow{from{width:0}}
+@supports (animation-timeline:view()){.v-bars u{animation:vgrow linear both;animation-timeline:view();animation-range:entry 5% cover 30%}}.v-obs ul{display:flex;flex-wrap:wrap;gap:10px;list-style:none}.v-obs li{display:inline-flex;align-items:center;gap:10px;padding:10px 16px 10px 12px;border-radius:14px;background:var(--w1);border:1px solid var(--ln);font-size:.86rem;font-weight:700}.v-obs li .vi{width:28px;height:28px;padding:6px;border-radius:9px;background:#FEF2F2;color:var(--red)}.v-take{display:flex;gap:14px;align-items:flex-start;margin-top:18px;padding:20px 24px;border-radius:var(--rl);background:var(--ob);color:#fff;font-size:.95rem;line-height:1.5}.v-take .vi{width:30px;height:30px;padding:6px;border-radius:10px;background:var(--p);flex:none}.v-take b{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#86EFAC}/* 07 personas */
+.v-pcs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.v-pc{display:flex;flex-direction:column;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}.v-pc:hover{transform:translateY(-6px);box-shadow:0 28px 46px -28px var(--ac)}.v-pc-h{position:relative;display:flex;align-items:center;gap:14px;padding:24px 24px 22px;background:radial-gradient(60% 90% at 90% 0,rgba(255,255,255,.3),transparent 70%),linear-gradient(145deg,var(--ac),var(--d));color:#fff}.v-pc-h i{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.2);box-shadow:inset 0 0 0 2px rgba(255,255,255,.5);font:400 2rem "Instrument Serif",Georgia,serif;font-style:normal}.v-pc-h b{display:block;font-size:1.25rem;letter-spacing:-.02em}.v-pc-h span{display:block;max-width:20ch;font-size:.76rem;line-height:1.35;opacity:.9}.v-pc-h em{position:absolute;top:18px;right:18px;padding:4px 12px;border-radius:99px;background:rgba(0,0,0,.28);font-size:.66rem;font-style:normal;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.v-q{padding:22px 24px 6px;font-size:1.02rem;font-weight:700;letter-spacing:-.015em;line-height:1.4}.v-q em{font-style:normal;color:var(--ac);box-shadow:inset 0 -.4em 0 color-mix(in srgb,var(--ac) 18%,transparent)}.v-gl,.v-pn{display:grid;gap:8px;padding:14px 24px 0;list-style:none}.v-gl li,.v-pn li{display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600}.v-gl li .vi,.v-pn li .vi{width:24px;height:24px;padding:5px;border-radius:50%}.v-gl li .vi{background:color-mix(in srgb,var(--ac) 16%,#fff);color:var(--d)}.v-pn li .vi{background:#FEF2F2;color:var(--red)}.v-pn{padding-top:10px;margin-top:10px;border-top:1px dashed var(--ln)}.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding:18px 24px 24px}.v-chips span{padding:6px 12px;border-radius:99px;background:color-mix(in srgb,var(--ac) 11%,#fff);font-size:.74rem;font-weight:700;color:var(--d)}/* 08 empathy */
+.v-emps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.v-em{padding:22px;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln);border-top:5px solid var(--ac)}.v-em-h{display:flex;align-items:center;gap:14px;margin-bottom:18px}.v-em-h i{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--ac);color:#fff;font:400 1.7rem "Instrument Serif",Georgia,serif;font-style:normal}.v-em-h b{display:block;font-size:1.08rem}.v-em-h span{font-size:.78rem;color:var(--m)}.v-quad{display:grid;grid-template-columns:1fr 1fr;gap:10px}.v-quad>div{padding:14px;border-radius:16px;--q:#2563EB}.v-quad .q-thinks{--q:#7C3AED}.v-quad .q-does{--q:#D97706}.v-quad .q-feels{--q:#DC2626}.v-quad>div{background:color-mix(in srgb,var(--q) 9%,#fff);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--q) 20%,transparent)}.v-quad span{display:flex;align-items:center;gap:7px;margin-bottom:8px;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--q)}.v-quad span .vi{width:20px;height:20px;padding:3px;border-radius:7px;background:#fff}.v-quad p{font-size:.84rem;font-weight:600;line-height:1.4}/* 09 JTBD */
+.v-jt{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.v-jcol h3{font-size:1.1rem;color:var(--ac)}.v-jcol small{display:block;margin-bottom:12px;font-size:.78rem;color:var(--m)}.v-job{position:relative;display:grid;gap:8px;margin-bottom:16px;padding:18px;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln);list-style:none}.v-job::before{content:"";position:absolute;left:34px;top:46px;bottom:46px;width:2px;background:repeating-linear-gradient(var(--ac) 0 5px,transparent 5px 10px);opacity:.5}.v-job li{position:relative;padding:12px 14px 12px 58px;border-radius:14px;background:color-mix(in srgb,var(--ac) 7%,#fff);font-size:.88rem;font-weight:700;line-height:1.35}.v-job li span{position:absolute;left:12px;top:50%;translate:0 -50%;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ac);color:#fff;font-size:0;gap:0}.v-job li span .vi{font-size:18px;width:18px;height:18px}.v-job li::before{display:block;margin-bottom:2px;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ac)}.v-job li:nth-child(1)::before{content:"When"}.v-job li:nth-child(2)::before{content:"I want to"}.v-job li:nth-child(3)::before{content:"So I can"}/* 10 define */
+.v-sub{display:flex;align-items:center;gap:12px;margin:38px 0 16px;font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--m)}.v-sub::after{content:"";flex:1;height:1px;background:var(--ln)}.v-roots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.v-roots article{padding:26px 22px;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln)}.v-roots .v-ic{width:60px;height:60px;border-radius:20px;font-size:26px;background:linear-gradient(145deg,#DC2626,#7F1D1D);box-shadow:0 14px 26px -12px rgba(220,38,38,.6)}.v-roots b{display:block;margin:16px 0 6px;font-size:1.02rem}.v-roots p{font-size:.84rem;line-height:1.45;color:var(--m)}.v-probs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.v-probs article{position:relative;padding:24px;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln);border-top:5px solid var(--ac)}.v-probs article::before{content:"“";position:absolute;right:20px;top:8px;font:400 5rem/1 "Instrument Serif",Georgia,serif;color:color-mix(in srgb,var(--ac) 22%,transparent)}.v-probs b{display:block;margin:10px 0 6px;font-size:1.02rem}.v-probs p{font-size:.9rem;line-height:1.45;color:var(--m)}.v-hmw{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;list-style:none}.v-hmw li{position:relative;display:flex;flex-direction:column;gap:12px;padding:20px 18px;border-radius:var(--rl);background:var(--ob);color:#fff}.v-hmw i{position:absolute;top:14px;right:16px;font-size:.72rem;font-style:normal;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.4)}.v-hmw span{display:grid;place-items:center;width:46px;height:46px;border-radius:15px;background:var(--p);font-size:22px}.v-hmw p{font-size:.88rem;font-weight:600;line-height:1.4}.v-mx{padding:8px 22px;border-radius:var(--rx);background:var(--c);border:1px solid var(--ln)}.v-mx .r{display:grid;grid-template-columns:1fr repeat(3,92px);align-items:center;min-height:52px;border-bottom:1px solid var(--ln);font-size:.9rem;font-weight:600}.v-mx .r:last-child{border-bottom:0}.v-mx .h{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--m)}.v-mx .h b{text-align:center}.v-mx .r>span:not(:first-child){display:grid;place-items:center}.v-mx .ok,.v-mx .no{width:28px;height:28px;border-radius:50%;font-size:16px}.v-mx .ok{background:var(--p);color:#fff}.v-mx .no{background:#FEE2E2;color:var(--red)}.v-mx .na{width:10px;height:2px;border-radius:2px;background:var(--w3)}.v-met{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px;list-style:none}.v-met li{padding:26px 20px;border-radius:var(--rl);background:radial-gradient(70% 90% at 50% 0,rgba(23,148,40,.4),transparent 75%),var(--ob);text-align:center;color:#fff}.v-met b{display:block;font-size:2.6rem;font-weight:800;letter-spacing:-.04em;line-height:1.1;background:linear-gradient(180deg,#fff,#86EFAC);-webkit-background-clip:text;background-clip:text;color:transparent}.v-met span{font-size:.8rem;color:rgba(255,255,255,.7)}
+
+@media (max-width:1000px){.v-out,.v-pcs,.v-emps,.v-jt,.v-probs{grid-template-columns:1fr}.v-res,.v-roots{grid-template-columns:1fr 1fr}.v-hmw{grid-template-columns:repeat(2,1fr)}.v-facts,.v-met{grid-template-columns:1fr 1fr}.v-ba{grid-template-columns:1fr}.v-arrow{margin:0 auto;rotate:90deg}
+}
+@media (max-width:700px){.v-chain,.v-steps{grid-template-columns:1fr;gap:22px;padding:26px 18px;text-align:left}.v-chain li,.v-steps li{flex-direction:row;flex-wrap:wrap;align-items:center;text-align:left;column-gap:16px;gap:2px 16px}.v-chain li::after,.v-steps li::after{display:none!important}.v-chain .v-ic,.v-steps .v-ic{grid-row:1/3;margin-right:0}.v-chain b,.v-steps b{margin:0}.v-chain small,.v-steps small{max-width:none;flex-basis:100%;margin-left:88px;margin-top:-6px}.v-steps em{margin-left:0}.v-res,.v-roots,.v-hmw,.v-facts,.v-met{grid-template-columns:1fr}
+  .v-bad li,.v-good li{flex-direction:column;align-items:flex-start;gap:8px;padding:12px;font-size:.8rem}.v-bars li{grid-template-columns:84px 1fr}.v-bars b{font-size:2.1rem}.v-mx .r{grid-template-columns:1fr repeat(3,56px)}.v-panel,.v-obs,.v-bad,.v-good{padding:22px}
+}
+@media (prefers-reduced-motion:reduce){.v-bars u{animation:none}.v-out article,.v-pc{transition:none}}
+
+/* ===== Restrained premium layer: one accent (Cyberdine green) on warm neutrals ===== */
+.w{position:relative;isolation:isolate;overflow-x:clip}
+.w>section{position:relative;margin-bottom:104px}
+.w>section::before{content:"";position:absolute;left:-8%;top:-110px;width:min(640px,70%);height:340px;background:radial-gradient(closest-side,rgba(23,148,40,.085),transparent);z-index:-1;pointer-events:none}
+.w>section .kk{padding:6px 14px 6px 10px;border-radius:99px;background:var(--ps);color:var(--pd);box-shadow:inset 0 0 0 1px var(--pb)}
+.w>section .kk::before{width:7px;height:7px;border-radius:50%;background:var(--p)}
+.w>section .h2{font-size:clamp(2rem,3.8vw,3rem);letter-spacing:-.035em;line-height:1.08}
+.w>section .h2 em{padding-right:.08em;font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;font-size:1.14em;letter-spacing:-.01em;color:var(--p)}
+
+/* hairline cards with soft depth, nothing loud */
+.v-out article,.v-panel,.v-obs,.v-pc,.v-em,.v-job,.v-roots article,.v-probs article,.v-facts li,.v-mx,.v-chain,.v-steps{border:1px solid rgba(20,26,21,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 1px 2px rgba(20,26,21,.04),0 30px 56px -38px rgba(20,26,21,.3)}
+.v-ic::after,.v-bigic::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.32),transparent 50%);pointer-events:none}
+.v-bigic{position:relative}
+
+/* 01: dark first tile, then green; one soft green wash */
+.v-chain{background:radial-gradient(60% 140% at 50% -20%,rgba(23,148,40,.1),transparent 65%),var(--c)}
+.v-chain li:nth-child(n) .v-ic{background:linear-gradient(145deg,#22B03E,#0F6B1C);box-shadow:0 20px 34px -14px rgba(15,107,28,.75),inset 0 0 0 1px rgba(255,255,255,.22)}
+.v-chain li:nth-child(1) .v-ic{background:linear-gradient(145deg,#2E3F33,#0B140D);box-shadow:0 20px 34px -14px rgba(11,20,13,.8),inset 0 0 0 1px rgba(255,255,255,.16)}
+.v-chain li:not(:last-child)::after{opacity:.5}
+
+/* 02 */
+.v-out article{background:linear-gradient(180deg,color-mix(in srgb,var(--ac) 6%,#fff),#fff 40%)}
+.v-out article::before{height:4px}
+.v-bigic{background:linear-gradient(145deg,color-mix(in srgb,var(--ac) 75%,#fff),var(--ac));box-shadow:0 18px 30px -14px var(--ac)}
+
+/* 03: neutral dark for the problem, green for the solution */
+.v-bad{background:radial-gradient(70% 50% at 0 0,rgba(255,255,255,.08),transparent 70%),#12100E}
+.v-bad .bg.r{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
+.v-bad li .vi{background:rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
+.v-good{background:radial-gradient(70% 55% at 100% 0,rgba(255,255,255,.22),transparent 70%),linear-gradient(150deg,#1B9E33,#0B4A14)}
+.v-arrow{background:var(--ob)}
+
+/* 04 */
+.v-steps{background:radial-gradient(60% 140% at 50% -20%,rgba(23,148,40,.1),transparent 65%),var(--c)}
+.v-steps li:nth-child(n) .v-ic{background:linear-gradient(145deg,#22B03E,#0F6B1C);box-shadow:0 18px 30px -14px rgba(15,107,28,.7),inset 0 0 0 1px rgba(255,255,255,.22)}
+
+/* 06 */
+.v-bars b{color:var(--ac)}
+.v-bars i{background:color-mix(in srgb,var(--ac) 11%,#fff)}
+.v-bars u{background:linear-gradient(90deg,color-mix(in srgb,var(--ac) 55%,#fff),var(--ac))}
+.v-panel h3 span{background:linear-gradient(145deg,color-mix(in srgb,var(--ac) 80%,#fff),var(--ac));box-shadow:0 10px 18px -8px var(--ac)}
+.v-obs h3 span{background:var(--ob)}
+.v-obs li .vi{background:var(--ps);color:var(--pd)}
+.v-take{background:radial-gradient(60% 150% at 100% 0,rgba(23,148,40,.28),transparent 70%),#0B140D}
+
+/* 07: green family headers, neutral pains */
+.v-pc-h{background:radial-gradient(60% 100% at 100% 0,rgba(255,255,255,.3),transparent 65%),radial-gradient(55% 90% at 0 100%,rgba(0,0,0,.22),transparent 70%),linear-gradient(145deg,var(--ac),var(--d))}
+.v-pn li .vi{background:#EEF1EE;color:#6B766E}
+.v-pn li{color:var(--m)}
+
+/* 08: one tint for all four quadrants */
+.v-quad>div,.v-quad .q-thinks,.v-quad .q-does,.v-quad .q-feels{--q:#179428;background:#F5F8F5;box-shadow:inset 0 0 0 1px rgba(20,26,21,.06)}
+.v-quad span .vi{background:#fff;box-shadow:0 0 0 1px rgba(20,26,21,.06)}
+.v-em-h i{background:linear-gradient(145deg,color-mix(in srgb,var(--ac) 80%,#fff),var(--ac))}
+
+/* 09 */
+.v-job li{background:#F5F8F5}
+.v-job li span{background:linear-gradient(145deg,color-mix(in srgb,var(--ac) 80%,#fff),var(--ac))}
+.v-job::before{opacity:.35}
+
+/* 10: dark pain icons, dark tiles with green icons, neutral crosses */
+.v-roots .v-ic{background:linear-gradient(145deg,#2E3F33,#0B140D);box-shadow:0 18px 30px -14px rgba(11,20,13,.8)}
+.v-hmw li{background:radial-gradient(90% 75% at 100% 0,rgba(23,148,40,.3),transparent 70%),#0E1511}
+.v-hmw span{background:linear-gradient(145deg,#22B03E,#0F6B1C)}
+.v-mx .no{background:#EEF1EE;color:#6B766E}
+.v-met li{background:radial-gradient(75% 95% at 50% 0,rgba(23,148,40,.32),transparent 75%),#0B140D}
+.v-probs article{border-top:0}
+.v-probs article::after{content:"";position:absolute;inset:0 0 auto 0;height:4px;border-radius:var(--rx) var(--rx) 0 0;background:linear-gradient(90deg,var(--ac),color-mix(in srgb,var(--ac) 40%,#fff))}
+
+/* ===== Visual hierarchy: one scale, used in every section =====
+   L1 section title   clamp(2.5rem,5.2vw,4rem) / 800 / ink       (+ giant ghost numeral, rule underneath)
+   L1b section intro  1.05–1.25rem / 500 / muted
+   L2 group heading   1.35–1.75rem / 800 / ink, with a green tick
+   L3 card title      1.2–1.6rem  / 800 / ink
+   L4 body            .84–.95rem  / 500–600 / muted
+   L5 label           .68–.72rem  / 800 / caps, tracked, muted or green
+   Space: 128px between sections, 56px between groups, 18–24px inside groups.            */
+.w{counter-reset:sec}
+.w>section{counter-increment:sec;margin-bottom:128px}
+
+/* L1 — section header */
+.sh{position:relative;display:block;margin-bottom:46px;padding-bottom:30px;border-bottom:1px solid var(--ln)}
+.sh>div{max-width:920px}
+.sh::before{content:counter(sec,decimal-leading-zero);position:absolute;right:0;top:-40px;font:400 clamp(6rem,15vw,12rem)/1 "Instrument Serif",Georgia,serif;letter-spacing:-.04em;color:rgba(23,148,40,.1);pointer-events:none;user-select:none}
+.sh .kk{margin-bottom:18px}
+.sh .h2{font-size:clamp(2.5rem,5.2vw,4rem);font-weight:800;line-height:1.02;letter-spacing:-.045em;color:var(--ink)}
+.sh .h2 em{font-size:1.1em}
+.sh .h2-pre{display:block;margin-bottom:14px;font:800 .78rem/1 "Plus Jakarta Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--m)}
+.sh .sd{max-width:62ch;margin-top:18px;font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:500;line-height:1.55;color:var(--m)}
+.sh>.bg{margin-top:20px}
+
+/* L2 — group headings */
+.v-sub{margin:60px 0 24px;gap:16px;font-size:clamp(1.35rem,2.3vw,1.75rem);font-weight:800;letter-spacing:-.03em;text-transform:none;color:var(--ink)}
+.v-sub::before{content:"";width:30px;height:5px;border-radius:5px;background:var(--p)}
+.ia-board h3,.wf-head h3,.wf-board h3{font-size:clamp(1.3rem,2.1vw,1.65rem)!important;font-weight:800!important;letter-spacing:-.03em;color:var(--ink)}
+.ia-board h3::before,.wf-head h3::before,.wf-board h3::before{content:"";display:inline-block;width:5px;height:1.05em;margin-right:12px;vertical-align:-.12em;border-radius:5px;background:var(--p)}
+
+/* the one statement that matters most in 01 */
+.v-lead{max-width:24em;margin:0 0 38px;font-size:clamp(1.55rem,3vw,2.35rem);font-weight:800;line-height:1.18;letter-spacing:-.035em;color:var(--ink)}
+
+/* L3 — card titles */
+.v-out h3{font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.15}
+.v-pc-h b{font-size:1.6rem;font-weight:800;letter-spacing:-.03em}
+.v-em-h b{font-size:1.3rem;font-weight:800;letter-spacing:-.025em}
+.v-jcol h3{font-size:1.5rem;font-weight:800;letter-spacing:-.03em}
+.v-roots b,.v-probs b{font-size:1.25rem;font-weight:800;letter-spacing:-.025em;line-height:1.2}
+.v-panel h3,.v-obs h3{font-size:1.4rem;font-weight:800;letter-spacing:-.03em}
+.v-steps b{font-size:1.25rem;font-weight:800;letter-spacing:-.02em}
+.v-chain b{font-size:1.2rem;font-weight:800;letter-spacing:-.02em}
+.v-bad>.bg,.v-good>.bg{padding:0;background:none;border:0;font-size:1.65rem;font-weight:800;letter-spacing:-.035em;line-height:1.1;color:#fff}
+.v-bad>.bg.r{color:#fff}
+.v-good>.bg.g{color:#fff}
+.ascr h3{font-size:1.65rem;font-weight:800;letter-spacing:-.03em;line-height:1.12}
+.cap-title{font-size:1rem;font-weight:800;letter-spacing:-.01em}
+.cap-title span{font-size:.64rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+
+/* L4 — body copy reads clearly second */
+.v-out li,.v-bad li,.v-good li,.v-obs li{font-weight:600}
+.v-q{font-size:1.15rem;line-height:1.38}
+.v-roots p,.v-probs p,.cap-desc{font-size:.88rem;line-height:1.5;color:var(--m)}
+.cap-desc{font-size:.8rem}
+.ascr p{font-size:.9rem;line-height:1.5}
+
+/* L5 — labels */
+.v-gl::before,.v-pn::before{display:block;margin-bottom:2px;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.v-gl::before{content:"Goals";color:var(--pd)}
+.v-pn::before{content:"Pain points";color:var(--m)}
+.v-out em,.v-job li::before,.v-quad span,.v-take b,.v-goal b{font-weight:800;letter-spacing:.12em}
+
+/* big numbers carry the research */
+.v-bars b{font-size:3.2rem;letter-spacing:-.05em}
+.v-bars b sup{font-size:1.25rem}
+.v-bars span{font-size:.9rem;font-weight:600;color:var(--m)}
+.v-met b{font-size:3.2rem}
+
+@media (max-width:700px){
+  .w>section{margin-bottom:92px}
+  .sh{margin-bottom:34px;padding-bottom:22px}
+  .sh::before{top:-24px;font-size:6.2rem}
+  .sh .h2{font-size:clamp(2.2rem,10vw,2.8rem)}
+  .v-sub{margin:44px 0 18px}
+  .v-bars b{font-size:2.5rem}
+  .v-lead{font-size:1.5rem}
+}
+/* the serif accent word needs air after the tight sans tracking */
+.sh .h2 em{margin-inline:.1em}
+.sh .h2 em:first-child{margin-left:0}
+
+/* ===== Polish: alignment, spacing, states and legibility (scoped to the sections, hero untouched) ===== */
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.w>section ::selection{background:var(--pb);color:var(--ink)}
+.w>section :focus-visible{outline:3px solid rgba(23,148,40,.5);outline-offset:3px;border-radius:10px}
+
+/* type: balanced titles, tidy paragraphs, no collapsed word gaps, steady numerals */
+.w>section :is(.h2,h3,.v-sub,.v-lead){text-wrap:balance;word-spacing:.08em}
+.w>section p{text-wrap:pretty}
+.w>section :is(h3,.v-sub){letter-spacing:-.02em}
+.v-out h3,.v-pc-h b,.v-jcol h3,.v-panel h3,.v-obs h3,.ascr h3,.v-bad>.bg,.v-good>.bg{letter-spacing:-.022em;word-spacing:.08em}
+.w>section :is(.v-bars b,.v-met b,.cap-title,.v-mx,.v-facts,.v-hmw i,.sh::before){font-variant-numeric:tabular-nums lining-nums}
+
+/* jobs to be done: every row (When / I want to / So I can) sits on one shared grid across the three columns,
+   so labels, text and icons line up; one continuous line joins the icons */
+.v-jt{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto repeat(6,auto);gap:0 18px;align-items:start}
+.v-jcol{display:grid;grid-row:span 7;grid-template-rows:subgrid;row-gap:0;align-self:stretch}
+.v-jcol h3{margin:0}
+.v-jcol small{margin:4px 0 18px;font-size:.86rem}
+.v-job{grid-row:span 3;display:grid;grid-template-rows:subgrid;row-gap:16px;margin:0 0 18px;padding:20px;align-self:stretch}
+.v-jcol .v-job:last-child{margin-bottom:0}
+.v-job::before{display:none!important}
+.v-job li{position:relative;display:flex;flex-direction:column;justify-content:center;align-self:stretch;min-height:76px;padding:14px 16px 14px 62px;line-height:1.35}
+.v-job li span{top:50%!important;translate:0 -50%!important;z-index:1}
+.v-job li::before{margin-bottom:3px}
+.v-job li:not(:last-child)::after{content:"";position:absolute;left:29px;top:50%;width:2px;height:calc(50% + 54px);background:color-mix(in srgb,var(--ac) 38%,#fff);border-radius:2px;z-index:0}
+.v-jt .v-jcol{--ac:#179428!important}
+
+/* equal-height cards, content pinned sensibly */
+.v-out article,.v-pc,.v-em,.v-probs article,.v-roots article{height:100%}
+.v-out article{display:flex;flex-direction:column}
+.v-em{display:flex;flex-direction:column}.v-em .v-quad{flex:1}
+.v-panel{display:flex;flex-direction:column}.v-panel .v-bars{flex:1;align-content:space-around}
+.v-hmw li{justify-content:flex-start}.v-hmw p{margin-top:auto}
+
+/* every interactive-looking card responds the same way */
+.v-em,.v-job,.v-roots article,.v-probs article,.v-hmw li,.v-met li,.v-facts li,.v-panel,.v-obs,.v-meth li,.v-obs li,.aud{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.v-em:hover,.v-roots article:hover,.v-probs article:hover,.v-hmw li:hover,.v-met li:hover,.v-facts li:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 36px 56px -34px rgba(20,26,21,.42)}
+.v-obs li:hover,.v-meth li:hover{transform:translateY(-2px);box-shadow:0 14px 24px -16px rgba(20,26,21,.4)}
+.v-mx .r:not(.h){transition:background .2s}
+.v-mx .r:not(.h):hover{background:var(--ps);border-radius:12px}
+@media (prefers-reduced-motion:reduce){.v-em,.v-job,.v-roots article,.v-probs article,.v-hmw li,.v-met li,.v-facts li,.v-panel,.v-obs,.v-meth li,.v-obs li,.aud,.v-mx .r{transition:none}.v-em:hover,.v-roots article:hover,.v-probs article:hover,.v-hmw li:hover,.v-met li:hover,.v-facts li:hover,.v-obs li:hover,.v-meth li:hover{transform:none}}
+
+/* small text that was too small to read comfortably */
+.ia-box{font-size:.8rem;padding:10px 11px}
+.ia-box small{font-size:.72rem}
+.ia-home{font-size:.98rem;padding:12px 28px}
+.ia-home small{font-size:.74rem}
+.wf-cap{font-size:.82rem}
+.v-chain small{font-size:.82rem}
+.v-facts small,.v-quad span,.v-job li::before,.v-out em{font-size:.7rem}
+.v-chips span{font-size:.78rem}
+
+/* quiet details */
+.v-probs article::before{pointer-events:none}
+.v-bars li{align-items:center}
+.v-quad p{text-wrap:balance}
+.v-pcs,.v-emps,.v-out,.v-roots,.v-probs,.v-hmw,.v-met,.v-facts{align-items:stretch}
+.hifi-item .cap-box{border-radius:14px}
+
+@media (max-width:1000px){
+  .v-jt{display:block}
+  .v-jcol{display:block;grid-row:auto;margin-bottom:34px}
+  .v-job{display:grid;grid-row:auto;grid-template-rows:none;margin:0 0 16px}
+}
+
+/* jobs bubbles: circle + icon grouped in one SVG so the glyph is centred in the circle */
+.v-job li span.v-bub{display:block;width:34px;height:34px;padding:0;border-radius:0;background:none!important;box-shadow:none!important;font-size:0;line-height:0}
+.v-bub svg{display:block;width:34px;height:34px;overflow:visible;filter:drop-shadow(0 8px 10px color-mix(in srgb,var(--ac) 45%,transparent))}
+.v-bub .s1{stop-color:color-mix(in srgb,var(--ac) 78%,#fff)}
+.v-bub .s2{stop-color:var(--ac)}
+.v-bub .gl{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* persona photo avatar */
+.v-pc-h i.has-photo,.v-em-h i.has-photo{padding:0;overflow:hidden}
+.v-pc-h i.has-photo img,.v-em-h i.has-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:46% 36%;border-radius:50%}
+/* zoom the photo onto the face: scale about the face, then nudge the face to the circle's centre */
+.v-pc-h i.has-photo,.v-em-h i.has-photo{width:72px;height:72px}
+.v-em-h i.has-photo{width:60px;height:60px}
+.v-pc-h i.has-photo img,.v-em-h i.has-photo img{object-position:50% 50%;transform-origin:var(--to,47% 44%);transform:var(--tf,translate(3%,5%) scale(1.7))}
+/* role label gets its own line of space above the name so longer labels never touch it */
+.v-pc-h{padding-top:40px}
+.v-pc-h em{top:14px;right:16px;padding:4px 11px;font-size:.62rem;letter-spacing:.09em}
+/* the four number tiles now follow "How might we" directly, so give them their own breathing room */
+.v-hmw+.v-met{margin-top:44px}
+
+/* closing number tiles */
+.w>section:last-of-type{margin-bottom:64px}
+.v-end{margin-top:0}
+
+/* jobs columns: the persona's photo sits beside the column title */
+.v-jh{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.v-jh i.has-photo{display:block;flex:none;width:68px;height:68px;padding:0;border-radius:50%;overflow:hidden;background:#fff;box-shadow:0 0 0 3px #fff,0 0 0 4px color-mix(in srgb,var(--ac) 40%,transparent),0 14px 24px -10px rgba(20,26,21,.45)}
+.v-jh i.has-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;border-radius:50%;transform-origin:var(--to,47% 44%);transform:var(--tf,none)}
+.v-jh h3{margin:0}
+.v-jh small{display:block;margin:4px 0 0;font-size:.86rem}
+
+/* problem statements: the persona's photo beside the name */
+.v-phd{display:flex;align-items:center;gap:14px;margin:14px 0 10px}
+.v-phd b{margin:0!important}
+.v-phd i.has-photo{display:block;flex:none;width:60px;height:60px;padding:0;border-radius:50%;overflow:hidden;background:#fff;box-shadow:0 0 0 3px #fff,0 0 0 4px color-mix(in srgb,var(--ac) 40%,transparent),0 12px 22px -10px rgba(20,26,21,.45)}
+.v-phd i.has-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;border-radius:50%;transform-origin:var(--to,47% 44%);transform:var(--tf,none)}
+
+/* ---- final screens: aligned rows, softer shadows, printer paper for the KOT and the bill ---- */
+.ipf{box-shadow:0 14px 26px -16px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.05)}
+.desk-frame{box-shadow:0 12px 26px -18px rgba(15,23,42,.22)}
+.v-out article,.v-panel,.v-obs,.v-pc,.v-em,.v-job,.v-roots article,.v-probs article,.v-facts li,.v-mx,.v-chain,.v-steps{box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 1px 2px rgba(20,26,21,.05),0 12px 24px -18px rgba(20,26,21,.22)}
+.v-em:hover,.v-roots article:hover,.v-probs article:hover,.v-hmw li:hover,.v-met li:hover,.v-facts li:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 18px 30px -22px rgba(20,26,21,.32)}
+.v-out article:hover,.v-pc:hover{box-shadow:0 18px 30px -22px rgba(20,26,21,.32)}
+.v-hmw li,.v-met li{box-shadow:0 12px 22px -18px rgba(20,26,21,.4)}
+.v-job,.v-obs li{box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 1px 2px rgba(20,26,21,.05)}
+.v-bub svg{filter:drop-shadow(0 4px 6px color-mix(in srgb,var(--ac) 35%,transparent))}
+.v-ic,.v-bigic,.v-chain li:nth-child(n) .v-ic,.v-steps li:nth-child(n) .v-ic,.v-roots .v-ic{box-shadow:0 10px 18px -12px rgba(15,107,28,.55),inset 0 0 0 1px rgba(255,255,255,.2)}
+
+/* each screen's caption sits on a shared row, so titles, boxes and tags line up across the row */
+@supports (grid-template-rows:subgrid){
+  .hifi-grid{row-gap:0;align-items:start}
+  .hifi-item{display:grid;grid-row:span 2;grid-template-rows:subgrid;justify-items:center;gap:0;align-self:stretch}
+  .hifi-item>.ipf,.hifi-item>.paper{align-self:start;margin-bottom:14px}
+  .hifi-item>.paper{align-self:center}
+  .hifi-item>.cap-box{align-self:stretch;margin-bottom:38px}
+}
+.cap-title{align-items:flex-start;gap:10px}
+.cap-title span{flex:none;margin-top:1px;white-space:nowrap}
+.hifi-item .cap-box{box-shadow:none}
+
+/* printed paper: a flat sheet with a perforated edge, no phone */
+.paper{position:relative;display:block;width:100%;max-width:244px;background:#fff;border:1px solid rgba(20,26,21,.09);border-bottom:0;border-radius:3px 3px 0 0;box-shadow:0 8px 16px -14px rgba(0,0,0,.35);cursor:zoom-in}
+.paper img{display:block;width:100%;height:auto}
+.paper::after{content:"";position:absolute;left:-1px;right:-1px;top:100%;height:9px;background:radial-gradient(circle at 7px -2px,transparent 6px,#fff 6.5px) 0 0/14px 9px repeat-x;filter:drop-shadow(0 1px 0 rgba(20,26,21,.1))}
+.paper-bill{max-width:172px}
+.paper-kot{max-width:244px}
+
+/* how might we: text sits straight under the icon, the same place in every tile */
+.v-hmw li{justify-content:flex-start}
+.v-hmw p{margin-top:0}
+
+/* outcome cards: every tile is the same size in all three cards; spare room stays below */
+.v-out ul{flex:none;grid-auto-rows:auto;align-content:start}
+
+/* hero logo */
+.brand-logo{display:block;width:auto;height:52px;object-fit:contain}
+
+/* operations screens: caption directly under its screen, same width and a steady minimum height */
+.hifi-grid.is-flow{align-items:start;row-gap:34px}
+.hifi-grid.is-flow .hifi-item{display:flex;flex-direction:column;align-items:center;grid-row:auto;grid-template-rows:none;gap:14px;align-self:start}
+.hifi-grid.is-flow .hifi-item>.ipf,.hifi-grid.is-flow .hifi-item>.paper,.hifi-grid.is-flow .hifi-item>.cap-box{margin-bottom:0;align-self:center}
+.hifi-grid.is-flow .hifi-item>.cap-box{width:100%;min-height:150px}
+
+/* outcome cards: every title reserves two lines, so a one-line title leaves its second line empty and all tile lists start together */
+@media (min-width:1001px){
+  .v-out h3{min-height:2.3em}
+}
+
+/* section header: no rule under it (the group headings carry their own); one steady gap down to the content */
+.sh{padding-bottom:0;margin-bottom:44px;border-bottom:0}
+.sh+.v-sub{margin-top:0}
+@media (max-width:700px){.sh{margin-bottom:32px}}
+
+.back-pill{position:fixed;left:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:99px;background:rgba(11,20,13,.9);color:#fff;font:700 .8rem/1 'Plus Jakarta Sans',sans-serif;text-decoration:none;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 10px 22px -12px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.14);transition:transform .25s,background .25s}
+.back-pill:hover{background:#179428;transform:translateY(-2px)}
+.back-pill:focus-visible{outline:3px solid rgba(23,148,40,.6);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="w">
+
+<!-- 00. HERO -->
+<header class="hero">
+  <div class="hnav">
+    <div class="brand"><img class="brand-logo" src="/work/cyberdine-case/images/logo/cyberdine-logo.png" alt="Cyberdine" width="134" height="72"></div>
+    <div class="hpills"><span>UI/UX Case Study</span><span>Hospitality &amp; POS SaaS</span><span>www.cyberdine.in</span></div>
+  </div>
+  <div class="hint">
+    <div class="htag">Cyberdine Digital Menu</div>
+    <h1>Revolutionize Dining With <em>Intelligent</em> Service</h1>
+    <p class="hlead">Connecting diners, captains, and kitchens in real time—from instant QR ordering and 1-tap waiter calls to wireless KOT and direct captain tipping.</p>
+    <div class="hmeta"><div><small>Role</small><strong>Design Lead (End-to-End)</strong></div><div><small>Timeline</small><strong>Oct 2024 – Aug 2025</strong></div><div><small>Locations</small><strong>Chennai &amp; Coimbatore</strong></div></div>
+  </div>
+  <div class="stage">
+    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Cyberdine-750.webp" alt="Welcome Screen" /></div></div></div><div class="pcap"><b>01</b>Table Entry &amp; Waiter Call</div></div>
+    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Our%20Menu-750.webp" alt="Our Menu" /></div></div></div><div class="pcap"><b>02</b>Smart Search &amp; Filters</div></div>
+    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/z%20tip-750.webp" alt="My Orders & Tip" /></div></div></div><div class="pcap"><b>03</b>Live Orders &amp; Tipping</div></div>
+    <div class="ph"><div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Manage%20Tables-750.webp" alt="Admin Manage Tables" /></div></div></div><div class="pcap"><b>04</b>Manage Tables (Admin)</div></div>
+  </div>
+</header>
+
+<!-- 01. OVERVIEW -->
+<section><div class="sh"><div><h2 class="h2">Introducing <em>Cyberdine</em></h2></div><span class="bg g">Hospitality – Restaurant Tech</span></div><p class="v-lead">One QR on every table connects diners, captains and the kitchen in real time.</p><ol class="v-chain"><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h3M20 17v4"/></svg></span><b>Table QR</b><small>Carries the table number</small></li><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><b>Diner</b><small>Menu · Call · Tip</small></li><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span><b>Captain</b><small>Alerts · Search · KOT</small></li><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg></span><b>Kitchen</b><small>Wireless KOT</small></li><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/></svg></span><b>Admin</b><small>Menus · Billing · Sales</small></li></ol><ul class="v-facts"><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span><small>My role</small>Design Lead (UI/UX)</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><small>Duration</small>Oct 2024 – Aug 2025</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><small>Markets</small>Chennai &amp; Coimbatore</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><span><small>Modules</small>QR Menu • Captain • POS</span></li></ul></section>
+
+<!-- 02. KEY OUTCOMES -->
+<section><div class="sh"><div><h2 class="h2">Key <em>Outcomes</em> Delivered</h2></div><p class="sd">Every table QR code is embedded with its table number—turning a static table into a live service bridge.</p></div><div class="v-out"><article style="--ac:#179428"><span class="v-bigic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><em>01 · Diner</em><h3>Instant, discreet control</h3><ul><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Multi-language</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Instant menu</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>1-tap call</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Live tracking</li></ul></article><article style="--ac:#2F4A36"><span class="v-bigic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span><em>02 · Floor</em><h3>Zero-delay operations</h3><ul><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>POS sync</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>Wireless KOT</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Keyword search</li></ul></article><article style="--ac:#0F6B1C"><span class="v-bigic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><em>03 · Admin</em><h3>Real-time growth</h3><ul><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Time-based menus</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Custom themes</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/></svg>Sales insights</li></ul></article></div></section>
+
+<!-- 03. PROBLEM & SOLUTION -->
+<section><div class="sh"><div><h2 class="h2">Problem &amp; <em>Solution</em></h2></div></div><div class="v-ba"><div class="v-bad"><span class="bg r">The broken dining floor</span><h3>Guests</h3><ul><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Sold-out surprises</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1"/></svg><span>Price mismatches</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>No search or filters</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Waiting for eye contact</span></li></ul><h3>Staff &amp; owners</h3><ul><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><span>Torn paper menus</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M18 20a6 6 0 0 0-3-5.2"/></svg><span>3–4 menus per table</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span>Forgotten calls</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h10M7 9h10M9 5c4.5 0 6.5 2 6.5 4S13.5 13 9 13h-.5L16 20"/></svg><span>Lost UPI tips</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>“DRY” search fails</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 4-2.4M22 8.8a15 15 0 0 0-8-3.7M5 12.9a10 10 0 0 1 5-2.7M19 12.9a10 10 0 0 0-2.2-1.9M8.5 16.4a5 5 0 0 1 7 0M12 20h.01M3 3l18 18"/></svg><span>Wi-Fi drops</span></li></ul></div><span class="v-arrow"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span><div class="v-good"><span class="bg g">The Cyberdine solution</span><h3>One ecosystem</h3><ul><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span>Live stock</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span>1-tap waiter call</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span>Multi-language menus</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>Substring search</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg><span>Wireless KOT</span></li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h10M7 9h10M9 5c4.5 0 6.5 2 6.5 4S13.5 13 9 13h-.5L16 20"/></svg><span>Digital tipping</span></li></ul><p class="v-goal"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg><span><b>Design goal</b> Effortless, hygienic dining for guests; faster, fairer work for captains; instant control for owners.</span></p></div></div></section>
+
+<!-- 04. DESIGN PROCESS -->
+<section><div class="sh"><div><h2 class="h2">Design <em>Process</em></h2></div><p class="sd">Collaborating with PMs, developers, and owners while keeping accessibility and business goals in mind.</p></div><ol class="v-steps"><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><i>01</i></span><b>Empathize</b><em>Discovery</em><small>Interviews, surveys, personas</small></li><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg><i>02</i></span><b>Define</b><em>Synthesis</em><small>Problems, HMWs, IA</small></li><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><i>03</i></span><b>Ideate</b><em>Explore</em><small>Flows and low-fi concepts</small></li><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg><i>04</i></span><b>Prototype</b><em>Craft</em><small>Wireframes to hi-fi Figma</small></li><li><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><i>05</i></span><b>Test</b><em>Validate</em><small>Usability tests, iteration</small></li></ol></section>
+
+<!-- 05. TARGET AUDIENCE -->
+<section>
+  <div class="sh"><div><h2 class="h2">Target <em>Audience</em></h2></div><p class="sd">Three interconnected user groups shaping every workflow inside Cyberdine.</p></div>
+  <div class="g3">
+    <article class="aud"><div class="avs" style="--a:#179428;--b:#0F6B1C" aria-hidden="true"><img class="bgph" src="/work/cyberdine-case/images/stock/restaurant-customers-1400.webp" width="1400" height="933" alt="" loading="lazy" decoding="async" style="--pos:50% 50%"></div><div class="ascr"><span class="apil">Diners &amp; Families</span><div><h3>Restaurant Customers</h3><p>Guests seeking visual, accurate, native-language menus and polite service without waiting.</p></div></div></article>
+    <article class="aud"><div class="avs" style="--a:#F59E0B;--b:#B45309" aria-hidden="true"><img class="bgph" src="/work/cyberdine-case/images/stock/waiter-serving-1000.webp" width="1000" height="563" alt="" loading="lazy" decoding="async" style="--pos:86% 50%"></div><div class="ascr"><span class="apil">Floor &amp; Kitchen</span><div><h3>Captains &amp; Chefs</h3><p>Waiters managing assigned tables and chefs relying on instant wireless KOTs.</p></div></div></article>
+    <article class="aud"><div class="avs" style="--a:#2563EB;--b:#1E3A8A" aria-hidden="true"><img class="bgph" src="/work/cyberdine-case/images/stock/restaurant-counter-1000.webp" width="1000" height="750" alt="" loading="lazy" decoding="async" style="--pos:50% 50%"></div><div class="ascr"><span class="apil">Management</span><div><h3>Admins &amp; Owners</h3><p>Partners updating menus live, closing bills, and growing Google Reviews.</p></div></div></article>
+  </div>
+</section>
+
+<!-- 06. USER RESEARCH -->
+<section><div class="sh"><div><h2 class="h2">User Research &amp; <em>Findings</em></h2></div><p class="sd">Google Forms, WhatsApp interviews, and direct field visits during peak restaurant hours.</p></div><ul class="v-meth"><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Google Forms</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v12H10l-5 4z"/><path d="M9 9h6"/></svg>WhatsApp interviews</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="13" cy="4.5" r="2"/><path d="M7 21l3-7 3 2v5M10 14l1-5 4 2 2 3M11 9 8 11"/></svg>Field visits at peak hours</li></ul><div class="v-res"><div class="v-panel" style="--ac:#179428"><h3><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M18 20a6 6 0 0 0-3-5.2"/></svg></span>Diners</h3><ul class="v-bars" style="--ac:#179428"><li><b>90<sup>%</sup></b><span>need 1-tap waiter calls &amp; filters</span><i><u style="--w:90%"></u></i></li><li><b>80<sup>%</sup></b><span>want live availability &amp; photos</span><i><u style="--w:80%"></u></i></li><li><b>50<sup>%</sup></b><span>(elderly) need native languages</span><i><u style="--w:50%"></u></i></li><li><b>20<sup>%</sup></b><span>avoid shared physical menus</span><i><u style="--w:20%"></u></i></li></ul></div><div class="v-panel" style="--ac:#141A15"><h3><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/></svg></span>Owners &amp; management</h3><ul class="v-bars" style="--ac:#141A15"><li><b>100<sup>%</sup></b><span>can’t update prices or Today’s Specials fast</span><i><u style="--w:100%"></u></i></li><li><b>80<sup>%</sup></b><span>face damaged menus</span><i><u style="--w:80%"></u></i></li><li><b>70<sup>%</sup></b><span>want easy dish tests, cheap waiter calls, review prompts</span><i><u style="--w:70%"></u></i></li></ul></div></div><div class="v-obs"><h3><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>Captain field observations</h3><ul><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M18 20a6 6 0 0 0-3-5.2"/></svg>4 menus per table</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>Forgotten calls</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>“DRY” search fails</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 4-2.4M22 8.8a15 15 0 0 0-8-3.7M5 12.9a10 10 0 0 1 5-2.7M19 12.9a10 10 0 0 0-2.2-1.9M8.5 16.4a5 5 0 0 1 7 0M12 20h.01M3 3l18 18"/></svg>Wi-Fi drops</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h10M7 9h10M9 5c4.5 0 6.5 2 6.5 4S13.5 13 9 13h-.5L16 20"/></svg>UPI erased cash tips</li></ul></div><p class="v-take"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span><b>Research outcome</b> Diners want visual clarity and discreet control; captains and owners need speed, steady sync and live flexibility.</span></p></section>
+
+<!-- 07. USER PERSONAS -->
+<section><div class="sh"><div><h2 class="h2">User <em>Personas</em></h2></div><p class="sd">Three personas distilled from restaurant interviews and rush-hour observation.</p></div><div class="v-pcs"><article class="v-pc" style="--ac:#179428;--d:#0F6B1C"><div class="v-pc-h"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" width="640" height="640" loading="lazy" decoding="async" style="--to:47% 44%;--tf:translate(3%,5%) scale(1.7)"></i><div><b>Avanthika</b><span>26 · Working professional · Chennai</span></div><em>Diner</em></div><p class="v-q">“I want to focus on my <em>first date</em>—not wave across a busy room for a waiter.”</p><ul class="v-gl"><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Browse privately with photos</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Call the captain in 1 tap</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>See live, dinner-time dishes</li></ul><ul class="v-pn"><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Sold-out surprises</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Waiting for eye contact</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Breakfast items at dinner</li></ul><div class="v-chips"><span>1-Tap QR Call</span><span>Live Stock</span><span>Time-Based Menu</span></div></article><article class="v-pc" style="--ac:#2F4A36;--d:#101A13"><div class="v-pc-h"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" width="640" height="640" loading="lazy" decoding="async" style="--to:52% 37%;--tf:translate(-1%,7%) scale(1.3)"></i><div><b>Manigandan</b><span>45 · Senior captain · Coimbatore</span></div><em>Captain</em></div><p class="v-q">“During rush hour, my tools should <em>save me seconds</em>, not slow me down.”</p><ul class="v-gl"><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>See only his assigned tables</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Search dishes by keyword</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Get UPI tips digitally</li></ul><ul class="v-pn"><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>3–4 menus per group</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Prefix-only POS search</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Lost tip income</li></ul><div class="v-chips"><span>“DRY” Substring Search</span><span>Assigned Alerts</span><span>UPI Tipping</span></div></article><article class="v-pc" style="--ac:#0F6B1C;--d:#064E15"><div class="v-pc-h"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" width="640" height="640" loading="lazy" decoding="async" style="--to:48% 30%;--tf:translate(2%,20%) scale(2.5)"></i><div><b>Karthikeyan</b><span>35 · Managing partner · Chennai / Coimbatore</span></div><em>Admin / Owner</em></div><p class="v-q">“Every menu reprint costs money, and every <em>delayed KOT</em> costs a repeat guest.”</p><ul class="v-gl"><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Oversee all tables, close bills</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Edit prices &amp; specials live</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Track sales, grow reviews</li></ul><ul class="v-pn"><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Torn menus, costly buzzers</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Slow dish tests, late KOTs</li><li><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>No real-time sales insight</li></ul><div class="v-chips"><span>All-Table Billing</span><span>Wireless KOT</span><span>Sales Insights</span></div></article></div></section>
+
+<!-- 08. EMPATHY MAPPING -->
+<section><div class="sh"><div><h2 class="h2">User Empathy <em>Mapping</em></h2></div><p class="sd">What each persona says, thinks, does, and feels during real restaurant service.</p></div><div class="v-emps"><article class="v-em" style="--ac:#179428"><div class="v-em-h"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" width="640" height="640" loading="lazy" decoding="async" style="--to:47% 44%;--tf:translate(3%,5%) scale(1.7)"></i><div><b>Avanthika, 26</b><span>First-date diner · Chennai</span></div></div><div class="v-quad"><div class="q-says"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Says</span><p>“That’s sold out? What’s available?”</p></div><div class="q-thinks"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17a5 5 0 0 1-1-9.8A6 6 0 0 1 17.5 8 4.5 4.5 0 0 1 17 17zM8 20h.01M5 22h.01"/></svg>Thinks</span><p>“Don’t want to wave on a first date.”</p></div><div class="q-does"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12V5a1.5 1.5 0 0 1 3 0v6M11 11V3.5a1.5 1.5 0 0 1 3 0V11M14 11V5.5a1.5 1.5 0 0 1 3 0V13M8 12l-1.5-1.5a1.5 1.5 0 0 0-2.2 2L8 18a6 6 0 0 0 5 3h1a5 5 0 0 0 5-5v-3"/></svg>Does</span><p>Cranes neck for waiter eye contact.</p></div><div class="q-feels"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg>Feels</span><p>Embarrassed by clumsy delays.</p></div></div></article><article class="v-em" style="--ac:#2F4A36"><div class="v-em-h"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" width="640" height="640" loading="lazy" decoding="async" style="--to:52% 37%;--tf:translate(-1%,7%) scale(1.3)"></i><div><b>Manigandan, 45</b><span>Senior captain · Coimbatore</span></div></div><div class="v-quad"><div class="q-says"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Says</span><p>“Which of my tables called first?”</p></div><div class="q-thinks"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17a5 5 0 0 1-1-9.8A6 6 0 0 1 17.5 8 4.5 4.5 0 0 1 17 17zM8 20h.01M5 22h.01"/></svg>Thinks</span><p>“‘DRY’ search should show all Dry items.”</p></div><div class="q-does"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12V5a1.5 1.5 0 0 1 3 0v6M11 11V3.5a1.5 1.5 0 0 1 3 0V11M14 11V5.5a1.5 1.5 0 0 1 3 0V13M8 12l-1.5-1.5a1.5 1.5 0 0 0-2.2 2L8 18a6 6 0 0 0 5 3h1a5 5 0 0 0 5-5v-3"/></svg>Does</span><p>Hauls 3–4 menus per family table.</p></div><div class="q-feels"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg>Feels</span><p>Undervalued after UPI cut cash tips.</p></div></div></article><article class="v-em" style="--ac:#0F6B1C"><div class="v-em-h"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" width="640" height="640" loading="lazy" decoding="async" style="--to:48% 30%;--tf:translate(2%,20%) scale(2.5)"></i><div><b>Karthikeyan, 35</b><span>Admin / owner</span></div></div><div class="v-quad"><div class="q-says"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Says</span><p>“Can’t reprint menus for every price edit.”</p></div><div class="q-thinks"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17a5 5 0 0 1-1-9.8A6 6 0 0 1 17.5 8 4.5 4.5 0 0 1 17 17zM8 20h.01M5 22h.01"/></svg>Thinks</span><p>“Need full visibility across all captains.”</p></div><div class="q-does"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12V5a1.5 1.5 0 0 1 3 0v6M11 11V3.5a1.5 1.5 0 0 1 3 0V11M14 11V5.5a1.5 1.5 0 0 1 3 0V13M8 12l-1.5-1.5a1.5 1.5 0 0 0-2.2 2L8 18a6 6 0 0 0 5 3h1a5 5 0 0 0 5-5v-3"/></svg>Does</span><p>Monitors pending &amp; active tables floor-wide.</p></div><div class="q-feels"><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg>Feels</span><p>Stressed by print waste &amp; KOT delays.</p></div></div></article></div></section>
+
+<!-- 09. JOBS-TO-BE-DONE -->
+<section><div class="sh"><div><h2 class="h2">Jobs-To-Be-Done <em>(JTBD)</em></h2></div><p class="sd">Concrete functional and emotional jobs every Cyberdine module must accomplish.</p></div><div class="v-jt"><div class="v-jcol" style="--ac:#179428"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" width="640" height="640" loading="lazy" decoding="async" style="--to:47% 44%;--tf:translate(3%,5%) scale(1.7)"></i><div><h3>Diner jobs</h3><small>Avanthika · QR web app</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb1" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb1)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>First date, crowded hall</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb2" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb2)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Call my captain with one tap</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb3" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb3)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Get help privately, mid-conversation</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb4" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb4)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Ordering with family or elders</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb5" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb5)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>See live dishes with photos in my language</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb6" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb6)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Order fast, no sold-out surprises</li></ol></div><div class="v-jcol" style="--ac:#2F4A36"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" width="640" height="640" loading="lazy" decoding="async" style="--to:52% 37%;--tf:translate(-1%,7%) scale(1.3)"></i><div><h3>Captain jobs</h3><small>Manigandan · Assigned tables only</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb7" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb7)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Punching orders across a big hall</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb8" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb8)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Search by substring, no Wi-Fi drops</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb9" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb9)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Send KOTs in seconds from any table</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb10" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb10)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>My tables ask for help or tip</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb11" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb11)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>See only my tables’ calls and tips</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb12" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb12)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Focus on hospitality, not billing</li></ol></div><div class="v-jcol" style="--ac:#0F6B1C"><div class="v-jh"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" width="640" height="640" loading="lazy" decoding="async" style="--to:48% 30%;--tf:translate(2%,20%) scale(2.5)"></i><div><h3>Admin jobs</h3><small>Karthikeyan · Full floor &amp; billing</small></div></div><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb13" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb13)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Guests finish dining</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb14" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb14)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Monitor tables and close bills</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb15" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb15)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Keep billing secure, speed up turnover</li></ol><ol class="v-job"><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb16" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb16)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></g></svg></span>Prices shift or specials launch</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb17" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb17)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></g></g></svg></span>Update menus live and see trends</li><li><span class="v-bub"><svg viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="vb18" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0"/><stop class="s2" offset="1"/></linearGradient></defs><g><circle cx="17" cy="17" r="17" fill="url(#vb18)"/><g class="gl" transform="translate(8.5 8.5) scale(.7083)"><path d="m5 12 5 5 9-10"/></g></g></svg></span>Cut print waste, grow repeat diners</li></ol></div></div></section>
+
+<!-- 10. DEFINE PHASE -->
+<section><div class="sh"><div><h2 class="h2">Define <em>Phase</em></h2></div><p class="sd">Root-cause gate before ideation.</p></div><h3 class="v-sub">Root causes</h3><div class="v-roots"><article><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><i>01</i></span><b>Blind &amp; dated menus</b><p>Sold-out items, no photos, breakfast at dinner, 50% of elders blocked</p></article><article><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M18 20a6 6 0 0 0-3-5.2"/></svg><i>02</i></span><b>Awkward service gap</b><p>Waving for waiters; captains lose track of calls</p></article><article><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><i>03</i></span><b>Rigid legacy POS</b><p>Prefix-only search, Wi-Fi drops, UPI erased tips</p></article><article><span class="v-ic"><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/></svg><i>04</i></span><b>Owner blind spots</b><p>Reprints, costly buzzers, no live insight</p></article></div><h3 class="v-sub">Problem statements</h3><div class="v-probs"><article style="--ac:#179428"><span class="bg">Diner</span><div class="v-phd"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/avanthika-640.webp" alt="Avanthika" width="640" height="640" loading="lazy" decoding="async" style="--to:47% 44%;--tf:translate(3%,5%) scale(1.7)"></i><b>Avanthika &amp; guests</b></div><p>need a discreet, visual way to browse live dishes in their own language and call a waiter</p></article><article style="--ac:#2F4A36"><span class="bg">Captain</span><div class="v-phd"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/manigandan-640.webp" alt="Manigandan" width="640" height="640" loading="lazy" decoding="async" style="--to:52% 37%;--tf:translate(-1%,7%) scale(1.3)"></i><b>Manigandan &amp; captains</b></div><p>need alerts for their tables, partial-keyword search and steady sync</p></article><article style="--ac:#0F6B1C"><span class="bg">Admin</span><div class="v-phd"><i class="has-photo"><img src="/work/cyberdine-case/images/personas/karthikeyan-640.webp" alt="Karthikeyan" width="640" height="640" loading="lazy" decoding="async" style="--to:48% 30%;--tf:translate(2%,20%) scale(2.5)"></i><b>Karthikeyan &amp; partners</b></div><p>need live menu and pricing control, all-table billing oversight and wireless KOTs</p></article></div><h3 class="v-sub">How might we</h3><ol class="v-hmw"><li><i>01</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span><p>Call a captain to Table A1 in 1 tap, no buzzers</p></li><li><i>02</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><p>End sold-out surprises; auto-show meal-time, multilingual menus</p></li><li><i>03</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span><p>Let captains search partial keywords and punch orders anywhere</p></li><li><i>04</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h10M7 9h10M9 5c4.5 0 6.5 2 6.5 4S13.5 13 9 13h-.5L16 20"/></svg></span><p>Restore fair tipping in a cashless UPI world</p></li><li><i>05</i><span><svg class="vi " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/></svg></span><p>Give admins instant price control, all-table billing and review growth</p></li></ol></section>
+
+<!-- 11. INFORMATION ARCHITECTURE -->
+<section>
+  <div class="sh">
+    <div><h2 class="h2">Information <em>Architecture</em></h2></div>
+    <span class="bg g">Customer QR Flow + Admin Console</span>
+  </div>
+
+  <!-- 11A. CUSTOMER SIDE IA -->
+  <div class="ia-board">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <h3 style="font-size:1.1rem;font-weight:800">Customer Side (Table QR Web App)</h3>
+      <span class="bg g">Zero Download • Instant Scan</span>
+    </div>
+    <div class="ia-top">
+      <div class="ia-home">Home (Table QR Entry)<small>The Golden Spoon • Table A1 • Language Switcher • Social &amp; Review Links</small></div>
+      <div class="ia-stem"></div><div class="ia-bus"></div>
+    </div>
+    <div class="ia-cols">
+      <div class="ia-col">
+        <div class="ia-box head">Food Menu<small>Live Menu Banners &amp; Offers</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Categories<small>Soups, Starters, Tikka's • Veg/Egg/Non-Veg • Search</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Item Details<small>Portion (1 Plate / ½ Kg / 1 Kg) • Mild / Spicy / Extra Spicy</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Notes for Chef<small>e.g. "Spicy | Add Pepper for Spice"</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Add Item → Cart<small>Qty Stepper &amp; Live Selection Bar</small></div>
+      </div>
+      <div class="ia-col">
+        <div class="ia-box head">Drinks Menu<small>Beverages &amp; Refreshments</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Categories<small>Hot / Cold Beverages • Quick Search</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Item Details<small>Size / Glass Options &amp; Pricing</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Notes for Chef<small>Custom Sugar / Ice Preferences</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Add Item → Cart<small>Merges with Food Items</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box cart">Items in Cart<small>View Previous Orders • Select More / Order Now</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box warn">Waiting for Approval<small>Order Sent Successfully • "Awaiting confirmation..."</small></div><div class="ia-arr">↓</div>
+        <div class="ia-split"><div class="ia-box ok">Approved<small>Sent to Kitchen KOT</small></div><div class="ia-box no">Rejected<small>Shows Kitchen Note</small></div></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Delivered<small>Served at Table • Order More</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Add Tip<small>Tip Captain (₹100 / ₹150) • Edit or Delete</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Request Bill<small>Items + Taxes + Captain Tip = Grand Total</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box cart">Complete Order<small>Order Completed • Download Bill / Order Again</small></div>
+      </div>
+      <div class="ia-col">
+        <div class="ia-box head">Waiter Calling System<small>Home &amp; Menu Header</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Request Waiter<small>1-Tap Bell Embedded with Table ID</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Notification Sent<small>Real-Time Alert to Assigned Captain</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11B. ADMINS & OWNERS IA -->
+  <div class="ia-board" style="margin-bottom:0">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <h3 style="font-size:1.1rem;font-weight:800">Admins &amp; Owners (Full Control Console)</h3>
+      <span class="bg g">Multi-Outlet • 8 Branches + Billing &amp; Reports</span>
+    </div>
+
+    <div class="ia-top">
+      <div class="ia-box" style="max-width:240px">Login<small>Owner / Admin Credentials</small></div>
+      <div class="ia-arr">↓</div>
+      <div class="ia-box" style="max-width:240px">Choose Outlet<small>Multi-Branch Restaurant Switcher</small></div>
+      <div class="ia-arr">↓</div>
+      <div class="ia-home">Home Page<small>Central Hub • 8 Modules + Orders &amp; Reports</small></div>
+      <div class="ia-stem"></div>
+      <div class="ia-tier-lbl">Primary Floor, Billing &amp; Menu Operations</div>
+      <div class="ia-stem"></div>
+      <div class="ia-bus wide"></div>
+    </div>
+
+    <div class="ia-cols4">
+      <div class="ia-col">
+        <div class="ia-box head">Takeaway &amp; Quick Bill<small>Fast Counter POS</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Dish Search &amp; Sort<small>Categories + Qty Steppers</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Notes to Kitchen<small>Spice Chips &amp; Chef Notes</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box warn">Hold Bill / Payment<small>Hold by Name • Cash / Card / UPI</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Print KOT / Save Bill<small>Orders &amp; Billing (Edit / Void)</small></div>
+      </div>
+
+      <div class="ia-col">
+        <div class="ia-box head">Table Orders<small>All-Captain Floor Board</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Floor Status Grid<small>Open / Pending / In Progress</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Table &amp; Groups<small>Group 1 &amp; 2 • Add Items &amp; Notes</small></div><div class="ia-arr">↓</div>
+        <div class="ia-split"><div class="ia-box ok">Approve<small>Send KOT</small></div><div class="ia-box no">Reject<small>Add Reason</small></div></div><div class="ia-arr">↓</div>
+        <div class="ia-box cart">Close Bill – Payment<small>UPI / Cash / Card • Save &amp; Print</small></div>
+      </div>
+
+      <div class="ia-col">
+        <div class="ia-box head">Manage Menu<small>Live Catalog Control</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Food &amp; Drinks<small>Categories &amp; Combos</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Time Segments<small>Tiffin / Lunch / Dinner Slots</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Add / Edit Item<small>Variants • GST 5% • Today's Special</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Customer Sync<small>Available &amp; Visibility Toggles</small></div>
+      </div>
+
+      <div class="ia-col">
+        <div class="ia-box head">Accounts<small>Payments &amp; Taxes</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">UPI Integration<small>Business UPI ID Setup</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Payment QR<small>Upload QR + Dynamic QR Toggle</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Multi-Slab Tax<small>Food GST 5% • Sweet 11% • CGST</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box cart">Orders &amp; Reports<small>Captain Filter • Daily/Monthly PDF</small></div>
+      </div>
+    </div>
+
+    <div class="ia-top" style="margin-top:4px">
+      <div class="ia-tier-lbl">Growth, Team Access, SaaS &amp; Hardware</div>
+      <div class="ia-stem"></div>
+      <div class="ia-bus wide"></div>
+    </div>
+
+    <div class="ia-cols4">
+      <div class="ia-col">
+        <div class="ia-box head">iMenu<small>Digital QR &amp; Marketing</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">QR Codes &amp; Stands<small>Menu QR vs Order QR • PDF</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Social &amp; Reviews<small>Good-Review Filter • IG / FB / YT</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Banners &amp; Feedback<small>10% Off Banners • Star Logs</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box cart">Scan Report &amp; CRM<small>300+ Scans • Customer List</small></div>
+      </div>
+
+      <div class="ia-col">
+        <div class="ia-box head">User &amp; Access<small>Staff &amp; RBAC Control</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">User Accounts<small>Active / Inactive Staff List</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Create / Edit User<small>Photo • Phone • Password</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Access Type<small>Admin vs Captain Role</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Map Tables to User<small>Locks Captain to Assigned Tables</small></div>
+      </div>
+
+      <div class="ia-col">
+        <div class="ia-box head">Subscription<small>Plan &amp; Billing</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Active Plan (iMenu)<small>₹6,999/yr • Feature Checklist</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Payment History<small>Past Transactions &amp; Dates</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Download Invoice<small>GST Tax Invoice PDF</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box no">Plan Expired State<small>Alert Banner → Renew Now</small></div>
+      </div>
+
+      <div class="ia-col">
+        <div class="ia-box head">Settings<small>Profile, Printers &amp; QR</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">My Profile<small>Brand Color • Tables • Toggles</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Connect Printer<small>Bluetooth 58/80mm • Test Print</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box">Manage Table QR<small>Scan QR to Map Table A2</small></div><div class="ia-arr">↓</div>
+        <div class="ia-box ok">Order vs iMenu<small>Scan-to-Order or View-Only</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. LOW-FIDELITY WIREFRAMES & IDEATION -->
+<section id="ideate-wireframes">
+  <div class="sh">
+    <div><h2 class="h2">Low-Fidelity Wireframes &amp; <em>Ideation</em></h2></div>
+    <p class="sd">Brainstorming layout directions across Customer QR Web App and Admin Console.</p>
+  </div>
+
+  <!-- A. CUSTOMER SIDE WIREFRAMES (8 SCREENS) -->
+  <div class="wf-board">
+    <div class="wf-head">
+      <div>
+        <h3>Customer Side Low-Fidelity Wireframes (8 Screens)</h3>
+        <small>Row 1: Welcome → Live Menu → Our Menu → Item Details &nbsp;|&nbsp; Row 2: Cart → Order Status → Captain Tip → Digital Bill</small>
+      </div>
+      <span class="bg">8 Core Customer Screens</span>
+    </div>
+
+    <!-- Row 1: Screens 01 - 04 -->
+    <div class="wf-row-wrap">
+      <!-- 01. Welcome -->
+      <div class="wf-item">
+        <div class="wf-phone" style="justify-content:space-between;text-align:center">
+          <div><div style="font-size:7px;color:var(--m)">WELCOME TO</div><div style="font-weight:800;font-size:10px;margin-top:2px">The Golden Spoon</div></div>
+          <div class="wf-img" style="width:72px;height:72px;border-radius:50%;margin:0 auto"></div>
+          <div class="wf-tag" style="margin:0 auto">Table A1</div>
+          <div class="wf-r2"><div class="wf-box" style="padding:10px 4px"><div class="wf-img" style="height:36px;margin-bottom:4px"></div><b>View Menu</b></div><div class="wf-box" style="padding:10px 4px"><div class="wf-img" style="height:36px;margin-bottom:4px"></div><b>Req Waiter</b></div></div>
+          <div class="wf-r5"><div class="wf-box" style="height:20px"></div><div class="wf-box" style="height:20px"></div><div class="wf-box" style="height:20px"></div><div class="wf-box" style="height:20px"></div><div class="wf-box" style="height:20px"></div></div>
+          <div style="font-size:6.5px;color:var(--m)">Powered by www.cyberdine.in</div>
+        </div>
+        <div class="wf-cap"><b>01</b>Table QR Welcome</div>
+      </div>
+
+      <!-- 02. Live Menu Home -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>Green leafe</span><span>[A/文] [H]</span></div>
+          <div class="wf-box d" style="padding:10px 8px"><div class="wf-row"><b>FOOD MENU</b><span class="wf-tag">35% OFF</span></div><div style="font-size:7px;color:var(--m);margin-top:2px">This Weekend Only</div></div>
+          <div style="font-weight:700;font-size:8px">● Live Menu</div>
+          <div class="wf-r2" style="flex:1">
+            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Veg Soup's</div>
+            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Non-Veg</div>
+            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Special Veg</div>
+            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Special Non-Veg</div>
+            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Tikka's</div>
+            <div class="wf-box"><div class="wf-img" style="height:44px;margin-bottom:4px"></div>Mushrooms</div>
+          </div>
+        </div>
+        <div class="wf-cap"><b>02</b>Live Menu &amp; Offers</div>
+      </div>
+
+      <!-- 03. Our Menu & Filters -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>← Our Menu</span><span>[A/文] [H]</span></div>
+          <div class="wf-row"><div class="wf-box" style="flex:1;color:var(--m)">Search for dish...</div><div class="wf-btn out" style="padding:4px 6px">Req Waiter</div></div>
+          <div class="wf-r4"><span class="wf-box d" style="text-align:center">Veg</span><span class="wf-box" style="text-align:center">Egg</span><span class="wf-box" style="text-align:center">Non-Veg</span><span class="wf-box" style="text-align:center">Special</span></div>
+          <div style="display:grid;grid-template-columns:46px 1fr;gap:6px;flex:1;overflow:hidden">
+            <div style="display:grid;gap:4px;align-content:start"><div class="wf-box d" style="text-align:center">Soups</div><div class="wf-box" style="text-align:center">Tikka</div><div class="wf-box" style="text-align:center">Eggs</div><div class="wf-box" style="text-align:center">Main</div></div>
+            <div style="display:grid;gap:6px;align-content:start">
+              <div class="wf-box wf-row"><div class="wf-img" style="width:36px;height:42px"></div><div style="flex:1"><b>Chicken Tikka</b><div class="wf-row" style="margin-top:3px"><span>₹150</span><span class="wf-tag">- 2 +</span></div></div></div>
+              <div class="wf-box wf-row"><div class="wf-img" style="width:36px;height:42px"></div><div style="flex:1"><b>Pepper Tikka</b><div class="wf-row" style="margin-top:3px"><span>₹350</span><span class="wf-btn out" style="padding:2px 5px">Add +</span></div></div></div>
+              <div class="wf-box wf-row"><div class="wf-img" style="width:36px;height:42px"></div><div style="flex:1"><b>Must Try Fry</b><div class="wf-row" style="margin-top:3px"><span>₹350</span><span class="wf-btn out" style="padding:2px 5px">Add +</span></div></div></div>
+            </div>
+          </div>
+          <div class="wf-row" style="padding-top:4px;border-top:1px solid var(--w2)"><b>2 Selected</b><div class="wf-btn" style="padding:5px 9px">View Cart ›</div></div>
+        </div>
+        <div class="wf-cap"><b>03</b>Our Menu &amp; Filters</div>
+      </div>
+
+      <!-- 04. Item Details & Notes -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-img" style="height:76px;flex-shrink:0"></div>
+          <div class="wf-row"><b>Chicken Biriyani · ₹250</b><span class="wf-tag">NV</span></div>
+          <div style="font-size:7px;color:var(--m)">Tender marinated chicken infused with rich spices.</div>
+          <div style="font-weight:700">Portion (Required)</div>
+          <div class="wf-box"><div class="wf-row"><span>1 Plate · ₹250</span><span>(●)</span></div><div class="wf-row"><span>1/2 Kg · ₹350</span><span>( )</span></div><div class="wf-row"><span>1 Kg · ₹450</span><span>( )</span></div></div>
+          <div class="wf-r3"><span class="wf-box" style="text-align:center">Mild</span><span class="wf-box d" style="text-align:center">Spicy</span><span class="wf-box" style="text-align:center">Extra</span></div>
+          <div class="wf-box" style="color:var(--m)">Notes for Chef...</div>
+          <div class="wf-r2" style="margin-top:auto"><div class="wf-btn">ADD</div><div class="wf-btn out">-  2  +</div></div>
+        </div>
+        <div class="wf-cap"><b>04</b>Item Details &amp; Notes</div>
+      </div>
+    </div>
+
+    <!-- Row 2: Screens 05 - 08 -->
+    <div class="wf-row-wrap" style="margin-bottom:0">
+      <!-- 05. Cart -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>← Items in cart</span><span>[A/文] [H]</span></div>
+          <div class="wf-banner"><span>View Previous orders</span><span>›››</span></div>
+          <div class="wf-box wf-row"><div class="wf-img" style="width:36px;height:36px"></div><div style="flex:1"><b>Chicken Tikka</b><br>₹150</div><span class="wf-tag">- 2 +</span></div>
+          <div class="wf-box wf-row"><div class="wf-img" style="width:36px;height:36px"></div><div style="flex:1"><b>Garlic Chicken</b><br>₹150</div><span class="wf-tag">- 1 +</span></div>
+          <div class="wf-box" style="border-style:dashed;text-align:center;color:var(--m);margin-top:auto">Sub-Total + Taxes Calculated</div>
+          <div class="wf-r2"><div class="wf-btn out">Select More</div><div class="wf-btn">Order Now</div></div>
+        </div>
+        <div class="wf-cap"><b>05</b>Items in Cart</div>
+      </div>
+
+      <!-- 06. Order Status -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>← My Orders</span><span>[A/文] [H]</span></div>
+          <div class="wf-banner m"><span>Awaiting confirmation...</span><span>◌</span></div>
+          <div class="wf-box wf-row"><span>Chicken Tikka</span><span>2 Qty</span></div>
+          <div class="wf-banner"><span>✓ Approved</span></div>
+          <div class="wf-box wf-row"><span>Chicken Tikka</span><span>2 Qty</span></div>
+          <div class="wf-banner r"><span>× Rejected</span></div>
+          <div class="wf-box"><b>Garlic Chicken · 1 Qty</b><div style="color:var(--m);font-size:7px">Notes: Out of stock / Kitchen reason</div></div>
+          <div class="wf-r2" style="margin-top:auto"><div class="wf-btn out">Order More</div><div class="wf-btn">Request Bill</div></div>
+        </div>
+        <div class="wf-cap"><b>06</b>Live Order Tracking</div>
+      </div>
+
+      <!-- 07. Add/Edit Tip -->
+      <div class="wf-item">
+        <div class="wf-phone dim">
+          <div class="wf-top"><span>← My Orders</span><span>[H]</span></div>
+          <div class="wf-banner"><span>✓ Approved</span></div>
+          <div class="wf-box wf-row"><span>Chicken Tikka</span><span>2 Qty</span></div>
+          <div class="wf-banner m"><span>✓ Tip Added</span></div>
+          <div class="wf-box"><b>₹100</b> · Your Tip to Waiter</div>
+          <div class="wf-sheet">
+            <div class="wf-row"><b style="font-size:9.5px">Edit Tip</b><span class="wf-tag">🗑</span></div>
+            <div class="wf-row"><div class="wf-img" style="width:32px;height:32px;border-radius:6px"></div><div style="flex:1"><b>Manikandan</b><br><span style="color:var(--m)">Served Table A1</span></div></div>
+            <div class="wf-box">₹ | <b>150</b></div>
+            <div class="wf-btn">Update Tip</div>
+          </div>
+        </div>
+        <div class="wf-cap"><b>07</b>Add / Edit Captain Tip</div>
+      </div>
+
+      <!-- 08. Digital Bill -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>Green leaf Rest.</span><span>Table 2</span></div>
+          <div class="wf-row" style="color:var(--m);font-size:7px"><span>Bill: 00001</span><span>Captain: Manikandan</span></div>
+          <div class="wf-banner"><span>Items</span><span>Rate · Qty · Amt</span></div>
+          <div class="wf-row"><span>Chicken Tikka</span><span>150 · 4 · 600</span></div>
+          <div class="wf-row"><span>Garlic Chicken</span><span>150 · 1 · 150</span></div>
+          <div class="wf-box" style="margin-top:auto">
+            <div class="wf-row"><span>Sub Total</span><span>₹750</span></div>
+            <div class="wf-row"><span>Incl. Taxes</span><span>₹30</span></div>
+            <div class="wf-row"><span>Tip To Captain</span><span>₹150</span></div>
+            <div class="wf-row" style="border-top:1px solid var(--w3);padding-top:3px;margin-top:3px;font-weight:800"><span>Grand Total</span><span>₹900</span></div>
+          </div>
+          <div style="text-align:center;color:var(--m);font-size:7px">Thank you, Please visit again.</div>
+          <div class="wf-r2"><div class="wf-btn out">Download Bill</div><div class="wf-btn">Order Again</div></div>
+        </div>
+        <div class="wf-cap"><b>08</b>Digital Bill &amp; Complete</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B. ADMIN SIDE WIREFRAMES (8 SCREENS) -->
+  <div class="wf-board">
+    <div class="wf-head">
+      <div>
+        <h3>Admin Side Low-Fidelity Wireframes (8 Screens)</h3>
+        <small>Row 1: Outlet Home → Table Orders → Quick Bill POS → Manage Menus &nbsp;|&nbsp; Row 2: Orders &amp; Reports → RBAC Table Map → Accounts &amp; Plan → iMenu &amp; Printer</small>
+      </div>
+      <span class="bg">8 Core Admin Screens</span>
+    </div>
+
+    <!-- Row 1: Screens 01 - 04 -->
+    <div class="wf-row-wrap">
+      <!-- A1. Outlet Home -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>Outlet: Adyar ▾</span><span class="wf-tag">Admin</span></div>
+          <div class="wf-box d"><div class="wf-row"><b>Today's Sales</b><span style="font-weight:800">₹20,900</span></div></div>
+          <div class="wf-r2" style="flex:1">
+            <div class="wf-box" style="text-align:center;padding:12px 4px"><b>Quick Bill</b></div>
+            <div class="wf-box" style="text-align:center;padding:12px 4px"><b>Table Orders</b></div>
+            <div class="wf-box" style="text-align:center;padding:12px 4px"><b>Manage Menu</b></div>
+            <div class="wf-box" style="text-align:center;padding:12px 4px"><b>Accounts</b></div>
+            <div class="wf-box" style="text-align:center;padding:12px 4px"><b>iMenu QR</b></div>
+            <div class="wf-box" style="text-align:center;padding:12px 4px"><b>User Access</b></div>
+            <div class="wf-box" style="text-align:center;padding:12px 4px"><b>Subscription</b></div>
+            <div class="wf-box" style="text-align:center;padding:12px 4px"><b>Settings</b></div>
+          </div>
+        </div>
+        <div class="wf-cap"><b>01</b>Outlet Home (8 Modules)</div>
+      </div>
+
+      <!-- A2. Table Orders -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>‹ Table Orders</span><div class="wf-btn" style="padding:2px 6px">Quick Bill</div></div>
+          <div style="font-size:7px;font-weight:700">Close Bill – Payment Method</div>
+          <div class="wf-r2"><div class="wf-box d">T10 · ₹2500</div><div class="wf-box d">TA1 · ₹500</div></div>
+          <div style="font-size:7px;font-weight:700">Pending</div>
+          <div class="wf-r3"><div class="wf-box d" style="text-align:center"><b>2</b></div><div class="wf-box d" style="text-align:center"><b>5</b></div><div class="wf-box d" style="text-align:center"><b>11</b></div></div>
+          <div style="font-size:7px;font-weight:700">In Progress (All Captains)</div>
+          <div class="wf-r3"><div class="wf-box" style="text-align:center">1</div><div class="wf-box" style="text-align:center">3</div><div class="wf-box" style="text-align:center">7</div><div class="wf-box" style="text-align:center">9</div><div class="wf-box" style="text-align:center">10</div><div class="wf-box" style="text-align:center">12</div></div>
+          <div style="font-size:7px;font-weight:700">Open</div>
+          <div class="wf-r3"><div class="wf-box" style="border-style:dashed;text-align:center">4 +</div><div class="wf-box" style="border-style:dashed;text-align:center">6 +</div><div class="wf-box" style="border-style:dashed;text-align:center">8 +</div></div>
+          <div class="wf-btn out" style="margin-top:auto">+ ADD NEW TABLE</div>
+        </div>
+        <div class="wf-cap"><b>02</b>Table Orders &amp; Close Bill</div>
+      </div>
+
+      <!-- A3. Quick Bill & Hold -->
+      <div class="wf-item">
+        <div class="wf-phone dim">
+          <div class="wf-top"><span>← Selected (6)</span><span class="wf-tag">Hold Bill</span></div>
+          <div class="wf-banner"><span>Total Amount</span><span>₹2000</span></div>
+          <div class="wf-box wf-row"><span>Chicken Tikka</span><span class="wf-tag">- 2 +</span></div>
+          <div class="wf-box wf-row"><span>Garlic Chicken</span><span class="wf-tag">- 1 +</span></div>
+          <div class="wf-sheet">
+            <b>Hold Bill / Notes to Kitchen</b>
+            <div class="wf-r3"><span class="wf-box" style="text-align:center">Mild</span><span class="wf-box d" style="text-align:center">Spicy</span><span class="wf-box" style="text-align:center">Extra</span></div>
+            <div class="wf-box" style="color:var(--m)">Hold Identifier: Kavuthamraj</div>
+            <div style="font-size:7.5px">Pay: (●) Cash  ( ) Card  ( ) UPI</div>
+            <div class="wf-r2"><div class="wf-btn out">Print KOT</div><div class="wf-btn">Save &amp; Print</div></div>
+          </div>
+        </div>
+        <div class="wf-cap"><b>03</b>Quick Bill POS &amp; Hold</div>
+      </div>
+
+      <!-- A4. Manage Menus -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>‹ Manage Menus</span><span class="wf-tag">+ Add</span></div>
+          <div class="wf-r3"><div class="wf-box d" style="text-align:center">Tiffin</div><div class="wf-box" style="text-align:center">Lunch</div><div class="wf-box" style="text-align:center">Dinner</div></div>
+          <div class="wf-row"><div class="wf-img" style="width:48px;height:48px"></div><div style="flex:1;display:grid;gap:4px"><div class="wf-box">Item Name</div><div class="wf-box">Price ₹150</div></div></div>
+          <div class="wf-btn out">+ ADD VARIANT (Small / Med)</div>
+          <div class="wf-box">Time Segment: Lunch / Dinner ▾</div>
+          <div class="wf-row"><span>Available</span><div class="wf-tog"></div></div>
+          <div class="wf-row"><span>Show to Customer</span><div class="wf-tog"></div></div>
+          <div class="wf-row"><span>Today's Special</span><div class="wf-tog off"></div></div>
+          <div class="wf-btn" style="margin-top:auto">Add / Update Item</div>
+        </div>
+        <div class="wf-cap"><b>04</b>Manage Menus &amp; Slots</div>
+      </div>
+    </div>
+
+    <!-- Row 2: Screens 05 - 08 -->
+    <div class="wf-row-wrap" style="margin-bottom:0">
+      <!-- A5. Orders Audit & Reports -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>← Orders &amp; Reports</span><span class="wf-tag">Filter</span></div>
+          <div class="wf-r4"><span class="wf-box d" style="text-align:center">JAN</span><span class="wf-box" style="text-align:center">FEB</span><span class="wf-box" style="text-align:center">MAR</span><span class="wf-box" style="text-align:center">Daily</span></div>
+          <div class="wf-box" style="color:var(--m)">Search Order / Captain...</div>
+          <div class="wf-box wf-row"><div><b>A00001 - A1</b> · Edited<br><span style="color:var(--m)">21 Jan • UPI</span></div><b>₹400</b></div>
+          <div class="wf-box wf-row"><div><b>A00002 - B1</b> · Voided<br><span style="color:var(--m)">21 Jan • Cash</span></div><b>₹600</b></div>
+          <div class="wf-box" style="margin-top:auto">
+            <div class="wf-row"><span>Biryani (10)</span><span>400</span></div>
+            <div class="wf-row"><span>Chicken 65 (8)</span><span>800</span></div>
+            <div class="wf-row" style="border-top:1px solid var(--w3);padding-top:3px;margin-top:3px;font-weight:800"><span>Total Sale</span><span>₹2,655</span></div>
+          </div>
+          <div class="wf-r2"><div class="wf-btn out">Download PDF</div><div class="wf-btn">Print Report</div></div>
+        </div>
+        <div class="wf-cap"><b>05</b>Orders Audit &amp; Reports</div>
+      </div>
+
+      <!-- A6. RBAC & Table Map -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>‹ User &amp; Access</span><span class="wf-tag">+ Create</span></div>
+          <div class="wf-box wf-row"><span><b>Kavuthamraj | C001</b></span><span class="wf-tag">Captain</span></div>
+          <div class="wf-box wf-row"><span><b>Tamil Arasu | A001</b></span><span class="wf-tag">Admin</span></div>
+          <div style="font-weight:700">Map Tables to Captain</div>
+          <div class="wf-box wf-row"><span>Table 1</span><span>( )</span></div>
+          <div class="wf-box d wf-row"><b>Table 2 (Mapped)</b><span>(●)</span></div>
+          <div class="wf-box d wf-row"><b>Table 4 (Mapped)</b><span>(●)</span></div>
+          <div class="wf-box d wf-row"><b>Table 7 (Mapped)</b><span>(●)</span></div>
+          <div class="wf-row" style="margin-top:auto"><span>Active Status</span><div class="wf-tog"></div></div>
+          <div class="wf-btn">Save Account</div>
+        </div>
+        <div class="wf-cap"><b>06</b>RBAC &amp; Table Mapping</div>
+      </div>
+
+      <!-- A7. Accounts & Plan -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>← Accounts &amp; Plan</span><span class="wf-tag">GST</span></div>
+          <div class="wf-row"><span>Dynamic QR</span><div class="wf-tog"></div></div>
+          <div class="wf-box" style="text-align:center"><div class="wf-img" style="width:58px;height:58px;margin:0 auto 4px"></div><b>UPI Payment QR</b></div>
+          <div class="wf-box wf-row"><span>Food Tax | GST 5%</span><span>›</span></div>
+          <div class="wf-box wf-row"><span>Sweet Tax | 11%</span><span>›</span></div>
+          <div class="wf-box d" style="margin-top:auto"><div class="wf-row"><b>iMenu Plan</b><span>₹6,999/yr</span></div><div style="font-size:7px;color:var(--m)">Unlimited Items, Tables &amp; Reports</div></div>
+          <div class="wf-r2"><div class="wf-btn out">History</div><div class="wf-btn">Invoice PDF</div></div>
+        </div>
+        <div class="wf-cap"><b>07</b>Accounts, Tax &amp; SaaS</div>
+      </div>
+
+      <!-- A8. iMenu & Hardware -->
+      <div class="wf-item">
+        <div class="wf-phone">
+          <div class="wf-top"><span>← iMenu &amp; Settings</span><span class="wf-tag">BT</span></div>
+          <div class="wf-r2"><div class="wf-box" style="text-align:center"><div class="wf-img" style="height:36px;margin-bottom:3px"></div><b>Table QR PDF</b></div><div class="wf-box" style="text-align:center"><div class="wf-img" style="height:36px;margin-bottom:3px"></div><b>300 Scans</b></div></div>
+          <div class="wf-row"><span>Only Good Reviews</span><div class="wf-tog"></div></div>
+          <div class="wf-box wf-row"><span>Brand Color Code</span><span class="wf-tag">#FF604D</span></div>
+          <div class="wf-box"><div class="wf-row"><b>Printer: Nisama BT</b><span class="wf-tag">58mm</span></div><div style="font-size:7px;color:var(--m)">KOT Test Print • Bill Test Print</div></div>
+          <div class="wf-box" style="text-align:center;margin-top:auto"><b>Scan QR to Map Table A2</b></div>
+          <div class="wf-btn">Save Settings</div>
+        </div>
+        <div class="wf-cap"><b>08</b>iMenu QR, Reviews &amp; BT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. HIGH-FIDELITY SCREENS (A · CUSTOMER JOURNEY) -->
+<section id="high-fidelity-screens">
+  <div class="sh">
+    <div>
+      
+      <h2 class="h2"><small class="h2-pre">High-Fidelity Screens</small>Customer <em>Journey</em></h2>
+    </div>
+    <span class="bg g">8 Production Screens</span>
+  </div>
+
+  <div class="hifi-grid">
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Cyberdine-750.webp" alt="Table Welcome Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">01 · QR Landing <span>Table A1</span></div><div class="cap-desc">Table-embedded entry point with 1-tap "Request Waiter" and direct brand review channels.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Menu%20Home-750.webp" alt="Live Menu Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">02 · Live Menu Home <span>Offers</span></div><div class="cap-desc">Weekend promo carousel, restaurant location badge, language switcher, and category grid.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Our%20Menu-750.webp" alt="Our Menu Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">03 · Category Rail <span>Filters</span></div><div class="cap-desc">Left navigation rail, Veg/Egg/Non-Veg chips, search bar, and sticky cart review bar.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Item%20Details-750.webp" alt="Item Details &amp; Customizer" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">04 · Item Customizer <span>Portions</span></div><div class="cap-desc">Portion options (1 Plate / ½ Kg / 1 Kg), spice intensity chips (Mild/Spicy/Extra), and custom chef notes.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Items%20in%20cart-750.webp" alt="Items in Cart Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">05 · Items in Cart <span>Review</span></div><div class="cap-desc">Access to previous orders, stepper controls for quantities, and split action buttons for adding more vs ordering.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Order Status Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">06 · Order Status <span>KOT Sync</span></div><div class="cap-desc">Real-time status banners (Awaiting confirmation, Approved, and Rejected with clear kitchen reasons).</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/z%20tip-750.webp" alt="Captain Tipping Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">07 · Captain Tipping <span>Cashless</span></div><div class="cap-desc">Dedicated bottom sheet featuring serving captain avatar (Manikandan) with one-tap digital tip addition.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/Digital%20Bill-750.webp" alt="Digital Bill Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">08 · Digital Bill <span>Settlement</span></div><div class="cap-desc">Transparent itemized summary with subtotal, taxes, captain tip, PDF invoice download, and one-tap reordering.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 14. HIGH-FIDELITY SCREENS (B · ADMIN / POS MOBILE & HARDWARE ECOSYSTEM) -->
+<section id="admin-hifi-screens">
+  <div class="sh">
+    <div>
+      
+      <h2 class="h2"><small class="h2-pre">High-Fidelity Screens</small>Admin POS &amp; <em>Hardware</em></h2>
+    </div>
+    <span class="bg g">13 Production Screens</span>
+  </div>
+
+  <!-- Row 1: Core Operations -->
+  <div class="hifi-grid is-flow">
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Home-750.webp" alt="Admin Home Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">01 · Admin Home <span>Hub</span></div><div class="cap-desc">8-module central dashboard showing today's revenue summary and instant navigation.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Table%20Orders%20-%20Admin-750.webp" alt="Table Orders Admin" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">02 · Table Orders <span>Full Floor</span></div><div class="cap-desc">Live floor-wide oversight with Pending, In-Progress, Open tables, and bill settlement.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Quick%20bill-750.webp" alt="Quick Bill POS" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">03 · Quick Bill <span>Counter POS</span></div><div class="cap-desc">Rapid counter sales with dish search, category chips, quantity steppers, and Hold Bill.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Orders%20and%20billing-750.webp" alt="Orders and Billing" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">04 · Orders &amp; Billing <span>Audit</span></div><div class="cap-desc">Historical order logs with captain filters, payment tags, and Edited/Voided badges.</div></div>
+    </div>
+  </div>
+
+  <!-- Row 2: Kitchen & Hardware Output -->
+  <div class="hifi-grid is-flow">
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Notes%20to%20Kitchen-750.webp" alt="Notes to Kitchen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">05 · Kitchen Notes <span>Custom</span></div><div class="cap-desc">Hold Bill naming and spice level assignment pushed directly to kitchen order tickets.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <a class="paper paper-kot" href="/work/cyberdine-case/images/admin/KOT.png" target="_blank" rel="noopener" title="Open full size"><img src="/work/cyberdine-case/images/admin/KOT-424.webp" alt="KOT Screen" /></a>
+      <div class="cap-box"><div class="cap-title">06 · Wireless KOT <span>Kitchen</span></div><div class="cap-desc">Instant kitchen ticket generation dispatched wirelessly with zero delay.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <a class="paper paper-bill" href="/work/cyberdine-case/images/admin/Bill%20-%20small%20size.png" target="_blank" rel="noopener" title="Open full size"><img src="/work/cyberdine-case/images/admin/Bill%20-%20small%20size-424.webp" alt="Small Size Bill" /></a>
+      <div class="cap-box"><div class="cap-title">07 · Thermal Bill <span>58mm</span></div><div class="cap-desc">Compact thermal receipt formatted cleanly for 58mm mobile Bluetooth printers.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Connect%20printer%20to-750.webp" alt="Connect Printer" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">08 · Bluetooth Printer <span>Hardware</span></div><div class="cap-desc">Auto-discovery for thermal printers with 58mm/80mm toggles and test print checks.</div></div>
+    </div>
+  </div>
+
+  <!-- Row 3: Catalog, Analytics & Access -->
+  <div class="hifi-grid is-flow" style="margin-bottom:0">
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Add%20Item-750.webp" alt="Add Item Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">09 · Catalog Studio <span>Live Menu</span></div><div class="cap-desc">Instant dish creation with time-segment slots (Tiffin/Lunch/Dinner), GST, and variants.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Item%20Wise%20-%20Custom%20Report-750.webp" alt="Item Wise Report" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">10 · Sales Reports <span>Analytics</span></div><div class="cap-desc">Daily, monthly, and custom date range revenue breakdowns with instant PDF export.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Create%20new%20user%20account-750.webp" alt="Create User Screen" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">11 · Staff RBAC <span>Security</span></div><div class="cap-desc">User role management (Admin vs Captain) with table assignment mapping.</div></div>
+    </div>
+
+    <div class="hifi-item">
+      <div class="ipf"><div class="ipb"><div class="ips"><img src="/work/cyberdine-case/images/admin/Subscription%20history-750.webp" alt="Subscription History" /></div></div></div>
+      <div class="cap-box"><div class="cap-title">12 · SaaS Plan <span>Billing</span></div><div class="cap-desc">Active iMenu subscription tracking, transaction history, and GST tax invoices.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15. HIGH-FIDELITY SCREENS (C · WEB DASHBOARD & BACKOFFICE) -->
+<section id="web-hifi-screens">
+  <div class="sh">
+    <div>
+      
+      <h2 class="h2"><small class="h2-pre">High-Fidelity Screens</small>Web <em>Dashboard</em></h2>
+    </div>
+    <span class="bg g">Desktop Browser Experience</span>
+  </div>
+
+  <div style="display:grid;gap:32px"><!-- Web Screen 03: Web Login -->
+    <div class="desk-frame" style="max-width:860px;margin:0 auto;width:100%">
+      <div class="desk-chrome">
+        <div class="desk-dots"><span class="desk-dot r"></span><span class="desk-dot y"></span><span class="desk-dot g"></span></div>
+        <div class="desk-url">https://dashboard.cyberdine.in/auth/login</div>
+      </div>
+      <div class="desk-screen">
+        <img src="/work/cyberdine-case/images/admin/web/Login%20page-2400.webp" alt="Admin Web Login Screen" />
+      </div>
+      <div class="cap-box" style="max-width:100%;border-radius:0;border:0;border-top:1px solid var(--ln);padding:14px 20px">
+        <div class="cap-title" style="font-size:.9rem">Secure Staff &amp; Manager Authentication <span>Security Gateway</span></div>
+        <div class="cap-desc" style="font-size:.8rem">Multi-tenant authentication gateway routing staff directly to their permitted terminal (Manager Console vs Captain Floor View).</div>
+      </div>
+    </div>
+  <!-- Web Screen 01: Rooms Overview -->
+    <div class="desk-frame">
+      <div class="desk-chrome">
+        <div class="desk-dots"><span class="desk-dot r"></span><span class="desk-dot y"></span><span class="desk-dot g"></span></div>
+        <div class="desk-url">https://dashboard.cyberdine.in/rooms</div>
+      </div>
+      <div class="desk-screen">
+        <img src="/work/cyberdine-case/images/admin/web/Rooms-2400.webp" alt="Web Rooms Dashboard" />
+      </div>
+      <div class="cap-box" style="max-width:100%;border-radius:0;border:0;border-top:1px solid var(--ln);padding:14px 20px">
+        <div class="cap-title" style="font-size:.9rem">Visual Floor Management · Multi-Room Live Occupancy <span>Desktop View</span></div>
+        <div class="cap-desc" style="font-size:.8rem">Real-time floor map showing live table statuses across dining rooms, active table timers, captain allocations, and fast billing access for managers.</div>
+      </div>
+    </div><!-- Web Screen 02: Inside Table - Approved -->
+    <div class="desk-frame">
+      <div class="desk-chrome">
+        <div class="desk-dots"><span class="desk-dot r"></span><span class="desk-dot y"></span><span class="desk-dot g"></span></div>
+        <div class="desk-url">https://dashboard.cyberdine.in/tables/A1/orders</div>
+      </div>
+      <div class="desk-screen">
+        <img src="/work/cyberdine-case/images/admin/web/Inside%20table%20_%20Approved-2400.webp" alt="Inside Table Approved Orders" />
+      </div>
+      <div class="cap-box" style="max-width:100%;border-radius:0;border:0;border-top:1px solid var(--ln);padding:14px 20px">
+        <div class="cap-title" style="font-size:.9rem">Active Table Terminal · Multi-Group Order Sync &amp; KOT Status <span>Live Terminal</span></div>
+        <div class="cap-desc" style="font-size:.8rem">Complete order detail terminal showing items, cooking instructions, kitchen ticket approval status, itemized tax calculations, and instant settlement methods.</div>
+      </div>
+    </div></div>
+</section>
+<ul class="v-met v-end"><li><b>&lt; 10s</b><span>QR-to-action speed</span></li><li><b>0%</b><span>Sold-out friction</span></li><li><b>Zero</b><span>Range-drop failures</span></li><li><b>+3x</b><span>Tip &amp; review lift</span></li></ul>
+
+</div>
+<a class="back-pill" href="/#work" aria-label="Back to the portfolio">← Portfolio</a>
+</body>
+</html>
