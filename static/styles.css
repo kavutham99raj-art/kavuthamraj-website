@@ -2118,3 +2118,36 @@ p,li,dd{text-wrap:pretty}
   .card .arrow-link{width:100%;justify-content:space-between}
 }
 @media (prefers-reduced-motion:reduce){.card,.card-visual{transition:none}.card:hover .card-visual{transform:none}}
+
+/* ===== Home cards v3: calm and spacious. Logo, headline, one line, one link; everything else steps back ===== */
+.card-meta,.card-copy::before,.card .outcomes{display:none}
+.card{--pad:clamp(32px,4.4vw,72px)}
+.card-copy{align-content:center;gap:clamp(28px,3vw,44px);padding:var(--pad)}
+.card-copy>div:first-child{display:flex;flex-direction:column;align-items:flex-start}
+.card .prod-logo{margin:0 0 clamp(24px,2.4vw,36px)}
+.prod-logo img{max-height:40px}
+.card-prod{margin:0 0 14px;gap:0 8px}
+.card-prod b{font-size:15px;font-weight:600;color:var(--ink)}
+.card-prod span{padding:0;border-radius:0;background:none;font-size:15px;font-weight:400;color:var(--mut)}
+.card-prod span::before{content:"· ";color:var(--mut)}
+.card h3{margin-top:0;font-size:clamp(30px,3.1vw,48px);line-height:1.06;letter-spacing:-.035em}
+.card-text{max-width:30ch;margin-top:clamp(18px,1.8vw,26px);font-size:clamp(17px,1.35vw,21px);line-height:1.5;color:var(--mut)}
+.card .arrow-link{min-height:0;padding:0;margin-top:0;background:none;box-shadow:none;gap:8px;font-size:clamp(17px,1.35vw,19px);font-weight:600;color:var(--acc-d)}
+.card .arrow-link span{display:inline;width:auto;height:auto;border-radius:0;background:none;color:inherit;font-size:1.1em}
+.card:hover .arrow-link{background:none}
+.card:hover .arrow-link span{background:none;color:inherit;translate:5px 0}
+@media (max-width:760px){
+  .card{--pad:28px}
+  .card .arrow-link{width:auto;justify-content:flex-start}
+  .card-text{max-width:none}
+}
+
+/* cards v3, lighter type: headline in Inter semibold instead of the heavy display face, quieter support text */
+.card h3{font-family:var(--sans);font-weight:600;font-size:clamp(32px,3.3vw,52px);line-height:1.04;letter-spacing:-.04em}
+.card h3 em{font-style:normal;font-weight:600}
+.card-prod b{font-weight:500}
+.card-prod span{font-weight:400}
+.card-text{font-weight:400;color:rgba(23,18,15,.6)}
+.card .arrow-link{font-weight:500}
+.card-prod span::before{content:none}
+.card-prod b::after{content:" ·";font-weight:400;color:var(--mut)}
