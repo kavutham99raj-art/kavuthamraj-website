@@ -837,6 +837,11 @@ html{scroll-behavior:smooth}
 .bx-item div b{font-size:.66rem}
 .bx-amt b{font-size:.72rem}
 .ut-pin{right:5%;width:50px;height:28px;margin-top:-14px;border-radius:10px}
+
+/* before screen: total as a receipt row right under the dishes */
+.bx-total{position:static;margin:6px 9px 0;padding:9px 4px;background:none;color:#212121;border-top:1.5px dashed #9A9A9A;border-bottom:1.5px dashed #9A9A9A;font-size:.74rem;font-weight:700}
+.bx-total b{font-size:.78rem;font-weight:700;letter-spacing:0}
+.bx-total::before{content:none}
 </style>
 </head>
 <body>
@@ -1653,7 +1658,7 @@ html{scroll-behavior:smooth}
           <div class="bx-item"><figure style="background-position:5.2% 33.5%"><span>Special</span></figure><div><b>Spicy Garlic Chicken</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>1 × ₹150</small><b>₹150</b></span></div>
           <p class="bx-bar ok">✓ Approved</p>
           <div class="bx-item"><figure style="background-position:5.2% 21.8%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
-          <div class="bx-total"><span>Total so far</span><b>₹750</b></div>
+          <div class="bx-total"><span>Total Amount</span><b>750.00</b></div>
         </div></div>
     </figure>
     <div class="ut-arrow" aria-hidden="true"><span>Iterate</span><i>→</i></div>
