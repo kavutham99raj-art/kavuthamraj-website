@@ -827,6 +827,16 @@ html{scroll-behavior:smooth}
 @keyframes ut-rise{50%{translate:0 -5px}}
 @media(max-width:960px){.ut-loop{grid-template-columns:1fr 1fr}.ut-loop li::after{display:none}.ut-ba{grid-template-columns:1fr}.ut-arrow i{rotate:90deg}.ut-changes{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.ut-pin,.ut-up{animation:none}}
+
+/* before/after polish: clean dish crops (no doubled tag), status bar, centred Qty rings */
+.bx-item figure{background-size:682% auto}
+.bx-screen{padding-top:10px}
+.bx-sb{display:flex;justify-content:space-between;margin:0;padding:0 16px 6px;font-size:.56rem;font-weight:500;letter-spacing:.04em}
+.bx-top b{display:grid;place-items:center;width:24px;height:24px;margin-left:auto;border-radius:50%;box-shadow:inset 0 0 0 1.5px #212121;font-size:.8rem}
+.bx-item{gap:9px}
+.bx-item div b{font-size:.66rem}
+.bx-amt b{font-size:.72rem}
+.ut-pin{right:5%;width:50px;height:28px;margin-top:-14px;border-radius:10px}
 </style>
 </head>
 <body>
@@ -1637,19 +1647,19 @@ html{scroll-behavior:smooth}
     <figure class="ut-side is-before">
       <figcaption><span class="ut-tag no">Before</span>Tested prototype: price-led, with a running total</figcaption>
       <div class="bx-phone"><div class="bx-screen">
-          <p class="bx-top"><i>←</i>My Orders</p>
+          <p class="bx-sb"><span>●●●○○</span><span>9:41 AM</span></p><p class="bx-top"><i>←</i>My Orders<b aria-hidden="true">⌂</b></p>
           <p class="bx-bar wait">Awaiting confirmation…</p>
-          <div class="bx-item"><figure style="background-position:5.4% 22.6%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
-          <div class="bx-item"><figure style="background-position:5.4% 34.6%"><span>Special</span></figure><div><b>Spicy Garlic Chicken</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>1 × ₹150</small><b>₹150</b></span></div>
+          <div class="bx-item"><figure style="background-position:5.2% 21.8%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
+          <div class="bx-item"><figure style="background-position:5.2% 33.5%"><span>Special</span></figure><div><b>Spicy Garlic Chicken</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>1 × ₹150</small><b>₹150</b></span></div>
           <p class="bx-bar ok">✓ Approved</p>
-          <div class="bx-item"><figure style="background-position:5.4% 22.6%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
+          <div class="bx-item"><figure style="background-position:5.2% 21.8%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
           <div class="bx-total"><span>Total so far</span><b>₹750</b></div>
         </div></div>
     </figure>
     <div class="ut-arrow" aria-hidden="true"><span>Iterate</span><i>→</i></div>
     <figure class="ut-side is-after">
       <figcaption><span class="ut-tag ok">After</span>Shipped: no total, quantity is the primary figure</figcaption>
-      <div class="bx-phone is-real"><img src="/work/cyberdine-case/images/Order%20Status.png" alt="Cyberdine My Orders as shipped: dishes grouped by status with quantity on the right and no running total" width="750" height="1624" loading="lazy" decoding="async"><i class="ut-pin" style="--y:20.6%"></i><i class="ut-pin" style="--y:47.2%"></i></div>
+      <div class="bx-phone is-real"><img src="/work/cyberdine-case/images/Order%20Status.png" alt="Cyberdine My Orders as shipped: dishes grouped by status with quantity on the right and no running total" width="750" height="1624" loading="lazy" decoding="async"><i class="ut-pin" style="--y:22.4%"></i><i class="ut-pin" style="--y:49%"></i></div>
     </figure>
   </div>
 
