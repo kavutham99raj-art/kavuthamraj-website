@@ -673,12 +673,6 @@ export const framerCases = {
   "blocks": [
    {
     "t": "img",
-    "src": "work/payroll/02.jpg",
-    "w": 1600,
-    "h": 900
-   },
-   {
-    "t": "img",
     "src": "work/payroll/03.jpg",
     "w": 1600,
     "h": 900
