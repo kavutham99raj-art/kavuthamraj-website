@@ -305,15 +305,6 @@ export const featured = [
     href: "work/payroll.html", cover: "payroll.png",
   },
   {
-    key: "educonnect", accent: "#3FBF86", name: "Educonnect", what: "Tuition and online-course app", how: "Students find tutors or courses, chat with teachers and share posts.",
-    meta: ["Self-initiated", "EdTech", "iOS"],
-    title: "Every tutor. *One app.*",
-    text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
-    outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],
-    visual: { src: "work/educonnect/02.jpg", alt: "Educonnect on two iPhones: tuition and online courses, suggested teachers with chat, on a green brand background" },
-    href: "work/educonnect.html", cover: "educonnect.png",
-  },
-  {
     key: "titan", accent: "#4C86FF", name: "Titan", what: "B2B back-office and ERP", how: "Tables stay usable while data loads, with skeleton states instead of a full-page spinner.",
     logo: "logos/products/titan.png", meta: ["AffinityX", "Enterprise B2B SaaS"],
     title: "Kill the spinner. *Keep work moving.*",
@@ -321,6 +312,15 @@ export const featured = [
     outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
     visual: { demo: "loading", src: "work/titan-story/05.jpg", alt:"Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
     href: "work/titan.html", cover: "titan.png",
+  },
+  {
+    key: "educonnect", accent: "#3FBF86", name: "Educonnect", what: "Tuition and online-course app", how: "Students find tutors or courses, chat with teachers and share posts.",
+    meta: ["Self-initiated", "EdTech", "iOS"],
+    title: "Every tutor. *One app.*",
+    text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
+    outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],
+    visual: { src: "work/educonnect/02.jpg", alt: "Educonnect on two iPhones: tuition and online courses, suggested teachers with chat, on a green brand background" },
+    href: "work/educonnect.html", cover: "educonnect.png",
   },
   {
     key: "erp", accent: "#2F96E8", name: "Sporfy Tracker", what: "Mobile ERP for sports academies", how: "Payroll, attendance, fees, classes and slots in one phone app instead of a desktop.",
