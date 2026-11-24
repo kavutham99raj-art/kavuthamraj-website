@@ -1750,50 +1750,190 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
     </div></div>
 </section>
 
-<!-- 16. USABILITY TESTING & ITERATION -->
-<section id="usability-testing" class="ut">
+<!-- 16. USABILITY TESTING & ITERATION (editorial spread) -->
+<style>
+/* ===== Usability Testing: editorial 3D spread (all rules scoped to .ut3) ===== */
+.ut3{--g:clamp(3.4rem,18vw,7.5rem);--ink:#141A15;--mute:#5A655D;--grn:#179428;--grn2:#22C55E;--red:#E5484D;--p1:#FAFBF9;--p2:#F2EEE7;--pw:260px}
+.ut3 .ut3-spread{position:relative;display:grid;grid-template-columns:1fr;margin:0;padding:28px 16px 22px;border-radius:28px;background:linear-gradient(180deg,var(--p1),var(--p2));box-shadow:inset 0 0 0 1px rgba(20,26,21,.07),0 40px 70px -50px rgba(20,26,21,.45);overflow:hidden}
+
+/* labels */
+.ut3 .ut3-lab{display:flex;align-items:baseline;gap:12px;margin:0;font:400 italic clamp(2.4rem,5vw,3.6rem)/1 "Instrument Serif",Georgia,serif;letter-spacing:-.01em;color:var(--ink)}
+.ut3 .ut3-lab span{align-self:center;display:grid;place-items:center;min-width:34px;height:22px;padding:0 8px;border-radius:99px;font:800 .7rem/1 "Plus Jakarta Sans",sans-serif;font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.ut3 .is-b.ut3-lab span{background:var(--red)}
+.ut3 .is-a.ut3-lab span{background:var(--grn)}
+.ut3 .ut3-lab small{font:600 .82rem/1 "Plus Jakarta Sans",sans-serif;font-style:normal;letter-spacing:0;color:var(--mute)}
+
+/* giant type */
+.ut3 .ut3-type{position:relative;z-index:1;margin:14px 0 0;font:800 var(--g)/.9 "Plus Jakarta Sans",sans-serif;letter-spacing:-.055em;white-space:nowrap}
+.ut3 .ut3-type del,.ut3 .ut3-type ins{position:relative;display:inline-block;text-decoration:none}
+.ut3 .ut3-type del{color:var(--red)}
+.ut3 .ut3-type ins{color:var(--grn)}
+.ut3 .ut3-type ins em{margin-left:.06em;font:400 italic 1.02em/1 "Instrument Serif",Georgia,serif;letter-spacing:-.01em}
+.ut3 .ut3-type svg{position:absolute;left:-4%;width:108%;overflow:visible;pointer-events:none}
+.ut3 .ut3-strike{top:12%;height:80%}
+.ut3 .ut3-strike path{fill:none;stroke:var(--ink);stroke-width:7;stroke-linecap:round}
+.ut3 .ut3-strike path+path{stroke-width:5;opacity:.85}
+.ut3 .ut3-swash{top:78%;height:34%}
+.ut3 .ut3-swash path{fill:none;stroke:var(--grn2);stroke-width:9;stroke-linecap:round;opacity:.9}
+
+/* spine chip */
+.ut3 .ut3-spine{display:grid;place-items:center;justify-self:center;width:52px;height:52px;margin:30px 0 26px;border-radius:50%;background:var(--ink);color:#fff;box-shadow:0 12px 24px -12px rgba(20,26,21,.6)}
+.ut3 .ut3-spine svg{width:22px;height:22px;rotate:90deg;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* phones */
+.ut3 .ut3-dev{position:relative;z-index:2;justify-self:center;width:min(var(--pw),78vw);margin-top:clamp(18px,2.4vw,30px);perspective:1400px}
+.ut3 .ut3-tilt{transform-origin:50% 50%;transition:transform .6s ease}
+.ut3 .bx-phone{position:relative;width:100%;padding:9px;border-radius:40px;background:linear-gradient(145deg,#2a2f2b,#0c0f0d);box-shadow:0 40px 60px -34px rgba(20,26,21,.7),0 0 0 1px rgba(255,255,255,.06) inset}
+.ut3 .bx-phone.is-real img{display:block;width:100%;height:auto;border-radius:32px}
+.ut3 .bx-screen{position:relative;display:flex;flex-direction:column;gap:7px;aspect-ratio:750/1624;overflow:hidden;padding:10px 0 0;border-radius:32px;background:#fff;font-family:"IBM Plex Sans",sans-serif;line-height:1.3;color:#212121}
+.ut3 .bx-screen p{margin:0}
+.ut3 .bx-sb{display:flex;justify-content:space-between;padding:0 16px 6px!important;font-size:.56rem;font-weight:500;letter-spacing:.04em}
+.ut3 .bx-top{display:flex;align-items:center;gap:8px;margin:0 0 4px!important;padding:0 12px;font-size:1rem;font-weight:700}
+.ut3 .bx-top i{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#179428;color:#fff;font-size:.8rem;font-style:normal}
+.ut3 .bx-top b{display:grid;place-items:center;width:24px;height:24px;margin-left:auto;border-radius:50%;box-shadow:inset 0 0 0 1.5px #212121;font-size:.8rem}
+.ut3 .bx-bar{padding:6px 12px;font-size:.72rem;font-weight:600;color:#fff}
+.ut3 .bx-bar.wait{background:#FF7D20}.ut3 .bx-bar.ok{background:#179428}
+.ut3 .bx-item{display:flex;align-items:center;gap:9px;margin:0 9px;overflow:hidden;border-radius:4px;background:#fff;box-shadow:0 0 0 1px #E4E4E4}
+.ut3 .bx-item figure{position:relative;flex:none;width:46px;height:46px;margin:0;background:url("/work/cyberdine-case/images/Items%20in%20cart-750.webp") 5.4% 22.6%/682% auto no-repeat}
+.ut3 .bx-item figure span{position:absolute;left:0;right:0;bottom:0;background:#179428;color:#fff;font-size:.46rem;font-weight:600;text-align:center}
+.ut3 .bx-item div{flex:1;min-width:0}
+.ut3 .bx-item div b{display:block;font-size:.66rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ut3 .bx-item div small{display:block;font-size:.56rem;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ut3 .bx-amt{display:flex;flex-direction:column;align-items:flex-end;padding-right:8px}
+.ut3 .bx-amt small{font-size:.54rem;color:#666}
+.ut3 .bx-amt b{font-size:.72rem;font-weight:700}
+.ut3 .bx-total{position:relative;display:flex;align-items:center;justify-content:space-between;margin:6px 9px 0;padding:9px 4px;border-block:1.5px dashed transparent;font-size:.74rem;font-weight:700;color:#212121}
+.ut3 .bx-total b{font-size:.78rem;font-weight:700}
+.ut3 .bx-total::after{content:"";position:absolute;inset:-5px -7px;border:2px solid var(--red);border-radius:12px;box-shadow:0 0 0 6px rgba(229,72,77,.16)}
+.ut3 .bx-foot{position:absolute;left:0;right:0;bottom:0;padding:7px 8px 10px;background:#179428}
+.ut3 .bx-foot span{display:grid;place-items:center;height:30px;border-radius:3px;background:#fff;color:#179428;font-size:.82rem;font-weight:700}
+.ut3 .ut3-pin{position:absolute;left:83.5%;top:var(--y);width:54px;height:30px;margin:-15px 0 0 -27px;border-radius:10px;box-shadow:0 0 0 2.5px var(--grn2),0 0 0 8px rgba(34,197,94,.22)}
+.ut3 .ut3-pin.is-soft{box-shadow:0 0 0 2px rgba(34,197,94,.75)}
+
+/* margin notes (stacked default: card under the phone) */
+.ut3 .ut3-note{position:relative;z-index:3;margin:18px 0 0;padding-left:14px;border-left:3px solid;font:600 1rem/1.35 "Plus Jakarta Sans",sans-serif;letter-spacing:-.01em;color:var(--ink)}
+.ut3 .ut3-note b{display:block;margin-bottom:3px;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.ut3 .ut3-note.is-no{border-color:var(--red)}.ut3 .ut3-note.is-no b{color:#B4232A}
+.ut3 .ut3-note.is-ok{border-color:var(--grn2)}.ut3 .ut3-note.is-ok b{color:#0F6B1C}
+
+/* result */
+.ut3 .ut3-res{display:flex;align-items:center;justify-content:center;gap:14px;margin:34px 0 0;padding-top:22px;border-top:1px solid rgba(20,26,21,.1);font:800 clamp(1.15rem,2.2vw,1.5rem)/1.2 "Plus Jakarta Sans",sans-serif;letter-spacing:-.025em;color:var(--ink);text-align:left}
+.ut3 .ut3-res em{font:400 italic 1.15em/1 "Instrument Serif",Georgia,serif;letter-spacing:0;color:var(--grn)}
+.ut3 .ut3-up{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--grn);color:#fff;box-shadow:0 0 0 6px rgba(34,197,94,.16)}
+.ut3 .ut3-up svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ut3 .ut3-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---- spread: two pages, phones tilted like an open book ---- */
+@media(min-width:761px){
+  .ut3 .ut3-spread{grid-template-columns:1fr 64px 1fr;grid-template-areas:"labB . labA" "typB spn typA" "devB . devA" "res res res";padding:clamp(28px,4vw,48px) clamp(24px,4vw,48px) 28px;background:linear-gradient(90deg,#FAF8F4 0%,#F2EEE7 44%,#E6DFD3 50%,#F2EEE7 56%,#FAF8F4 100%)}
+  .ut3 .ut3-spread::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(180deg,transparent,rgba(20,26,21,.14) 12%,rgba(20,26,21,.14) 88%,transparent)}
+  .ut3 .ut3-lab.is-b{grid-area:labB}
+  .ut3 .ut3-lab.is-a{grid-area:labA;justify-content:flex-end}
+  .ut3 .ut3-lab.is-a small{order:-1}
+  .ut3 .ut3-type.is-b{grid-area:typB;justify-self:end;margin-top:clamp(28px,4vw,48px)}
+  .ut3 .ut3-type.is-a{grid-area:typA;justify-self:start;margin-top:clamp(28px,4vw,48px)}
+  .ut3 .ut3-spine{grid-area:spn;align-self:center;margin:clamp(28px,4vw,48px) 0 0}
+  .ut3 .ut3-spine svg{rotate:0deg}
+  .ut3 .ut3-dev.is-b{grid-area:devB;justify-self:end;width:min(var(--pw),100%);margin-right:4px}
+  .ut3 .ut3-dev.is-a{grid-area:devA;justify-self:start;width:min(var(--pw),100%);margin-left:4px}
+  .ut3 .ut3-dev.is-b .ut3-tilt{transform:rotateY(14deg) rotateZ(-1deg)}
+  .ut3 .ut3-dev.is-a .ut3-tilt{transform:rotateY(-14deg) rotateZ(1deg)}
+  .ut3 .ut3-res{grid-area:res}
+  .ut3 .ut3-type{--g:clamp(3.4rem,8.4vw,7.5rem)}
+  .ut3{--g:clamp(3.4rem,8.4vw,7.5rem)}
+}
+/* wide: notes live in the outer margins with leader lines into the phone */
+@media(min-width:1100px){
+  .ut3 .ut3-dev.is-b,.ut3 .ut3-dev.is-a{width:var(--pw)}
+  .ut3 .ut3-note{position:absolute;width:212px;margin:0;border:0;padding:0;transform:translateY(-50%)}
+  .ut3 .ut3-note::before{content:"";position:absolute;top:50%;width:58px;height:1.5px;background:var(--ink)}
+  .ut3 .ut3-note::after{content:"";position:absolute;top:50%;width:11px;height:11px;margin-top:-5px;border-radius:50%;box-shadow:0 0 0 2.5px #fff}
+  /* before: the total row centre sits at ~61% of a 260px phone */
+  .ut3 .ut3-note.is-no{top:61%;right:calc(100% - 12px);padding-right:70px;text-align:right}
+  .ut3 .ut3-note.is-no::before{right:0}
+  .ut3 .ut3-note.is-no::after{right:-5px;background:var(--red)}
+  /* after: first "2 Qty" sits at x 83.5%, y 23.3% of the phone frame */
+  .ut3 .ut3-note.is-ok{top:23.3%;left:calc(83.5% + 27px);padding-left:70px}
+  .ut3 .ut3-note.is-ok::before{left:0}
+  .ut3 .ut3-note.is-ok::after{left:-5px;background:var(--grn2)}
+}
+
+/* motion: only when allowed and supported (scroll-linked, no clicking needed) */
+@media(prefers-reduced-motion:no-preference){
+  .ut3 .ut3-pin:not(.is-soft){animation:ut3-pulse 2.4s ease-in-out infinite}
+  .ut3 .bx-total::after{animation:ut3-ring 2.4s ease-in-out infinite}
+  @keyframes ut3-pulse{50%{box-shadow:0 0 0 2.5px var(--grn2),0 0 0 13px rgba(34,197,94,0)}}
+  @keyframes ut3-ring{50%{box-shadow:0 0 0 12px rgba(229,72,77,0)}}
+  @supports (animation-timeline:view()){
+    .ut3 .ut3-type path{stroke-dasharray:1;stroke-dashoffset:1;animation:ut3-draw linear both;animation-timeline:view();animation-range:entry 30% cover 42%}
+    .ut3 .ut3-type path+path{animation-range:entry 45% cover 48%}
+    @keyframes ut3-draw{to{stroke-dashoffset:0}}
+  }
+}
+@media(prefers-reduced-motion:no-preference) and (min-width:761px){
+  @supports (animation-timeline:view()){
+    .ut3 .ut3-dev .ut3-tilt{transition:none;animation:ut3-open linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+    .ut3 .ut3-dev.is-a .ut3-tilt{animation-name:ut3-open-a}
+    @keyframes ut3-open{from{transform:rotateY(0) rotateZ(0)}to{transform:rotateY(14deg) rotateZ(-1deg)}}
+    @keyframes ut3-open-a{from{transform:rotateY(0) rotateZ(0)}to{transform:rotateY(-14deg) rotateZ(1deg)}}
+  }
+}
+@media(max-width:760px){
+  .ut3 .ut3-dev{width:min(240px,72vw)}
+  .ut3 .ut3-type.is-b,.ut3 .ut3-type.is-a{justify-self:center}
+  .ut3 .ut3-lab{justify-content:center}
+  .ut3 .ut3-note{justify-self:center;max-width:280px}
+  .ut3 .ut3-lab.is-a{margin-top:0}
+}
+</style>
+
+<section id="usability-testing" class="ut3">
   <div class="sh">
     <div>
       <h2 class="h2"><small class="h2-pre">Test &amp; Iterate</small>Usability <em>Testing</em></h2>
-      <p class="sd">I took the prototype to real diners, watched where they struggled, collected their feedback and kept iterating. One small number changed how much people ordered.</p>
+      <p class="sd">One number on My Orders changed how much diners ordered.</p>
     </div>
   </div>
 
+  <div class="ut3-spread">
+    <p class="ut3-lab is-b"><span>01</span>Before<small>Tested prototype</small></p>
 
+    <p class="ut3-type is-b"><del><span class="ut3-vh">Removed: running total of </span>₹750.00<svg class="ut3-strike" viewBox="0 0 430 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 58 C 70 50, 140 61, 215 53 S 360 44, 424 49"/><path pathLength="1" d="M18 67 C 110 60, 200 68, 290 58 S 390 55, 414 57"/></svg></del></p>
 
-  <div class="ut-ba">
-    <figure class="ut-side is-before">
-      <figcaption><span class="ut-tag no">Before</span>Tested prototype: price-led, with a running total</figcaption>
-      <div class="bx-phone"><div class="bx-screen">
-          <p class="bx-sb"><span>●●●○○</span><span>9:41 AM</span></p><p class="bx-top"><i>←</i>My Orders<b aria-hidden="true">⌂</b></p>
+    <figure class="ut3-dev is-b" aria-label="Tested prototype: My Orders with a running total of 750.00 circled">
+      <div class="ut3-tilt">
+        <div class="bx-phone" aria-hidden="true"><div class="bx-screen">
+          <p class="bx-sb"><span>●●●○○</span><span>9:41 AM</span></p><p class="bx-top"><i>←</i>My Orders<b>⌂</b></p>
           <p class="bx-bar wait">Awaiting confirmation…</p>
           <div class="bx-item"><figure style="background-position:5.2% 21.8%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
           <div class="bx-item"><figure style="background-position:5.2% 33.5%"><span>Special</span></figure><div><b>Spicy Garlic Chicken</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>1 × ₹150</small><b>₹150</b></span></div>
           <p class="bx-bar ok">✓ Approved</p>
           <div class="bx-item"><figure style="background-position:5.2% 21.8%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
-          <div class="bx-total is-ringed"><span>Total Amount</span><b>750.00</b></div>
-          <p class="ut-note no"><i>↑</i><span>Seeing the total, diners <b>ordered less.</b></span></p>
+          <div class="bx-total"><span>Total Amount</span><b>750.00</b></div>
           <div class="bx-foot"><span>Order More</span></div>
         </div></div>
+      </div>
+      <figcaption class="ut3-note is-no"><b>Removed</b>Seeing the total, diners ordered less.</figcaption>
     </figure>
-    <div class="ut-arrow" aria-hidden="true"><span>Iterate</span><i>→</i></div>
-    <figure class="ut-side is-after">
-      <figcaption><span class="ut-tag ok">After</span>Shipped: no total, quantity is the primary figure</figcaption>
-      <div class="bx-phone is-real"><img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Cyberdine My Orders as shipped: dishes grouped by status with quantity on the right and no running total" width="750" height="1624" loading="lazy" decoding="async"><i class="ut-pin" style="--y:22.4%"></i><i class="ut-pin" style="--y:49%"></i><p class="ut-note ok"><i>↗</i><span>Qty first: diners <b>check what they ordered</b>, not what they spent.</span></p></div>
+
+    <span class="ut3-spine" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></span>
+
+    <p class="ut3-lab is-a"><span>02</span>After<small>Shipped</small></p>
+
+    <p class="ut3-type is-a"><ins><span class="ut3-vh">Now the primary figure: </span>2<em>Qty</em><svg class="ut3-swash" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M8 24 C 80 14, 170 12, 292 20"/></svg></ins></p>
+
+    <figure class="ut3-dev is-a">
+      <div class="ut3-tilt">
+        <div class="bx-phone is-real">
+          <img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Cyberdine My Orders as shipped: dishes grouped by status, quantity on the right, no running total" width="750" height="1624" loading="lazy" decoding="async">
+          <i class="ut3-pin" style="--y:23.3%" aria-hidden="true"></i><i class="ut3-pin is-soft" style="--y:49%" aria-hidden="true"></i>
+        </div>
+      </div>
+      <figcaption class="ut3-note is-ok"><b>Promoted</b>Qty first: diners check what they ordered.</figcaption>
     </figure>
+
+    <p class="ut3-res"><span class="ut3-up" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span>Sales went up <em>after launch</em></span></p>
   </div>
-
-  <ul class="ut-changes">
-    <li><b>Removed</b>the running total from My Orders</li>
-    <li><b>Promoted</b>quantity to the primary figure on every dish</li>
-    <li><b>Moved</b>the full amount to the bill, when the diner asks for it</li>
-  </ul>
-
-  <div class="ut-result">
-    <span class="ut-up" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
-    <div><p class="an-k">After launch</p><p>Sales went up, and diners kept ordering through the meal.</p></div>
-  </div>
-
 </section>
 <ul class="v-met v-end"><li><b>&lt; 10s</b><span>QR-to-action speed</span></li><li><b>0%</b><span>Sold-out friction</span></li><li><b>Zero</b><span>Range-drop failures</span></li><li><b>+3x</b><span>Tip &amp; review lift</span></li></ul>
 
