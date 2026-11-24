@@ -117,14 +117,7 @@ export default {
 
     { t: "h2", x: "What if the AI gets it wrong?" },
     { t: "p", x: "It will, sometimes. So every mistake is easy to spot, cheap to fix and never final without a person." },
-    { t: "guard", cap: "One screen, rebuilt in code with made-up example data. Hover or tap a number.", items: [
-      ["pen", "It fills a field wrong", "Fields stay editable until submit."],
-      ["xCircle", "It suggests a bad change", "Add or Cancel. No silent edits."],
-      ["chart", "Its score looks arbitrary", "Reasons and factors are shown."],
-      ["msg", "It hits a call it shouldn't make", "It asks, then waits for review."],
-      ["arrowUp", "The work is too risky", "Escalated to a person."],
-      ["history", "Who changed what?", "Every action is logged."],
-    ] },
+    { t: "raw", html: '<div class="sg"><div class="sg-stage"><div class="sg-ph"><div class="sg-scr" aria-hidden="true">      <p class="sg-top"><i style="--c:#605BFF">V</i><b>New lead</b><span class="sg-ai">✦ AI filled 6 fields</span></p>      <div class="sg-row"><label>Client name<span>Northwind Pay <em>AI</em></span></label><label>Deal size<span>1.5M <em>AI</em></span></label></div>      <div class="sg-diff"><p><s>Due 30 Apr</s><ins>Due 30 May</ins></p><span><u>Add</u><u class="no">Cancel</u></span></div>      <p class="sg-score"><b>90%</b><span>likely to win</span><em>Why? 3 factors</em></p>      <p class="sg-ask"><span>Which database should we use?</span><b>Needs a human</b></p>      <p class="sg-esc"><span>Payments module</span><b>Escalated</b></p>      <p class="sg-log">10:42 · You edited Deal size · 10:40 · AI filled 6 fields</p>    </div><i class="sg-pin" style="--x:12%;--y:22%">1</i><i class="sg-pin" style="--x:12%;--y:37%">2</i><i class="sg-pin" style="--x:12%;--y:53%">3</i><i class="sg-pin" style="--x:12%;--y:67%">4</i><i class="sg-pin" style="--x:12%;--y:80%">5</i><i class="sg-pin" style="--x:12%;--y:92%">6</i></div><ul class="sg-calls"><li class="sg-c l" style="--y:22%"><b>1</b><div><h4>It fills a field wrong</h4><p>Fields stay editable until submit.</p></div></li><li class="sg-c l" style="--y:50%"><b>2</b><div><h4>It suggests a bad change</h4><p>Add or Cancel. No silent edits.</p></div></li><li class="sg-c l" style="--y:78%"><b>3</b><div><h4>Its score looks arbitrary</h4><p>Reasons and factors are shown.</p></div></li><li class="sg-c r" style="--y:22%"><b>4</b><div><h4>It hits a call it shouldn’t make</h4><p>It asks, then waits for review.</p></div></li><li class="sg-c r" style="--y:50%"><b>5</b><div><h4>The work is too risky</h4><p>Escalated to a person.</p></div></li><li class="sg-c r" style="--y:78%"><b>6</b><div><h4>Who changed what?</h4><p>Every action is logged.</p></div></li></ul></div><p class="sg-cap">One screen, rebuilt in code with made-up example data.</p></div>' },
 
     { t: "fold", id: "full-process", title: "See the full process", x: "Research, personas, structure, flows and the design system.", blocks: [
       { t: "h3", x: "How I worked" },
@@ -200,20 +193,7 @@ export default {
 
     { t: "h2", x: "What I delivered and learned" },
     { t: "p", x: "What I handed over, and what I'd do differently next time." },
-    { t: "wrap",
-      did: [
-        "The structure and key flows for five apps",
-        "Wireframes and final UI with every state",
-        "One design system for every app",
-        "A shipped product, built from my designs",
-      ],
-      learnt: [
-        ["Design the waiting", "Progress matters as much as the answer."],
-        ["Give the AI a face", "Named agents read as teammates."],
-        ["Test with users early", "Next time, sales and delivery staff before handoff."],
-        ["Check colour as text", "Cyan and green need darker text tones."],
-        ["What I'd build next", "A confidence level per field, linked to the sentence it came from."],
-      ] },
+    { t: "raw", html: '<div class="sw2"><ul class="sw2-did"><li><b>5<small>apps</small></b><span>Structure and key flows</span></li><li><b>Every<small>state</small></b><span>Wireframes to final UI</span></li><li><b>1<small>design system</small></b><span>For every app</span></li><li><b>Shipped<small></small></b><span>Built from my designs</span></li></ul><h3 class="sw2-k">What I learned</h3><ol class="sw2-learn"><li><small>01</small><div><h4>Design the waiting</h4><p>Progress matters as much as the answer.</p></div></li><li><small>02</small><div><h4>Give the AI a face</h4><p>Named agents read as teammates.</p></div></li><li><small>03</small><div><h4>Test with users early</h4><p>Next time, sales and delivery staff before handoff.</p></div></li><li><small>04</small><div><h4>Check colour as text</h4><p>Cyan and green need darker text tones.</p></div></li><li><small>05</small><div><h4>What I’d build next</h4><p>A confidence level per field, linked to the sentence it came from.</p></div></li></ol></div>' },
     { t: "note", x: "Client names and figures in the screens are placeholder data, not real clients or results." },
   ],
 };
