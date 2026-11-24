@@ -2378,3 +2378,30 @@ p,li,dd{text-wrap:pretty}
 .sg-c b{width:30px;height:30px;font-size:12px}
 @media(max-width:760px){.sg-calls{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.sg-calls{grid-template-columns:1fr}}
+
+/* ===== Home cards v6: size from the card's own width (container units), not the viewport ===== */
+@media (min-width:1100px){
+  .card{container-type:inline-size;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+  .card:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
+  .card .card-visual{align-self:stretch;aspect-ratio:auto;min-height:30cqi;margin:clamp(20px,2.4cqi,32px)}
+  .card-copy{padding:clamp(36px,4.8cqi,60px);gap:clamp(28px,3.2cqi,40px);align-content:center}
+  .card .prod-logo{margin-bottom:clamp(16px,2cqi,24px)}
+  .card-meta{margin-bottom:clamp(20px,2.4cqi,30px)}
+  .card h3{font-size:clamp(28px,3.3cqi,40px);line-height:1.08;max-width:none}
+  .card-text{margin-top:clamp(16px,1.8cqi,22px);font-size:clamp(16px,1.7cqi,19px)}
+  .card-copy::before{font-size:clamp(140px,17cqi,210px);bottom:clamp(-16px,-1cqi,-8px)}
+}
+/* v6: visuals keep a designed 4:3 frame (their scenes are laid out for a fixed shape) and centre against the copy */
+@media (min-width:1100px){
+  .card .card-visual{align-self:center;aspect-ratio:4/3;min-height:0;height:auto}
+  .card .card-visual.is-phones{aspect-ratio:auto;align-self:stretch}
+}
+@media (min-width:1100px){
+  .card .card-visual>.ab-pr{aspect-ratio:auto;width:100%;height:100%}
+  .card .card-visual:has(>.ld){aspect-ratio:16/10}
+}
+@media (min-width:1100px){
+  .card .ld{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,2.4cqi,22px);padding:0 clamp(14px,3cqi,28px)}
+  .card .ld>*{min-width:0}
+}
+@media (min-width:1100px){.card .ld-cap{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.35;font-size:clamp(11px,1.9cqi,13px)}.card .ld-cap *{white-space:normal}}
