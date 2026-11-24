@@ -1019,7 +1019,7 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
       <div class="hf-ppl" aria-hidden="true"><i class="on" style="--k:0"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="on" style="--k:1"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="on" style="--k:2"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="on" style="--k:3"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="on" style="--k:4"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="on" style="--k:5"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="on" style="--k:6"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="on" style="--k:7"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="on" style="--k:8"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i><i class="" style="--k:9"><svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="6"/><path d="M1 32v-6a11 11 0 0 1 22 0v6z"/></svg></i></div>
       <p class="hf-built"><b>We built</b>Request Waiter, one tap from the table</p>
     </div>
-    <figure class="hf-ph"><img src="/work/cyberdine-case/images/Cyberdine-750.webp" alt="Cyberdine table welcome screen with the Request Waiter button" width="750" height="1624" loading="lazy" decoding="async"></figure>
+    <div class="hf-phw"><figure class="hf-ph"><img src="/work/cyberdine-case/images/Cyberdine-750.webp" alt="Cyberdine table welcome screen with the Request Waiter button" width="750" height="1624" loading="lazy" decoding="async"><i class="hf-ring" aria-hidden="true"></i></figure><span class="hf-btn" aria-hidden="true"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a7 7 0 0 1 7 7v3H5v-3a7 7 0 0 1 7-7z"/><path d="M12 3v2M3 18h18"/></svg></i><span><b>Request</b>Waiter</span></span></div>
   </article>
 
   <div class="hf-pair">
@@ -2052,6 +2052,24 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
 .hf-out em{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;color:var(--p)}
 @media(max-width:900px){.hf-hero{grid-template-columns:1fr}.hf-ph{width:200px;rotate:0deg}.hf-pair{grid-template-columns:1fr}.hf-floor ol{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.hf-floor ol{grid-template-columns:1fr}.hf-also{flex-direction:column;gap:8px}.hf-built{border-radius:16px;font-size:.9rem}}
+
+/* hero: point at the Request Waiter button on the real screen, and lift it out as a callout */
+.hf-phw{position:relative;justify-self:center;width:min(250px,100%)}
+.hf-phw .hf-ph{position:relative;width:100%}
+.hf-ring{position:absolute;left:49.5%;top:49.5%;width:41%;height:27%;border-radius:16px;box-shadow:0 0 0 3px #fff,0 0 0 6px #22C55E,0 0 0 14px rgba(34,197,94,.25);animation:hf-ring 2.2s ease-in-out infinite}
+@keyframes hf-ring{50%{box-shadow:0 0 0 3px #fff,0 0 0 6px #22C55E,0 0 0 20px rgba(34,197,94,0)}}
+.hf-btn{position:absolute;left:-30%;top:58%;z-index:2;display:inline-flex;align-items:center;gap:12px;padding:12px 20px 12px 14px;border-radius:12px;background:#fff;box-shadow:inset 0 0 0 2px #179428,0 24px 40px -18px rgba(20,26,21,.5);font-family:"Montserrat","Plus Jakarta Sans",sans-serif;line-height:1.1;rotate:-3deg}
+.hf-btn i svg{display:block;width:30px;height:30px;fill:#179428;stroke:#179428;stroke-width:1.4;stroke-linecap:round}
+.hf-btn span{display:flex;flex-direction:column;font-size:.95rem;color:#666}
+.hf-btn b{font-size:1.15rem;font-weight:800;color:#179428}
+.hf-btn::after{content:"";position:absolute;left:100%;top:50%;width:14%;height:2px;background:#22C55E}
+@media(max-width:900px){.hf-phw{width:200px}.hf-btn{left:-34%}}
+@media(prefers-reduced-motion:reduce){.hf-ring{animation:none}}
+
+.hf-btn{left:auto;right:calc(100% + 34px);top:58%;rotate:0deg;white-space:nowrap}
+.hf-btn::after{left:100%;width:calc(34px + 124px);height:2px;background:linear-gradient(90deg,#22C55E,rgba(34,197,94,.5))}
+.hf-btn::before{content:"";position:absolute;left:calc(100% + 34px + 124px - 5px);top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#22C55E}
+@media(max-width:900px){.hf-btn{right:auto;left:50%;top:auto;bottom:-26px;translate:-50% 0}.hf-btn::after,.hf-btn::before{display:none}.hf-phw{margin-bottom:30px}}
 </style>
 
 <section id="usability-testing" class="ut3">
