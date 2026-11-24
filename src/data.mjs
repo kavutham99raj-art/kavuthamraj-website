@@ -286,6 +286,15 @@ export const featured = [
     href: "work/cyberdine.html", cover: "cyberdine.png",
   },
   {
+    key: "titan", accent: "#4C86FF", name: "Titan", what: "B2B back-office and ERP", how: "Tables stay usable while data loads, with skeleton states instead of a full-page spinner.",
+    logo: "logos/products/titan.png", meta: ["AffinityX", "Enterprise B2B SaaS"],
+    title: "Kill the spinner. *Keep work moving.*",
+    text: "One slow table froze the whole back office. I audited every table and dashboard, won the PM over with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components. “App is stuck” reports dropped to zero.",
+    outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
+    visual: { demo: "loading", src: "work/titan-story/05.jpg", alt:"Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
+    href: "work/titan.html", cover: "titan.png",
+  },
+  {
     key: "steadfast", accent: "#6C67FF", name: "Steadfast", what: "AI service-delivery platform", how: "AI agents fill leads, size the work and plan sprints. People review and sign off.",
     logo: "logos/products/steadfast.png", meta: ["Liffto Technologies", "AI SaaS"],
     title: "AI does the work. *You make the call.*",
@@ -303,15 +312,6 @@ export const featured = [
     outcomes: [["3", "months, from brief to developer handoff"], ["Live", "inside Sporfy Tracker on Google Play"], ["Mobile", "payroll for admins and staff in one app"]],
     visual: { demo: "payroll", alt: "Sporfy Payroll on three phones: the Pay Run for 200 employees, payroll settings, and an employee\u2019s My Payslips with the net pay breakdown" },
     href: "work/payroll.html", cover: "payroll.png",
-  },
-  {
-    key: "titan", accent: "#4C86FF", name: "Titan", what: "B2B back-office and ERP", how: "Tables stay usable while data loads, with skeleton states instead of a full-page spinner.",
-    logo: "logos/products/titan.png", meta: ["AffinityX", "Enterprise B2B SaaS"],
-    title: "Kill the spinner. *Keep work moving.*",
-    text: "One slow table froze the whole back office. I audited every table and dashboard, won the PM over with side-by-side wireframes, and shipped skeleton states as reusable MUI v6 components. “App is stuck” reports dropped to zero.",
-    outcomes: [["2 wks", "wireframe to release"], ["~40%", "shorter perceived waits, PM estimate"], ["1 → all", "one table's fix, now the product-wide standard"]],
-    visual: { demo: "loading", src: "work/titan-story/05.jpg", alt:"Titan Orders table before and after: a full-page loader that locks everything, then skeleton rows with the toolbar still live" },
-    href: "work/titan.html", cover: "titan.png",
   },
   {
     key: "educonnect", accent: "#3FBF86", name: "Educonnect", what: "Tuition and online-course app", how: "Students find tutors or courses, chat with teachers and share posts.",

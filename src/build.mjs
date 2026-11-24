@@ -953,7 +953,7 @@ const SUMMARIES = {
   "sports-ecommerce": "A sports and fitness e-commerce storefront, designed in one week.",
   "next-messenger": "A concept for a cross-platform chat app for text, image, video and audio messages and stories.",
 };
-const ORDER = ["cyberdine", "steadfast", "payroll", "titan", "educonnect", "erp", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "customerlabs", "m-music", "evento", "next-messenger", "slay"];
+const ORDER = ["cyberdine", "titan", "steadfast", "payroll", "educonnect", "erp", "rang-clothing", "present-onboard", "sports-ecommerce", "redbus", "customerlabs", "m-music", "evento", "next-messenger", "slay"];
 
 const fcPage = (key) => {
   const c = framerCases[key], r = "../";
