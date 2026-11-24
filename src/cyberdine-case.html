@@ -948,6 +948,19 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
 .ia-split{gap:8px}
 .ia-tier-lbl{margin:10px auto 2px;padding:7px 16px;border:0;background:#0B140D;color:#fff;font-size:.72rem;letter-spacing:.12em;box-shadow:0 10px 20px -12px rgba(11,20,13,.6)}
 @media(max-width:960px){.ia-col{padding:0 0 10px;background:none}}
+
+/* before/after annotations: the circled total, and what changed */
+.bx-total.is-ringed{position:relative;border-color:transparent}
+.bx-total.is-ringed::after{content:"";position:absolute;inset:-5px -7px;border:2px solid #E5484D;border-radius:12px;box-shadow:0 0 0 6px rgba(229,72,77,.15);animation:ut-ring 2.2s ease-in-out infinite}
+@keyframes ut-ring{50%{box-shadow:0 0 0 11px rgba(229,72,77,0)}}
+.ut-note{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;margin:18px 14px 0;padding:12px 14px;border-radius:14px;font-family:"Plus Jakarta Sans",sans-serif;font-size:.84rem;font-weight:600;line-height:1.35;text-align:center;box-shadow:0 14px 26px -16px rgba(20,26,21,.45)}
+.ut-note i{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;font-style:normal;font-weight:800;color:#fff}
+.ut-note b{font-weight:800}
+.ut-note.no{background:#FFF1F1;color:#7A1F22;box-shadow:inset 0 0 0 1.5px #E5484D,0 14px 26px -16px rgba(20,26,21,.45)}
+.ut-note.no i{background:#E5484D}
+.ut-note.ok{position:absolute;left:8%;right:8%;top:70.5%;margin:0;background:#EEFBF0;color:#0F4F18;box-shadow:inset 0 0 0 1.5px #22C55E,0 14px 26px -16px rgba(20,26,21,.45)}
+.ut-note.ok i{background:#22C55E}
+@media(prefers-reduced-motion:reduce){.bx-total.is-ringed::after{animation:none}}
 </style>
 </head>
 <body>
@@ -1746,13 +1759,7 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
     </div>
   </div>
 
-  <ol class="ut-loop"><li><span>01</span>Prototype</li><li><span>02</span>Test with diners</li><li><span>03</span>Observe</li><li><span>04</span>Collect feedback</li><li><span>05</span>Iterate</li></ol>
 
-  <div class="ut-find">
-    <p class="an-k">What testing showed</p>
-    <p class="ut-q">A running total on My Orders made diners <em>order less.</em></p>
-    <p class="ut-why">Mid-meal, a bill-style total turned “what else should we try?” into “how much have we spent?”. People stopped adding dishes.</p>
-  </div>
 
   <div class="ut-ba">
     <figure class="ut-side is-before">
@@ -1764,14 +1771,15 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
           <div class="bx-item"><figure style="background-position:5.2% 33.5%"><span>Special</span></figure><div><b>Spicy Garlic Chicken</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>1 × ₹150</small><b>₹150</b></span></div>
           <p class="bx-bar ok">✓ Approved</p>
           <div class="bx-item"><figure style="background-position:5.2% 21.8%"><span>Special</span></figure><div><b>Chicken Tikka</b><small>delicious Indian appetizer…</small></div><span class="bx-amt"><small>2 × ₹150</small><b>₹300</b></span></div>
-          <div class="bx-total"><span>Total Amount</span><b>750.00</b></div>
+          <div class="bx-total is-ringed"><span>Total Amount</span><b>750.00</b></div>
+          <p class="ut-note no"><i>↑</i><span>Seeing the total, diners <b>ordered less.</b></span></p>
           <div class="bx-foot"><span>Order More</span></div>
         </div></div>
     </figure>
     <div class="ut-arrow" aria-hidden="true"><span>Iterate</span><i>→</i></div>
     <figure class="ut-side is-after">
       <figcaption><span class="ut-tag ok">After</span>Shipped: no total, quantity is the primary figure</figcaption>
-      <div class="bx-phone is-real"><img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Cyberdine My Orders as shipped: dishes grouped by status with quantity on the right and no running total" width="750" height="1624" loading="lazy" decoding="async"><i class="ut-pin" style="--y:22.4%"></i><i class="ut-pin" style="--y:49%"></i></div>
+      <div class="bx-phone is-real"><img src="/work/cyberdine-case/images/Order%20Status-750.webp" alt="Cyberdine My Orders as shipped: dishes grouped by status with quantity on the right and no running total" width="750" height="1624" loading="lazy" decoding="async"><i class="ut-pin" style="--y:22.4%"></i><i class="ut-pin" style="--y:49%"></i><p class="ut-note ok"><i>↗</i><span>Qty first: diners <b>check what they ordered</b>, not what they spent.</span></p></div>
     </figure>
   </div>
 
