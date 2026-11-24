@@ -986,7 +986,9 @@ const fcPage = (key) => {
   const shot = (b, sizes = WIDE) => `<a href="${r}${esc(b.src)}" target="_blank" rel="noopener" title="Open full size"><img ${pic(r, b.src, sizes)} width="${b.w}" height="${b.h}" alt="${esc(alt(b.cap))}" loading="lazy" decoding="async">${newTab}</a>`;
   const cap = (b) => (b.cap ? `<figcaption>${esc(b.cap)}</figcaption>` : "");
   const render = (b) =>
-    b.t === "img" ? `<figure class="shot reveal">${shot(b)}${cap(b)}</figure>`
+    // hand-built visual sections (Steadfast decisions and five-tools), written as HTML in the case file
+    b.t === "raw" ? b.html
+    : b.t === "img" ? `<figure class="shot reveal">${shot(b)}${cap(b)}</figure>`
     // two screens side by side, each with its caption (a wireframe and the screen it became, or a before and after)
     : b.t === "pair" ? `<div class="shot-pair reveal">${b.items.map((i) => `<figure class="shot">${shot(i, "(max-width:900px) 100vw, 580px")}${cap(i)}</figure>`).join("")}</div>`
     // the stages of one journey, each tagged with its module's colour

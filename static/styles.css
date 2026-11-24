@@ -2222,3 +2222,84 @@ p,li,dd{text-wrap:pretty}
 }
 @media (max-width:560px){.prb-chip.c2{display:none}}
 @container (max-width:420px){.prb-chip.c3{display:none}.prb-chip.c1{top:5%;left:3%}}
+
+/* ===== Steadfast: four decisions as a bento of live UI scenes ===== */
+.sx-dec{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:28px 0 8px}
+.sx-tile{grid-column:span 2;display:flex;flex-direction:column;overflow:hidden;border-radius:24px;background:#fff;box-shadow:inset 0 0 0 1px #E3E6EE,0 24px 48px -36px rgba(21,19,56,.45);color:var(--ink);text-decoration:none;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.sx-tile.is-wide{grid-column:span 3}
+.sx-tile:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1px #D4D8F5,0 34px 60px -36px rgba(61,56,227,.45)}
+.sx-viz{position:relative;height:210px;padding:22px;background:radial-gradient(70% 90% at 80% 0,rgba(96,91,255,.35),transparent 70%),linear-gradient(160deg,#1F1C4A,#151338);color:#fff;font-size:12px}
+.sx-txt{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:22px 24px 24px}
+.sx-txt small{grid-row:span 3;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#EEEDFF;color:#3D38E3;font-weight:700;font-size:12px}
+.sx-txt h3{margin:0;font-size:clamp(1.15rem,1.7vw,1.4rem);font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.sx-txt p{margin:0;font-size:.95rem;color:var(--mut)}
+.sx-go{margin-top:8px;font-size:.88rem;font-weight:600;color:#3D38E3}
+/* scene 1: the shell */
+.sx-shell{display:flex;gap:14px}
+.sx-shell nav{display:flex;flex-direction:column;gap:10px;padding:10px;border-radius:14px;background:rgba(255,255,255,.08)}
+.sx-shell nav i{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--c) 26%,transparent);color:#fff;font-style:normal;font-weight:700;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 60%,transparent)}
+.sx-shell nav i.on{background:var(--c);box-shadow:0 8px 18px -6px var(--c)}
+.sx-shell>div{flex:1;display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;background:#fff;color:var(--ink)}
+.sx-shell>div p{display:flex;align-items:center;gap:10px;margin:0 0 4px}
+.sx-shell>div p b{padding:4px 10px;border-radius:99px;background:var(--c);color:#fff;font-weight:600}
+.sx-shell>div p span{color:var(--mut)}
+.sx-shell em{display:block;height:14px;border-radius:6px;background:#EEF0F6}
+.sx-shell em.s{width:60%}
+/* scene 2: the AI as a process */
+.sx-proc p{display:flex;justify-content:space-between;margin:0 0 10px;font-weight:600}
+.sx-proc p b{color:#B5B2FF}
+.sx-proc>i{display:block;height:8px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.sx-proc>i u{display:block;width:72%;height:100%;border-radius:99px;background:linear-gradient(90deg,#605BFF,#B16FF3);animation:sx-load 3.6s ease-in-out infinite}
+@keyframes sx-load{0%{width:20%}60%,100%{width:72%}}
+.sx-proc ol{display:grid;gap:9px;margin:18px 0 0;padding:0;list-style:none}
+.sx-proc li{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.85)}
+.sx-proc li::before{content:"✓";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#86C270;color:#151338;font-size:11px;font-weight:800}
+.sx-proc li.run::before{content:"";background:none;border:2px solid rgba(255,255,255,.25);border-top-color:#B5B2FF;animation:sx-spin 1s linear infinite;width:16px;height:16px}
+@keyframes sx-spin{to{rotate:360deg}}
+/* scene 3: needs a human, sorted to the top */
+.sx-human{display:flex;flex-direction:column;gap:9px}
+.sx-human p{display:flex;align-items:center;justify-content:space-between;margin:0;padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.8)}
+.sx-human p em{font-style:normal;color:#86C270;font-weight:600}
+.sx-human p.hot{background:#fff;color:var(--ink);box-shadow:0 0 0 3px rgba(251,128,80,.45),0 14px 24px -12px rgba(0,0,0,.6);font-weight:600}
+.sx-human p.hot b{padding:4px 10px;border-radius:99px;background:#FB8050;color:#fff;font-size:11px;animation:sx-pulse 2s ease-in-out infinite}
+@keyframes sx-pulse{50%{box-shadow:0 0 0 6px rgba(251,128,80,0)}0%{box-shadow:0 0 0 0 rgba(251,128,80,.5)}}
+/* scene 4: named agents on a shared board */
+.sx-board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sx-board>div{display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:14px;background:rgba(255,255,255,.07)}
+.sx-board small{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.sx-board p{display:flex;align-items:center;gap:8px;margin:0;padding:9px;border-radius:10px;background:#fff;color:var(--ink);font-weight:600;font-size:11.5px}
+.sx-board p i{display:grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;font-style:normal;font-size:9px;font-weight:800;color:#fff}
+.sx-board i.ai{background:linear-gradient(145deg,#605BFF,#B16FF3)}
+.sx-board i.pp{background:#FB8050}
+
+/* ===== Steadfast: the same client, typed five times ===== */
+.sx-chaos{margin:24px 0 8px}
+.sx-big{margin:0 0 26px;font-size:clamp(2rem,4.4vw,3.6rem);font-weight:600;line-height:1.05;letter-spacing:-.04em;color:var(--ink)}
+.sx-big em{font-style:normal;color:#E5484D}
+.sx-wins{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:0;padding:0;list-style:none}
+.sx-wins li{position:relative;overflow:hidden;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px #E3E6EE,0 18px 34px -26px rgba(21,19,56,.5);rotate:calc((var(--k) - 2) * 1.2deg);translate:0 calc(var(--k) * 4px)}
+.sx-wbar{display:flex;align-items:center;gap:5px;margin:0;padding:9px 12px;background:#F2F3F8;font-size:11px;font-weight:600;color:var(--mut)}
+.sx-wbar i{width:7px;height:7px;border-radius:50%;background:#D5D8E3}
+.sx-wbar span{margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sx-wbody{display:grid;gap:2px;margin:0;padding:14px 14px 44px}
+.sx-wbody small{margin-top:6px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.sx-wbody b{position:relative;font-size:.95rem;font-weight:600;color:var(--ink)}
+.sx-wbody b em{display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:#E5484D;animation:sx-caret 1s steps(1) infinite}
+@keyframes sx-caret{50%{opacity:0}}
+.sx-count{position:absolute;left:12px;right:12px;bottom:12px;padding:5px 10px;border-radius:99px;background:#FDECEC;color:#B4232A;font-size:11px;font-weight:700;text-align:center}
+.sx-wins li:last-child .sx-count{background:#E5484D;color:#fff}
+.sx-pains{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line);list-style:none}
+.sx-pains li{display:flex;flex-direction:column;gap:4px}
+.sx-pains b{font-size:1rem;font-weight:600;color:var(--ink)}
+.sx-pains span{font-size:.88rem;line-height:1.45;color:var(--mut)}
+@media(max-width:900px){
+  .sx-dec{grid-template-columns:1fr}
+  .sx-tile,.sx-tile.is-wide{grid-column:auto}
+  .sx-wins{grid-template-columns:repeat(2,1fr)}
+  .sx-wins li{rotate:0deg;translate:none}
+  .sx-wins li:last-child{grid-column:1/-1}
+  .sx-pains{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){.sx-pains{grid-template-columns:1fr}.sx-viz{height:auto;min-height:190px}}
+@media(prefers-reduced-motion:reduce){.sx-proc>i u,.sx-proc li.run::before,.sx-human p.hot b,.sx-wbody b em{animation:none}.sx-tile{transition:none}}
+.theme-sf .sx-chaos{margin-top:30px}.theme-sf .sx-big{font-size:clamp(2.4rem,5.4vw,4.4rem)}
