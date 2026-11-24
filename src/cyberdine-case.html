@@ -1945,6 +1945,11 @@ section .bg.g{padding:0;border:0;background:none;box-shadow:none;color:var(--m);
 @media(max-width:1000px){.rr-grid{grid-template-columns:1fr}.rr-notes{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.rr-body{grid-template-columns:1fr;justify-items:center}.rr-rings{max-width:200px}.rr-leg{width:100%}.rr-notes{grid-template-columns:1fr 1fr;gap:14px}.rr-notes li{min-height:120px}}
 @media(prefers-reduced-motion:reduce){.rr-notes li{transition:none}}
+
+/* research legend: one shared number column, text centred on its number */
+.rr-leg{grid-template-columns:auto 1fr;align-items:center;gap:14px 16px}
+.rr-leg li{display:contents}
+.rr-leg span{align-self:center}
 </style>
 
 <section id="usability-testing" class="ut3">
