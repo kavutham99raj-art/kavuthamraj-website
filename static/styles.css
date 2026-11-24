@@ -2405,3 +2405,19 @@ p,li,dd{text-wrap:pretty}
   .card .ld>*{min-width:0}
 }
 @media (min-width:1100px){.card .ld-cap{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.35;font-size:clamp(11px,1.9cqi,13px)}.card .ld-cap *{white-space:normal}}
+
+/* ===== Educonnect banner: the real phones from the case cover on a dark green stage ===== */
+.ab-ed{--g:#3FBF86;aspect-ratio:16/10;background:radial-gradient(60% 75% at 50% 55%,rgba(63,191,134,.38),transparent 70%),radial-gradient(45% 60% at 100% 0,rgba(255,255,255,.08),transparent 70%),linear-gradient(180deg,#0E2A1E,#0A1D15);color:#fff}
+.ab-ed::after{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1.3px) 0 0/20px 20px;-webkit-mask:radial-gradient(70% 70% at 50% 40%,#000,transparent);mask:radial-gradient(70% 70% at 50% 40%,#000,transparent);pointer-events:none}
+.ab-ed .edb-shot{position:absolute;left:50%;top:50%;z-index:1;width:min(96%,150cqh);height:auto;translate:-50% -50%;object-fit:initial;-webkit-mask:linear-gradient(180deg,transparent 19%,#000 23%,#000 78%,transparent 81%);mask:linear-gradient(180deg,transparent 19%,#000 23%,#000 78%,transparent 81%);filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.ab-ed{container-type:size}
+.ab-ed .prb-chip i{background:var(--g);box-shadow:0 0 0 4px rgba(63,191,134,.22)}
+.edb-c.c1{left:3%;top:6%}
+.edb-c.c2{right:3%;top:44%;animation-delay:-2s}
+.edb-c.c3{left:4%;bottom:6%;animation-delay:-4s}
+.card .card-visual>.ab-ed{aspect-ratio:auto;width:100%;height:100%}
+@container (max-width:640px){.edb-c{gap:7px;padding:6px 10px 6px 7px;border-radius:11px;font-size:9.5px}.edb-c i{width:20px}.edb-c.c2{display:none}}
+@container (max-width:420px){.edb-c.c3{display:none}}
+.ab-ed .edb-shot{-webkit-mask:linear-gradient(180deg,transparent 19%,#000 24%,#000 77%,transparent 81%),linear-gradient(90deg,transparent 1%,#000 7%,#000 93%,transparent 99%);-webkit-mask-composite:source-in;mask:linear-gradient(180deg,transparent 19%,#000 24%,#000 77%,transparent 81%) intersect,linear-gradient(90deg,transparent 1%,#000 7%,#000 93%,transparent 99%)}
+.ab-ed{background:radial-gradient(55% 70% at 50% 52%,rgba(63,191,134,.45),transparent 72%),linear-gradient(180deg,#123827,#0B2219)}
+.edb-c.c1{top:3%}.edb-c.c3{bottom:3%}

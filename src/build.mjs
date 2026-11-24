@@ -272,6 +272,14 @@ const payrollBanner = (v, r = "") => `<div class="ab ab-pr" role="img" aria-labe
     <p class="prb-chip c2"><i></i><span><b>Deductions</b>PF, ESI and TDS applied</span></p>
     <p class="prb-chip c3"><i></i><span><b>Payslip sent</b>January 2022 · Ravi</span></p>
   </div>`;
+// Educonnect from its real screens (home with tutors, a teacher's profile, online courses), cropped from the case
+// cover onto a dark green stage, with chips for what each screen does.
+const educonnectBanner = (v, r = "") => `<div class="ab ab-ed" role="img" aria-label="${esc(v.alt)}">
+    <img class="edb-shot" ${pic(r, "work/educonnect/01.jpg", "(max-width:900px) 100vw, 760px")} width="1600" height="1600" alt="" loading="lazy" decoding="async">
+    <p class="prb-chip edb-c c1"><i></i><span><b>Tuition or online course</b>One switch on home</span></p>
+    <p class="prb-chip edb-c c2"><i></i><span><b>Chat with the teacher</b>From their profile</span></p>
+    <p class="prb-chip edb-c c3"><i></i><span><b>Pay the tutor</b>Right in the app</span></p>
+  </div>`;
 // Real UI for a project card or case page: a before/after slide, or a row of phone screens.
 const visual = (v, r = "") =>
   v.demo === "loading"
@@ -284,6 +292,8 @@ const visual = (v, r = "") =>
     ? cyberdineBanner(v, r)
     : v.demo === "payroll"
     ? payrollBanner(v, r)
+    : v.demo === "educonnect"
+    ? educonnectBanner(v, r)
     : v.phones
     ? `<div class="phones-panel">${v.phones.map((p) => `<img ${pic(r, p.src, "(max-width:900px) 30vw, 200px")} alt="Sporfy Tracker: ${esc(p.cap)}" width="512" height="1100" loading="lazy" decoding="async">`).join("")}</div>`
     : `<img ${pic(r, v.src, WIDE)} alt="${esc(v.alt)}" width="1600" height="1000" loading="lazy" decoding="async">`;
@@ -1038,8 +1048,8 @@ ${header(r)}
     ${!c.lead && !feat && c.tags.length ? `<ul class="cs-chips rise" style="--d:200ms">${c.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
   </div>`}
   <div class="wrap">
-    ${c.hero ? "" : `<figure class="case-cover rise${feat && feat.visual.demo === "payroll" ? " is-banner" : ""}" style="--d:240ms">${feat && feat.visual.demo === "payroll"
-      ? payrollBanner(feat.visual, r)
+    ${c.hero ? "" : `<figure class="case-cover rise${feat && ["payroll", "educonnect"].includes(feat.visual.demo) ? " is-banner" : ""}" style="--d:240ms">${feat && ["payroll", "educonnect"].includes(feat.visual.demo)
+      ? visual(feat.visual, r)
       : coverSrc
       ? `<img ${pic(r, coverSrc, WIDE)} alt="${esc(feat.visual.alt)}" width="1600" height="1000" decoding="async" fetchpriority="high">`
       : `<img ${pic(r, `work/${thumb(proj.cover || key + ".png")}`, WIDE)} alt="" width="1200" height="1200" decoding="async" fetchpriority="high">`}</figure>`}

@@ -319,7 +319,7 @@ export const featured = [
     title: "Every tutor. *One app.*",
     text: "A self-initiated iOS concept for students, tutors and parents: find a tutor or an online course, chat with teachers and share student posts, all in one place. Researched and designed in two weeks.",
     outcomes: [["2 wks", "research to UI, self-initiated"], ["3", "user groups: students, tutors, parents"], ["iOS", "mobile app, UX and UI"]],
-    visual: { src: "work/educonnect/02.jpg", alt: "Educonnect on two iPhones: tuition and online courses, suggested teachers with chat, on a green brand background" },
+    visual: { demo: "educonnect", alt: "Educonnect on three iPhones: home with tuition and online courses and suggested teachers, a teacher\u2019s profile with Chat and Pay Now, and the online course list" },
     href: "work/educonnect.html", cover: "educonnect.png",
   },
   {
